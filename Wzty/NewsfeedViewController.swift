@@ -107,10 +107,10 @@ extension NewsfeedViewController {
                             heightForHeaderInSection section: Int) -> CGFloat {
         return 52
     }
-
+    
     override func tableView(_ tableView: UITableView,
                             viewForHeaderInSection section: Int) -> UIView? {
-
+        
         let headerView = UINib(nibName: "NewsfeedHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
         return headerView as? UIView
     }
@@ -121,9 +121,9 @@ extension NewsfeedViewController {
         
         super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
         
-        //Prepare image
-        guard let post = postFetchResultsController.object(at: indexPath) as? Post else { return }
-        (cell as! NewsfeedCell).prefetch(post)
+        //        //Prepare image
+        //        guard let post = postFetchResultsController.object(at: indexPath) as? Post else { return }
+        //        (cell as! NewsfeedCell).prefetch(post)
     }
     
     override func tableView(_ tableView: UITableView,
@@ -153,8 +153,10 @@ extension NewsfeedViewController {
         
         for indexPath in indexPaths {
             
-            guard let post = postFetchResultsController.object(at: indexPath) as? Post else {
-                return
+            guard let post = postFetchResultsController.object(at: indexPath) as? Post,
+                post.title == nil,
+                post.imageUrl == nil else {
+                    return
             }
             
             if post.title == nil {
