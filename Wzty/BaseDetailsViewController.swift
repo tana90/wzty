@@ -114,7 +114,6 @@ extension BaseDetailsViewController {
                 tableView.scrollToRow(at: IndexPath(row: 1, section: 0), at: .top, animated: true)
                 navigationHeaderView.showTitle()
             } else {
-                tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
                 navigationHeaderView.hideTitle()
             }
         }

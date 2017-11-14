@@ -41,15 +41,20 @@ class NewsfeedCell: UITableViewCell {
         let predicate = NSPredicate(format: "objectId == %@", post.userId!)
         User.fetchBy(predicate: predicate) { (user) in
             guard let userT = user else { return }
-            //User image
-            if let imageUrlT = userT.userImageUrl {
-                userImageView?.kf.setImage(with: URL(string: imageUrlT))
-            } else {
-                userImageView?.image = nil
+            DispatchQueue.main.async { [weak self] in
+                
+                guard let strongSelf = self else { return }
+                
+                //User image
+                if let imageUrlT = userT.userImageUrl {
+                    strongSelf.userImageView?.kf.setImage(with: URL(string: imageUrlT))
+                } else {
+                    strongSelf.userImageView?.image = nil
+                }
+                
+                //Username
+                strongSelf.usenameLabel?.text = userT.name
             }
-            
-            //Username
-            usenameLabel?.text = userT.name
         }
         
         
@@ -69,28 +74,28 @@ class NewsfeedCell: UITableViewCell {
         } else {
             mediaView?.image = nil
         }
-
+        
         
         //Fetch data and let NSFetchResultsController to reupdate cell
         if post.title == nil {
-                URL(string: post.url!)!.fetchUrlMedia({ (title, details, image) in
-                    
-                    guard let titleT = title else {
-                        CoreDataManager.shared.delete(object: post)
-                        CoreDataManager.shared.saveContextBackground()
-                        return
-                    }
-                    
-                    post.title = titleT
-                    post.details = details
-                    post.imageUrl = image
-                    CoreDataManager.shared.saveContextBackground()
-                    
-                }, failure: { (error) in
+            URL(string: post.url!)!.fetchUrlMedia({ (title, details, image) in
+                
+                guard let titleT = title else {
                     CoreDataManager.shared.delete(object: post)
                     CoreDataManager.shared.saveContextBackground()
-                    console("Error \(error)")
-                })
+                    return
+                }
+                
+                post.title = titleT
+                post.details = details
+                post.imageUrl = image
+                CoreDataManager.shared.saveContextBackground()
+                
+            }, failure: { (error) in
+                CoreDataManager.shared.delete(object: post)
+                CoreDataManager.shared.saveContextBackground()
+                console("Error \(error)")
+            })
         }
     }
 }

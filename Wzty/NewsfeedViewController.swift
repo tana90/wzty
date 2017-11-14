@@ -48,9 +48,12 @@ final class NewsfeedViewController: BaseListViewController {
         super.viewDidLoad()
         
         //Add a fake status bar
-        let statusBarView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 22))
-        statusBarView.backgroundColor = .white
+        let statusBarView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        
+        statusBarView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 22)
+        
         navigationController?.view.addSubview(statusBarView)
+        
         
         //Configure cell
         tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: "newsfeedCell")

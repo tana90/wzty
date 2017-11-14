@@ -34,8 +34,6 @@ final class Post: NSManagedObject {
     
     func write(json: JSON) {
         
-        console(json)
-        
         //Object ID
         if let objectId = json["id_str"].string {
             self.objectId = objectId

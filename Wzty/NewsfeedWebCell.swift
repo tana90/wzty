@@ -44,9 +44,10 @@ final class NewsfeedWebCell: UITableViewCell {
         if !isStarted {
             DispatchQueue.main.async {
                 self.webView.loadRequest(URLRequest(url: URL(string: post.url!)!))
+                self.isStarted = true
             }
             
-            isStarted = true
+            
         }
     }
 }
