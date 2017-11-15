@@ -22,7 +22,7 @@ import Foundation
 import UIKit
 import Kanna
 
-//MARK: - UIView extensions
+//MARK: - UIView
 extension UIView {
     
     @IBInspectable var borderWidth: CGFloat {
@@ -111,6 +111,8 @@ extension UIView {
     
 }
 
+
+//MARK: - Optional
 extension Optional {
     
     func defaultValue(defaultValue: Wrapped) -> Wrapped {
@@ -123,6 +125,7 @@ extension Optional {
     }
 }
 
+//MARK: - Date
 extension Date {
     
     static func timestamp() -> Int {
@@ -224,7 +227,7 @@ extension Date {
     }
 }
 
-
+//MARK: - URL
 var requestInProgress: [URL] = []
 public extension URL {
     
@@ -298,7 +301,7 @@ public extension URL {
 }
 
 
-
+//MARK: - String
 extension String {
     
     static func removeUrls(text: String?) -> String? {
@@ -347,7 +350,7 @@ extension String {
     }
 }
 
-
+//MARK: - Array
 extension Array where Element: Equatable {
     
     mutating func remove(object: Element) {

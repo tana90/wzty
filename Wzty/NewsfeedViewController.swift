@@ -115,16 +115,7 @@ extension NewsfeedViewController {
         return headerView as? UIView
     }
     
-    override func tableView(_ tableView: UITableView,
-                            willDisplay cell: UITableViewCell,
-                            forRowAt indexPath: IndexPath) {
-        
-        super.tableView(tableView, willDisplay: cell, forRowAt: indexPath)
-        
-        //        //Prepare image
-        //        guard let post = postFetchResultsController.object(at: indexPath) as? Post else { return }
-        //        (cell as! NewsfeedCell).prefetch(post)
-    }
+
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -146,9 +137,9 @@ extension NewsfeedViewController {
 
 
 //MARK: - TableView Prefetch DataSource
-extension NewsfeedViewController {
+extension NewsfeedViewController: UITableViewDataSourcePrefetching {
     
-    override func tableView(_ tableView: UITableView,
+    func tableView(_ tableView: UITableView,
                             prefetchRowsAt indexPaths: [IndexPath]) {
         
         for indexPath in indexPaths {
@@ -178,7 +169,7 @@ extension NewsfeedViewController {
                     tempImg.kf.setImage(with: URL(string: imageUrlT))
                     
                 }, failure: { (error) in
-                    print("Error \(error)")
+                    console("Error \(error)")
                     CoreDataManager.shared.delete(object: post)
                     CoreDataManager.shared.saveContextBackground()
                 })

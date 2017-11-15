@@ -26,7 +26,7 @@ func measure(title: String, block: @escaping ( @escaping () -> ()) -> ()) {
     
     block {
         let timeElapsed = CFAbsoluteTimeGetCurrent() - startTime
-        print("\(title):: Time: \(timeElapsed)")
+        console("\(title):: Time: \(timeElapsed)")
     }
 }
 

@@ -136,7 +136,7 @@ final class CoreDataManager {
                 managedContext.delete(managedObjectData)
             }
         } catch let error as NSError {
-            print("Detele all data in \(entity) error : \(error) \(error.userInfo)")
+            console("Detele all data in \(entity) error : \(error) \(error.userInfo)")
         }
     }
     

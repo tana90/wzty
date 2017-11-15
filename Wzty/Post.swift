@@ -125,7 +125,7 @@ extension Post {
                 }
                 result(last)
             } catch _ {
-                print("Error fetching object by id.")
+                console("Error fetching object by id.")
                 result(nil)
                 
             }
@@ -141,7 +141,7 @@ extension Post {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [Post]
                 result(results)
             } catch _ {
-                print("Error fetching object by id.")
+                console("Error fetching object by id.")
                 result(nil)
             }
         }
@@ -191,7 +191,7 @@ extension Post {
             }
             
         }, failure: { (error) in
-            print("Error: \(error)")
+            console("Error: \(error)")
         })
     }
     
@@ -204,7 +204,7 @@ extension Post {
         AppDelegate.shared.twitter?.getTimeline(for: userId, count: 50, sinceID: sinceId, maxID: maxId, trimUser: false, contributorDetails: true, includeEntities: true, success: { (json) in
             //
         }, failure: { (error) in
-            print("Error: \(error)")
+            console("Error: \(error)")
         })
     }
 }

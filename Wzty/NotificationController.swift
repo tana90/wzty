@@ -36,9 +36,7 @@ final class NotificationController {
     
     
     func notify(_ finished: @escaping () -> (Void)) {
-        
-        console("Fetch background")
-        
+
         Post.homeTimeline { [weak self] (results) in
             guard let strongSelf = self,
                 let posts = results,

@@ -19,13 +19,36 @@
 //
 
 import UIKit
+import CoreData
 
 final class NewsfeedDetailsViewController: BaseDetailsViewController {
+    
+    lazy var postFetchResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
+        if let postT = post,
+            let objectId = postT.objectId {
+            let predicate = NSPredicate(format: "objectId == %@", objectId)
+            request.predicate = predicate
+        }
+        request.sortDescriptors = []
+        request.fetchLimit = 1
+        let frc = NSFetchedResultsController(fetchRequest: request,
+                                             managedObjectContext: CoreDataManager.shared.backgroundContext,
+                                             sectionNameKeyPath: nil,
+                                             cacheName: nil)
+        frc.delegate = self
+        return frc
+    }()
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        perform(postFetchResultsController)
+    }
 }
 
 extension NewsfeedDetailsViewController {
@@ -33,20 +56,19 @@ extension NewsfeedDetailsViewController {
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let postT = post else {
-            return super.tableView(tableView, cellForRowAt: indexPath)
+        guard let post = postFetchResultsController.object(at: IndexPath(row: 0, section: 0)) as? Post else {
+             return super.tableView(tableView, cellForRowAt: indexPath)
         }
-        
+
         switch indexPath.row {
         case 0:
             let detailsCell = tableView.dequeueReusableCell(withIdentifier: "newsfeedDetailsCell") as! NewsfeedDetailsCell
             detailsCell.showImageActionHandler = { [unowned self] in
-                print("Show image")
                 let mediaPreview = MediaPreview(nibName: "MediaPreview", bundle: nil)
                 self.present(mediaPreview, animated: true, completion: nil)
-                mediaPreview.show(postT.imageUrl)
+                mediaPreview.show(post.imageUrl)
             }
-            detailsCell.show(postT)
+            detailsCell.show(post)
             return detailsCell
         case 1:
             let webViewCell = tableView.dequeueReusableCell(withIdentifier: "newsfeedWebCell") as! NewsfeedWebCell
@@ -61,17 +83,10 @@ extension NewsfeedDetailsViewController {
                 tableView.isScrollEnabled = true
                 tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
-            webViewCell.show(postT)
+            webViewCell.show(post)
             return webViewCell
         default:
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
-    }
-}
-
-extension NewsfeedDetailsViewController: UITableViewDataSourcePrefetching {
-    
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        print("Prefetch row \(indexPaths)")
     }
 }

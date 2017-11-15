@@ -40,7 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //Request notifications permissions
         NotificationController.shared.requestPermissionsWith { (status) in
-            console(status)
         }
         
         //Change navigation title font

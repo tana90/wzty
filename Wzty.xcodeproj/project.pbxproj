@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C81EFD051FBC56D700A54FFE /* License in Resources */ = {isa = PBXBuildFile; fileRef = C81EFD041FBC56D700A54FFE /* License */; };
+		C81EFD071FBC584B00A54FFE /* BaseCoreDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */; };
 		C83DB3031FB6E1FF0051147B /* NewsfeedWebCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C83DB3021FB6E1FF0051147B /* NewsfeedWebCell.xib */; };
 		C83DB3051FB6E4A10051147B /* NewsfeedWebCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83DB3041FB6E4A10051147B /* NewsfeedWebCell.swift */; };
 		C845D4F91FAF3CE800A278ED /* KeyChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845D4F81FAF3CE800A278ED /* KeyChain.swift */; };
@@ -123,6 +125,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C81EFD041FBC56D700A54FFE /* License */ = {isa = PBXFileReference; lastKnownFileType = text; path = License; sourceTree = "<group>"; };
+		C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoreDataViewController.swift; sourceTree = "<group>"; };
 		C83DB3021FB6E1FF0051147B /* NewsfeedWebCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsfeedWebCell.xib; sourceTree = "<group>"; };
 		C83DB3041FB6E4A10051147B /* NewsfeedWebCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedWebCell.swift; sourceTree = "<group>"; };
 		C845D4F81FAF3CE800A278ED /* KeyChain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChain.swift; sourceTree = "<group>"; };
@@ -241,6 +245,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C81EFD081FBC5EF900A54FFE /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				C8CD9C901FB9E6B9009D4AAA /* MediaPreview */,
+				C845D5021FAF576D00A278ED /* Settings */,
+				C859892E1FADA80600C94877 /* Login */,
+				C859892D1FADA7FB00C94877 /* Profile */,
+				C859892C1FADA7F000C94877 /* Notifications */,
+				C859892B1FADA7DC00C94877 /* Newsfeed */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		C81EFD091FBC5F0800A54FFE /* BaseViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C85989291FADA73A00C94877 /* BaseListViewController.swift */,
+				C859893C1FADB78300C94877 /* BaseDetailsViewController.swift */,
+				C8FDC5FF1FB049210005721F /* BaseSettingsViewController.swift */,
+				C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */,
+			);
+			name = BaseViewControllers;
+			sourceTree = "<group>";
+		};
 		C845D4ED1FAF347500A278ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +361,7 @@
 				C85989461FADBA3C00C94877 /* ProfileHeaderView.xib */,
 				C8AC8BC61FB88DB200F81019 /* NavigationTableHeaderView.xib */,
 				C8CD9C931FB9E909009D4AAA /* MediaPreview.xib */,
+				C81EFD041FBC56D700A54FFE /* License */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -340,15 +369,8 @@
 		C85989281FADA71C00C94877 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C8CD9C901FB9E6B9009D4AAA /* MediaPreview */,
-				C845D5021FAF576D00A278ED /* Settings */,
-				C859892E1FADA80600C94877 /* Login */,
-				C859892D1FADA7FB00C94877 /* Profile */,
-				C859892C1FADA7F000C94877 /* Notifications */,
-				C859892B1FADA7DC00C94877 /* Newsfeed */,
-				C85989291FADA73A00C94877 /* BaseListViewController.swift */,
-				C859893C1FADB78300C94877 /* BaseDetailsViewController.swift */,
-				C8FDC5FF1FB049210005721F /* BaseSettingsViewController.swift */,
+				C81EFD091FBC5F0800A54FFE /* BaseViewControllers */,
+				C81EFD081FBC5EF900A54FFE /* Screens */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -578,6 +600,7 @@
 				C889F5471FB222E600132460 /* UserCell.xib in Resources */,
 				C8FEFB8D1FB4F85500B6F0F7 /* NewsfeedHeaderView.xib in Resources */,
 				C859891A1FADA69F00C94877 /* Main.storyboard in Resources */,
+				C81EFD051FBC56D700A54FFE /* License in Resources */,
 				C85989471FADBA3C00C94877 /* ProfileHeaderView.xib in Resources */,
 				C83DB3031FB6E1FF0051147B /* NewsfeedWebCell.xib in Resources */,
 				C889F4FA1FB1BE0B00132460 /* Launch Screen.storyboard in Resources */,
@@ -644,6 +667,7 @@
 				C889F52A1FB1C10900132460 /* AnimatedImageView.swift in Sources */,
 				C859893D1FADB78300C94877 /* BaseDetailsViewController.swift in Sources */,
 				C889F4EA1FB1BE0B00132460 /* SwifterFavorites.swift in Sources */,
+				C81EFD071FBC584B00A54FFE /* BaseCoreDataViewController.swift in Sources */,
 				C889F5301FB1C10900132460 /* ImageView+Kingfisher.swift in Sources */,
 				C889F4ED1FB1BE0B00132460 /* SwifterTag.swift in Sources */,
 				C889F5281FB1C10900132460 /* ThreadHelper.swift in Sources */,

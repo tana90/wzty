@@ -21,9 +21,8 @@
 import UIKit
 import CoreData
 
-class BaseListViewController: UITableViewController {
+class BaseListViewController: BaseCoreDataViewController {
     
-    var fetchResultsController: NSFetchedResultsController<NSFetchRequestResult>?
     var loading: Bool = false
     
     override func viewDidLoad() {
@@ -34,17 +33,7 @@ class BaseListViewController: UITableViewController {
         tableView.addSubview(refreshControl!)
         refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
     }
-    
-    func perform(_ fetchResultsController: NSFetchedResultsController<NSFetchRequestResult>) {
-        
-        self.fetchResultsController = fetchResultsController
-        do {
-            try fetchResultsController.performFetch()
-        } catch _ {
-            print("Error performing fetch products")
-        }
-    }
-    
+
     @objc func refreshData() {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [unowned self] in
             self.refreshControl?.endRefreshing()
@@ -52,8 +41,8 @@ class BaseListViewController: UITableViewController {
     }
 
     func loadData(newer: Bool) {
+        
     }
-    
 }
 
 
@@ -88,6 +77,7 @@ extension BaseListViewController {
             let fetchedObjects = fetchResultsControllerT.fetchedObjects else {
             return
         }
+        
         let last = fetchedObjects.count - 1
         if !loading && indexPath.row == last {
             //Load more
@@ -99,62 +89,5 @@ extension BaseListViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsfeedCell") as! NewsfeedCell
         return cell
-    }
-}
-
-
-extension BaseListViewController: UITableViewDataSourcePrefetching {
-    
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        //
-    }
-    
-    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
-        //
-    }
-}
-
-
-
-//MARK: - Fetch Results Controller Delegate
-extension BaseListViewController: NSFetchedResultsControllerDelegate {
-    
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.tableView.beginUpdates()
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-        
-        switch type {
-        case .insert:
-            self.tableView.insertSections(IndexSet([sectionIndex]), with: .automatic)
-        case .delete:
-            self.tableView.deleteSections(IndexSet([sectionIndex]), with: .automatic)
-        case .move:
-            break
-        case .update:
-            self.tableView.reloadSections(IndexSet([sectionIndex]), with: .automatic)
-            break
-        }
-    }
-    
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-        
-        switch type {
-        case .insert:
-            self.tableView.insertRows(at: [newIndexPath!], with: .automatic)
-        case .delete:
-            self.tableView.deleteRows(at: [indexPath!], with: .automatic)
-        case .update:
-            if (tableView.indexPathsForVisibleRows?.contains(indexPath!))! {
-                self.tableView.reloadRows(at: [indexPath!], with: .automatic)
-            }
-        case .move:
-            self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
-        }
-    }
-    
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        self.tableView.endUpdates()
     }
 }

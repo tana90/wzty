@@ -40,7 +40,7 @@ final class LoginViewController: UIViewController {
             self.loginSuccessfull()
             
             }, failure: { (error) in
-                print("Error: \(error)")
+                console("Error: \(error)")
         })
     }
     

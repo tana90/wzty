@@ -113,7 +113,7 @@ extension User {
                 }
                 result(last)
             } catch _ {
-                print("Error fetching object by id.")
+                console("Error fetching object by id.")
                 result(nil)
             }
         }
@@ -134,7 +134,7 @@ extension User {
                 }
                 result(last)
             } catch _ {
-                print("Error fetching object by id.")
+                console("Error fetching object by id.")
                 result(nil)
                 
             }
@@ -152,7 +152,7 @@ extension User {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [User]
                 result(results)
             } catch _ {
-                print("Error fetching object by id.")
+                console("Error fetching object by id.")
                 result(nil)
                 
             }
@@ -168,7 +168,7 @@ extension User {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [NSManagedObject]
                 result(results)
             } catch _ {
-                print("Error fetching object by id.")
+                console("Error fetching object by id.")
                 result(nil)
             }
         }
@@ -221,7 +221,7 @@ extension User {
             }
             
         }, failure: { (error) in
-            print("Error: \(error)")
+            console("Error: \(error)")
         })
     }
 }
