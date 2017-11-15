@@ -79,10 +79,7 @@ class NewsfeedCell: UITableViewCell {
         //Fetch data and let NSFetchResultsController to reupdate cell
         if post.title == nil {
             URL(string: post.url!)!.fetchUrlMedia({ (title, details, image) in
-                
                 guard let titleT = title else {
-                    CoreDataManager.shared.delete(object: post)
-                    CoreDataManager.shared.saveContextBackground()
                     return
                 }
                 
@@ -92,8 +89,6 @@ class NewsfeedCell: UITableViewCell {
                 CoreDataManager.shared.saveContextBackground()
                 
             }, failure: { (error) in
-                CoreDataManager.shared.delete(object: post)
-                CoreDataManager.shared.saveContextBackground()
                 console("Error \(error)")
             })
         }

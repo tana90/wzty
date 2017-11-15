@@ -18,7 +18,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="359.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <webView contentMode="scaleToFill" mediaPlaybackAllowsAirPlay="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reM-vM-VZ0">
+                    <webView clipsSubviews="YES" contentMode="scaleToFill" mediaPlaybackAllowsAirPlay="NO" suppressesIncrementalRendering="YES" translatesAutoresizingMaskIntoConstraints="NO" id="reM-vM-VZ0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="360"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </webView>
@@ -35,7 +35,7 @@
             <connections>
                 <outlet property="webView" destination="reM-vM-VZ0" id="VeT-xJ-YcU"/>
             </connections>
-            <point key="canvasLocation" x="-580.5" y="-241"/>
+            <point key="canvasLocation" x="-874" y="-301"/>
         </tableViewCell>
     </objects>
 </document>

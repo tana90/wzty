@@ -145,17 +145,15 @@ extension NewsfeedViewController: UITableViewDataSourcePrefetching {
         for indexPath in indexPaths {
             
             guard let post = postFetchResultsController.object(at: indexPath) as? Post,
-                post.title == nil,
-                post.imageUrl == nil else {
+                post.title == nil else {
                     return
             }
             
             if post.title == nil {
+                
                 URL(string: post.url!)!.fetchUrlMedia({ (title, details, image) in
-                    
+
                     guard let titleT = title else {
-                        CoreDataManager.shared.delete(object: post)
-                        CoreDataManager.shared.saveContextBackground()
                         return
                     }
                     
@@ -170,8 +168,6 @@ extension NewsfeedViewController: UITableViewDataSourcePrefetching {
                     
                 }, failure: { (error) in
                     console("Error \(error)")
-                    CoreDataManager.shared.delete(object: post)
-                    CoreDataManager.shared.saveContextBackground()
                 })
             }
         }

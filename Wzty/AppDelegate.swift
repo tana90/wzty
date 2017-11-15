@@ -19,7 +19,6 @@
 //
 
 import UIKit
-//import SwifteriOS
 import Social
 
 @UIApplicationMain

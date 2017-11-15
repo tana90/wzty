@@ -237,12 +237,18 @@ public extension URL {
     
     func fetchUrlMedia(_ completion: @escaping ((_ title: String?, _ description: String?, _ previewImage: String?) -> Void), failure: @escaping ((_ errorMessage: String) -> Void)) {
         
+        //console(self)
+        
         var canBeginRequest: Bool
-        if requestInProgress.contains(self) == false {
-            requestInProgress.append(self)
-            canBeginRequest = true
+        if requestInProgress.count > 0 {
+            if requestInProgress.contains(self) == false {
+                requestInProgress.append(self)
+                canBeginRequest = true
+            } else {
+                canBeginRequest = false
+            }
         } else {
-            canBeginRequest = false
+            canBeginRequest = true
         }
         
         if canBeginRequest {
@@ -281,7 +287,7 @@ public extension URL {
                                         
                                     }
                                 }
-                                
+                                console(String(format: "%@ - %@ - **%@", title ?? "?", description ?? "?", previewImage ?? "~~"))
                                 DispatchQueue.main.async(execute: {
                                     completion(String.removeUrls(text: title), String.removeUrls(text: description), previewImage)
                                 })

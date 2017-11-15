@@ -115,8 +115,10 @@ final class CoreDataManager {
 
     func delete(object: NSManagedObject) {
         backgroundContext.performAndWait {
+            console("Delete object \((object as? Post)?.url)")
             backgroundContext.delete(object)
         }
+        saveContextBackground()
     }
     
     //Wipe data

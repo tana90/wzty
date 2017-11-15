@@ -55,15 +55,12 @@ final class Post: NSManagedObject {
         
         //Url
         if let urls = json["entities"].object?["urls"]?.array {
-            //Link
             if urls.count > 0 {
                 if let urlLink = urls[0].object?["expanded_url"]?.string {
                     self.url = urlLink
                 }
             }
-            
         }
-        
         
         //User
         User.add(json["user"], result: { (newObject) in
@@ -79,13 +76,11 @@ extension Post {
         
         for json in objects {
             if let urls = json["entities"].object?["urls"]?.array {
-                //Link
                 if urls.count > 0 {
                     if let _ = urls[0].object?["expanded_url"]?.string {
                         add(json)
                     }
                 }
-                
             }
         }
         
