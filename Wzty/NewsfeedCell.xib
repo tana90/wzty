@@ -122,12 +122,12 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="14"/>
+                                <real key="value" value="20"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@tudoroctavianana" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xMc-QY-s2g">
-                        <rect key="frame" x="20" y="39" width="287" height="28"/>
+                        <rect key="frame" x="20" y="38" width="287" height="28"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="28" id="ONT-E7-UB4"/>
                         </constraints>
@@ -147,12 +147,12 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4h ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVe-ew-ivF">
-                        <rect key="frame" x="20" y="67" width="48" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4h ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVe-ew-ivF">
+                        <rect key="frame" x="20" y="67" width="169" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="zeG-Za-z9J"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -164,10 +164,10 @@
                     <constraint firstItem="aJx-d4-6Z9" firstAttribute="trailing" secondItem="mcs-h5-BBA" secondAttribute="trailingMargin" constant="-2" id="Edb-3H-QhL"/>
                     <constraint firstAttribute="trailing" secondItem="GiP-ur-h0Y" secondAttribute="trailing" constant="16" id="FET-6v-h8B"/>
                     <constraint firstItem="GiP-ur-h0Y" firstAttribute="top" secondItem="gVe-ew-ivF" secondAttribute="bottom" constant="7" id="bA3-WJ-OAE"/>
-                    <constraint firstItem="xMc-QY-s2g" firstAttribute="top" secondItem="mcs-h5-BBA" secondAttribute="topMargin" constant="8" id="eEW-0G-enL"/>
+                    <constraint firstItem="xMc-QY-s2g" firstAttribute="top" secondItem="mcs-h5-BBA" secondAttribute="topMargin" constant="7" id="eEW-0G-enL"/>
                     <constraint firstItem="aJx-d4-6Z9" firstAttribute="top" secondItem="mcs-h5-BBA" secondAttribute="topMargin" constant="7" id="eQl-rn-ZvG"/>
                     <constraint firstItem="xMc-QY-s2g" firstAttribute="leading" secondItem="mcs-h5-BBA" secondAttribute="leadingMargin" constant="4" id="q1B-s1-E4s"/>
-                    <constraint firstItem="gVe-ew-ivF" firstAttribute="top" secondItem="xMc-QY-s2g" secondAttribute="bottom" id="rr8-C7-mta"/>
+                    <constraint firstItem="gVe-ew-ivF" firstAttribute="top" secondItem="xMc-QY-s2g" secondAttribute="bottom" constant="1" id="rr8-C7-mta"/>
                     <constraint firstAttribute="bottom" secondItem="GiP-ur-h0Y" secondAttribute="bottom" constant="19.5" id="us0-M0-3RH"/>
                     <constraint firstItem="GiP-ur-h0Y" firstAttribute="leading" secondItem="mcs-h5-BBA" secondAttribute="leading" constant="16" id="ya4-Xx-qGC"/>
                 </constraints>
@@ -181,7 +181,7 @@
                 <outlet property="usenameLabel" destination="xMc-QY-s2g" id="lU7-DG-Mhc"/>
                 <outlet property="userImageView" destination="aJx-d4-6Z9" id="Ech-TK-hsR"/>
             </connections>
-            <point key="canvasLocation" x="-1582" y="-40"/>
+            <point key="canvasLocation" x="-1756.5" y="-51"/>
         </tableViewCell>
     </objects>
     <resources>

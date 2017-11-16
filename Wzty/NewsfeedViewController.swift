@@ -38,12 +38,6 @@ final class NewsfeedViewController: BaseListViewController {
     }()
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -67,10 +61,6 @@ final class NewsfeedViewController: BaseListViewController {
         loadData(newer: true)
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
     
     @objc override func refreshData() {
         super.refreshData()
@@ -89,12 +79,15 @@ final class NewsfeedViewController: BaseListViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if segue.identifier == "showNewsDetailsSegue" {
             let destination = segue.destination as? NewsfeedDetailsViewController
             guard let post = postFetchResultsController.object(at: tableView.indexPathForSelectedRow!) as? Post else {
                 return
             }
             destination?.post = post
+            
+            
         }
     }
 }

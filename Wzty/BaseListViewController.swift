@@ -25,6 +25,13 @@ class BaseListViewController: BaseCoreDataViewController {
     
     var loading: Bool = false
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) { [unowned self] in
+            self.view.alpha = 1.0
+            }.startAnimation()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,7 +50,14 @@ class BaseListViewController: BaseCoreDataViewController {
     func loadData(newer: Bool) {
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        UIViewPropertyAnimator(duration: 0.2, curve: .easeOut) { [unowned self] in
+            self.tableView.alpha = 0.1
+            }.startAnimation()
+    }
 }
+
 
 
 //MARK: - TableView Delegate & DataSource
