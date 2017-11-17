@@ -147,8 +147,8 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4h ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVe-ew-ivF">
-                        <rect key="frame" x="20" y="67" width="169" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4h ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVe-ew-ivF">
+                        <rect key="frame" x="20" y="67" width="49.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="zeG-Za-z9J"/>
                         </constraints>
@@ -156,13 +156,24 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaa-8L-dle">
+                        <rect key="frame" x="16" y="0.0" width="343" height="92"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.33289620535714287" blue="0.95686274510000002" alpha="0.14571412852112675" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <action selector="userAction" destination="z1e-xm-SHi" eventType="touchUpInside" id="FYP-ZI-8sM"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="gVe-ew-ivF" firstAttribute="leading" secondItem="xMc-QY-s2g" secondAttribute="leading" id="5st-hB-R7d"/>
+                    <constraint firstItem="GiP-ur-h0Y" firstAttribute="top" secondItem="iaa-8L-dle" secondAttribute="bottom" constant="3" id="7LL-JO-I6G"/>
                     <constraint firstItem="aJx-d4-6Z9" firstAttribute="leading" secondItem="xMc-QY-s2g" secondAttribute="trailing" constant="10" id="7yG-m8-mpL"/>
+                    <constraint firstItem="iaa-8L-dle" firstAttribute="top" secondItem="mcs-h5-BBA" secondAttribute="top" id="BzS-W4-gfV"/>
                     <constraint firstItem="aJx-d4-6Z9" firstAttribute="trailing" secondItem="mcs-h5-BBA" secondAttribute="trailingMargin" constant="-2" id="Edb-3H-QhL"/>
                     <constraint firstAttribute="trailing" secondItem="GiP-ur-h0Y" secondAttribute="trailing" constant="16" id="FET-6v-h8B"/>
+                    <constraint firstAttribute="trailing" secondItem="iaa-8L-dle" secondAttribute="trailing" constant="16" id="SyU-Gq-FXX"/>
+                    <constraint firstItem="iaa-8L-dle" firstAttribute="leading" secondItem="mcs-h5-BBA" secondAttribute="leading" constant="16" id="UuN-0M-4iw"/>
                     <constraint firstItem="GiP-ur-h0Y" firstAttribute="top" secondItem="gVe-ew-ivF" secondAttribute="bottom" constant="7" id="bA3-WJ-OAE"/>
                     <constraint firstItem="xMc-QY-s2g" firstAttribute="top" secondItem="mcs-h5-BBA" secondAttribute="topMargin" constant="7" id="eEW-0G-enL"/>
                     <constraint firstItem="aJx-d4-6Z9" firstAttribute="top" secondItem="mcs-h5-BBA" secondAttribute="topMargin" constant="7" id="eQl-rn-ZvG"/>
@@ -181,7 +192,7 @@
                 <outlet property="usenameLabel" destination="xMc-QY-s2g" id="lU7-DG-Mhc"/>
                 <outlet property="userImageView" destination="aJx-d4-6Z9" id="Ech-TK-hsR"/>
             </connections>
-            <point key="canvasLocation" x="-1756.5" y="-51"/>
+            <point key="canvasLocation" x="-1756.5" y="-66"/>
         </tableViewCell>
     </objects>
     <resources>

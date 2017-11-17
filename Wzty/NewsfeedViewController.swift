@@ -118,6 +118,9 @@ extension NewsfeedViewController {
             return cell
         }
         cell.show(post)
+        cell.showUserActionHandler = { [unowned self] in
+            self.performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
+        }
         return cell
     }
     

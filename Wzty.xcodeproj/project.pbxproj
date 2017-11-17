@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C8153B741FBF03CD0018BCD8 /* BaseProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8153B731FBF03CD0018BCD8 /* BaseProfileDetailsViewController.swift */; };
+		C8153B771FBF06170018BCD8 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8153B761FBF06170018BCD8 /* UserProfileViewController.swift */; };
 		C81EFD051FBC56D700A54FFE /* License in Resources */ = {isa = PBXBuildFile; fileRef = C81EFD041FBC56D700A54FFE /* License */; };
 		C81EFD071FBC584B00A54FFE /* BaseCoreDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */; };
 		C83DB3031FB6E1FF0051147B /* NewsfeedWebCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C83DB3021FB6E1FF0051147B /* NewsfeedWebCell.xib */; };
@@ -125,6 +127,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C8153B731FBF03CD0018BCD8 /* BaseProfileDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProfileDetailsViewController.swift; sourceTree = "<group>"; };
+		C8153B761FBF06170018BCD8 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		C81EFD041FBC56D700A54FFE /* License */ = {isa = PBXFileReference; lastKnownFileType = text; path = License; sourceTree = "<group>"; };
 		C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoreDataViewController.swift; sourceTree = "<group>"; };
 		C83DB3021FB6E1FF0051147B /* NewsfeedWebCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsfeedWebCell.xib; sourceTree = "<group>"; };
@@ -245,9 +249,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C8153B751FBF03EC0018BCD8 /* UserProfile */ = {
+			isa = PBXGroup;
+			children = (
+				C8153B761FBF06170018BCD8 /* UserProfileViewController.swift */,
+			);
+			name = UserProfile;
+			sourceTree = "<group>";
+		};
 		C81EFD081FBC5EF900A54FFE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C8153B751FBF03EC0018BCD8 /* UserProfile */,
 				C8CD9C901FB9E6B9009D4AAA /* MediaPreview */,
 				C845D5021FAF576D00A278ED /* Settings */,
 				C859892E1FADA80600C94877 /* Login */,
@@ -265,6 +278,7 @@
 				C859893C1FADB78300C94877 /* BaseDetailsViewController.swift */,
 				C8FDC5FF1FB049210005721F /* BaseSettingsViewController.swift */,
 				C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */,
+				C8153B731FBF03CD0018BCD8 /* BaseProfileDetailsViewController.swift */,
 			);
 			name = BaseViewControllers;
 			sourceTree = "<group>";
@@ -620,6 +634,7 @@
 				C8CD9C961FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift in Sources */,
 				C889F4E81FB1BE0B00132460 /* SwifterHelp.swift in Sources */,
 				C889F53A1FB1C10900132460 /* KingfisherOptionsInfo.swift in Sources */,
+				C8153B741FBF03CD0018BCD8 /* BaseProfileDetailsViewController.swift in Sources */,
 				C889F4F51FB1BE0B00132460 /* SwifterFollowers.swift in Sources */,
 				C859893F1FADB97C00C94877 /* NotificationsViewController.swift in Sources */,
 				C889F4D91FB1BE0B00132460 /* Swifter.swift in Sources */,
@@ -669,6 +684,7 @@
 				C889F4EA1FB1BE0B00132460 /* SwifterFavorites.swift in Sources */,
 				C81EFD071FBC584B00A54FFE /* BaseCoreDataViewController.swift in Sources */,
 				C889F5301FB1C10900132460 /* ImageView+Kingfisher.swift in Sources */,
+				C8153B771FBF06170018BCD8 /* UserProfileViewController.swift in Sources */,
 				C889F4ED1FB1BE0B00132460 /* SwifterTag.swift in Sources */,
 				C889F5281FB1C10900132460 /* ThreadHelper.swift in Sources */,
 				C85989151FADA69F00C94877 /* AppDelegate.swift in Sources */,

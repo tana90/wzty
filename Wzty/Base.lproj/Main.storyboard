@@ -104,6 +104,7 @@
                     <navigationItem key="navigationItem" title="Home" id="ORX-e8-xzG"/>
                     <connections>
                         <segue destination="FKQ-YT-Cwb" kind="presentation" identifier="showNewsDetailsSegue" id="7u8-TI-qeV"/>
+                        <segue destination="rgS-an-gJp" kind="presentation" identifier="showUserDetailsSegue" id="GAk-P3-M5L"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jpb-d3-QQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -133,10 +134,41 @@
                             <outlet property="delegate" destination="FKQ-YT-Cwb" id="dk9-W2-MLZ"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="rgS-an-gJp" kind="presentation" identifier="showUserDetailsSegue" id="uu1-rU-P46"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eW5-7m-n1T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3838" y="-694"/>
+        </scene>
+        <!--User Profile View Controller-->
+        <scene sceneID="qsI-W8-Fc5">
+            <objects>
+                <tableViewController id="rgS-an-gJp" customClass="UserProfileViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vGx-Zl-kfH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="u3D-c9-Dba">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="u3D-c9-Dba" id="yTu-Yu-Npd">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rgS-an-gJp" id="yQ5-GB-0qQ"/>
+                            <outlet property="delegate" destination="rgS-an-gJp" id="7Oe-v8-iLf"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bPI-Uc-trb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2913" y="-1548"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="XMZ-NK-RGI">
@@ -610,5 +642,8 @@ The GNU General Public License does not permit incorporating your program into p
         <image name="notification-tab" width="25" height="25"/>
         <image name="profile-selected" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="uu1-rU-P46"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.84313725490196079" green="0.17254901960784313" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

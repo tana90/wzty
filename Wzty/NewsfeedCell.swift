@@ -28,6 +28,14 @@ class NewsfeedCell: UITableViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var mediaView: UIImageView!
     @IBOutlet private weak var detailsLabel: UILabel!
+    public var showUserActionHandler: (() -> ())?
+    
+    @IBAction func userAction() {
+        console("Show user page")
+        if let handler = showUserActionHandler {
+            handler()
+        }
+    }
     
     func prefetch(_ post: Post) {
         guard let imageUrlT = post.imageUrl else { return }
