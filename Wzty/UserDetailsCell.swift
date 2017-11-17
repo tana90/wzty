@@ -6,4 +6,10 @@
 //  Copyright © 2017 Tudor Ana. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+final class UserDetailsCell: UITableViewCell {
+    
+    @IBOutlet private weak var usernameLabel: UILabel!
+    
+}

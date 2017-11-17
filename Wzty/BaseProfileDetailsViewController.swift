@@ -14,6 +14,13 @@ class BaseProfileDetailsViewController: BaseCoreDataViewController {
     var navigationHeaderView: NavigationTableHeaderView = {
         return UINib(nibName: "NavigationTableHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! NavigationTableHeaderView
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //Configure user cell
+        tableView.register(UINib(nibName: "UserDetailsCell", bundle: nil), forCellReuseIdentifier: "userDetailsCell")
+    }
 }
 
 
@@ -21,7 +28,7 @@ extension BaseProfileDetailsViewController {
     
     override func tableView(_ tableView: UITableView,
                             heightForHeaderInSection section: Int) -> CGFloat {
-        return 66
+        return 44
     }
     
     override func tableView(_ tableView: UITableView,
@@ -32,6 +39,16 @@ extension BaseProfileDetailsViewController {
             self.dismiss(animated: true, completion: nil)
         }
         return navigationHeaderView
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 660
+    }
+    
+    override func tableView(_ tableView: UITableView,
+                            heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
 }

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		C8153B741FBF03CD0018BCD8 /* BaseProfileDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8153B731FBF03CD0018BCD8 /* BaseProfileDetailsViewController.swift */; };
 		C8153B771FBF06170018BCD8 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8153B761FBF06170018BCD8 /* UserProfileViewController.swift */; };
+		C8153B791FBF0E550018BCD8 /* UserDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8153B781FBF0E550018BCD8 /* UserDetailsCell.swift */; };
+		C8153B7B1FBF0E740018BCD8 /* UserDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8153B7A1FBF0E740018BCD8 /* UserDetailsCell.xib */; };
 		C81EFD051FBC56D700A54FFE /* License in Resources */ = {isa = PBXBuildFile; fileRef = C81EFD041FBC56D700A54FFE /* License */; };
 		C81EFD071FBC584B00A54FFE /* BaseCoreDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */; };
 		C83DB3031FB6E1FF0051147B /* NewsfeedWebCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C83DB3021FB6E1FF0051147B /* NewsfeedWebCell.xib */; };
@@ -129,6 +131,8 @@
 /* Begin PBXFileReference section */
 		C8153B731FBF03CD0018BCD8 /* BaseProfileDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseProfileDetailsViewController.swift; sourceTree = "<group>"; };
 		C8153B761FBF06170018BCD8 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		C8153B781FBF0E550018BCD8 /* UserDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsCell.swift; sourceTree = "<group>"; };
+		C8153B7A1FBF0E740018BCD8 /* UserDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsCell.xib; sourceTree = "<group>"; };
 		C81EFD041FBC56D700A54FFE /* License */ = {isa = PBXFileReference; lastKnownFileType = text; path = License; sourceTree = "<group>"; };
 		C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoreDataViewController.swift; sourceTree = "<group>"; };
 		C83DB3021FB6E1FF0051147B /* NewsfeedWebCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsfeedWebCell.xib; sourceTree = "<group>"; };
@@ -372,6 +376,7 @@
 				C8FEFB8A1FB4EBBE00B6F0F7 /* NewsfeedDetailsCell.xib */,
 				C83DB3021FB6E1FF0051147B /* NewsfeedWebCell.xib */,
 				C889F5461FB222E600132460 /* UserCell.xib */,
+				C8153B7A1FBF0E740018BCD8 /* UserDetailsCell.xib */,
 				C85989461FADBA3C00C94877 /* ProfileHeaderView.xib */,
 				C8AC8BC61FB88DB200F81019 /* NavigationTableHeaderView.xib */,
 				C8CD9C931FB9E909009D4AAA /* MediaPreview.xib */,
@@ -431,6 +436,7 @@
 				C8CD9C951FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift */,
 				C83DB3041FB6E4A10051147B /* NewsfeedWebCell.swift */,
 				C889F5481FB222F600132460 /* UserCell.swift */,
+				C8153B781FBF0E550018BCD8 /* UserDetailsCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -615,6 +621,7 @@
 				C8FEFB8D1FB4F85500B6F0F7 /* NewsfeedHeaderView.xib in Resources */,
 				C859891A1FADA69F00C94877 /* Main.storyboard in Resources */,
 				C81EFD051FBC56D700A54FFE /* License in Resources */,
+				C8153B7B1FBF0E740018BCD8 /* UserDetailsCell.xib in Resources */,
 				C85989471FADBA3C00C94877 /* ProfileHeaderView.xib in Resources */,
 				C83DB3031FB6E1FF0051147B /* NewsfeedWebCell.xib in Resources */,
 				C889F4FA1FB1BE0B00132460 /* Launch Screen.storyboard in Resources */,
@@ -657,6 +664,7 @@
 				C85989301FADA81F00C94877 /* LoginViewController.swift in Sources */,
 				C889F52F1FB1C10900132460 /* ImagePrefetcher.swift in Sources */,
 				C889F5331FB1C10900132460 /* CacheSerializer.swift in Sources */,
+				C8153B791FBF0E550018BCD8 /* UserDetailsCell.swift in Sources */,
 				C889F4E61FB1BE0B00132460 /* SwifterPlaces.swift in Sources */,
 				C845D5011FAF54EC00A278ED /* CoreDataManager.swift in Sources */,
 				C845D5061FAF5E5A00A278ED /* Post.swift in Sources */,
