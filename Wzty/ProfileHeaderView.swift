@@ -42,7 +42,7 @@ final class ProfileHeaderView: UIView {
         //Draw a gradient 
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = (self.gradientView?.bounds)!
-        gradientLayer.colors = [UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.2).cgColor, UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.0).cgColor]
+        gradientLayer.colors = [UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor, UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.0).cgColor]
         self.gradientView?.layer.addSublayer(gradientLayer)
      
         //User image

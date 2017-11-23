@@ -25,8 +25,7 @@ final class ProfileViewController: BaseListViewController {
     
     lazy var usersFetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        let nameSortDescriptor = NSSortDescriptor(key: "username", ascending: true)
-        request.sortDescriptors = [nameSortDescriptor]
+        request.sortDescriptors = []
         
         if let username = KeyChain.load(string: "username") {
             let predicate = NSPredicate(format: "username != %@", username)

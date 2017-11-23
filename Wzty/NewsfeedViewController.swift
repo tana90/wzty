@@ -42,7 +42,7 @@ final class NewsfeedViewController: BaseListViewController {
         super.viewDidLoad()
         
         //Add a fake status bar
-        let statusBarView = UIVisualEffectView(effect: UIBlurEffect(style: .light))
+        let statusBarView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         
         statusBarView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 22)
         
@@ -51,7 +51,7 @@ final class NewsfeedViewController: BaseListViewController {
         
         //Configure cell
         tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: "newsfeedCell")
-        tableView.estimatedRowHeight = 600
+        tableView.estimatedRowHeight = 545
         
         
         //Register for CoreData updates
@@ -108,7 +108,7 @@ extension NewsfeedViewController {
         return headerView as? UIView
     }
     
-
+    
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -133,7 +133,7 @@ extension NewsfeedViewController {
 extension NewsfeedViewController: UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView,
-                            prefetchRowsAt indexPaths: [IndexPath]) {
+                   prefetchRowsAt indexPaths: [IndexPath]) {
         
         for indexPath in indexPaths {
             
@@ -145,19 +145,21 @@ extension NewsfeedViewController: UITableViewDataSourcePrefetching {
             if post.title == nil {
                 
                 URL(string: post.url!)!.fetchUrlMedia({ (title, details, image) in
-
+                    
                     guard let titleT = title else {
                         return
                     }
                     
-                    post.title = titleT
-                    post.details = details
-                    post.imageUrl = image
-                    
-                    //Prepare image
-                    guard let imageUrlT = post.imageUrl else { return }
-                    let tempImg = UIImageView()
-                    tempImg.kf.setImage(with: URL(string: imageUrlT))
+                    DispatchQueue.main.safeAsync {
+                        post.title = titleT
+                        post.details = details
+                        post.imageUrl = image
+                        
+                        //Prepare image
+                        guard let imageUrlT = post.imageUrl else { return }
+                        let tempImg = UIImageView()
+                        tempImg.kf.setImage(with: URL(string: imageUrlT))
+                    }
                     
                 }, failure: { (error) in
                     console("Error \(error)")

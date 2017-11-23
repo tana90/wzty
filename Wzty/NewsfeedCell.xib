@@ -12,11 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="newsfeedCell" rowHeight="538" id="z1e-xm-SHi" customClass="NewsfeedCell" customModule="Wzty" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="540"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="0.0" reuseIdentifier="newsfeedCell" rowHeight="545" id="z1e-xm-SHi" customClass="NewsfeedCell" customModule="Wzty" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="545"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z1e-xm-SHi" id="mcs-h5-BBA">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="539.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="544.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GiP-ur-h0Y">
@@ -122,7 +122,7 @@
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="20"/>
+                                <real key="value" value="16"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -132,6 +132,7 @@
                             <constraint firstAttribute="height" constant="28" id="ONT-E7-UB4"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aJx-d4-6Z9">
@@ -147,8 +148,8 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="4h ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVe-ew-ivF">
-                        <rect key="frame" x="20" y="67" width="169" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4h ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVe-ew-ivF">
+                        <rect key="frame" x="20" y="67" width="49.5" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="zeG-Za-z9J"/>
                         </constraints>
@@ -168,11 +169,11 @@
                     <constraint firstItem="aJx-d4-6Z9" firstAttribute="top" secondItem="mcs-h5-BBA" secondAttribute="topMargin" constant="7" id="eQl-rn-ZvG"/>
                     <constraint firstItem="xMc-QY-s2g" firstAttribute="leading" secondItem="mcs-h5-BBA" secondAttribute="leadingMargin" constant="4" id="q1B-s1-E4s"/>
                     <constraint firstItem="gVe-ew-ivF" firstAttribute="top" secondItem="xMc-QY-s2g" secondAttribute="bottom" constant="1" id="rr8-C7-mta"/>
-                    <constraint firstAttribute="bottom" secondItem="GiP-ur-h0Y" secondAttribute="bottom" constant="19.5" id="us0-M0-3RH"/>
+                    <constraint firstAttribute="bottom" secondItem="GiP-ur-h0Y" secondAttribute="bottom" constant="24" id="us0-M0-3RH"/>
                     <constraint firstItem="GiP-ur-h0Y" firstAttribute="leading" secondItem="mcs-h5-BBA" secondAttribute="leading" constant="16" id="ya4-Xx-qGC"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
             <connections>
                 <outlet property="dateLabel" destination="gVe-ew-ivF" id="lhL-jc-dS0"/>
                 <outlet property="detailsLabel" destination="FWZ-ZO-zPL" id="x2V-Dc-sPU"/>

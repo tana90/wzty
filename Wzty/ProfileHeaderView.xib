@@ -15,6 +15,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="uQ9-M0-uuq">
+                    <rect key="frame" x="-2" y="64" width="379" height="50"/>
+                </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner5" translatesAutoresizingMaskIntoConstraints="NO" id="0LT-6S-FeS">
                     <rect key="frame" x="0.0" y="-22" width="375" height="88"/>
                     <constraints>
@@ -36,12 +39,6 @@
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                             <real key="value" value="33"/>
                         </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                            <real key="value" value="4"/>
-                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@tudoroctavianana" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="M8z-bI-31S">
@@ -58,10 +55,10 @@
                             <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                            <real key="value" value="10"/>
+                            <real key="value" value="15"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                            <real key="value" value="-1"/>
+                            <real key="value" value="1"/>
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
                             <size key="value" width="0.0" height="0.0"/>
@@ -84,12 +81,16 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="0LT-6S-FeS" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-22" id="Cxg-Q8-ywq"/>
+                <constraint firstItem="uQ9-M0-uuq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="-2" id="Dqb-gj-RJL"/>
                 <constraint firstItem="M8z-bI-31S" firstAttribute="leading" secondItem="Ruf-jD-WsY" secondAttribute="trailing" constant="11" id="E6x-5c-71U"/>
                 <constraint firstAttribute="trailing" secondItem="M8z-bI-31S" secondAttribute="trailing" constant="64" id="EQS-T8-JM2"/>
+                <constraint firstAttribute="bottom" secondItem="uQ9-M0-uuq" secondAttribute="bottom" constant="-4" id="ITS-qq-WCd"/>
                 <constraint firstItem="M8z-bI-31S" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="KRM-he-I5W"/>
+                <constraint firstItem="uQ9-M0-uuq" firstAttribute="top" secondItem="Cz3-lN-1wR" secondAttribute="bottom" constant="6" id="LEN-Kv-Exr"/>
                 <constraint firstItem="Ruf-jD-WsY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="Ptb-wb-Ncv"/>
                 <constraint firstAttribute="trailing" secondItem="Cz3-lN-1wR" secondAttribute="trailing" constant="13" id="WKq-Tu-Uns"/>
                 <constraint firstAttribute="trailing" secondItem="0LT-6S-FeS" secondAttribute="trailing" id="bNQ-fg-CMk"/>
+                <constraint firstAttribute="trailing" secondItem="uQ9-M0-uuq" secondAttribute="trailing" constant="-2" id="btq-x1-Hg7"/>
                 <constraint firstItem="Cz3-lN-1wR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="36" id="gYY-Gp-DgG"/>
                 <constraint firstItem="0LT-6S-FeS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="i4P-76-tXi"/>
                 <constraint firstItem="Ruf-jD-WsY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="tvu-vZ-qdQ"/>
@@ -109,6 +110,7 @@
     </objects>
     <resources>
         <image name="banner5" width="1500" height="500"/>
+        <image name="gradient" width="320" height="66"/>
         <image name="settings-nav" width="22" height="22"/>
     </resources>
 </document>

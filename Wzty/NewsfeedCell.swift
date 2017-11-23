@@ -82,11 +82,13 @@ class NewsfeedCell: UITableViewCell {
                 guard let titleT = title else {
                     return
                 }
-                
-                post.title = titleT
-                post.details = details
-                post.imageUrl = image
-                CoreDataManager.shared.saveContextBackground()
+                DispatchQueue.main.safeAsync {
+                    
+                    post.title = titleT
+                    post.details = details
+                    post.imageUrl = image
+                    CoreDataManager.shared.saveContextBackground()
+                }
                 
             }, failure: { (error) in
                 console("Error \(error)")
