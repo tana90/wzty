@@ -25,6 +25,10 @@ class BaseListViewController: BaseCoreDataViewController {
     
     var loading: Bool = false
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) { [unowned self] in
@@ -64,7 +68,7 @@ class BaseListViewController: BaseCoreDataViewController {
 extension BaseListViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return 545
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

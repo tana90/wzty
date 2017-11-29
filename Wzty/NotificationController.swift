@@ -36,45 +36,49 @@ final class NotificationController {
     
     
     func notify(_ finished: @escaping () -> (Void)) {
-
-        Post.homeTimeline { [weak self] (results) in
-            guard let strongSelf = self,
-                let posts = results,
-                posts.count > 0 else {
+        
+        Post.homeTimeline { [weak self] (status) in
+            
+            
+            Post.fetchAll() { (posts) in
+                guard let strongSelf = self,
+                    let posts = posts,
+                    posts.count > 0 else {
+                        finished()
+                        return
+                }
+                
+                guard strongSelf.markedNotifications.count > 0 else {
+                    strongSelf.markedNotifications.append((posts.first??.objectId)!)
+                    
+                    if let firstPost = posts.first {
+                        strongSelf.scheduleNotificationWith(post: firstPost!)
+                    }
                     finished()
                     return
-            }
-            
-            guard strongSelf.markedNotifications.count > 0 else {
-                strongSelf.markedNotifications.append((posts.first??.objectId)!)
-                
-                if let firstPost = posts.first {
-                    strongSelf.scheduleNotificationWith(post: firstPost!)
                 }
-                finished()
-                return
-            }
-            
-            var notificationFound = false
-            postsLoop: for post in posts {
                 
-                notificationFound = false
-                markedLoop: for markedNotification in strongSelf.markedNotifications {
+                var notificationFound = false
+                postsLoop: for post in posts {
                     
-                    
-                    if post?.objectId == markedNotification {
-                        notificationFound = true
+                    notificationFound = false
+                    markedLoop: for markedNotification in strongSelf.markedNotifications {
+                        
+                        
+                        if post?.objectId == markedNotification {
+                            notificationFound = true
+                        }
+                    }
+                    if notificationFound == false {
+                        strongSelf.markedNotifications.append((post?.objectId)!)
+                        strongSelf.scheduleNotificationWith(post: post!)
+                        finished()
+                        return
                     }
                 }
-                if notificationFound == false {
-                    strongSelf.markedNotifications.append((post?.objectId)!)
-                    strongSelf.scheduleNotificationWith(post: post!)
-                    finished()
-                    return
-                }
+                
+                return
             }
-            
-            return
         }
     }
     
@@ -84,8 +88,8 @@ final class NotificationController {
         User.fetchBy(predicate: predicate) { (user) in
             guard let userT = user else { return }
             
-            URL(string: post.url!)!.fetchUrlMedia({ (title, details, image) in
-
+            URL(string: post.link!)!.fetchUrlMedia({ (title, details, image) in
+                
                 let content = UNMutableNotificationContent()
                 content.title = String(format: "%@", userT.username.defaultValue(defaultValue: ""))
                 content.subtitle = String(format: "%@", title.defaultValue(defaultValue: "New notification"))

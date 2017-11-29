@@ -29,7 +29,7 @@ final class Post: NSManagedObject {
     @NSManaged var title: String?
     @NSManaged var details: String?
     @NSManaged var timestamp: Int
-    @NSManaged var url: String?
+    @NSManaged var link: String?
     @NSManaged var userId: String?
     
     func write(json: JSON) {
@@ -57,7 +57,7 @@ final class Post: NSManagedObject {
         if let urls = json["entities"].object?["urls"]?.array {
             if urls.count > 0 {
                 if let urlLink = urls[0].object?["expanded_url"]?.string {
-                    self.url = urlLink
+                    self.link = urlLink
                 }
             }
         }
@@ -111,6 +111,8 @@ extension Post {
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         request.predicate = predicate
+        request.fetchLimit = 1
+        request.fetchBatchSize = 1
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [Post]
@@ -130,7 +132,7 @@ extension Post {
     
     static func fetchAll(_ result: ([Post?]?) -> (Void)) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
-        request.fetchLimit = 100
+        request.fetchLimit = 50
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [Post]
@@ -150,9 +152,9 @@ extension Post {
     //Get current user timeline
     static func homeTimeline(sinceId: String? = nil,
                              maxId: String? = nil,
-                             _ results: @escaping ([Post?]?) -> (Void)) {
+                             _ finished: @escaping (Bool) -> (Void)) {
         
-        AppDelegate.shared.twitter?.getHomeTimeline(count: 100, sinceID: sinceId, maxID: maxId, trimUser: false, contributorDetails: true, includeEntities: true, success: { (json) in
+        AppDelegate.shared.twitter?.getHomeTimeline(count: 50, sinceID: sinceId, maxID: maxId, trimUser: false, contributorDetails: true, includeEntities: true, success: { (json) in
             Post.add(objects: json.array!)
             
             guard let jsonArray = json.array,
@@ -180,12 +182,11 @@ extension Post {
                 //Commit data
                 CoreDataManager.shared.saveContextBackground()
             }
-            
-            Post.fetchAll() { (posts) in
-                results(posts)
-            }
+        
+            finished(true)
             
         }, failure: { (error) in
+            finished(false)
             console("Error: \(error)")
         })
     }

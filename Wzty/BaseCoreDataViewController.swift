@@ -23,10 +23,6 @@ class BaseCoreDataViewController: UITableViewController {
     
     var fetchResultsController: NSFetchedResultsController<NSFetchRequestResult>?
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     func perform(_ fetchResultsController: NSFetchedResultsController<NSFetchRequestResult>) {
         self.fetchResultsController = fetchResultsController
         do {

@@ -34,7 +34,7 @@ final class NewsfeedWebCell: UITableViewCell {
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-
+        
         webView.delegate = self
         webView.scrollView.bounces = false
         webView.scrollView.delegate = self
@@ -42,19 +42,15 @@ final class NewsfeedWebCell: UITableViewCell {
     
     func show(_ post: Post) {
         if !isStarted {
-            DispatchQueue.main.async { [unowned self] in
-                self.webView.loadRequest(URLRequest(url: URL(string: post.url!)!))
-                self.isStarted = true
-            }
-            
-            
+            self.webView.loadRequest(URLRequest(url: URL(string: post.link!)!))
+            self.isStarted = true  
         }
     }
 }
 
 extension NewsfeedWebCell: UIWebViewDelegate {
     
-
+    
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
         if let handler = changeTitleHandler {

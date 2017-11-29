@@ -102,8 +102,8 @@
 		C8CD9C941FB9E909009D4AAA /* MediaPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8CD9C931FB9E909009D4AAA /* MediaPreview.xib */; };
 		C8CD9C961FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD9C951FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift */; };
 		C8CD9C9B1FB9F9F0009D4AAA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD9C9A1FB9F9F0009D4AAA /* TabBarController.swift */; };
+		C8F691061FCF2D0100AFF82E /* UrlDataPrefetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F691051FCF2D0100AFF82E /* UrlDataPrefetcher.swift */; };
 		C8FDC5FE1FB037340005721F /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC5FD1FB037340005721F /* Tools.swift */; };
-		C8FDC6001FB049210005721F /* BaseSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC5FF1FB049210005721F /* BaseSettingsViewController.swift */; };
 		C8FDC6051FB077380005721F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FDC6041FB077380005721F /* libresolv.tbd */; };
 		C8FDC6071FB077F80005721F /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FDC6061FB077F80005721F /* libxml2.2.tbd */; };
 		C8FEFB8B1FB4EBBE00B6F0F7 /* NewsfeedDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8FEFB8A1FB4EBBE00B6F0F7 /* NewsfeedDetailsCell.xib */; };
@@ -223,8 +223,8 @@
 		C8CD9C931FB9E909009D4AAA /* MediaPreview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaPreview.xib; sourceTree = "<group>"; };
 		C8CD9C951FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedDetailsCell.swift; sourceTree = "<group>"; };
 		C8CD9C9A1FB9F9F0009D4AAA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C8F691051FCF2D0100AFF82E /* UrlDataPrefetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlDataPrefetcher.swift; sourceTree = "<group>"; };
 		C8FDC5FD1FB037340005721F /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
-		C8FDC5FF1FB049210005721F /* BaseSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSettingsViewController.swift; sourceTree = "<group>"; };
 		C8FDC6041FB077380005721F /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		C8FDC6061FB077F80005721F /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		C8FEFB8A1FB4EBBE00B6F0F7 /* NewsfeedDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsfeedDetailsCell.xib; sourceTree = "<group>"; };
@@ -263,7 +263,6 @@
 			children = (
 				C85989291FADA73A00C94877 /* BaseListViewController.swift */,
 				C859893C1FADB78300C94877 /* BaseDetailsViewController.swift */,
-				C8FDC5FF1FB049210005721F /* BaseSettingsViewController.swift */,
 				C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */,
 			);
 			name = BaseViewControllers;
@@ -424,6 +423,7 @@
 		C85989421FADB9FD00C94877 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				C8F691051FCF2D0100AFF82E /* UrlDataPrefetcher.swift */,
 				C845D5001FAF54EC00A278ED /* CoreDataManager.swift */,
 				C845D4F81FAF3CE800A278ED /* KeyChain.swift */,
 				C8CD9C9A1FB9F9F0009D4AAA /* TabBarController.swift */,
@@ -653,12 +653,12 @@
 				C85989451FADBA2900C94877 /* ProfileHeaderView.swift in Sources */,
 				C85989411FADB9A400C94877 /* ProfileViewController.swift in Sources */,
 				C889F5351FB1C10900132460 /* ImageTransition.swift in Sources */,
+				C8F691061FCF2D0100AFF82E /* UrlDataPrefetcher.swift in Sources */,
 				C845D4FF1FAF544700A278ED /* Data.xcdatamodeld in Sources */,
 				C889F4DD1FB1BE0B00132460 /* SwifterOAuthClient.swift in Sources */,
 				C889F5341FB1C10900132460 /* Resource.swift in Sources */,
 				C845D5041FAF57C500A278ED /* SettingsViewController.swift in Sources */,
 				C889F52D1FB1C10900132460 /* ImageCache.swift in Sources */,
-				C8FDC6001FB049210005721F /* BaseSettingsViewController.swift in Sources */,
 				C859893B1FADB75C00C94877 /* NewsfeedDetailsViewController.swift in Sources */,
 				C889F4F41FB1BE0B00132460 /* SwifterSearch.swift in Sources */,
 				C889F4E01FB1BE0B00132460 /* URL++.swift in Sources */,

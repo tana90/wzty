@@ -15,8 +15,8 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="cai-ew-EpO"/>
+                        <viewControllerLayoutGuide type="bottom" id="gB6-XY-X9S"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -43,7 +43,7 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FAx-6n-mdf" secondAttribute="bottom" constant="20" id="9Mz-dN-R2U"/>
+                            <constraint firstItem="gB6-XY-X9S" firstAttribute="top" secondItem="FAx-6n-mdf" secondAttribute="bottom" constant="20" id="9Mz-dN-R2U"/>
                             <constraint firstItem="FAx-6n-mdf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="BvG-du-Tvg"/>
                             <constraint firstItem="FAx-6n-mdf" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="u3F-Ny-qWy"/>
                         </constraints>
@@ -86,16 +86,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.12156862745098039" green="0.12156862745098039" blue="0.12156862745098039" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="175" id="ZjD-xR-lSx">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="175"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZjD-xR-lSx" id="LGW-co-uar">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Bw7-3X-XQG" id="rHz-gW-O9B"/>
                             <outlet property="delegate" destination="Bw7-3X-XQG" id="MGm-7S-Vb5"/>
@@ -119,16 +109,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Lop-Uh-jWW">
-                                <rect key="frame" x="0.0" y="1" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Lop-Uh-jWW" id="ftY-Q9-LtK">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="FKQ-YT-Cwb" id="CU8-SU-gvj"/>
                             <outlet property="delegate" destination="FKQ-YT-Cwb" id="dk9-W2-MLZ"/>
@@ -147,16 +127,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="XEn-m0-FbO">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XEn-m0-FbO" id="EDy-no-vhd">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="iFF-dX-JbS" id="k6Y-vq-4Wa"/>
                             <outlet property="delegate" destination="iFF-dX-JbS" id="omf-3L-ooT"/>
@@ -177,16 +147,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KIk-cZ-DgV">
-                                <rect key="frame" x="0.0" y="110" width="375" height="200"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KIk-cZ-DgV" id="IoH-0A-L23">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="199.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="Jw0-6n-MDO" id="QPb-w3-lVI"/>
                             <outlet property="delegate" destination="Jw0-6n-MDO" id="89N-6T-ieD"/>
@@ -307,8 +267,8 @@
             <objects>
                 <viewController id="jME-4v-Mff" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="hce-RS-Vgw"/>
-                        <viewControllerLayoutGuide type="bottom" id="Eke-57-a96"/>
+                        <viewControllerLayoutGuide type="top" id="0Bh-Co-8YX"/>
+                        <viewControllerLayoutGuide type="bottom" id="aaq-Fb-xLe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TbU-nA-69X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
@@ -549,8 +509,8 @@ The GNU General Public License does not permit incorporating your program into p
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Eke-57-a96" firstAttribute="top" secondItem="Y2z-cK-Z8I" secondAttribute="bottom" id="5Y3-Sk-SUO"/>
-                            <constraint firstItem="Y2z-cK-Z8I" firstAttribute="top" secondItem="hce-RS-Vgw" secondAttribute="bottom" id="YcQ-TC-5i3"/>
+                            <constraint firstItem="aaq-Fb-xLe" firstAttribute="top" secondItem="Y2z-cK-Z8I" secondAttribute="bottom" id="5Y3-Sk-SUO"/>
+                            <constraint firstItem="Y2z-cK-Z8I" firstAttribute="top" secondItem="0Bh-Co-8YX" secondAttribute="bottom" id="YcQ-TC-5i3"/>
                             <constraint firstAttribute="trailing" secondItem="Y2z-cK-Z8I" secondAttribute="trailing" id="uXf-lS-RSg"/>
                             <constraint firstItem="Y2z-cK-Z8I" firstAttribute="leading" secondItem="TbU-nA-69X" secondAttribute="leading" id="zN3-HL-Je0"/>
                         </constraints>

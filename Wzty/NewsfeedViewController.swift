@@ -27,7 +27,7 @@ final class NewsfeedViewController: BaseListViewController {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timeSortDescriptor]
-        request.fetchLimit = 100
+        request.fetchLimit = 50
         
         let frc = NSFetchedResultsController(fetchRequest: request,
                                              managedObjectContext: CoreDataManager.shared.backgroundContext,
@@ -51,8 +51,6 @@ final class NewsfeedViewController: BaseListViewController {
         
         //Configure cell
         tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: "newsfeedCell")
-        tableView.estimatedRowHeight = 545
-        
         
         //Register for CoreData updates
         perform(postFetchResultsController)
@@ -64,7 +62,6 @@ final class NewsfeedViewController: BaseListViewController {
     
     @objc override func refreshData() {
         super.refreshData()
-        //Reload posts
         loadData(newer: true)
     }
     
@@ -72,7 +69,7 @@ final class NewsfeedViewController: BaseListViewController {
         loading = true
         User.current { (user) in
             Post.homeTimeline(sinceId: newer ? user?.sinceId : nil,
-                              maxId: newer ? nil : user?.maxId) { [unowned self] (posts) in
+                              maxId: newer ? nil : user?.maxId) { [unowned self] (status) in
                                 self.loading = false
             }
         }
@@ -123,7 +120,6 @@ extension NewsfeedViewController {
     
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
-        
         performSegue(withIdentifier: "showNewsDetailsSegue", sender: self)
     }
 }
@@ -135,6 +131,7 @@ extension NewsfeedViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView,
                    prefetchRowsAt indexPaths: [IndexPath]) {
         
+
         for indexPath in indexPaths {
             
             guard let post = postFetchResultsController.object(at: indexPath) as? Post,
@@ -143,27 +140,7 @@ extension NewsfeedViewController: UITableViewDataSourcePrefetching {
             }
             
             if post.title == nil {
-                
-                URL(string: post.url!)!.fetchUrlMedia({ (title, details, image) in
-                    
-                    guard let titleT = title else {
-                        return
-                    }
-                    
-                    DispatchQueue.main.safeAsync {
-                        post.title = titleT
-                        post.details = details
-                        post.imageUrl = image
-                        
-                        //Prepare image
-                        guard let imageUrlT = post.imageUrl else { return }
-                        let tempImg = UIImageView()
-                        tempImg.kf.setImage(with: URL(string: imageUrlT))
-                    }
-                    
-                }, failure: { (error) in
-                    console("Error \(error)")
-                })
+                UrlDataPrefetcher.shared.startFetch(link: post.link)
             }
         }
     }

@@ -28,6 +28,10 @@ class BaseDetailsViewController: BaseCoreDataViewController {
         return UINib(nibName: "NavigationTableHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! NavigationTableHeaderView
     }()
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     override func viewDidLoad() {
         
         tableView.register(UINib(nibName: "NewsfeedDetailsCell", bundle: nil), forCellReuseIdentifier: "newsfeedDetailsCell")

@@ -121,7 +121,7 @@ extension User {
     
     
     static func fetchBy(predicate: NSPredicate,
-                        result: (User?) -> (Void)) {
+                        result: @escaping (User?) -> (Void)) {
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.predicate = predicate

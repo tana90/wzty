@@ -20,7 +20,7 @@
 
 import UIKit
 
-final class SettingsViewController: BaseSettingsViewController {
+final class SettingsViewController: UITableViewController {
     
     
 }

@@ -61,7 +61,7 @@ final class CoreDataManager {
                                        code: 9999,
                                        userInfo: dict)
             
-            NSLog("Persistent store -- Unresolved error \(wrappedError), \(wrappedError.userInfo)")
+            console("Persistent store -- Unresolved error \(wrappedError), \(wrappedError.userInfo)")
             abort()
         }
         return coordinator
@@ -91,7 +91,7 @@ final class CoreDataManager {
                     try self.backgroundContext.save()
                 } catch {
                     let nserror = error as NSError
-                    NSLog("Save context in background -- Unresolved error \(nserror), \(nserror.userInfo)")
+                    console("Save context in background -- Unresolved error \(nserror), \(nserror.userInfo)")
                 }
             })
         }
@@ -106,7 +106,7 @@ final class CoreDataManager {
                     try self.managedObjectContext.save()
                 } catch {
                     let nserror = error as NSError
-                    NSLog("Save context -- Unresolved error \(nserror), \(nserror.userInfo)")
+                    console("Save context -- Unresolved error \(nserror), \(nserror.userInfo)")
                     abort()
                 }
             }
@@ -115,7 +115,6 @@ final class CoreDataManager {
 
     func delete(object: NSManagedObject) {
         backgroundContext.performAndWait {
-            console("Delete object \((object as? Post)?.url)")
             backgroundContext.delete(object)
         }
         saveContextBackground()

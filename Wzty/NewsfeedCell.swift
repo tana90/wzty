@@ -26,6 +26,7 @@ class NewsfeedCell: UITableViewCell {
     @IBOutlet private weak var usenameLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var mediaViewContainer: UIView?
     @IBOutlet private weak var mediaView: UIImageView!
     @IBOutlet private weak var detailsLabel: UILabel!
     
@@ -38,30 +39,30 @@ class NewsfeedCell: UITableViewCell {
     func show(_ post: Post) {
         
         //User
-        let predicate = NSPredicate(format: "objectId == %@", post.userId!)
-        User.fetchBy(predicate: predicate) { (user) in
-            guard let userT = user else { return }
-            DispatchQueue.main.async { [weak self] in
-                
-                guard let strongSelf = self else { return }
-                
-                //User image
-                if let imageUrlT = userT.userImageUrl {
-                    strongSelf.userImageView?.kf.setImage(with: URL(string: imageUrlT))
-                } else {
-                    strongSelf.userImageView?.image = nil
+            let predicate = NSPredicate(format: "objectId == %@", post.userId!)
+            User.fetchBy(predicate: predicate) { (user) in
+                guard let userT = user else { return }
+                DispatchQueue.main.async { [weak self] in
+                    
+                    guard let strongSelf = self else { return }
+                    
+                    //User image
+                    if let imageUrlT = userT.userImageUrl {
+                        strongSelf.userImageView?.kf.setImage(with: URL(string: imageUrlT))
+                    } else {
+                        strongSelf.userImageView?.image = nil
+                    }
+                    
+                    //Username
+                    strongSelf.usenameLabel?.text = userT.name
                 }
-                
-                //Username
-                strongSelf.usenameLabel?.text = userT.name
             }
-        }
         
-        
+
         //Date
         let date = Date(timeIntervalSince1970: TimeInterval(post.timestamp)) as Date
-        dateLabel?.text = date.getElapsedInterval(shortFormat: true)
-        
+        self.dateLabel?.text = date.getElapsedInterval(shortFormat: true)
+
         //Title
         titleLabel?.text = post.title
         
@@ -78,21 +79,7 @@ class NewsfeedCell: UITableViewCell {
         
         //Fetch data and let NSFetchResultsController to reupdate cell
         if post.title == nil {
-            URL(string: post.url!)!.fetchUrlMedia({ (title, details, image) in
-                guard let titleT = title else {
-                    return
-                }
-                DispatchQueue.main.safeAsync {
-                    
-                    post.title = titleT
-                    post.details = details
-                    post.imageUrl = image
-                    CoreDataManager.shared.saveContextBackground()
-                }
-                
-            }, failure: { (error) in
-                console("Error \(error)")
-            })
+            UrlDataPrefetcher.shared.startFetch(link: post.link)
         }
     }
 }
