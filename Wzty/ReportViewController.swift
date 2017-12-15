@@ -29,14 +29,13 @@ final class ReportViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        console(postId)
         
         if let postId = self.postId {
             let predicate = NSPredicate(format: "objectId == %@", postId)
             Post.fetchBy(predicate) { (post) in
                 let predicate = NSPredicate(format: "objectId == %@", (post?.userId)!)
                 User.fetchBy(predicate: predicate) { (user) in
-                    console(user)
+
                     if user?.following == false {
                         DispatchQueue.main.safeAsync { [unowned self] in
                             self.unfollowLabel.alpha = 0.3

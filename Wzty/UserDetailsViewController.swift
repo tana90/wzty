@@ -78,7 +78,6 @@ final class UserDetailsViewController: BaseListViewController {
             User.fetchBy(predicate: predicate) { (user) in
                 DispatchQueue.main.safeAsync { [unowned self] in
                     self.navigationItem.title = user?.name
-                    console(user)
                     self.followButton.title = (user?.following)! ? "Unfollow" : "Follow"
                 }
             }

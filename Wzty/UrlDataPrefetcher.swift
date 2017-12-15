@@ -56,7 +56,6 @@ final class UrlDataPrefetcher {
 
                 }, failure: { [unowned self] (error) in
                     self.urlsInProgress.remove(object: linkT)
-                    console("Error \(error)")
             })
         }
     }
