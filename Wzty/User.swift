@@ -273,9 +273,11 @@ extension User {
                        _ finished: @escaping (Bool) -> (Void)) {
         
         let userTag = UserTag.id(userId)
+
         if status == true {
             AppDelegate.shared().twitter?.followUser(for: userTag, follow: true, success: { (json) in
                 User.add(json, result: { (user) in 
+                    (user as! User).following = true
                     CoreDataManager.shared.saveContextBackground()
                     finished(true)
                 })
@@ -285,6 +287,7 @@ extension User {
         } else {
             AppDelegate.shared().twitter?.unfollowUser(for: userTag, success: { (json) in
                 User.add(json, result: { (user) in 
+                    (user as! User).following = false
                     CoreDataManager.shared.saveContextBackground()
                     finished(true)
                 })

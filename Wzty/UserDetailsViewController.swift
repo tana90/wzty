@@ -47,10 +47,12 @@ final class UserDetailsViewController: BaseListViewController {
     
     @IBAction func followAction() {
         if let userId = userId {
+            
             let predicate = NSPredicate(format: "objectId == %@", userId)
             User.fetchBy(predicate: predicate) { (user) in
                 
                 User.follow(!(user?.following)!, (user?.objectId)!) { (status) in
+                    
                     DispatchQueue.main.safeAsync { [unowned self] in
                         self.followButton.title = (user?.following)! ? "Unfollow" : "Follow"
                     }
