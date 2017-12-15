@@ -75,9 +75,7 @@ extension BaseCoreDataViewController: NSFetchedResultsControllerDelegate {
         case .delete:
             self.tableView.deleteRows(at: [indexPath!], with: .automatic)
         case .update:
-            if (tableView.indexPathsForVisibleRows?.contains(indexPath!))! {
-                self.tableView.reloadRows(at: [indexPath!], with: .automatic)
-            }
+            self.tableView.reloadRows(at: [indexPath!], with: .automatic)
         case .move:
             self.tableView.moveRow(at: indexPath!, to: newIndexPath!)
         }

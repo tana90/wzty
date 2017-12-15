@@ -18,7 +18,7 @@
 //  Created by Tudor Ana on 06/11/2017.
 //
 
-import Foundation
+import UIKit
 
 func measure(title: String, block: @escaping ( @escaping () -> ()) -> ()) {
     
@@ -31,9 +31,35 @@ func measure(title: String, block: @escaping ( @escaping () -> ()) -> ()) {
 }
 
 
+func synchronized<T>(_ lock: AnyObject, _ body: () throws -> T) rethrows -> T {
+    objc_sync_enter(lock)
+    defer { objc_sync_exit(lock) }
+    return try body()
+}
+
+
 func console<T>(_ object: T, filename: String = #file, line: Int = #line, funcname: String = #function, isSolo: Bool? = false) {
     
     let className = filename.split{$0 == "/"}.map(String.init).last
     print("[\(Date()) :: \(className ?? "Unknow class") : \(funcname)(\(line))] - \(object)")
     
+}
+
+func logout() {
+    let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+    let initialViewController = storyboard.instantiateInitialViewController()
+    (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = nil
+    (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = initialViewController
+}
+
+func clearCache() {
+    
+    CoreDataManager.shared.deleteAllData(entity: "Post", from: CoreDataManager.shared.backgroundContext)
+    CoreDataManager.shared.deleteAllData(entity: "Post", from: CoreDataManager.shared.managedObjectContext)
+    
+    CoreDataManager.shared.deleteAllData(entity: "User", from: CoreDataManager.shared.backgroundContext)
+    CoreDataManager.shared.deleteAllData(entity: "User", from: CoreDataManager.shared.managedObjectContext)
+    
+    CoreDataManager.shared.saveContextBackground()
+    CoreDataManager.shared.saveContext()
 }

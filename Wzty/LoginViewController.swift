@@ -25,7 +25,7 @@ final class LoginViewController: UIViewController {
     
     @IBAction func loginAction() {
         
-        AppDelegate.shared.twitter?.authorize(with: URL(string: "wzty://authentication")!, presentFrom: self, success: { [unowned self] (accessToken, urlResponse) in
+        AppDelegate.shared().twitter?.authorize(with: URL(string: "wzty://authentication")!, presentFrom: self, success: { [unowned self] (accessToken, urlResponse) in
             //Get user info
             guard let username = accessToken?.screenName,
                 let oauthKey = accessToken?.key,
@@ -64,8 +64,13 @@ final class LoginViewController: UIViewController {
             else { return }
         
         //Authenticate automatically
-        AppDelegate.shared.twitter = Swifter.init(consumerKey: "lLH1TSVtmbpzEcNUaJteq70wp", consumerSecret: "5Y3YDM9PzJr99YIbr4BfPQvM2Y1f92DiWz1NBEqxiUitfET234", oauthToken: oauthKey, oauthTokenSecret: secretKey)
-        loginSuccessfull()
+        AppDelegate.shared().twitter = Swifter.init(consumerKey: "lLH1TSVtmbpzEcNUaJteq70wp", consumerSecret: "5Y3YDM9PzJr99YIbr4BfPQvM2Y1f92DiWz1NBEqxiUitfET234", oauthToken: oauthKey, oauthTokenSecret: secretKey)
+        
+        AppDelegate.shared().twitter?.verifyAccountCredentials(includeEntities: false, skipStatus: true, success: { [unowned self] (json) in
+            self.loginSuccessfull()
+        }, failure: { (error) in
+            console(error)
+        })
     }
     
     func loginSuccessfull() {        

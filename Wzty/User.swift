@@ -28,11 +28,17 @@ final class User: NSManagedObject {
     @NSManaged var userImageUrl: String?
     @NSManaged var username: String?
     @NSManaged var name: String?
+    @NSManaged var following: Bool
+    
+    @NSManaged var insertedTimestamp: NSNumber?
+    @NSManaged var listedCount: NSNumber?
     
     @NSManaged var sinceId: String?
     @NSManaged var maxId: String?
     
     @NSManaged var nextCursor: String?
+    
+    
     
     
     func write(json: [String: JSON]) {
@@ -57,6 +63,21 @@ final class User: NSManagedObject {
         if let name = json["name"]?.string {
             self.name = name
         }
+        
+        //Listed count
+        if let listedCount = json["listed_count"]?.integer {
+            self.listedCount = NSNumber(value: listedCount)
+        }
+        
+        //Following
+        if let following = json["following"]?.bool {
+            self.following = following
+        }
+        
+        //Inserted timestamp
+        if self.insertedTimestamp == nil || self.insertedTimestamp?.intValue == 0 {
+            self.insertedTimestamp = NSNumber(value: Date.timestamp())
+        } 
         
     }
     
@@ -123,8 +144,10 @@ extension User {
     static func fetchBy(predicate: NSPredicate,
                         result: @escaping (User?) -> (Void)) {
         
+        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.predicate = predicate
+        
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [User]
@@ -189,7 +212,7 @@ extension User {
         User.fetchBy(predicate: predicate) { (result) -> (Void) in
             guard let resultT = result else {
                 
-                AppDelegate.shared.twitter?.verifyAccountCredentials(includeEntities: false, skipStatus: true, success: { (json) in
+                AppDelegate.shared().twitter?.verifyAccountCredentials(includeEntities: false, skipStatus: true, success: { (json) in
                     User.add(json, result: { (newObject) -> (Void) in
                         user(newObject as? User)
                     })
@@ -206,20 +229,68 @@ extension User {
     
     //Get all current users followings
     static func followings(of user: User,
-                           _ users: @escaping ([User?]?) -> (Void),
+                           _ finished: @escaping (Bool) -> (Void),
                            with cursor: String = "-1") {
         
-        AppDelegate.shared.twitter?.getUserFollowing(for: UserTag.id(user.objectId!), cursor: cursor, count: 50, skipStatus: true, includeUserEntities: true, success: { (json, currentCursor, nextCursor) in
+        AppDelegate.shared().twitter?.getUserFollowing(for: UserTag.id(user.objectId!), cursor: cursor, count: 50, skipStatus: true, includeUserEntities: true, success: { (json, currentCursor, nextCursor) in
             
             User.add(objects: json.array!)
             
             user.nextCursor = nextCursor
             
-            let predicate = NSPredicate(format: "username != %@", user.username!)
-            User.fetchAllBy(predicate: predicate) { (results) -> (Void) in
-                users(results)
-            }
+            finished(true)
             
+        }, failure: { (error) in
+            console("Error: \(error)")
+        })
+    }
+    
+    
+    
+    
+    
+    
+    //Search users
+    static func searchUsers(_ query: String, 
+                            _ finished: @escaping (Bool, Int) -> (Void)) {
+        
+        let timestamp = Date.timestamp()
+        AppDelegate.shared().twitter?.searchUsers(using: query, page: 0, count: 50, includeEntities: false, success: { (json) in
+            
+            User.add(objects: json.array!)
+            finished(true, timestamp)
+            
+        }, failure: { (error) in
+            console("Error: \(error)")
+        })
+    }
+    
+    
+    
+    //Follow/Unfollow user
+    static func follow(_ status: Bool,
+                       _ userId: String, 
+                       _ finished: @escaping (Bool) -> (Void)) {
+
+        let userTag = UserTag.id(userId)
+        AppDelegate.shared().twitter?.followUser(for: userTag, follow: status, success: { (json) in
+            User.add(json, result: { (user) in 
+                (user as! User).following = status
+                CoreDataManager.shared.saveContextBackground()
+                finished(true)
+            })
+        }, failure: { (error) in
+            console("Error: \(error)")
+        })
+    }
+    
+    //Report user
+    static func report(_ userId: String, 
+                       _ finished: @escaping (Bool) -> (Void)) {
+        
+        let userTag = UserTag.id(userId)
+        AppDelegate.shared().twitter?.reportSpam(for: userTag, success: { (json) in
+            finished(true)
         }, failure: { (error) in
             console("Error: \(error)")
         })

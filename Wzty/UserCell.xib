@@ -32,8 +32,8 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oH-js-HL7">
-                        <rect key="frame" x="68" y="22" width="291" height="21"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <rect key="frame" x="72" y="20.5" width="287" height="24"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -42,7 +42,7 @@
                     <constraint firstItem="7oH-js-HL7" firstAttribute="centerY" secondItem="roR-Y7-276" secondAttribute="centerY" id="IEG-AB-Ao5"/>
                     <constraint firstItem="7oH-js-HL7" firstAttribute="trailing" secondItem="roR-Y7-276" secondAttribute="trailingMargin" id="OO0-zg-VSR"/>
                     <constraint firstItem="vZM-aj-lxM" firstAttribute="leading" secondItem="roR-Y7-276" secondAttribute="leading" constant="16" id="QBm-4n-vXU"/>
-                    <constraint firstItem="7oH-js-HL7" firstAttribute="leading" secondItem="vZM-aj-lxM" secondAttribute="trailing" constant="8" id="SLP-lC-4Ye"/>
+                    <constraint firstItem="7oH-js-HL7" firstAttribute="leading" secondItem="vZM-aj-lxM" secondAttribute="trailing" constant="12" id="SLP-lC-4Ye"/>
                     <constraint firstItem="vZM-aj-lxM" firstAttribute="centerY" secondItem="roR-Y7-276" secondAttribute="centerY" id="Wlc-Qu-n3u"/>
                 </constraints>
             </tableViewCellContentView>

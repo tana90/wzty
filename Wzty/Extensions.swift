@@ -22,6 +22,33 @@ import Foundation
 import UIKit
 import Kanna
 
+extension UIImage {
+    
+    func blur(quantity: CGFloat) -> UIImage {
+        let context = CIContext(options: nil)
+        let inputImage = CIImage(image: self)
+        let originalOrientation = self.imageOrientation
+        let originalScale = self.scale
+        
+        let filter = CIFilter(name: "CIGaussianBlur")
+        filter?.setValue(inputImage, forKey: kCIInputImageKey)
+        filter?.setValue(quantity, forKey: kCIInputRadiusKey) 
+        let outputImage = filter?.outputImage
+        
+        var cgImage:CGImage?
+        
+        if let asd = outputImage {
+            cgImage = context.createCGImage(asd, from: (inputImage?.extent)!)
+        }
+        
+        if let cgImageA = cgImage {
+            return UIImage(cgImage: cgImageA, scale: originalScale, orientation: originalOrientation)
+        }
+        
+        return self
+    }
+}
+
 //MARK: - UIView
 extension UIView {
     
@@ -129,8 +156,7 @@ extension Optional {
 extension Date {
     
     static func timestamp() -> Int {
-        
-        return Int(Date().timeIntervalSince1970)
+        return Int((Date().timeIntervalSince1970 * 1000000.0).rounded())
     }
     
     func getReadableVersion() -> String {
@@ -337,5 +363,25 @@ extension Array where Element: Equatable {
         if let index = index(of: object) {
             remove(at: index)
         }
+    }
+}
+
+
+//MARK: - UISearchBarViewController
+extension UISearchController {
+    
+    public func preferredStatusBarStyle() -> UIStatusBarStyle{
+        return UIStatusBarStyle.lightContent
+    }
+}
+
+
+//MARK: - Bundle
+extension Bundle {
+    var releaseVersionNumber: String? {
+        return infoDictionary?["CFBundleShortVersionString"] as? String
+    }
+    var buildVersionNumber: String? {
+        return infoDictionary?["CFBundleVersion"] as? String
     }
 }

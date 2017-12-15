@@ -30,26 +30,47 @@ extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 0 {
-            CoreDataManager.shared.deleteAllData(entity: "User", from: CoreDataManager.shared.backgroundContext)
-            CoreDataManager.shared.deleteAllData(entity: "User", from: CoreDataManager.shared.managedObjectContext)
-            
-            tableView.deselectRow(at: indexPath, animated: true)
-            return
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                performSegue(withIdentifier: "showLicenseAgreementSegue", sender: self)
+            }
+            if indexPath.row == 1 {
+                performSegue(withIdentifier: "showAboutSegue", sender: self)
+            }
         }
         
-        if indexPath.row == 1 {
-            KeyChain.remove("username")
-            KeyChain.remove("oauthKey")
-            KeyChain.remove("secretKey")
-            
-            tableView.deselectRow(at: indexPath, animated: true)
-            
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-            let initialViewController = storyboard.instantiateInitialViewController()
-            (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = nil
-            (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = initialViewController
-            return
+        if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                let alertViewController = UIAlertController(title: "Are you sure you want to clear cache?", message: nil, preferredStyle: .alert)
+                let clearAction = UIAlertAction(title: "Clear cache", style: .destructive) { (alert) in
+                    clearCache()
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
+                }
+                
+                alertViewController.addAction(clearAction)
+                alertViewController.addAction(cancelAction)
+                self.present(alertViewController, animated: true, completion: nil)
+            }
+            if indexPath.row == 1 {
+                
+                let alertViewController = UIAlertController(title: "Are you sure you want to logout?", message: nil, preferredStyle: .alert)
+                let logoutAction = UIAlertAction(title: "Logout", style: .destructive) { (alert) in
+                    
+                    clearCache()
+                    logout()
+                }
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
+                }
+                
+                alertViewController.addAction(logoutAction)
+                alertViewController.addAction(cancelAction)
+                self.present(alertViewController, animated: true, completion: nil)
+            }
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

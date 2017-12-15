@@ -23,11 +23,16 @@ import CoreData
 
 final class NewsfeedViewController: BaseListViewController {
     
+    
+    
     lazy var postFetchResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timeSortDescriptor]
+        let predicate = NSPredicate(format: "homeTimeline == true")
+        request.predicate = predicate
         request.fetchLimit = 50
+        
         
         let frc = NSFetchedResultsController(fetchRequest: request,
                                              managedObjectContext: CoreDataManager.shared.backgroundContext,
@@ -40,14 +45,6 @@ final class NewsfeedViewController: BaseListViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Add a fake status bar
-        let statusBarView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        
-        statusBarView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 22)
-        
-        navigationController?.view.addSubview(statusBarView)
-        
         
         //Configure cell
         tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: "newsfeedCell")
@@ -69,22 +66,23 @@ final class NewsfeedViewController: BaseListViewController {
         loading = true
         User.current { (user) in
             Post.homeTimeline(sinceId: newer ? user?.sinceId : nil,
-                              maxId: newer ? nil : user?.maxId) { [unowned self] (status) in
-                                self.loading = false
+                              maxId: newer ? nil : user?.maxId) { [weak self] (status) in
+                                guard let strongSelf = self else { return }
+                                strongSelf.loading = false
             }
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        
         if segue.identifier == "showNewsDetailsSegue" {
             let destination = segue.destination as? NewsfeedDetailsViewController
             guard let post = postFetchResultsController.object(at: tableView.indexPathForSelectedRow!) as? Post else {
                 return
             }
             destination?.post = post
-            
-            
+            return
         }
     }
 }
@@ -94,20 +92,6 @@ final class NewsfeedViewController: BaseListViewController {
 extension NewsfeedViewController {
     
     override func tableView(_ tableView: UITableView,
-                            heightForHeaderInSection section: Int) -> CGFloat {
-        return 52
-    }
-    
-    override func tableView(_ tableView: UITableView,
-                            viewForHeaderInSection section: Int) -> UIView? {
-        
-        let headerView = UINib(nibName: "NewsfeedHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0]
-        return headerView as? UIView
-    }
-    
-    
-    
-    override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = super.tableView(tableView, cellForRowAt: indexPath) as! NewsfeedCell
@@ -115,6 +99,10 @@ extension NewsfeedViewController {
             return cell
         }
         cell.show(post)
+        cell.showUserDetailsActionHandler = { [unowned self] (userId) in
+            self.targetUserId = userId
+            self.performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
+        }
         return cell
     }
     

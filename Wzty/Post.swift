@@ -30,6 +30,8 @@ final class Post: NSManagedObject {
     @NSManaged var details: String?
     @NSManaged var timestamp: Int
     @NSManaged var link: String?
+    @NSManaged var insertedTimestamp: NSNumber?
+    @NSManaged var homeTimeline: Bool
     @NSManaged var userId: String?
     
     func write(json: JSON) {
@@ -54,12 +56,17 @@ final class Post: NSManagedObject {
         }
         
         //Url
-        if let urls = json["entities"].object?["urls"]?.array {
-            if urls.count > 0 {
-                if let urlLink = urls[0].object?["expanded_url"]?.string {
+        if let urls = json["entities"].object?["urls"]?.array,
+            let firstUrl = urls.first {
+            
+                if let urlLink = firstUrl.object?["expanded_url"]?.string {
                     self.link = urlLink
                 }
-            }
+        }
+        
+        //Inserted timestamp
+        if self.insertedTimestamp == nil || self.insertedTimestamp?.intValue == 0 {
+            self.insertedTimestamp = NSNumber(value: Date.timestamp())
         }
         
         //User
@@ -72,16 +79,16 @@ final class Post: NSManagedObject {
 
 extension Post {
     
-    static func add(objects: [JSON]) {
+    static func add(objects: [JSON], _ homeTimeline: Bool = false) {
         
         for json in objects {
-            if let urls = json["entities"].object?["urls"]?.array {
-                if urls.count > 0 {
-                    if let _ = urls[0].object?["expanded_url"]?.string {
-                        add(json)
+            if let urls = json["entities"].object?["urls"]?.array,
+                let firstUrl = urls.first {
+                
+                    if let _ = firstUrl.object?["expanded_url"]?.string {
+                        add(json, homeTimeline)
                     }
                 }
-            }
         }
         
         //Save data
@@ -89,7 +96,7 @@ extension Post {
     }
     
     
-    static func add(_ json: JSON) {
+    static func add(_ json: JSON, _ homeTimeline: Bool = false) {
         
         guard let objectId = json["id_str"].string else { return }
         let predicate = NSPredicate(format: "objectId == %@", objectId)
@@ -97,6 +104,7 @@ extension Post {
             guard let postT = post else {
                 if let newObject = NSEntityDescription.insertNewObject(forEntityName: "Post", into: CoreDataManager.shared.backgroundContext) as? Post {
                     newObject.write(json: json)
+                    newObject.homeTimeline = homeTimeline 
                 }
                 return
             }
@@ -153,14 +161,16 @@ extension Post {
     static func homeTimeline(sinceId: String? = nil,
                              maxId: String? = nil,
                              _ finished: @escaping (Bool) -> (Void)) {
+
+        AppDelegate.shared().twitter?.getHomeTimeline(count: 50, sinceID: sinceId, maxID: maxId, trimUser: false, contributorDetails: false, includeEntities: true, success: { (json) in
         
-        AppDelegate.shared.twitter?.getHomeTimeline(count: 50, sinceID: sinceId, maxID: maxId, trimUser: false, contributorDetails: true, includeEntities: true, success: { (json) in
-            Post.add(objects: json.array!)
-            
             guard let jsonArray = json.array,
                 jsonArray.count > 0 else {
+                    finished(false)
                     return
             }
+            
+            Post.add(objects: jsonArray, true)
             
             //Save first and last ids to user
             User.current() { (user) in
@@ -178,12 +188,13 @@ extension Post {
                     user?.sinceId = firstId
                     user?.maxId = lastId
                 }
-                
+
                 //Commit data
                 CoreDataManager.shared.saveContextBackground()
+                finished(true)
             }
-        
-            finished(true)
+            
+            
             
         }, failure: { (error) in
             finished(false)
@@ -195,11 +206,46 @@ extension Post {
     static func homeTimelineBy(userId: String,
                                sinceId: String? = nil,
                                maxId: String? = nil,
-                               _ results: @escaping ([Post?]?) -> (Void)) {
+                               _ finished: @escaping (Bool) -> (Void)) {
         
-        AppDelegate.shared.twitter?.getTimeline(for: userId, count: 50, sinceID: sinceId, maxID: maxId, trimUser: false, contributorDetails: true, includeEntities: true, success: { (json) in
-            //
+        AppDelegate.shared().twitter?.getTimeline(for: userId, count: 50, sinceID: sinceId, maxID: maxId, trimUser: false, contributorDetails: true, includeEntities: true, success: { (json) in
+
+            guard let jsonArray = json.array,
+                jsonArray.count > 0 else {
+                    finished(false)
+                    return
+            }
+            
+            Post.add(objects: jsonArray)
+            
+            //Save first and last ids to user
+            let predicate = NSPredicate(format: "objectId == %@", userId)
+            User.fetchBy(predicate: predicate) { (user) in
+                
+                let firstId = (json.array![0].object?["id_str"]?.string)!
+                let lastId = (json.array![json.array!.count - 1].object?["id_str"]?.string)!
+                if sinceId != nil && maxId != nil {
+                    if sinceId != nil {
+                        user?.sinceId = firstId
+                    }
+                    if maxId != nil {
+                        user?.maxId = lastId
+                    }
+                } else {
+                    user?.sinceId = firstId
+                    user?.maxId = lastId
+                }
+                
+                //Commit data
+                CoreDataManager.shared.saveContextBackground()
+                finished(true)
+            }
+            
+            
+            
+            
         }, failure: { (error) in
+            finished(false)
             console("Error: \(error)")
         })
     }

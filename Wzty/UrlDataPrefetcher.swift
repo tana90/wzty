@@ -2,6 +2,16 @@
 //  UrlDataPrefetcher.swift
 //  Wzty
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
 //  Created by Tudor Ana on 29/11/2017.
 //  Copyright © 2017 Tudor Ana. All rights reserved.
 //
@@ -31,14 +41,12 @@ final class UrlDataPrefetcher {
                         self.urlsInProgress.remove(object: linkT)
                         return
                     }
-                    DispatchQueue.main.safeAsync {
-                        resultT.title = title
-                        resultT.details = details
-                        resultT.imageUrl = image
-                        
-                        if let imageT = image {
-                            UIImageView().kf.setImage(with: URL(string: imageT))
-                        }
+                    resultT.title = title
+                    resultT.details = details
+                    resultT.imageUrl = image
+                    
+                    if let imageT = image {
+                        UIImageView().kf.setImage(with: URL(string: imageT))
                     }
                     CoreDataManager.shared.saveContextBackground()
                     self.urlsInProgress.remove(object: linkT)

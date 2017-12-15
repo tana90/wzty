@@ -85,34 +85,34 @@ final class CoreDataManager {
     
     
     final func saveContextBackground() {
-        if backgroundContext.hasChanges {
-            backgroundContext.performAndWait({
+        backgroundContext.performAndWait({
+            if backgroundContext.hasChanges {
                 do {
                     try self.backgroundContext.save()
                 } catch {
                     let nserror = error as NSError
                     console("Save context in background -- Unresolved error \(nserror), \(nserror.userInfo)")
                 }
-            })
-        }
+            }
+        })
     }
     
     
     // MARK: - Core Data Saving support
     final func saveContext() {
-        if managedObjectContext.hasChanges {
-            managedObjectContext.perform {
+        managedObjectContext.performAndWait {
+            if managedObjectContext.hasChanges {
+                
                 do {
                     try self.managedObjectContext.save()
                 } catch {
                     let nserror = error as NSError
                     console("Save context -- Unresolved error \(nserror), \(nserror.userInfo)")
-                    abort()
                 }
             }
         }
     }
-
+    
     func delete(object: NSManagedObject) {
         backgroundContext.performAndWait {
             backgroundContext.delete(object)
@@ -128,16 +128,18 @@ final class CoreDataManager {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         fetchRequest.returnsObjectsAsFaults = false
         
-        do
-        {
-            let results = try managedContext.fetch(fetchRequest)
-            for managedObject in results
+        managedContext.performAndWait {
+            do
             {
-                let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
-                managedContext.delete(managedObjectData)
+                let results = try managedContext.fetch(fetchRequest)
+                for managedObject in results
+                {
+                    let managedObjectData:NSManagedObject = managedObject as! NSManagedObject
+                    managedContext.delete(managedObjectData)
+                }
+            } catch let error as NSError {
+                console("Detele all data in \(entity) error : \(error) \(error.userInfo)")
             }
-        } catch let error as NSError {
-            console("Detele all data in \(entity) error : \(error) \(error.userInfo)")
         }
     }
     

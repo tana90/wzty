@@ -30,39 +30,66 @@ class NewsfeedCell: UITableViewCell {
     @IBOutlet private weak var mediaView: UIImageView!
     @IBOutlet private weak var detailsLabel: UILabel!
     
+    public var showUserDetailsActionHandler: ((String) -> ())?
+    public var showMoreActionsHandler: ((String) -> ())?
+    var targetUserId: String?
+    var targetPostId: String?
+    
+    @IBAction func userDetailsAction() {
+        if let handler = showUserDetailsActionHandler,
+            let targetUserIdT = targetUserId {
+            handler(targetUserIdT)
+        }
+    }
+    
+    @IBAction func moreAction() {
+        
+        if let handler = showMoreActionsHandler,
+            let targetPostIdT = targetPostId {
+            handler(targetPostIdT)
+        }
+        
+    }
+    
     func prefetch(_ post: Post) {
         guard let imageUrlT = post.imageUrl else { return }
         mediaView?.kf.setImage(with: URL(string: imageUrlT))
+        targetUserId = post.userId!
+        targetPostId = post.objectId!
     }
     
     
     func show(_ post: Post) {
         
-        //User
-            let predicate = NSPredicate(format: "objectId == %@", post.userId!)
-            User.fetchBy(predicate: predicate) { (user) in
-                guard let userT = user else { return }
-                DispatchQueue.main.async { [weak self] in
-                    
-                    guard let strongSelf = self else { return }
-                    
-                    //User image
-                    if let imageUrlT = userT.userImageUrl {
-                        strongSelf.userImageView?.kf.setImage(with: URL(string: imageUrlT))
-                    } else {
-                        strongSelf.userImageView?.image = nil
-                    }
-                    
-                    //Username
-                    strongSelf.usenameLabel?.text = userT.name
-                }
-            }
+        targetUserId = post.userId
+        targetPostId = post.objectId
         
-
+        //User
+        let predicate = NSPredicate(format: "objectId == %@", post.userId!)
+        User.fetchBy(predicate: predicate) { (user) in
+            guard let userT = user else { return }
+            DispatchQueue.main.safeAsync { [weak self] in
+                
+                guard let strongSelf = self else { return }
+                
+                //User image
+                if let imageUrlT = userT.userImageUrl {
+                    strongSelf.userImageView?.kf.setImage(with: URL(string: imageUrlT))
+                } else {
+                    strongSelf.userImageView?.image = nil
+                }
+                
+                //Username
+                strongSelf.usenameLabel?.text = userT.name
+            }
+        }
+        
+        
+        
         //Date
         let date = Date(timeIntervalSince1970: TimeInterval(post.timestamp)) as Date
         self.dateLabel?.text = date.getElapsedInterval(shortFormat: true)
-
+        
         //Title
         titleLabel?.text = post.title
         

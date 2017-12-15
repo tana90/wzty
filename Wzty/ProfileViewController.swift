@@ -25,12 +25,15 @@ final class ProfileViewController: BaseListViewController {
     
     lazy var usersFetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
-        request.sortDescriptors = []
+        let timeSortDescriptor = NSSortDescriptor(key: "insertedTimestamp", ascending: true)
+        request.sortDescriptors = [timeSortDescriptor]
         
+        var predicate = NSPredicate(format: "following == true")
         if let username = KeyChain.load(string: "username") {
-            let predicate = NSPredicate(format: "username != %@", username)
-            request.predicate = predicate
+            predicate = NSPredicate(format: "username != %@ AND following == true", username)
         }
+        
+        request.predicate = predicate
         request.fetchLimit = 50
         
         let frc = NSFetchedResultsController(fetchRequest: request,
@@ -41,30 +44,30 @@ final class ProfileViewController: BaseListViewController {
         return frc
     }()
     
+    
+    @IBAction func settingsAction(_ sender: Any) {
+        performSegue(withIdentifier: "showSettingsSegue", sender: self)
+    }
+
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         //Configure cell
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "userCell")
+        
+        User.current { [unowned self] (user) in
+            self.navigationItem.title = user.name
+        }
         
         //Register for CoreData updates
         perform(usersFetchedResultsController)
         loadData(newer: true)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     override func refreshData() {
@@ -74,46 +77,36 @@ final class ProfileViewController: BaseListViewController {
     
     override func loadData(newer: Bool) {
         
+        loading = true
+        
         if newer == true {
-            loading = true
             User.current { (user) in
-                User.followings(of: user, { [unowned self] (users) in
+                User.followings(of: user, { [unowned self] (status) in
                     self.loading = false
-                    })
+                })
             }
         } else {
-            loading = true
             User.current { (user) in
-                User.followings(of: user, { [unowned self] (users) in
+                User.followings(of: user, { [unowned self] (status) in
                     self.loading = false
                     }, with: user.nextCursor!)
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showUserDetailsSegue" {
+            guard let user = usersFetchedResultsController.object(at: tableView.indexPathForSelectedRow!) as? User,
+                let userId = user.objectId else {
+                    return
+            }
+            let destinationViewController = segue.destination as! UserDetailsViewController
+            destinationViewController.userId = userId
+        } 
+    }
 }
 
 extension ProfileViewController {
-    
-    override func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return 110
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let headerView = UINib(nibName: "ProfileHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! ProfileHeaderView
-        User.current { (user) in
-            headerView.show(user!)
-            headerView.settingsActionHandler = { [unowned self] in
-                self.performSegue(withIdentifier: "showSettingsSegue", sender: self)
-            }
-        }
-        
-        return headerView
-    }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 66
@@ -126,7 +119,14 @@ extension ProfileViewController {
         guard let user = usersFetchedResultsController.object(at: indexPath) as? User else {
             return cell
         }
+        
         cell.show(user)
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //tableView.deselectRow(at: indexPath, animated: true)
+        performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
+    }
 }
+

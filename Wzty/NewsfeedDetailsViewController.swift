@@ -52,12 +52,22 @@ final class NewsfeedDetailsViewController: BaseDetailsViewController {
 }
 
 extension NewsfeedDetailsViewController {
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == 1 {
+            guard let post = postFetchResultsController.object(at: IndexPath(row: 0, section: 0)) as? Post else {
+                return
+            }
+            (cell as! NewsfeedWebCell).show(post)
+        }
+    }
 
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let post = postFetchResultsController.object(at: IndexPath(row: 0, section: 0)) as? Post else {
-             return super.tableView(tableView, cellForRowAt: indexPath)
+            return super.tableView(tableView, cellForRowAt: indexPath)
         }
 
         switch indexPath.row {
@@ -83,10 +93,11 @@ extension NewsfeedDetailsViewController {
                 tableView.isScrollEnabled = true
                 tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
-            webViewCell.show(post)
+
             return webViewCell
         default:
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
     }
 }
+

@@ -24,7 +24,23 @@ import Social
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    static let shared = AppDelegate()
+    //static let shared = AppDelegate()
+    
+    private static var sharedInstance: AppDelegate = {
+        let appDelegate = AppDelegate()   
+        do {
+            objc_sync_enter(appDelegate)
+            defer {
+                objc_sync_exit(appDelegate)
+            }
+        }
+        return appDelegate
+    }()
+
+    class func shared() -> AppDelegate {
+        return AppDelegate.sharedInstance
+    }
+    
     var window: UIWindow?
     var twitter: Swifter?
 
@@ -32,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //Init twitter
-        AppDelegate.shared.twitter = Swifter(consumerKey: "lLH1TSVtmbpzEcNUaJteq70wp", consumerSecret: "5Y3YDM9PzJr99YIbr4BfPQvM2Y1f92DiWz1NBEqxiUitfET234")
+        AppDelegate.shared().twitter = Swifter(consumerKey: "lLH1TSVtmbpzEcNUaJteq70wp", consumerSecret: "5Y3YDM9PzJr99YIbr4BfPQvM2Y1f92DiWz1NBEqxiUitfET234")
         
         
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)

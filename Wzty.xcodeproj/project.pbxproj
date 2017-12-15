@@ -30,10 +30,13 @@
 		C85989391FADB2F300C94877 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85989381FADB2F300C94877 /* Config.swift */; };
 		C859893B1FADB75C00C94877 /* NewsfeedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C859893A1FADB75C00C94877 /* NewsfeedDetailsViewController.swift */; };
 		C859893D1FADB78300C94877 /* BaseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C859893C1FADB78300C94877 /* BaseDetailsViewController.swift */; };
-		C859893F1FADB97C00C94877 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C859893E1FADB97C00C94877 /* NotificationsViewController.swift */; };
 		C85989411FADB9A400C94877 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85989401FADB9A400C94877 /* ProfileViewController.swift */; };
-		C85989451FADBA2900C94877 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85989441FADBA2900C94877 /* ProfileHeaderView.swift */; };
-		C85989471FADBA3C00C94877 /* ProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C85989461FADBA3C00C94877 /* ProfileHeaderView.xib */; };
+		C85989451FADBA2900C94877 /* UserDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85989441FADBA2900C94877 /* UserDetailsHeaderView.swift */; };
+		C86C5B661FD1D7C700602BD0 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C5B651FD1D7C700602BD0 /* UserDetailsViewController.swift */; };
+		C871A0701FE1728900162274 /* UserDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */; };
+		C871A0731FE182FD00162274 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C871A0721FE182FD00162274 /* ExploreViewController.swift */; };
+		C871A0761FE4034100162274 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C871A0751FE4034100162274 /* ReportViewController.swift */; };
+		C871A0791FE404DB00162274 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C871A0781FE404DB00162274 /* AboutViewController.swift */; };
 		C889F4D71FB1BE0B00132460 /* SwifterTweets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4B11FB1BE0900132460 /* SwifterTweets.swift */; };
 		C889F4D81FB1BE0B00132460 /* SwifterSavedSearches.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4B21FB1BE0900132460 /* SwifterSavedSearches.swift */; };
 		C889F4D91FB1BE0B00132460 /* Swifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4B31FB1BE0900132460 /* Swifter.swift */; };
@@ -69,7 +72,6 @@
 		C889F4F71FB1BE0B00132460 /* SHA1.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4D21FB1BE0B00132460 /* SHA1.swift */; };
 		C889F4F81FB1BE0B00132460 /* String++.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4D31FB1BE0B00132460 /* String++.swift */; };
 		C889F4F91FB1BE0B00132460 /* SwifterTrends.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4D41FB1BE0B00132460 /* SwifterTrends.swift */; };
-		C889F4FA1FB1BE0B00132460 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C889F4D51FB1BE0B00132460 /* Launch Screen.storyboard */; };
 		C889F4FB1FB1BE0B00132460 /* SwifterMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4D61FB1BE0B00132460 /* SwifterMessages.swift */; };
 		C889F5281FB1C10900132460 /* ThreadHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F5131FB1C10700132460 /* ThreadHelper.swift */; };
 		C889F5291FB1C10900132460 /* UIButton+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F5141FB1C10700132460 /* UIButton+Kingfisher.swift */; };
@@ -150,10 +152,13 @@
 		C85989381FADB2F300C94877 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C859893A1FADB75C00C94877 /* NewsfeedDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsfeedDetailsViewController.swift; sourceTree = "<group>"; };
 		C859893C1FADB78300C94877 /* BaseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailsViewController.swift; sourceTree = "<group>"; };
-		C859893E1FADB97C00C94877 /* NotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		C85989401FADB9A400C94877 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		C85989441FADBA2900C94877 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
-		C85989461FADBA3C00C94877 /* ProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileHeaderView.xib; sourceTree = "<group>"; };
+		C85989441FADBA2900C94877 /* UserDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsHeaderView.swift; sourceTree = "<group>"; };
+		C86C5B651FD1D7C700602BD0 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
+		C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsHeaderView.xib; sourceTree = "<group>"; };
+		C871A0721FE182FD00162274 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		C871A0751FE4034100162274 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		C871A0781FE404DB00162274 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		C889F4B11FB1BE0900132460 /* SwifterTweets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwifterTweets.swift; path = "Swifter-master/Sources/SwifterTweets.swift"; sourceTree = SOURCE_ROOT; };
 		C889F4B21FB1BE0900132460 /* SwifterSavedSearches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwifterSavedSearches.swift; path = "Swifter-master/Sources/SwifterSavedSearches.swift"; sourceTree = SOURCE_ROOT; };
 		C889F4B31FB1BE0900132460 /* Swifter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Swifter.swift; path = "Swifter-master/Sources/Swifter.swift"; sourceTree = SOURCE_ROOT; };
@@ -190,7 +195,6 @@
 		C889F4D21FB1BE0B00132460 /* SHA1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SHA1.swift; path = "Swifter-master/Sources/SHA1.swift"; sourceTree = SOURCE_ROOT; };
 		C889F4D31FB1BE0B00132460 /* String++.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String++.swift"; path = "Swifter-master/Sources/String++.swift"; sourceTree = SOURCE_ROOT; };
 		C889F4D41FB1BE0B00132460 /* SwifterTrends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwifterTrends.swift; path = "Swifter-master/Sources/SwifterTrends.swift"; sourceTree = SOURCE_ROOT; };
-		C889F4D51FB1BE0B00132460 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Swifter-master/Sources/Launch Screen.storyboard"; sourceTree = SOURCE_ROOT; };
 		C889F4D61FB1BE0B00132460 /* SwifterMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwifterMessages.swift; path = "Swifter-master/Sources/SwifterMessages.swift"; sourceTree = SOURCE_ROOT; };
 		C889F5131FB1C10700132460 /* ThreadHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ThreadHelper.swift; path = Kingfisher/ThreadHelper.swift; sourceTree = SOURCE_ROOT; };
 		C889F5141FB1C10700132460 /* UIButton+Kingfisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIButton+Kingfisher.swift"; path = "Kingfisher/UIButton+Kingfisher.swift"; sourceTree = SOURCE_ROOT; };
@@ -248,11 +252,14 @@
 		C81EFD081FBC5EF900A54FFE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C871A0771FE404CE00162274 /* About */,
+				C871A0741FE4032E00162274 /* Report */,
+				C871A0711FE1813100162274 /* Explore */,
+				C86C5B641FD1D7B200602BD0 /* UserDetails */,
 				C8CD9C901FB9E6B9009D4AAA /* MediaPreview */,
 				C845D5021FAF576D00A278ED /* Settings */,
 				C859892E1FADA80600C94877 /* Login */,
 				C859892D1FADA7FB00C94877 /* Profile */,
-				C859892C1FADA7F000C94877 /* Notifications */,
 				C859892B1FADA7DC00C94877 /* Newsfeed */,
 			);
 			name = Screens;
@@ -349,18 +356,18 @@
 		C85989271FADA70D00C94877 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C859891B1FADA69F00C94877 /* Assets.xcassets */,
 				C85989181FADA69F00C94877 /* Main.storyboard */,
 				C859891D1FADA69F00C94877 /* LaunchScreen.storyboard */,
-				C859891B1FADA69F00C94877 /* Assets.xcassets */,
 				C8FEFB8C1FB4F85500B6F0F7 /* NewsfeedHeaderView.xib */,
 				C85989331FADADEF00C94877 /* NewsfeedCell.xib */,
 				C8FEFB8A1FB4EBBE00B6F0F7 /* NewsfeedDetailsCell.xib */,
 				C83DB3021FB6E1FF0051147B /* NewsfeedWebCell.xib */,
 				C889F5461FB222E600132460 /* UserCell.xib */,
-				C85989461FADBA3C00C94877 /* ProfileHeaderView.xib */,
 				C8AC8BC61FB88DB200F81019 /* NavigationTableHeaderView.xib */,
 				C8CD9C931FB9E909009D4AAA /* MediaPreview.xib */,
 				C81EFD041FBC56D700A54FFE /* License */,
+				C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -383,14 +390,6 @@
 			name = Newsfeed;
 			sourceTree = "<group>";
 		};
-		C859892C1FADA7F000C94877 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-				C859893E1FADB97C00C94877 /* NotificationsViewController.swift */,
-			);
-			name = Notifications;
-			sourceTree = "<group>";
-		};
 		C859892D1FADA7FB00C94877 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -411,7 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				C8AC8BC81FB895A000F81019 /* NavigationTableHeaderView.swift */,
-				C85989441FADBA2900C94877 /* ProfileHeaderView.swift */,
+				C85989441FADBA2900C94877 /* UserDetailsHeaderView.swift */,
 				C85989361FADAE0F00C94877 /* NewsfeedCell.swift */,
 				C8CD9C951FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift */,
 				C83DB3041FB6E4A10051147B /* NewsfeedWebCell.swift */,
@@ -433,6 +432,38 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		C86C5B641FD1D7B200602BD0 /* UserDetails */ = {
+			isa = PBXGroup;
+			children = (
+				C86C5B651FD1D7C700602BD0 /* UserDetailsViewController.swift */,
+			);
+			name = UserDetails;
+			sourceTree = "<group>";
+		};
+		C871A0711FE1813100162274 /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				C871A0721FE182FD00162274 /* ExploreViewController.swift */,
+			);
+			name = Explore;
+			sourceTree = "<group>";
+		};
+		C871A0741FE4032E00162274 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				C871A0751FE4034100162274 /* ReportViewController.swift */,
+			);
+			name = Report;
+			sourceTree = "<group>";
+		};
+		C871A0771FE404CE00162274 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				C871A0781FE404DB00162274 /* AboutViewController.swift */,
+			);
+			name = About;
+			sourceTree = "<group>";
+		};
 		C889F4AE1FB1BDED00132460 /* Swifter */ = {
 			isa = PBXGroup;
 			children = (
@@ -442,7 +473,6 @@
 				C889F4B61FB1BE0900132460 /* Info.plist */,
 				C889F4CE1FB1BE0A00132460 /* Int++.swift */,
 				C889F4C71FB1BE0A00132460 /* JSON.swift */,
-				C889F4D51FB1BE0B00132460 /* Launch Screen.storyboard */,
 				C889F4C41FB1BE0A00132460 /* Operator++.swift */,
 				C889F4D21FB1BE0B00132460 /* SHA1.swift */,
 				C889F4D31FB1BE0B00132460 /* String++.swift */,
@@ -601,9 +631,8 @@
 				C8FEFB8D1FB4F85500B6F0F7 /* NewsfeedHeaderView.xib in Resources */,
 				C859891A1FADA69F00C94877 /* Main.storyboard in Resources */,
 				C81EFD051FBC56D700A54FFE /* License in Resources */,
-				C85989471FADBA3C00C94877 /* ProfileHeaderView.xib in Resources */,
 				C83DB3031FB6E1FF0051147B /* NewsfeedWebCell.xib in Resources */,
-				C889F4FA1FB1BE0B00132460 /* Launch Screen.storyboard in Resources */,
+				C871A0701FE1728900162274 /* UserDetailsHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,14 +650,15 @@
 				C889F4E81FB1BE0B00132460 /* SwifterHelp.swift in Sources */,
 				C889F53A1FB1C10900132460 /* KingfisherOptionsInfo.swift in Sources */,
 				C889F4F51FB1BE0B00132460 /* SwifterFollowers.swift in Sources */,
-				C859893F1FADB97C00C94877 /* NotificationsViewController.swift in Sources */,
 				C889F4D91FB1BE0B00132460 /* Swifter.swift in Sources */,
 				C889F5381FB1C10900132460 /* KingfisherManager.swift in Sources */,
+				C86C5B661FD1D7C700602BD0 /* UserDetailsViewController.swift in Sources */,
 				C889F5321FB1C10900132460 /* RequestModifier.swift in Sources */,
 				C889F4E21FB1BE0B00132460 /* Data++.swift in Sources */,
 				C889F4FB1FB1BE0B00132460 /* SwifterMessages.swift in Sources */,
 				C845D4F91FAF3CE800A278ED /* KeyChain.swift in Sources */,
 				C889F4D81FB1BE0B00132460 /* SwifterSavedSearches.swift in Sources */,
+				C871A0731FE182FD00162274 /* ExploreViewController.swift in Sources */,
 				C889F4F31FB1BE0B00132460 /* Int++.swift in Sources */,
 				C889F4DF1FB1BE0B00132460 /* SwifterLists.swift in Sources */,
 				C889F4E11FB1BE0B00132460 /* Utils.swift in Sources */,
@@ -650,7 +680,7 @@
 				C8CD9C9B1FB9F9F0009D4AAA /* TabBarController.swift in Sources */,
 				C889F4D71FB1BE0B00132460 /* SwifterTweets.swift in Sources */,
 				C889F4F71FB1BE0B00132460 /* SHA1.swift in Sources */,
-				C85989451FADBA2900C94877 /* ProfileHeaderView.swift in Sources */,
+				C85989451FADBA2900C94877 /* UserDetailsHeaderView.swift in Sources */,
 				C85989411FADB9A400C94877 /* ProfileViewController.swift in Sources */,
 				C889F5351FB1C10900132460 /* ImageTransition.swift in Sources */,
 				C8F691061FCF2D0100AFF82E /* UrlDataPrefetcher.swift in Sources */,
@@ -671,6 +701,7 @@
 				C889F5301FB1C10900132460 /* ImageView+Kingfisher.swift in Sources */,
 				C889F4ED1FB1BE0B00132460 /* SwifterTag.swift in Sources */,
 				C889F5281FB1C10900132460 /* ThreadHelper.swift in Sources */,
+				C871A0761FE4034100162274 /* ReportViewController.swift in Sources */,
 				C85989151FADA69F00C94877 /* AppDelegate.swift in Sources */,
 				C889F5361FB1C10900132460 /* Image.swift in Sources */,
 				C889F4EE1FB1BE0B00132460 /* SwifterTimelines.swift in Sources */,
@@ -692,6 +723,7 @@
 				C889F4EB1FB1BE0B00132460 /* SwifterUsers.swift in Sources */,
 				C889F5391FB1C10900132460 /* Filter.swift in Sources */,
 				C8FDC5FE1FB037340005721F /* Tools.swift in Sources */,
+				C871A0791FE404DB00162274 /* AboutViewController.swift in Sources */,
 				C85989391FADB2F300C94877 /* Config.swift in Sources */,
 				C889F52E1FB1C10900132460 /* ImageDownloader.swift in Sources */,
 				C889F52B1FB1C10900132460 /* Box.swift in Sources */,

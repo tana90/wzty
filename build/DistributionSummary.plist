@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Wzty.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string>D20DB2C3E4FED66C3C93AED3DC0B3D68B458A5E4</string>
+				<key>dateExpires</key>
+				<string>27/11/2018</string>
+				<key>type</key>
+				<string>iOS Distribution</string>
+			</dict>
+			<key>embeddedBinaries</key>
+			<array>
+				<dict>
+					<key>architectures</key>
+					<array>
+						<string>arm64</string>
+					</array>
+					<key>certificate</key>
+					<dict>
+						<key>SHA1</key>
+						<string>D20DB2C3E4FED66C3C93AED3DC0B3D68B458A5E4</string>
+						<key>dateExpires</key>
+						<string>27/11/2018</string>
+						<key>type</key>
+						<string>iOS Distribution</string>
+					</dict>
+					<key>name</key>
+					<string>Kanna.framework</string>
+					<key>team</key>
+					<dict>
+						<key>id</key>
+						<string>5B3Q9N6AS8</string>
+						<key>name</key>
+						<string>Tudor Ana</string>
+					</dict>
+				</dict>
+			</array>
+			<key>entitlements</key>
+			<dict>
+				<key>application-identifier</key>
+				<string>5B3Q9N6AS8.com.wztnews.wzty</string>
+				<key>com.apple.developer.team-identifier</key>
+				<string>5B3Q9N6AS8</string>
+				<key>get-task-allow</key>
+				<false/>
+				<key>keychain-access-groups</key>
+				<array>
+					<string>5B3Q9N6AS8.com.wztnews.wzty</string>
+				</array>
+			</dict>
+			<key>name</key>
+			<string>Wzty.app</string>
+			<key>profile</key>
+			<dict>
+				<key>UUID</key>
+				<string>6682f76f-b0de-4f53-9aa6-d7ed44355fe0</string>
+				<key>name</key>
+				<string>iOS Team Ad Hoc Provisioning Profile: *</string>
+			</dict>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>5B3Q9N6AS8</string>
+				<key>name</key>
+				<string>Tudor Ana</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
