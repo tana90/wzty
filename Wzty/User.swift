@@ -271,17 +271,27 @@ extension User {
     static func follow(_ status: Bool,
                        _ userId: String, 
                        _ finished: @escaping (Bool) -> (Void)) {
-
+        
         let userTag = UserTag.id(userId)
-        AppDelegate.shared().twitter?.followUser(for: userTag, follow: status, success: { (json) in
-            User.add(json, result: { (user) in 
-                (user as! User).following = status
-                CoreDataManager.shared.saveContextBackground()
-                finished(true)
+        if status == true {
+            AppDelegate.shared().twitter?.followUser(for: userTag, follow: true, success: { (json) in
+                User.add(json, result: { (user) in 
+                    CoreDataManager.shared.saveContextBackground()
+                    finished(true)
+                })
+            }, failure: { (error) in
+                console("Error: \(error)")
             })
-        }, failure: { (error) in
-            console("Error: \(error)")
-        })
+        } else {
+            AppDelegate.shared().twitter?.unfollowUser(for: userTag, success: { (json) in
+                User.add(json, result: { (user) in 
+                    CoreDataManager.shared.saveContextBackground()
+                    finished(true)
+                })
+            }, failure: { (error) in
+                console("Error: \(error)")
+            }) 
+        }
     }
     
     //Report user
