@@ -46,6 +46,11 @@ func console<T>(_ object: T, filename: String = #file, line: Int = #line, funcna
 }
 
 func logout() {
+    
+    KeyChain.remove("username")
+    KeyChain.remove("oauthKey")
+    KeyChain.remove("secretKey")
+    
     let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
     let initialViewController = storyboard.instantiateInitialViewController()
     (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = nil

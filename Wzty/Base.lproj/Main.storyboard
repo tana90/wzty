@@ -28,6 +28,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="TUc-wO-NDJ"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <state key="normal" title="Login with Twitter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -40,15 +41,21 @@
                                     <action selector="loginAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="P6B-uo-fwL"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="odJ-ff-NVl">
+                                <rect key="frame" x="177" y="559" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="gB6-XY-X9S" firstAttribute="top" secondItem="FAx-6n-mdf" secondAttribute="bottom" constant="20" id="9Mz-dN-R2U"/>
                             <constraint firstItem="FAx-6n-mdf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="BvG-du-Tvg"/>
+                            <constraint firstItem="odJ-ff-NVl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="RGF-wH-lux"/>
                             <constraint firstItem="FAx-6n-mdf" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="u3F-Ny-qWy"/>
+                            <constraint firstItem="FAx-6n-mdf" firstAttribute="top" secondItem="odJ-ff-NVl" secondAttribute="bottom" constant="31" id="z6X-Ti-LEc"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicatorView" destination="odJ-ff-NVl" id="DgP-UW-yHe"/>
                         <segue destination="QMa-CH-CB9" kind="show" identifier="showTabbarControllerSegue" id="NMQ-Jg-LBt"/>
                     </connections>
                 </viewController>
@@ -380,7 +387,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kF8-na-taG">
                                                     <rect key="frame" x="16" y="11" width="343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <color key="textColor" red="1" green="0.1158826245" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -695,8 +702,8 @@ The GNU General Public License does not permit incorporating your program into p
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.0.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2T-od-HtQ">
-                                                    <rect key="frame" x="312.5" y="11" width="46.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="311" y="11" width="48" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>

@@ -22,40 +22,37 @@
 import UIKit
 
 final class NewsfeedWebCell: UITableViewCell {
-    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     
     @IBOutlet private weak var webView: UIWebView!
-    @IBOutlet private weak var progressView: UIProgressView!
+    
     public var finishHandler: (() -> ())?
     public var changeTitleHandler: ((String) -> ())?
     public var beginScrollHandler: (() -> ())?
     public var closeHandler: (() -> ())?
     private var isStarted: Bool = false
-    
+
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         
-        webView.delegate = self
         webView.scrollView.bounces = false
         webView.scrollView.delegate = self
     }
     
     func show(_ post: Post) {
         if !isStarted {
-            DispatchQueue.main.safeAsync { [unowned self] in
-                self.webView.loadRequest(URLRequest(url: URL(string: post.link!)!))
+            DispatchQueue.main.safeAsync { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.webView.loadRequest(URLRequest(url: URL(string: post.link!)!))
             }
             self.isStarted = true  
         }
     }
-    
 }
 
 extension NewsfeedWebCell: UIWebViewDelegate {
     
-    
-    
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        
         if let handler = changeTitleHandler {
             var host = webView.request?.url?.host
             if (host?.hasPrefix("www."))! {

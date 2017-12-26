@@ -29,6 +29,7 @@ class NewsfeedCell: UITableViewCell {
     @IBOutlet private weak var mediaViewContainer: UIView?
     @IBOutlet private weak var mediaView: UIImageView!
     @IBOutlet private weak var detailsLabel: UILabel!
+    @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView?
     
     public var showUserDetailsActionHandler: ((String) -> ())?
     public var showMoreActionsHandler: ((String) -> ())?
@@ -71,7 +72,6 @@ class NewsfeedCell: UITableViewCell {
             DispatchQueue.main.safeAsync { [weak self] in
                 
                 guard let strongSelf = self else { return }
-                
                 //User image
                 if let imageUrlT = userT.userImageUrl {
                     strongSelf.userImageView?.kf.setImage(with: URL(string: imageUrlT))
@@ -96,9 +96,25 @@ class NewsfeedCell: UITableViewCell {
         //Details
         detailsLabel?.text = post.details
         
+        
+        activityIndicatorView?.startAnimating()
+        
         //Image
         if let imageUrlT = post.imageUrl {
-            mediaView?.kf.setImage(with: URL(string: imageUrlT))
+            mediaView.kf.setImage(with: URL(string: imageUrlT), placeholder: nil, options: nil, progressBlock: { (progress, maxProgress) in
+            }, completionHandler: { [weak self] (image, error, cacheType, url) in
+                guard let strongSelf = self else { return }
+                strongSelf.activityIndicatorView?.stopAnimating()
+                
+                if (error != nil) {
+                    strongSelf.mediaView?.image = UIImage(named: "placeholder")
+                }
+                
+                UIView.animate(withDuration: 0.30, animations: { [weak self] in
+                    guard let strongSelf = self else { return }
+                    strongSelf.mediaView.alpha = 1.0
+                })
+            })
         } else {
             mediaView?.image = nil
         }

@@ -53,16 +53,6 @@ final class NewsfeedDetailsViewController: BaseDetailsViewController {
 
 extension NewsfeedDetailsViewController {
     
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        
-        if indexPath.row == 1 {
-            guard let post = postFetchResultsController.object(at: IndexPath(row: 0, section: 0)) as? Post else {
-                return
-            }
-            (cell as! NewsfeedWebCell).show(post)
-        }
-    }
-
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -82,16 +72,20 @@ extension NewsfeedDetailsViewController {
             return detailsCell
         case 1:
             let webViewCell = tableView.dequeueReusableCell(withIdentifier: "newsfeedWebCell") as! NewsfeedWebCell
-            webViewCell.beginScrollHandler = {
-                tableView.scrollToRow(at: IndexPath(row: 1, section: 0), at: .top, animated: true)
+            webViewCell.show(post)
+            
+            webViewCell.beginScrollHandler = { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.tableView.scrollToRow(at: IndexPath(row: 1, section: 0), at: .top, animated: true)
             }
             webViewCell.changeTitleHandler = { [weak self] title in
                 guard let strongSelf = self else { return }
                 strongSelf.navigationHeaderView.titleLabel.text = title
             }
-            webViewCell.closeHandler = {
-                tableView.isScrollEnabled = true
-                tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+            webViewCell.closeHandler = { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.tableView.isScrollEnabled = true
+                strongSelf.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
 
             return webViewCell

@@ -19,18 +19,22 @@
 //
 
 import UIKit
-//import SwifteriOS
 
 final class LoginViewController: UIViewController {
     
+    @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
+    
     @IBAction func loginAction() {
-        
+        activityIndicatorView.startAnimating()
         AppDelegate.shared().twitter?.authorize(with: URL(string: "wzty://authentication")!, presentFrom: self, success: { [unowned self] (accessToken, urlResponse) in
             //Get user info
             guard let username = accessToken?.screenName,
                 let oauthKey = accessToken?.key,
                 let secretKey = accessToken?.secret
-                else { return }
+                else { 
+                    self.activityIndicatorView.stopAnimating()
+                    return 
+            }
             
             //Save credentials
             KeyChain.save(username.data(using: .utf8)!, forkey: "username")
@@ -39,7 +43,8 @@ final class LoginViewController: UIViewController {
             
             self.loginSuccessfull()
             
-            }, failure: { (error) in
+            }, failure: { [unowned self] (error) in
+                self.activityIndicatorView.stopAnimating()
                 console("Error: \(error)")
         })
     }
@@ -54,6 +59,7 @@ final class LoginViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        
         //Check if we are alrString(describing: eady) logged in
         guard let username = KeyChain.load(string: "username"),
             username.count > 0,
@@ -61,19 +67,24 @@ final class LoginViewController: UIViewController {
             oauthKey.count > 0,
             let secretKey = KeyChain.load(string: "secretKey"),
             secretKey.count > 0
-            else { return }
+            else { 
+                activityIndicatorView.stopAnimating()
+                return 
+        }
         
         //Authenticate automatically
         AppDelegate.shared().twitter = Swifter.init(consumerKey: "lLH1TSVtmbpzEcNUaJteq70wp", consumerSecret: "5Y3YDM9PzJr99YIbr4BfPQvM2Y1f92DiWz1NBEqxiUitfET234", oauthToken: oauthKey, oauthTokenSecret: secretKey)
         
         AppDelegate.shared().twitter?.verifyAccountCredentials(includeEntities: false, skipStatus: true, success: { [unowned self] (json) in
             self.loginSuccessfull()
-        }, failure: { (error) in
+        }, failure: { [unowned self] (error) in
+            self.activityIndicatorView.stopAnimating()
             console(error)
         })
     }
     
-    func loginSuccessfull() {        
+    func loginSuccessfull() {       
+        activityIndicatorView.stopAnimating()
         self.performSegue(withIdentifier: "showTabbarControllerSegue", sender: self)
     }
 }
