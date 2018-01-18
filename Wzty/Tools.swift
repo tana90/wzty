@@ -65,6 +65,9 @@ func clearCache() {
     CoreDataManager.shared.deleteAllData(entity: "User", from: CoreDataManager.shared.backgroundContext)
     CoreDataManager.shared.deleteAllData(entity: "User", from: CoreDataManager.shared.managedObjectContext)
     
+    CoreDataManager.shared.deleteAllData(entity: "Board", from: CoreDataManager.shared.backgroundContext)
+    CoreDataManager.shared.deleteAllData(entity: "Board", from: CoreDataManager.shared.managedObjectContext)
+    
     CoreDataManager.shared.saveContextBackground()
     CoreDataManager.shared.saveContext()
 }

@@ -107,6 +107,8 @@ final class UserDetailsViewController: BaseListViewController {
                                     maxId: newer ? nil : user.maxId) { [weak self] (status) in
                                         guard let strongSelf = self else { return }
                                         strongSelf.loading = false
+                                        CoreDataManager.shared.saveContextBackground()
+                                        
                 }
             }
         }
@@ -186,8 +188,9 @@ extension UserDetailsViewController: UITableViewDataSourcePrefetching {
                     return
             }
             
-            if post.title == nil {
-                UrlDataPrefetcher.shared.startFetch(link: post.link)
+            //Fetch data and let NSFetchResultsController to reupdate cell
+            if post.title == nil || post.imageUrl == nil {
+                UrlDataPrefetcher.shared.startFetch(link: post.link, refreshable: false)
             }
         }
     }

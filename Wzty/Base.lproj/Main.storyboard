@@ -77,8 +77,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="rox-xZ-547" kind="relationship" relationship="viewControllers" id="tyD-Mb-abO"/>
-                        <segue destination="Lu7-De-BAd" kind="relationship" relationship="viewControllers" id="XXL-M2-tfu"/>
-                        <segue destination="U3s-c4-Ubn" kind="relationship" relationship="viewControllers" id="59D-cK-7jW"/>
+                        <segue destination="Ocm-ta-qji" kind="relationship" relationship="viewControllers" id="DKt-58-aW5"/>
+                        <segue destination="Lu7-De-BAd" kind="relationship" relationship="viewControllers" id="aFI-up-BvD"/>
+                        <segue destination="U3s-c4-Ubn" kind="relationship" relationship="viewControllers" id="sNv-kW-boj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5UF-f4-diP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -263,6 +264,72 @@
             </objects>
             <point key="canvasLocation" x="2913" y="140"/>
         </scene>
+        <!--Boards-->
+        <scene sceneID="y7N-yk-TxO">
+            <objects>
+                <navigationController id="Ocm-ta-qji" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Boards" image="boards" id="pTd-EG-g0J"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="ivO-OF-Ylj">
+                        <rect key="frame" x="0.0" y="20" width="375" height="96"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="UOy-Fe-F38" kind="relationship" relationship="rootViewController" id="EoB-yp-kyi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cC6-Bs-0tt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1961" y="1043"/>
+        </scene>
+        <!--Boards-->
+        <scene sceneID="Wl1-Lf-lSz">
+            <objects>
+                <collectionViewController id="atq-bq-uIb" customClass="BoardsViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Boards" id="LDE-Z2-gdh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Ryl-2S-ld8"/>
+                    </navigationItem>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DkK-RO-CUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2916" y="1042"/>
+        </scene>
+        <!--Boards-->
+        <scene sceneID="PFi-lQ-gOD">
+            <objects>
+                <tableViewController id="UOy-Fe-F38" customClass="BoardsViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="KkI-4A-Ohx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="UOy-Fe-F38" id="UBj-M2-LgA"/>
+                            <outlet property="delegate" destination="UOy-Fe-F38" id="gWe-fr-IeF"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Boards" id="cAr-AB-GSU">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="TiL-7i-IvP">
+                            <connections>
+                                <action selector="editAction" destination="UOy-Fe-F38" id="0HW-w5-FVc"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="6HP-Rk-kDN">
+                            <connections>
+                                <segue destination="5eB-nU-7xN" kind="show" identifier="showAddBoardSegue" id="WwC-rb-DNk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="G7y-Dn-9Af" kind="show" identifier="showBoardDetails" id="Nwj-fG-wt1"/>
+                        <segue destination="5eB-nU-7xN" kind="show" identifier="showEditBoardSegue" id="Pmo-en-amU"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V89-bU-Uv0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3295" y="1042"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="bbf-dd-qy9">
             <objects>
@@ -291,7 +358,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHd-J2-F0y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2913" y="1178"/>
+            <point key="canvasLocation" x="2913" y="1924"/>
         </scene>
         <!--Settings-->
         <scene sceneID="5e0-VV-eBN">
@@ -417,7 +484,58 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y9n-Jo-IME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3838" y="1178"/>
+            <point key="canvasLocation" x="3838" y="1924"/>
+        </scene>
+        <!--Add board-->
+        <scene sceneID="Ihs-j7-iOn">
+            <objects>
+                <tableViewController id="5eB-nU-7xN" customClass="AddNewBoardViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" id="QB3-ab-BP4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <connections>
+                            <outlet property="dataSource" destination="5eB-nU-7xN" id="99X-Dd-Cwa"/>
+                            <outlet property="delegate" destination="5eB-nU-7xN" id="T5u-eq-l1L"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Add board" id="weB-yZ-XrW">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="DID-5z-hYg">
+                            <connections>
+                                <action selector="saveAction:" destination="5eB-nU-7xN" id="EY7-7y-100"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="saveButton" destination="DID-5z-hYg" id="bfD-4F-wQS"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KLp-Pf-xHR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6137" y="580"/>
+        </scene>
+        <!--Board Details View Controller-->
+        <scene sceneID="437-kF-pPb">
+            <objects>
+                <tableViewController id="G7y-Dn-9Af" customClass="BoardDetailsViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Uyr-FX-Odx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="G7y-Dn-9Af" id="DZL-Fo-9er"/>
+                            <outlet property="delegate" destination="G7y-Dn-9Af" id="Ljm-mJ-xB6"/>
+                            <outlet property="prefetchDataSource" destination="G7y-Dn-9Af" id="3Jz-uH-auo"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <segue destination="FKQ-YT-Cwb" kind="presentation" identifier="showNewsDetailsSegue" id="EW1-6y-XlW"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="evc-7U-SKJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6137" y="1318"/>
         </scene>
         <!--License agreement-->
         <scene sceneID="PNa-Mk-M8s">
@@ -675,7 +793,7 @@ The GNU General Public License does not permit incorporating your program into p
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1E-sC-2Rg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4777" y="1178"/>
+            <point key="canvasLocation" x="4777" y="1924"/>
         </scene>
         <!--About-->
         <scene sceneID="j4w-Xk-Mqw">
@@ -733,7 +851,7 @@ The GNU General Public License does not permit incorporating your program into p
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zUn-eZ-hs3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4776.8000000000002" y="1920.9895052473764"/>
+            <point key="canvasLocation" x="4777" y="2667"/>
         </scene>
         <!--User-->
         <scene sceneID="uNv-3k-uVC">
@@ -783,7 +901,7 @@ The GNU General Public License does not permit incorporating your program into p
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RUp-1z-sGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1964" y="1179"/>
+            <point key="canvasLocation" x="1964" y="1925"/>
         </scene>
         <!--Explore-->
         <scene sceneID="aRN-65-nRb">
@@ -825,15 +943,17 @@ The GNU General Public License does not permit incorporating your program into p
         </scene>
     </scenes>
     <resources>
+        <image name="boards" width="25" height="25"/>
         <image name="foryou-tab" width="25" height="25"/>
         <image name="profile-selected" width="25" height="25"/>
         <image name="search-tab" width="25" height="25"/>
         <image name="settings-nav" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UHy-t4-8ls"/>
-        <segue reference="pk8-Q8-m77"/>
-        <segue reference="pQt-AX-Djo"/>
+        <segue reference="vQo-Pm-nR5"/>
+        <segue reference="Pmo-en-amU"/>
+        <segue reference="EW1-6y-XlW"/>
+        <segue reference="uOa-K5-Oi3"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.14515793320000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

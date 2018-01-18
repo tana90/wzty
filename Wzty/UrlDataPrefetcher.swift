@@ -24,7 +24,7 @@ final class UrlDataPrefetcher {
     private var urlsInProgress: [String] = []
     
     
-    func startFetch(link: String?) {
+    func startFetch(link: String?, refreshable refresh: Bool) {
         
         guard let linkT = link,
             let url = URL(string: linkT) else { return }
@@ -48,7 +48,9 @@ final class UrlDataPrefetcher {
                     if let imageT = image {
                         UIImageView().kf.setImage(with: URL(string: imageT))
                     }
-                    CoreDataManager.shared.saveContextBackground()
+                    if refresh {
+                        CoreDataManager.shared.saveContextBackground()
+                    }
                     self.urlsInProgress.remove(object: linkT)
                 }
                 

@@ -1,5 +1,5 @@
 //
-//  NewsfeedViewController.swift
+//  BoardDetailsViewController.swift
 //  Wzty
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -12,27 +12,37 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  Created by Tudor Ana on 04/11/2017.
+//  Created by Tudor Ana on 17/01/2018.
+//  Copyright © 2018 Tudor Ana. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-final class NewsfeedViewController: BaseListViewController {
-    
-    
+class BoardDetailsViewController: BaseListViewController {
     
     lazy var postFetchResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timeSortDescriptor]
-        let predicate = NSPredicate(format: "homeTimeline == true")
-        request.predicate = predicate
         request.fetchLimit = 50
         
+        if let boardT = board {
+            var userPredicate = NSPredicate(format: "boardId == %@", boardT.objectId!)
+            User.fetchAllBy(predicate: userPredicate, result: { (users) in
+                
+                if let usersT = users {
+                    var predicates: [NSPredicate] = []
+                    for user in usersT {
+                        predicates.append(NSPredicate(format: "userId == %@", (user?.objectId)!))
+                        
+                    }
+                    let compoundPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
+                    request.predicate = compoundPredicate
+                }
+                
+            })
+        }
         
         let frc = NSFetchedResultsController(fetchRequest: request,
                                              managedObjectContext: CoreDataManager.shared.backgroundContext,
@@ -42,54 +52,91 @@ final class NewsfeedViewController: BaseListViewController {
         return frc
     }()
     
+    var board: Board?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let boardT = board {
+            title = boardT.name
+            
+            //Load first posts
+            loadData(newer: true)
+        } 
+        
         //Configure cell
         tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: "newsfeedCell")
         
-        //Register for CoreData updates
+        //Listen to posts change
         perform(postFetchResultsController)
         
-        //Load first posts
-        loadData(newer: true)
+        
     }
-    
     
     @objc override func refreshData() {
         super.refreshData()
         loadData(newer: true)
     }
     
-    override func loadData(newer: Bool) {
-        loading = true
-        User.current { (user) in
-            Post.homeTimeline(sinceId: newer ? user?.sinceId : nil,
-                              maxId: newer ? nil : user?.maxId) { [weak self] (status) in
-                                guard let strongSelf = self else { return }
-                                strongSelf.loading = false
-            }
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        
         if segue.identifier == "showNewsDetailsSegue" {
             let destination = segue.destination as? NewsfeedDetailsViewController
             guard let post = postFetchResultsController.object(at: tableView.indexPathForSelectedRow!) as? Post else {
                 return
             }
             destination?.post = post
-            return
+        }
+    }
+    
+    
+    var blockOperations: [BlockOperation] = []
+    
+    override func loadData(newer: Bool) {
+        loading = true
+        
+        if let boardT = board {
+            let userPredicate = NSPredicate(format: "boardId == %@", boardT.objectId!)
+            User.fetchAllBy(predicate: userPredicate, result: { (users) in
+
+                
+                if let usersT = users {
+                    
+                    var index = 0
+                    for user in usersT {
+                        
+                        blockOperations.append(
+                            BlockOperation(block: { [weak self] in
+
+                                Post.homeTimelineBy(userId: (user?.objectId)!, sinceId: newer ? user?.sinceId : nil, 
+                                                    maxId: newer ? nil : user?.maxId) { [weak self] (status) in
+                                                        guard let strongSelf = self else { return }
+
+                                                        index += 1
+                                                        if index >= (users?.count)! {
+                                                            strongSelf.loading = false
+                                                            CoreDataManager.shared.saveContextBackground()
+                                                        }
+                                                        
+                                }
+                            }))
+                        
+                    }
+                    
+                    for operation: BlockOperation in blockOperations {
+                        operation.start()
+                    }
+                    
+                }
+                
+            })
         }
     }
 }
 
 
 //MARK: - TableView Delegate & DataSource
-extension NewsfeedViewController {
+extension BoardDetailsViewController {
     
     override func tableView(_ tableView: UITableView,
                             cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,11 +145,9 @@ extension NewsfeedViewController {
         guard let post = postFetchResultsController.object(at: indexPath) as? Post else {
             return cell
         }
-        cell.show(post)
-        cell.showUserDetailsActionHandler = { [unowned self] (userId) in
-            self.targetUserId = userId
-            self.performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
-        }
+        
+        cell.show(post, refreshable: false)
+        
         return cell
     }
     
@@ -114,12 +159,12 @@ extension NewsfeedViewController {
 
 
 //MARK: - TableView Prefetch DataSource
-extension NewsfeedViewController: UITableViewDataSourcePrefetching {
+extension BoardDetailsViewController: UITableViewDataSourcePrefetching {
     
     func tableView(_ tableView: UITableView,
                    prefetchRowsAt indexPaths: [IndexPath]) {
         
-
+        
         for indexPath in indexPaths {
             
             guard let post = postFetchResultsController.object(at: indexPath) as? Post,

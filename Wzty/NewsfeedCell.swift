@@ -60,7 +60,7 @@ class NewsfeedCell: UITableViewCell {
     }
     
     
-    func show(_ post: Post) {
+    func show(_ post: Post, refreshable refresh: Bool = true) {
         
         targetUserId = post.userId
         targetPostId = post.objectId
@@ -121,8 +121,8 @@ class NewsfeedCell: UITableViewCell {
         
         
         //Fetch data and let NSFetchResultsController to reupdate cell
-        if post.title == nil {
-            UrlDataPrefetcher.shared.startFetch(link: post.link)
+        if post.title == nil || post.imageUrl == nil {
+            UrlDataPrefetcher.shared.startFetch(link: post.link, refreshable: refresh)
         }
     }
 }

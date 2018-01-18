@@ -210,7 +210,7 @@
                 <outlet property="usenameLabel" destination="xMc-QY-s2g" id="lU7-DG-Mhc"/>
                 <outlet property="userImageView" destination="aJx-d4-6Z9" id="Ech-TK-hsR"/>
             </connections>
-            <point key="canvasLocation" x="-2500" y="-126"/>
+            <point key="canvasLocation" x="-2606" y="-128"/>
         </tableViewCell>
     </objects>
     <resources>

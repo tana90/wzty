@@ -92,7 +92,7 @@ extension Post {
         }
         
         //Save data
-        CoreDataManager.shared.saveContextBackground()
+        //CoreDataManager.shared.saveContextBackground()
     }
     
     
@@ -237,7 +237,7 @@ extension Post {
                 }
                 
                 //Commit data
-                CoreDataManager.shared.saveContextBackground()
+                //CoreDataManager.shared.saveContextBackground()
                 finished(true)
             }
             

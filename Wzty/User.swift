@@ -33,6 +33,8 @@ final class User: NSManagedObject {
     @NSManaged var insertedTimestamp: NSNumber?
     @NSManaged var listedCount: NSNumber?
     
+    @NSManaged var boardId: String?
+    
     @NSManaged var sinceId: String?
     @NSManaged var maxId: String?
     
