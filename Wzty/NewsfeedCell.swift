@@ -110,9 +110,9 @@ class NewsfeedCell: UITableViewCell {
                     strongSelf.mediaView?.image = UIImage(named: "placeholder")
                 }
                 
-                UIView.animate(withDuration: 0.30, animations: { [weak self] in
+                UIView.animate(withDuration: 0.32, animations: { [weak self] in
                     guard let strongSelf = self else { return }
-                    strongSelf.mediaView.alpha = 1.0
+                    strongSelf.mediaView.alpha = 0.95
                 })
             })
         } else {

@@ -80,12 +80,36 @@ class BoardDetailsViewController: BaseListViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        
+        //Show post details
         if segue.identifier == "showNewsDetailsSegue" {
             let destination = segue.destination as? NewsfeedDetailsViewController
             guard let post = postFetchResultsController.object(at: tableView.indexPathForSelectedRow!) as? Post else {
                 return
             }
             destination?.post = post
+            return
+        }
+        
+        //Edit board
+        if segue.identifier == "showEditBoardSegue" { 
+            let destination = segue.destination as? AddNewBoardViewController
+            guard let _ = board else {
+                return
+            }
+            destination?.boardName = board!.name
+            destination?.boardId = board!.objectId
+            let predicate = NSPredicate(format: "boardId == %@", (board?.objectId!)!)
+            var usersIds: [String] = []
+            User.fetchAllBy(predicate: predicate) { (users) in
+                if let _ = users {
+                    for user in users! {
+                        usersIds.append((user?.objectId!)!)
+                    }
+                    destination?.selectedUsers = usersIds
+                }
+            }
+            return
         }
     }
     
@@ -146,7 +170,8 @@ extension BoardDetailsViewController {
             return cell
         }
         
-        cell.show(post, refreshable: false)
+        
+        cell.show(post, refreshable: indexPath.row == 0 ? true : false)
         
         return cell
     }

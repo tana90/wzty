@@ -38,6 +38,11 @@ final class BoardCell: UITableViewCell {
         userImage3.image = nil
         userImage4.image = nil
         
+        userImage1.backgroundColor = .clear
+        userImage2.backgroundColor = .clear
+        userImage3.backgroundColor = .clear
+        userImage4.backgroundColor = .clear
+        
         let predicate = NSPredicate(format: "boardId == %@", boardT.objectId!)
         User.fetchAllBy(predicate: predicate) { [unowned self] (users) in
             guard let usersT = users else { return }
@@ -48,12 +53,16 @@ final class BoardCell: UITableViewCell {
                 if let imageUrl = usersT[index]?.userImageUrl {
                     if index == 0 {
                         userImage1.kf.setImage(with: URL(string: imageUrl))
+                        userImage1.backgroundColor = .white
                     } else if index == 1 {
                         userImage2.kf.setImage(with: URL(string: imageUrl))
+                        userImage2.backgroundColor = .white
                     } else if index == 2 {
                         userImage3.kf.setImage(with: URL(string: imageUrl))
+                        userImage3.backgroundColor = .white
                     } else if index == 3 {
                         userImage4.kf.setImage(with: URL(string: imageUrl))
+                        userImage4.backgroundColor = .white
                     }
                 }
             }

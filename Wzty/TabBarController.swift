@@ -19,5 +19,34 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
+    
+    var previousViewController: UIViewController?
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.delegate = self
+        
+        if let _ = viewControllers,
+            let navigationController = viewControllers![0] as? UINavigationController,
+            let rootViewController = navigationController.viewControllers[0] as? BaseCoreDataViewController {
+            previousViewController = rootViewController
+        }
+    }
+}
+
+extension TabBarController: UITabBarControllerDelegate {
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
+        if let navigationController = viewController as? UINavigationController,
+            let rootViewController = navigationController.viewControllers[0] as? BaseCoreDataViewController {
+            
+            if let _ = previousViewController, 
+                previousViewController == rootViewController {
+                rootViewController.scrollToTop()
+            } 
+            
+            previousViewController = rootViewController
+        }
+    }
 }

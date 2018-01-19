@@ -89,9 +89,8 @@ class AddNewBoardViewController: BaseListViewController {
         perform(usersFetchedResultsController)
         loadData(newer: true)
         
-        if let _ = boardId,
-            let _ = boardName {
-            title = boardName!
+        if let _ = boardId {
+            title = "Edit board"
         }
     }
     
@@ -135,6 +134,8 @@ extension AddNewBoardViewController {
         }
         if let _ = boardName {
             header?.textField?.text = boardName!
+        } else {
+            header?.textField?.becomeFirstResponder()
         }
         return header
     }

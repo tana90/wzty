@@ -374,6 +374,7 @@
 		C85989271FADA70D00C94877 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C81EFD041FBC56D700A54FFE /* License */,
 				C859891B1FADA69F00C94877 /* Assets.xcassets */,
 				C85989181FADA69F00C94877 /* Main.storyboard */,
 				C859891D1FADA69F00C94877 /* LaunchScreen.storyboard */,
@@ -384,7 +385,6 @@
 				C889F5461FB222E600132460 /* UserCell.xib */,
 				C8AC8BC61FB88DB200F81019 /* NavigationTableHeaderView.xib */,
 				C8CD9C931FB9E909009D4AAA /* MediaPreview.xib */,
-				C81EFD041FBC56D700A54FFE /* License */,
 				C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */,
 				C862FAA2200E2BA800D54E1B /* AddBoardHeaderView.xib */,
 				C88A5F21200F6558004E4C47 /* BoardCell.xib */,

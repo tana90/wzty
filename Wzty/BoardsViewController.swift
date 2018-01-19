@@ -91,7 +91,7 @@ extension BoardsViewController {
     
     override func tableView(_ tableView: UITableView, 
                             heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 135
     }
     
     override func tableView(_ tableView: UITableView,
@@ -102,6 +102,7 @@ extension BoardsViewController {
             return cell!
         }
         cell!.show(board)
+        
         return cell!
     }
     
