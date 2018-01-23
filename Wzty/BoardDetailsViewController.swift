@@ -57,20 +57,26 @@ class BoardDetailsViewController: BaseListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let boardT = board {
-            title = boardT.name
-            
-            //Load first posts
-            loadData(newer: true)
-        } 
+        //Load first posts
+        loadData(newer: true)
         
         //Configure cell
         tableView.register(UINib(nibName: "NewsfeedCell", bundle: nil), forCellReuseIdentifier: "newsfeedCell")
         
         //Listen to posts change
         perform(postFetchResultsController)
+    
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        
+        if let _ = board {
+            Board.fetchBy(id: board!.objectId!, result: { (board) in
+                guard let boardT = board as? Board else { return }
+                title = boardT.name
+            })
+        } 
     }
     
     @objc override func refreshData() {
@@ -172,6 +178,10 @@ extension BoardDetailsViewController {
         
         
         cell.show(post, refreshable: indexPath.row == 0 ? true : false)
+        cell.showUserDetailsActionHandler = { [unowned self] (userId) in
+            self.targetUserId = userId
+            self.performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
+        }
         
         return cell
     }

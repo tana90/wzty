@@ -94,9 +94,8 @@ extension Board {
         
         if let newObject = NSEntityDescription.insertNewObject(forEntityName: "Board", into: CoreDataManager.shared.backgroundContext) as? Board {
             newObject.objectId = NSUUID().uuidString
-            newObject.color = "#ff0000"
+            newObject.color = "#353535"
             newObject.name = name
-            console(userIds)
             for userId in userIds {
                 User.fetchBy(id: userId, result: { (user) -> (Void) in
                     (user as? User)?.boardId = newObject.objectId

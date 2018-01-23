@@ -316,7 +316,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V89-bU-Uv0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3295" y="1042"/>
+            <point key="canvasLocation" x="2913" y="1042"/>
         </scene>
         <!--Profile-->
         <scene sceneID="bbf-dd-qy9">
@@ -526,6 +526,8 @@
                     </navigationItem>
                     <connections>
                         <segue destination="FKQ-YT-Cwb" kind="presentation" identifier="showNewsDetailsSegue" id="EW1-6y-XlW"/>
+                        <segue destination="8T0-bk-lSp" kind="show" identifier="showReportSegue" id="Yij-xy-35Z"/>
+                        <segue destination="1tR-Ij-i0N" kind="show" identifier="showUserDetailsSegue" id="VUW-5c-b5o"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="evc-7U-SKJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -945,10 +947,10 @@ The GNU General Public License does not permit incorporating your program into p
         <image name="settings-nav" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="AwR-aq-jge"/>
-        <segue reference="NHM-6L-Izj"/>
+        <segue reference="VUW-5c-b5o"/>
+        <segue reference="WwC-rb-DNk"/>
         <segue reference="EW1-6y-XlW"/>
-        <segue reference="pQt-AX-Djo"/>
+        <segue reference="Yij-xy-35Z"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.14515793320000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
