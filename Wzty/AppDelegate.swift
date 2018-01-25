@@ -111,6 +111,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 break
             case "Explore":
                 tabbarViewController.selectedIndex = 2
+                if let navigationController = tabbarViewController.viewControllers![2] as? UINavigationController,
+                    let exploreViewController = navigationController.viewControllers[0] as? ExploreViewController {
+                    exploreViewController.focusSearchBar = true
+                    if let searchBar = exploreViewController.searchBar {
+                        searchBar.becomeFirstResponder()
+                    }
+                }
+                
                 break
             default:
                 break

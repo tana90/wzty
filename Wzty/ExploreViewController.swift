@@ -41,6 +41,7 @@ final class ExploreViewController: BaseListViewController {
     
     @IBOutlet weak var searchBar: UISearchBar!
     var lastSearchTimestamp: Int = 0
+    var focusSearchBar: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +51,10 @@ final class ExploreViewController: BaseListViewController {
         
         //Register for CoreData updates
         perform(usersFetchedResultsController)
+        
+        if focusSearchBar {
+            searchBar.becomeFirstResponder()
+        }
         
     }
     
