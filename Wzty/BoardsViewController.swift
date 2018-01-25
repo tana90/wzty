@@ -23,8 +23,9 @@ final class BoardsViewController: BaseListViewController {
     
     lazy var boardsFetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Board")
+        let prioritySortDescriptor = NSSortDescriptor(key: "priority", ascending: false)
         let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        request.sortDescriptors = [nameSortDescriptor]
+        request.sortDescriptors = [prioritySortDescriptor, nameSortDescriptor]
         request.fetchLimit = 50
         
         let frc = NSFetchedResultsController(fetchRequest: request,
@@ -59,7 +60,10 @@ final class BoardsViewController: BaseListViewController {
             guard let board = boardsFetchedResultsController.object(at: tableView.indexPathForSelectedRow!) as? Board else {
                 return
             }
+            board.priority = NSNumber(value: (board.priority?.intValue)! + 1)
+            CoreDataManager.shared.saveContextBackground()
             destination?.board = board
+            scrollToTop()
             return
         }
         

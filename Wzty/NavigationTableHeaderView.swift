@@ -23,10 +23,17 @@ final class NavigationTableHeaderView: UIView {
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     public var closeActionHandler: (()->Void)?
+    public var moreActionHander: (()->Void)?
     
     
     @IBAction func closeAction() {
         if let handler = closeActionHandler {
+            handler()
+        }
+    }
+    
+    @IBAction func moreAction() {
+        if let handler = moreActionHander {
             handler()
         }
     }

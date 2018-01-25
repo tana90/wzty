@@ -117,7 +117,6 @@
 		C8FDC6051FB077380005721F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FDC6041FB077380005721F /* libresolv.tbd */; };
 		C8FDC6071FB077F80005721F /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FDC6061FB077F80005721F /* libxml2.2.tbd */; };
 		C8FEFB8B1FB4EBBE00B6F0F7 /* NewsfeedDetailsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8FEFB8A1FB4EBBE00B6F0F7 /* NewsfeedDetailsCell.xib */; };
-		C8FEFB8D1FB4F85500B6F0F7 /* NewsfeedHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8FEFB8C1FB4F85500B6F0F7 /* NewsfeedHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -248,7 +247,6 @@
 		C8FDC6041FB077380005721F /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		C8FDC6061FB077F80005721F /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
 		C8FEFB8A1FB4EBBE00B6F0F7 /* NewsfeedDetailsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsfeedDetailsCell.xib; sourceTree = "<group>"; };
-		C8FEFB8C1FB4F85500B6F0F7 /* NewsfeedHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsfeedHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,7 +376,6 @@
 				C859891B1FADA69F00C94877 /* Assets.xcassets */,
 				C85989181FADA69F00C94877 /* Main.storyboard */,
 				C859891D1FADA69F00C94877 /* LaunchScreen.storyboard */,
-				C8FEFB8C1FB4F85500B6F0F7 /* NewsfeedHeaderView.xib */,
 				C85989331FADADEF00C94877 /* NewsfeedCell.xib */,
 				C8FEFB8A1FB4EBBE00B6F0F7 /* NewsfeedDetailsCell.xib */,
 				C83DB3021FB6E1FF0051147B /* NewsfeedWebCell.xib */,
@@ -662,7 +659,6 @@
 				C8FEFB8B1FB4EBBE00B6F0F7 /* NewsfeedDetailsCell.xib in Resources */,
 				C88A5F22200F6558004E4C47 /* BoardCell.xib in Resources */,
 				C889F5471FB222E600132460 /* UserCell.xib in Resources */,
-				C8FEFB8D1FB4F85500B6F0F7 /* NewsfeedHeaderView.xib in Resources */,
 				C859891A1FADA69F00C94877 /* Main.storyboard in Resources */,
 				C81EFD051FBC56D700A54FFE /* License in Resources */,
 				C83DB3031FB6E1FF0051147B /* NewsfeedWebCell.xib in Resources */,

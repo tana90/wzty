@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="qjd-3a-Fbh">
-                    <rect key="frame" x="0.0" y="-22" width="375" height="110"/>
+                    <rect key="frame" x="0.0" y="-22" width="375" height="115"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sl-yb-fsg">
                     <rect key="frame" x="1" y="20" width="46" height="46"/>
@@ -41,22 +41,39 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="b5H-r3-XoL"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="22"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="21"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbW-tg-cpv">
+                    <rect key="frame" x="320" y="28" width="49" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="Lcg-q8-mgq"/>
+                        <constraint firstAttribute="width" constant="49" id="WaJ-1e-ZZo"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="34"/>
+                    <inset key="titleEdgeInsets" minX="0.0" minY="-18" maxX="0.0" maxY="0.0"/>
+                    <state key="normal" title="...">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="moreAction" destination="iN0-l3-epB" eventType="touchUpInside" id="W7g-Pv-Be0"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="0B9-Px-c0D" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="48" id="02g-Ah-IPw"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="IbW-tg-cpv" secondAttribute="trailing" constant="6" id="2Qq-Q5-nsz"/>
                 <constraint firstItem="qjd-3a-Fbh" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Dey-rW-9r1"/>
                 <constraint firstItem="9sl-yb-fsg" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="GN3-yc-naY"/>
                 <constraint firstItem="0B9-Px-c0D" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="JZQ-Xg-ogv"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0B9-Px-c0D" secondAttribute="trailing" constant="16" id="UEE-2H-pay"/>
-                <constraint firstItem="qjd-3a-Fbh" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="22" id="Xzi-A1-mad"/>
+                <constraint firstItem="qjd-3a-Fbh" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" constant="27" id="Xzi-A1-mad"/>
                 <constraint firstItem="9sl-yb-fsg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="1" id="l7O-fd-aDw"/>
                 <constraint firstItem="qjd-3a-Fbh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="-22" id="sto-dK-imQ"/>
                 <constraint firstItem="qjd-3a-Fbh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="yUd-QB-8lu"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="IbW-tg-cpv" secondAttribute="bottom" constant="8" id="zji-Er-Bic"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

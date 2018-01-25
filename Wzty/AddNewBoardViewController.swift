@@ -29,9 +29,9 @@ class AddNewBoardViewController: BaseListViewController {
         
         
         if let _ = boardId {
-            var predicate = NSPredicate(format: "following == true")
+            var predicate = NSPredicate(format: "following == true AND boardId == %@ OR boardId == null", boardId!)
             if let username = KeyChain.load(string: "username") {
-                predicate = NSPredicate(format: "username != %@ AND following == true", username)
+                predicate = NSPredicate(format: "username != %@ AND following == true AND boardId == %@ OR boardId == null", username, boardId!)
             }
             request.predicate = predicate
         } else {

@@ -28,7 +28,7 @@ class BoardDetailsViewController: BaseListViewController {
         request.fetchLimit = 50
         
         if let boardT = board {
-            var userPredicate = NSPredicate(format: "boardId == %@", boardT.objectId!)
+            var userPredicate = NSPredicate(format: "boardId == %@ AND following == true", boardT.objectId!)
             User.fetchAllBy(predicate: userPredicate, result: { (users) in
                 
                 if let usersT = users {

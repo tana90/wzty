@@ -27,6 +27,7 @@ final class Board: NSManagedObject {
     @NSManaged var objectId: String?
     @NSManaged var name: String?
     @NSManaged var color: String?
+    @NSManaged var priority: NSNumber?
     
     func delete() {
         

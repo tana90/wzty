@@ -23,7 +23,7 @@ import Social
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     //static let shared = AppDelegate()
     
     private static var sharedInstance: AppDelegate = {
@@ -36,15 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return appDelegate
     }()
-
+    
     class func shared() -> AppDelegate {
         return AppDelegate.sharedInstance
     }
     
     var window: UIWindow?
     var twitter: Swifter?
-
-
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //Init twitter
@@ -62,19 +62,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
-
+    
+    
     func applicationDidEnterBackground(_ application: UIApplication) {
         CoreDataManager.shared.saveContextBackground()
         CoreDataManager.shared.saveContext()
     }
-
+    
     func applicationWillEnterForeground(_ application: UIApplication) {
     }
-
+    
     func applicationDidBecomeActive(_ application: UIApplication) {
     }
-
+    
     func applicationWillTerminate(_ application: UIApplication) {
         CoreDataManager.shared.saveContextBackground()
         CoreDataManager.shared.saveContext()
@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-
+    
     //Handle URL open
     func application(_ app: UIApplication,
                      open url: URL,
@@ -97,6 +97,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Swifter.handleOpenURL(url)
         return true
     }
-
+    
+    //Handle shortcuts
+    func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        
+        
+        if let loginViewController = window?.rootViewController as? LoginViewController,
+            let tabbarViewController = loginViewController.presentedViewController as? TabBarController {
+            
+            switch shortcutItem.localizedTitle {
+            case "Boards":
+                tabbarViewController.selectedIndex = 1
+                break
+            case "Explore":
+                tabbarViewController.selectedIndex = 2
+                break
+            default:
+                break
+            }
+        }
+        
+    }
+    
 }
 

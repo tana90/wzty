@@ -43,7 +43,7 @@ final class BoardCell: UITableViewCell {
         userImage3.backgroundColor = .clear
         userImage4.backgroundColor = .clear
         
-        let predicate = NSPredicate(format: "boardId == %@", boardT.objectId!)
+        let predicate = NSPredicate(format: "boardId == %@ AND following == true", boardT.objectId!)
         User.fetchAllBy(predicate: predicate) { [unowned self] (users) in
             guard let usersT = users else { return }
             
