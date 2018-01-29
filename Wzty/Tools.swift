@@ -31,6 +31,49 @@ func measure(title: String, block: @escaping ( @escaping () -> ()) -> ()) {
 }
 
 
+func moreAction(post: Post?, presentedIn: BaseCoreDataViewController) {
+    guard let _ = post else { return }
+    let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    
+    let shareAction = UIAlertAction(title: "Share", style: .default) { (alert) in
+        let toShare = [post!.link! as Any] as [Any]
+        let activityViewController = UIActivityViewController(activityItems: toShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = presentedIn.view 
+        activityViewController.excludedActivityTypes = [ UIActivityType.airDrop ]
+        presentedIn.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    let safariAction = UIAlertAction(title: "Open in Safari", style: .default) { (alert) in
+        UIApplication.shared.open(URL(string: (post!.link)!)!, options: [:], completionHandler: nil)
+    }
+    
+    let reportIssueAction = UIAlertAction(title: "Report issue", style: .default) { (alert) in
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ReportViewControllerIdentifier") as! ReportViewController
+        viewController.postId = post!.objectId
+        presentedIn.present(viewController, animated: true, completion: nil)
+    }
+    
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
+    }
+    
+    alertViewController.addAction(shareAction)
+    alertViewController.addAction(safariAction)
+    alertViewController.addAction(reportIssueAction)
+    alertViewController.addAction(cancelAction)
+    
+    
+    
+    if let popoverController = alertViewController.popoverPresentationController {
+        popoverController.sourceView = presentedIn.view
+        popoverController.sourceRect = CGRect(x: presentedIn.view.bounds.midX, y: presentedIn.view.bounds.midY, width: 0, height: 0)
+        popoverController.permittedArrowDirections = .init(rawValue: 0)
+    }
+    
+    presentedIn.present(alertViewController, animated: true, completion: nil)
+}
+
+
 func synchronized<T>(_ lock: AnyObject, _ body: () throws -> T) rethrows -> T {
     objc_sync_enter(lock)
     defer { objc_sync_exit(lock) }

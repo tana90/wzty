@@ -27,7 +27,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="bAf-zO-NbQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -84,8 +84,8 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhz-3T-E9p">
-                                <rect key="frame" x="16" y="41" width="319" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <rect key="frame" x="16" y="44" width="319" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -94,7 +94,7 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="gse-0X-2Wu" secondAttribute="bottom" constant="13" id="3uA-NT-znv"/>
                             <constraint firstItem="gse-0X-2Wu" firstAttribute="leading" secondItem="mhf-N9-Joc" secondAttribute="leading" constant="13" id="7Dx-J6-hby"/>
-                            <constraint firstItem="Hhz-3T-E9p" firstAttribute="top" secondItem="mhf-N9-Joc" secondAttribute="top" constant="41" id="E7e-qb-ePA"/>
+                            <constraint firstItem="Hhz-3T-E9p" firstAttribute="top" secondItem="mhf-N9-Joc" secondAttribute="top" constant="44" id="E7e-qb-ePA"/>
                             <constraint firstAttribute="bottom" secondItem="L6t-8h-Gjg" secondAttribute="bottom" constant="13" id="Eqz-CB-7ab"/>
                             <constraint firstAttribute="bottom" secondItem="XTd-KF-vTe" secondAttribute="bottom" constant="13" id="Foh-iG-J84"/>
                             <constraint firstAttribute="bottom" secondItem="is9-Uw-cJd" secondAttribute="bottom" constant="13" id="FzI-RP-Qio"/>
@@ -124,6 +124,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="cellView" destination="mhf-N9-Joc" id="WSh-tu-r6O"/>
                 <outlet property="countLabel" destination="Hhz-3T-E9p" id="h2Q-uC-EKz"/>
                 <outlet property="nameLabel" destination="pHM-8V-XZI" id="ndD-TC-jgM"/>
                 <outlet property="userImage1" destination="gse-0X-2Wu" id="lqq-h9-Kgi"/>
@@ -131,7 +132,7 @@
                 <outlet property="userImage3" destination="is9-Uw-cJd" id="WUr-h8-CKW"/>
                 <outlet property="userImage4" destination="L6t-8h-Gjg" id="V2X-u7-6JN"/>
             </connections>
-            <point key="canvasLocation" x="113" y="204"/>
+            <point key="canvasLocation" x="-74" y="158"/>
         </tableViewCell>
     </objects>
 </document>

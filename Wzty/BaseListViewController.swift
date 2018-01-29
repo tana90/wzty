@@ -23,8 +23,6 @@ import CoreData
 
 class BaseListViewController: BaseCoreDataViewController {
     
-    var targetUserId: String?
-    var targetPostId: String?
     var loading: Bool = false
     let statusBarGradient = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 44))
     
@@ -78,15 +76,6 @@ class BaseListViewController: BaseCoreDataViewController {
             destinationViewController.userId = userId
             return
         } 
-        
-        if segue.identifier == "showReportSegue" {
-            guard let postId = targetPostId else {
-                return
-            }
-            let destinationViewController = segue.destination as! ReportViewController
-            destinationViewController.postId = postId
-            return
-        }
     }
 }
 
@@ -141,19 +130,10 @@ extension BaseListViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsfeedCell") as! NewsfeedCell
         
         cell.showMoreActionsHandler = { [unowned self] (postId) in
-            let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            
-            let reportIssueAction = UIAlertAction(title: "Report issue", style: .default) { [unowned self] (alert) in
-                self.targetPostId = postId
-                self.performSegue(withIdentifier: "showReportSegue", sender: self)
-            }
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
-            }
-            
-            alertViewController.addAction(reportIssueAction)
-            alertViewController.addAction(cancelAction)
-            self.present(alertViewController, animated: true, completion: nil)
+            let predicate = NSPredicate(format: "objectId == %@", postId)
+            Post.fetchBy(predicate, result: { (post) -> (Void) in
+                moreAction(post: post, presentedIn: self)
+            })
         }
         
         return cell

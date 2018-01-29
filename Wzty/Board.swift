@@ -31,7 +31,7 @@ final class Board: NSManagedObject {
     
     func delete() {
         
-        let predicate = NSPredicate(format: "boardId == %@", objectId!)
+        let predicate = NSPredicate(format: "boardId == %@ AND following == true", objectId!)
         User.fetchAllBy(predicate: predicate) { (users) in
             
             if let _ = users {
@@ -44,7 +44,7 @@ final class Board: NSManagedObject {
     }
     
     func edit(_ userIds: [String]) {
-        let predicate = NSPredicate(format: "boardId == %@", objectId!)
+        let predicate = NSPredicate(format: "boardId == %@ AND following == true", objectId!)
         User.fetchAllBy(predicate: predicate) { (users) in
             
             //Remove old users from board

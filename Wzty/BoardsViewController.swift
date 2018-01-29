@@ -26,7 +26,7 @@ final class BoardsViewController: BaseListViewController {
         let prioritySortDescriptor = NSSortDescriptor(key: "priority", ascending: false)
         let nameSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
         request.sortDescriptors = [prioritySortDescriptor, nameSortDescriptor]
-        request.fetchLimit = 50
+        request.fetchLimit = FETCH_LIMIT
         
         let frc = NSFetchedResultsController(fetchRequest: request,
                                              managedObjectContext: CoreDataManager.shared.backgroundContext,

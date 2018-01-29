@@ -140,7 +140,7 @@ extension Post {
     
     static func fetchAll(_ result: ([Post?]?) -> (Void)) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
-        request.fetchLimit = 50
+        request.fetchLimit = FETCH_LIMIT
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [Post]

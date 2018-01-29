@@ -17,7 +17,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter board name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QlW-HA-eXI">
-                    <rect key="frame" x="7" y="7" width="361" height="33"/>
+                    <rect key="frame" x="7" y="7" width="361" height="30"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -40,7 +40,6 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QlW-HA-eXI" secondAttribute="trailing" constant="7" id="2l7-pG-n4u"/>
                 <constraint firstItem="QlW-HA-eXI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="7" id="4gu-k3-V6o"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="QlW-HA-eXI" secondAttribute="bottom" constant="4" id="JoL-pb-khV"/>
                 <constraint firstItem="QlW-HA-eXI" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="7" id="JsJ-jm-20J"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -48,7 +47,7 @@
             <connections>
                 <outlet property="textField" destination="QlW-HA-eXI" id="GMq-IR-7wC"/>
             </connections>
-            <point key="canvasLocation" x="-203" y="19"/>
+            <point key="canvasLocation" x="-294.5" y="1"/>
         </view>
     </objects>
 </document>

@@ -51,15 +51,7 @@ class NewsfeedCell: UITableViewCell {
         }
         
     }
-    
-    func prefetch(_ post: Post) {
-        guard let imageUrlT = post.imageUrl else { return }
-        mediaView?.kf.setImage(with: URL(string: imageUrlT))
-        targetUserId = post.userId!
-        targetPostId = post.objectId!
-    }
-    
-    
+
     func show(_ post: Post, refreshable refresh: Bool = true) {
         
         targetUserId = post.userId
@@ -84,23 +76,42 @@ class NewsfeedCell: UITableViewCell {
             }
         }
         
+        populate(withPost: post)
         
+        //Fetch data and let NSFetchResultsController to reupdate cell
+        if post.title == nil || post.imageUrl == nil {
+            UrlDataPrefetcher.shared.fetch(link: post.link, completionHandler: { [weak self] in
+                
+                guard let strongSelf = self else { return }
+                strongSelf.populate(withPost: post)
+                if refresh {
+                    CoreDataManager.shared.saveContextBackground()
+                }
+            })
+        }
+    }
+    
+    
+    
+    
+    
+    func populate(withPost: Post) {
         
         //Date
-        let date = Date(timeIntervalSince1970: TimeInterval(post.timestamp)) as Date
+        let date = Date(timeIntervalSince1970: TimeInterval(withPost.timestamp)) as Date
         self.dateLabel?.text = date.getElapsedInterval(shortFormat: true)
         
         //Title
-        titleLabel?.text = post.title
+        titleLabel?.text = withPost.title
         
         //Details
-        detailsLabel?.text = post.details
+        detailsLabel?.text = withPost.details
         
-        
+        //Show an activity spinner until picture is downloaded
         activityIndicatorView?.startAnimating()
         
         //Image
-        if let imageUrlT = post.imageUrl {
+        if let imageUrlT = withPost.imageUrl {
             mediaView.kf.setImage(with: URL(string: imageUrlT), placeholder: nil, options: nil, progressBlock: { (progress, maxProgress) in
             }, completionHandler: { [weak self] (image, error, cacheType, url) in
                 guard let strongSelf = self else { return }
@@ -118,11 +129,6 @@ class NewsfeedCell: UITableViewCell {
         } else {
             mediaView?.image = nil
         }
-        
-        
-        //Fetch data and let NSFetchResultsController to reupdate cell
-        if post.title == nil || post.imageUrl == nil {
-            UrlDataPrefetcher.shared.startFetch(link: post.link, refreshable: refresh)
-        }
     }
+    
 }

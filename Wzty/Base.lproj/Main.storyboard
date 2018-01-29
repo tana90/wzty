@@ -89,17 +89,88 @@
         <!--Report issue-->
         <scene sceneID="6Bb-RL-VVa">
             <objects>
-                <tableViewController title="Report issue" id="8T0-bk-lSp" customClass="ReportViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ReportViewControllerIdentifier" title="Report issue" id="8T0-bk-lSp" customClass="ReportViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Hqq-zl-7y7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="XMF-AS-hpS">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kEM-ZN-5lv">
+                                    <rect key="frame" x="0.0" y="0.0" width="60" height="44"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="JW9-oR-DFJ"/>
+                                    </constraints>
+                                    <state key="normal" image="close-nav"/>
+                                    <connections>
+                                        <action selector="closeAction" destination="8T0-bk-lSp" eventType="touchUpInside" id="ba7-EI-jEc"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="kEM-ZN-5lv" secondAttribute="bottom" id="UTI-T0-CUo"/>
+                                <constraint firstItem="kEM-ZN-5lv" firstAttribute="top" secondItem="XMF-AS-hpS" secondAttribute="top" id="YSi-vJ-wKq"/>
+                                <constraint firstItem="kEM-ZN-5lv" firstAttribute="leading" secondItem="XMF-AS-hpS" secondAttribute="leading" id="aEo-m3-iI2"/>
+                            </constraints>
+                        </view>
                         <sections>
+                            <tableViewSection id="X4K-sP-yNv">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="88" id="Jmq-10-3F2">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jmq-10-3F2" id="Zb6-s7-tSX">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DWf-8q-iOi">
+                                                    <rect key="frame" x="14" y="13" width="66" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="66" id="AoC-8f-Hqg"/>
+                                                        <constraint firstAttribute="width" constant="66" id="G4b-fO-PQx"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="3"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go7-kM-hbL">
+                                                    <rect key="frame" x="97" y="11" width="262" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5wj-UK-FgV">
+                                                    <rect key="frame" x="97" y="13" width="262" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="5wj-UK-FgV" secondAttribute="trailing" id="Bv4-Uf-2GK"/>
+                                                <constraint firstItem="go7-kM-hbL" firstAttribute="trailing" secondItem="Zb6-s7-tSX" secondAttribute="trailingMargin" id="ENp-Hx-kSp"/>
+                                                <constraint firstItem="5wj-UK-FgV" firstAttribute="top" secondItem="go7-kM-hbL" secondAttribute="bottom" constant="2" id="Xud-QI-i5f"/>
+                                                <constraint firstItem="go7-kM-hbL" firstAttribute="leading" secondItem="DWf-8q-iOi" secondAttribute="trailing" constant="17" id="lD9-LR-QKj"/>
+                                                <constraint firstItem="DWf-8q-iOi" firstAttribute="leading" secondItem="Zb6-s7-tSX" secondAttribute="leadingMargin" constant="-2" id="pnd-k9-ObK"/>
+                                                <constraint firstItem="5wj-UK-FgV" firstAttribute="leading" secondItem="DWf-8q-iOi" secondAttribute="trailing" constant="17" id="sfR-7S-eCI"/>
+                                                <constraint firstItem="DWf-8q-iOi" firstAttribute="top" secondItem="Zb6-s7-tSX" secondAttribute="topMargin" constant="2" id="w8G-bI-pQe"/>
+                                                <constraint firstItem="go7-kM-hbL" firstAttribute="top" secondItem="Zb6-s7-tSX" secondAttribute="topMargin" id="yA7-1o-W1d"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Unfollow" footerTitle="You will no longer see this user's posts" id="EU0-3V-iqs">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="aQ9-4y-DjG">
-                                        <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="195" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aQ9-4y-DjG" id="W6C-7m-aXN">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -125,7 +196,7 @@
                             <tableViewSection headerTitle="Report" footerTitle="Report this post as spam" id="Mux-I5-NHT">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="UIt-9u-IzK">
-                                        <rect key="frame" x="0.0" y="175" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="314.5" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="UIt-9u-IzK" id="m2t-9L-dto">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -151,7 +222,7 @@
                             <tableViewSection headerTitle="Feedback" footerTitle="Help us understand the problem. What is going on with this post" id="17t-O1-Fq3">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="xPz-oh-rjv">
-                                        <rect key="frame" x="0.0" y="294.5" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="434" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xPz-oh-rjv" id="Hym-wy-Keq">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -181,12 +252,15 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="postImageView" destination="DWf-8q-iOi" id="ovP-jO-blE"/>
+                        <outlet property="postSubtitleLabel" destination="5wj-UK-FgV" id="tPI-SA-BLU"/>
+                        <outlet property="postTitleLabel" destination="go7-kM-hbL" id="SPQ-fF-HDM"/>
                         <outlet property="unfollowLabel" destination="bAV-RF-TmL" id="DOc-36-dRE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5hq-As-Uac" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4777" y="-1684"/>
+            <point key="canvasLocation" x="4776.8000000000002" y="-1690.704647676162"/>
         </scene>
         <!--Today-->
         <scene sceneID="Pf1-Ie-TD5">
@@ -206,7 +280,6 @@
                     <connections>
                         <segue destination="FKQ-YT-Cwb" kind="presentation" identifier="showNewsDetailsSegue" id="7u8-TI-qeV"/>
                         <segue destination="1tR-Ij-i0N" kind="show" identifier="showUserDetailsSegue" id="vQo-Pm-nR5"/>
-                        <segue destination="8T0-bk-lSp" kind="show" identifier="showReportSegue" id="uOa-K5-Oi3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jpb-d3-QQE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -257,7 +330,6 @@
                     <connections>
                         <outlet property="searchBar" destination="FFr-h2-p6i" id="cJJ-Uu-ozS"/>
                         <segue destination="1tR-Ij-i0N" kind="show" identifier="showUserDetailsSegue" id="UHy-t4-8ls"/>
-                        <segue destination="8T0-bk-lSp" kind="show" identifier="showReportSegue" id="qG7-EW-dBm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ool-CM-Hmr" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -526,7 +598,6 @@
                     </navigationItem>
                     <connections>
                         <segue destination="FKQ-YT-Cwb" kind="presentation" identifier="showNewsDetailsSegue" id="EW1-6y-XlW"/>
-                        <segue destination="8T0-bk-lSp" kind="show" identifier="showReportSegue" id="Yij-xy-35Z"/>
                         <segue destination="1tR-Ij-i0N" kind="show" identifier="showUserDetailsSegue" id="VUW-5c-b5o"/>
                     </connections>
                 </tableViewController>
@@ -874,7 +945,6 @@ The GNU General Public License does not permit incorporating your program into p
                     <connections>
                         <outlet property="followButton" destination="wdk-mC-ET3" id="fhJ-M9-xlp"/>
                         <segue destination="FKQ-YT-Cwb" kind="presentation" identifier="showNewsDetailsSegue" id="pk8-Q8-m77"/>
-                        <segue destination="8T0-bk-lSp" kind="show" identifier="showReportSegue" id="pQt-AX-Djo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="snH-Ul-o7I" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -941,16 +1011,16 @@ The GNU General Public License does not permit incorporating your program into p
     </scenes>
     <resources>
         <image name="boards" width="25" height="25"/>
+        <image name="close-nav" width="22" height="22"/>
         <image name="foryou-tab" width="25" height="25"/>
         <image name="profile-selected" width="25" height="25"/>
         <image name="search-tab" width="25" height="25"/>
         <image name="settings-nav" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="UHy-t4-8ls"/>
+        <segue reference="AwR-aq-jge"/>
         <segue reference="WwC-rb-DNk"/>
         <segue reference="EW1-6y-XlW"/>
-        <segue reference="qG7-EW-dBm"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.14515793320000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

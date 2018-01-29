@@ -24,8 +24,7 @@ final class UrlDataPrefetcher {
     private var urlsInProgress: [String] = []
     
     
-    func startFetch(link: String?, refreshable refresh: Bool) {
-        
+    func fetch(link: String?, completionHandler: (()->())? = nil) {
         guard let linkT = link,
             let url = URL(string: linkT) else { return }
         
@@ -48,19 +47,58 @@ final class UrlDataPrefetcher {
                     if let imageT = image {
                         UIImageView().kf.setImage(with: URL(string: imageT))
                     }
-                    if refresh {
-                        CoreDataManager.shared.saveContextBackground()
+                    if let _ = completionHandler {
+                        completionHandler!()
                     }
                     self.urlsInProgress.remove(object: linkT)
                 }
                 
                 
-
+                
                 }, failure: { [unowned self] (error) in
                     self.urlsInProgress.remove(object: linkT)
             })
         }
     }
+    
+    
+//    func startFetch(link: String?, refreshable refresh: Bool) {
+//        
+//        guard let linkT = link,
+//            let url = URL(string: linkT) else { return }
+//        
+//        if !urlsInProgress.contains(linkT) {
+//            urlsInProgress.append(linkT)
+//            
+//            url.fetchUrlMedia({ [unowned self] (title, details, image) in
+//                
+//                //Write infos to CoreData
+//                let predicate = NSPredicate(format: "link == %@", linkT)
+//                Post.fetchBy(predicate) { (result) in
+//                    guard let resultT = result else { 
+//                        self.urlsInProgress.remove(object: linkT)
+//                        return
+//                    }
+//                    resultT.title = title
+//                    resultT.details = details
+//                    resultT.imageUrl = image
+//                    
+//                    if let imageT = image {
+//                        UIImageView().kf.setImage(with: URL(string: imageT))
+//                    }
+//                    if refresh {
+//                        CoreDataManager.shared.saveContextBackground()
+//                    }
+//                    self.urlsInProgress.remove(object: linkT)
+//                }
+//                
+//                
+//
+//                }, failure: { [unowned self] (error) in
+//                    self.urlsInProgress.remove(object: linkT)
+//            })
+//        }
+//    }
     
     
     

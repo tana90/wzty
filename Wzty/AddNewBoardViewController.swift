@@ -26,22 +26,27 @@ class AddNewBoardViewController: BaseListViewController {
         let timeSortDescriptor = NSSortDescriptor(key: "insertedTimestamp", ascending: true)
         request.sortDescriptors = [timeSortDescriptor]
         
-        
-        
         if let _ = boardId {
-            var predicate = NSPredicate(format: "following == true AND boardId == %@ OR boardId == null", boardId!)
+            //Edit board
+            var predicates = [NSPredicate(format: "following == true"), 
+                                             NSPredicate(format: "boardId == %@ || boardId == null", boardId!)]
+            
             if let username = KeyChain.load(string: "username") {
-                predicate = NSPredicate(format: "username != %@ AND following == true AND boardId == %@ OR boardId == null", username, boardId!)
+                predicates = [NSPredicate(format: "username != %@ && following == true", username), 
+                              NSPredicate(format: "boardId == %@ || boardId == null", boardId!)]
             }
-            request.predicate = predicate
+            
+            var compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+            request.predicate = compoundPredicate
         } else {
+            //Add new board
             var predicate = NSPredicate(format: "following == true AND boardId == null")
             if let username = KeyChain.load(string: "username") {
                 predicate = NSPredicate(format: "username != %@ AND following == true AND boardId == null", username)
             }
                 request.predicate = predicate
         }
-        request.fetchLimit = 50
+        request.fetchLimit = FETCH_LIMIT
         
         let frc = NSFetchedResultsController(fetchRequest: request,
                                              managedObjectContext: CoreDataManager.shared.backgroundContext,
@@ -141,7 +146,7 @@ extension AddNewBoardViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 66
+        return 90
     }
     
     

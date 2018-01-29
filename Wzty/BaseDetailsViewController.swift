@@ -39,6 +39,7 @@ class BaseDetailsViewController: BaseCoreDataViewController {
     }
 }
 
+//MARK: - TableView Datasource/Delegate
 extension BaseDetailsViewController {
     
     override func tableView(_ tableView: UITableView,
@@ -54,29 +55,7 @@ extension BaseDetailsViewController {
             self.dismiss(animated: true, completion: nil)
         }
         navigationHeaderView.moreActionHander = { [unowned self] in
-            guard let _ = self.post else { return }
-            
-            let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-            
-            let shareAction = UIAlertAction(title: "Share", style: .default) { [unowned self] (alert) in
-                let toShare = [self.post?.link! as Any] as [Any]
-                let activityViewController = UIActivityViewController(activityItems: toShare, applicationActivities: nil)
-                activityViewController.popoverPresentationController?.sourceView = self.view 
-                activityViewController.excludedActivityTypes = [ UIActivityType.airDrop ]
-                self.present(activityViewController, animated: true, completion: nil)
-            }
-            
-            let safariAction = UIAlertAction(title: "Open in Safari", style: .default) { [unowned self] (alert) in
-                UIApplication.shared.open(URL(string: (self.post?.link)!)!, options: [:], completionHandler: nil)
-            }
-            
-            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
-            }
-            
-            alertViewController.addAction(shareAction)
-            alertViewController.addAction(safariAction)
-            alertViewController.addAction(cancelAction)
-            self.present(alertViewController, animated: true, completion: nil)
+            moreAction(post: self.post, presentedIn: self)
         }
         return navigationHeaderView
     }
@@ -113,7 +92,7 @@ extension BaseDetailsViewController {
     }
 }
 
-
+//MARK: - ScrollView Delegate
 extension BaseDetailsViewController {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {

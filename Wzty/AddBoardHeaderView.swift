@@ -21,6 +21,7 @@ import UIKit
 final class AddBoardHeaderView: UIView {
     
     @IBOutlet weak var textField: UITextField?
+    
     public var changeNameHandler: ((String) -> ())?
     
     @IBAction func textDidChange(_ sender: UITextField) {

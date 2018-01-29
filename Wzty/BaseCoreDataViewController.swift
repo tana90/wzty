@@ -22,6 +22,8 @@ import CoreData
 class BaseCoreDataViewController: UITableViewController {
     
     var fetchResultsController: NSFetchedResultsController<NSFetchRequestResult>?
+    var targetUserId: String?
+    var targetPostId: String?
     
     func perform(_ fetchResultsController: NSFetchedResultsController<NSFetchRequestResult>) {
         self.fetchResultsController = fetchResultsController

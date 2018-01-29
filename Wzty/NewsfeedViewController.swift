@@ -31,7 +31,7 @@ final class NewsfeedViewController: BaseListViewController {
         request.sortDescriptors = [timeSortDescriptor]
         let predicate = NSPredicate(format: "homeTimeline == true")
         request.predicate = predicate
-        request.fetchLimit = 50
+        request.fetchLimit = FETCH_LIMIT
         
         
         let frc = NSFetchedResultsController(fetchRequest: request,
@@ -129,7 +129,7 @@ extension NewsfeedViewController: UITableViewDataSourcePrefetching {
             
             //Fetch data and let NSFetchResultsController to reupdate cell
             if post.title == nil || post.imageUrl == nil {
-                UrlDataPrefetcher.shared.startFetch(link: post.link, refreshable: false)
+                UrlDataPrefetcher.shared.fetch(link: post.link)
             }
         }
     }

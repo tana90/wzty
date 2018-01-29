@@ -34,7 +34,7 @@ final class ProfileViewController: BaseListViewController {
         }
         
         request.predicate = predicate
-        request.fetchLimit = 50
+        request.fetchLimit = FETCH_LIMIT
         
         let frc = NSFetchedResultsController(fetchRequest: request,
                                              managedObjectContext: CoreDataManager.shared.backgroundContext,
@@ -109,7 +109,7 @@ final class ProfileViewController: BaseListViewController {
 extension ProfileViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 66
+        return 90
     }
     
     
@@ -129,4 +129,5 @@ extension ProfileViewController {
         performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
     }
 }
+
 

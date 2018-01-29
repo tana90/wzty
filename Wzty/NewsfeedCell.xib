@@ -49,11 +49,11 @@
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="28" translatesAutoresizingMaskIntoConstraints="NO" id="yVL-LJ-SAI">
-                                <rect key="frame" x="16" y="16" width="260" height="36"/>
+                                <rect key="frame" x="16" y="16" width="260" height="39.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="180" id="2bd-jt-pF1"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="190" id="2bd-jt-pF1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.39993578767123289" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -76,14 +76,13 @@
                             <view alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MBs-kA-Znk">
                                 <rect key="frame" x="290" y="22" width="36" height="22"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wF4-6Y-FcM">
-                                        <rect key="frame" x="0.0" y="-6" width="37" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="24"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g01-v0-6St">
-                                        <rect key="frame" x="-5" y="-4" width="46" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g01-v0-6St">
+                                        <rect key="frame" x="-5" y="-4" width="47" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="26"/>
+                                        <inset key="titleEdgeInsets" minX="0.0" minY="-12" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="...">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="moreAction" destination="z1e-xm-SHi" eventType="touchUpInside" id="bsf-Wm-rww"/>
                                         </connections>
@@ -94,12 +93,8 @@
                                     <constraint firstAttribute="bottom" secondItem="g01-v0-6St" secondAttribute="bottom" constant="-4" id="7n6-tI-NcG"/>
                                     <constraint firstItem="g01-v0-6St" firstAttribute="leading" secondItem="MBs-kA-Znk" secondAttribute="leading" constant="-5" id="91c-h1-WVe"/>
                                     <constraint firstAttribute="width" constant="36" id="GGU-KG-IOK"/>
-                                    <constraint firstAttribute="bottom" secondItem="wF4-6Y-FcM" secondAttribute="bottom" constant="4" id="GuB-74-eWR"/>
-                                    <constraint firstItem="wF4-6Y-FcM" firstAttribute="leading" secondItem="MBs-kA-Znk" secondAttribute="leading" id="cB0-Ng-Qnj"/>
                                     <constraint firstAttribute="height" constant="22" id="eUH-I8-XIR"/>
-                                    <constraint firstItem="wF4-6Y-FcM" firstAttribute="top" secondItem="MBs-kA-Znk" secondAttribute="top" constant="-6" id="fA7-Kh-wod"/>
-                                    <constraint firstItem="wF4-6Y-FcM" firstAttribute="centerX" secondItem="MBs-kA-Znk" secondAttribute="centerX" id="hIn-2q-Vd9"/>
-                                    <constraint firstAttribute="trailing" secondItem="g01-v0-6St" secondAttribute="trailing" constant="-5" id="jDy-rP-iDC"/>
+                                    <constraint firstAttribute="trailing" secondItem="g01-v0-6St" secondAttribute="trailing" constant="-6" id="jDy-rP-iDC"/>
                                     <constraint firstItem="g01-v0-6St" firstAttribute="top" secondItem="MBs-kA-Znk" secondAttribute="top" constant="-4" id="kIT-0S-3fy"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -210,7 +205,7 @@
                 <outlet property="usenameLabel" destination="xMc-QY-s2g" id="lU7-DG-Mhc"/>
                 <outlet property="userImageView" destination="aJx-d4-6Z9" id="Ech-TK-hsR"/>
             </connections>
-            <point key="canvasLocation" x="-2606" y="-128"/>
+            <point key="canvasLocation" x="-2606.5" y="-128.5"/>
         </tableViewCell>
     </objects>
     <resources>

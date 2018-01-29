@@ -23,8 +23,8 @@ import UIKit
 final class UserCell: UITableViewCell {
 
     @IBOutlet weak var userImageView: UIImageView?
+    @IBOutlet weak var nameLabel: UILabel?
     @IBOutlet weak var usernameLabel: UILabel?
-    
     
     func show(_ user: User?) {
         
@@ -37,7 +37,10 @@ final class UserCell: UITableViewCell {
             userImageView?.image = nil
         }
         
+        //Name
+        nameLabel?.text = userT.name
+        
         //Username
-        usernameLabel?.text = userT.name
+        usernameLabel?.text = String(format: "@%@", userT.username!)
     }
 }

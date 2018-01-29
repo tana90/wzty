@@ -28,7 +28,7 @@ final class ExploreViewController: BaseListViewController {
         request.sortDescriptors = [followSortDescriptor, timeSortDescriptor]
         let predicate = NSPredicate(format: "username CONTAINS[cd] '' OR name CONTAINS[cd] ''")
         request.predicate = predicate
-        request.fetchLimit = 50
+        request.fetchLimit = FETCH_LIMIT
         
         let frc = NSFetchedResultsController(fetchRequest: request,
                                              managedObjectContext: CoreDataManager.shared.backgroundContext,
@@ -146,7 +146,7 @@ extension ExploreViewController: UISearchBarDelegate {
 extension ExploreViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 66
+        return 90
     }
     
     

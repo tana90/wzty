@@ -28,7 +28,7 @@ final class UserDetailsViewController: BaseListViewController {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timeSortDescriptor]
-        request.fetchLimit = 50
+        request.fetchLimit = FETCH_LIMIT
         
         if let userId = self.userId {
             let predicate = NSPredicate(format: "userId == %@", userId)
@@ -190,7 +190,7 @@ extension UserDetailsViewController: UITableViewDataSourcePrefetching {
             
             //Fetch data and let NSFetchResultsController to reupdate cell
             if post.title == nil || post.imageUrl == nil {
-                UrlDataPrefetcher.shared.startFetch(link: post.link, refreshable: false)
+                UrlDataPrefetcher.shared.fetch(link: post.link)
             }
         }
     }

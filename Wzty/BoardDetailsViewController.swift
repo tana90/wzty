@@ -25,7 +25,7 @@ class BoardDetailsViewController: BaseListViewController {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timeSortDescriptor]
-        request.fetchLimit = 50
+        request.fetchLimit = FETCH_LIMIT
         
         if let boardT = board {
             var userPredicate = NSPredicate(format: "boardId == %@ AND following == true", boardT.objectId!)
@@ -105,7 +105,7 @@ class BoardDetailsViewController: BaseListViewController {
             }
             destination?.boardName = board!.name
             destination?.boardId = board!.objectId
-            let predicate = NSPredicate(format: "boardId == %@", (board?.objectId!)!)
+            let predicate = NSPredicate(format: "boardId == %@ AND following == true", (board?.objectId!)!)
             var usersIds: [String] = []
             User.fetchAllBy(predicate: predicate) { (users) in
                 if let _ = users {
@@ -176,7 +176,6 @@ extension BoardDetailsViewController {
             return cell
         }
         
-        
         cell.show(post, refreshable: indexPath.row == 0 ? true : false)
         cell.showUserDetailsActionHandler = { [unowned self] (userId) in
             self.targetUserId = userId
@@ -209,7 +208,7 @@ extension BoardDetailsViewController: UITableViewDataSourcePrefetching {
             
             //Fetch data and let NSFetchResultsController to reupdate cell
             if post.title == nil || post.imageUrl == nil {
-                UrlDataPrefetcher.shared.startFetch(link: post.link, refreshable: false)
+                UrlDataPrefetcher.shared.fetch(link: post.link)
             }
         }
     }

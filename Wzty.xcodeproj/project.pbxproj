@@ -112,6 +112,7 @@
 		C8CD9C941FB9E909009D4AAA /* MediaPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8CD9C931FB9E909009D4AAA /* MediaPreview.xib */; };
 		C8CD9C961FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD9C951FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift */; };
 		C8CD9C9B1FB9F9F0009D4AAA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD9C9A1FB9F9F0009D4AAA /* TabBarController.swift */; };
+		C8F5B7B2201B669300571863 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8F5B7B1201B669300571863 /* ColorCell.xib */; };
 		C8F691061FCF2D0100AFF82E /* UrlDataPrefetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F691051FCF2D0100AFF82E /* UrlDataPrefetcher.swift */; };
 		C8FDC5FE1FB037340005721F /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC5FD1FB037340005721F /* Tools.swift */; };
 		C8FDC6051FB077380005721F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FDC6041FB077380005721F /* libresolv.tbd */; };
@@ -242,6 +243,7 @@
 		C8CD9C931FB9E909009D4AAA /* MediaPreview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaPreview.xib; sourceTree = "<group>"; };
 		C8CD9C951FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedDetailsCell.swift; sourceTree = "<group>"; };
 		C8CD9C9A1FB9F9F0009D4AAA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		C8F5B7B1201B669300571863 /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
 		C8F691051FCF2D0100AFF82E /* UrlDataPrefetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlDataPrefetcher.swift; sourceTree = "<group>"; };
 		C8FDC5FD1FB037340005721F /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		C8FDC6041FB077380005721F /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
@@ -385,6 +387,7 @@
 				C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */,
 				C862FAA2200E2BA800D54E1B /* AddBoardHeaderView.xib */,
 				C88A5F21200F6558004E4C47 /* BoardCell.xib */,
+				C8F5B7B1201B669300571863 /* ColorCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -652,6 +655,7 @@
 				C859891F1FADA69F00C94877 /* LaunchScreen.storyboard in Resources */,
 				C859891C1FADA69F00C94877 /* Assets.xcassets in Resources */,
 				C8AC8BC71FB88DB200F81019 /* NavigationTableHeaderView.xib in Resources */,
+				C8F5B7B2201B669300571863 /* ColorCell.xib in Resources */,
 				C8CD9C941FB9E909009D4AAA /* MediaPreview.xib in Resources */,
 				C889F4DB1FB1BE0B00132460 /* Info.plist in Resources */,
 				C85989341FADADEF00C94877 /* NewsfeedCell.xib in Resources */,
@@ -909,7 +913,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = arm64;
 			};
 			name = Debug;
@@ -938,7 +942,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = arm64;
 			};
 			name = Release;

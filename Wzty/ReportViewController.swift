@@ -24,8 +24,19 @@ import MessageUI
 
 final class ReportViewController: UITableViewController {
     
+    @IBOutlet weak var postImageView: UIImageView!
+    @IBOutlet weak var postTitleLabel: UILabel!
+    @IBOutlet weak var postSubtitleLabel: UILabel!
     @IBOutlet weak var unfollowLabel: UILabel! 
     var postId: String?
+    
+    @IBAction func closeAction() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +44,24 @@ final class ReportViewController: UITableViewController {
         if let postId = self.postId {
             let predicate = NSPredicate(format: "objectId == %@", postId)
             Post.fetchBy(predicate) { (post) in
+                
+                
+                guard let _ = post else { return }
+                
+                //Title
+                self.postTitleLabel?.text = post!.title
+                
+                //Details
+                self.postSubtitleLabel?.text = post!.details
+                
+                //Image
+                if let imageUrlT = post?.imageUrl {
+                    postImageView?.kf.setImage(with: URL(string: imageUrlT))
+                } else {
+                    postImageView?.image = nil
+                }
+                
+                
                 let predicate = NSPredicate(format: "objectId == %@", (post?.userId)!)
                 User.fetchBy(predicate: predicate) { (user) in
 
@@ -43,6 +72,8 @@ final class ReportViewController: UITableViewController {
                     }
                 }
             }
+        } else {
+            closeAction()
         }
         
     }
@@ -50,10 +81,11 @@ final class ReportViewController: UITableViewController {
 
 extension ReportViewController {
     
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //Unfollow
-        if indexPath.section == 0 {
+        if indexPath.section == 1 {
             
             if let postId = self.postId {
                 let predicate = NSPredicate(format: "objectId == %@", postId)
@@ -84,7 +116,7 @@ extension ReportViewController {
         }
         
         //Report
-        if indexPath.section == 1 {
+        if indexPath.section == 2 {
             
             if let postId = self.postId {
                 let predicate = NSPredicate(format: "objectId == %@", postId)
@@ -114,7 +146,7 @@ extension ReportViewController {
         }
         
         //Send feedback
-        if indexPath.section == 2 {
+        if indexPath.section == 3 {
             let mailComposeViewController = configuredMailComposeViewController()
             if MFMailComposeViewController.canSendMail() {
                 self.present(mailComposeViewController, animated: true, completion: nil)

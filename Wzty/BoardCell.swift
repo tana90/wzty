@@ -20,6 +20,7 @@ import UIKit
 
 final class BoardCell: UITableViewCell {
     
+    @IBOutlet weak var cellView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var countLabel: UILabel!
     
@@ -32,6 +33,8 @@ final class BoardCell: UITableViewCell {
         
         guard let boardT = board else { return }
         nameLabel?.text = boardT.name?.uppercased()
+        
+        cellView.backgroundColor = UIColor.hexString(hex: boardT.color!)
         
         userImage1.image = nil
         userImage2.image = nil
