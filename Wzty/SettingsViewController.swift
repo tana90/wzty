@@ -19,6 +19,7 @@
 //
 
 import UIKit
+import MessageUI
 
 final class SettingsViewController: UITableViewController {
     
@@ -39,6 +40,12 @@ extension SettingsViewController {
             }
             if indexPath.row == 2 {
                 performSegue(withIdentifier: "showAboutSegue", sender: self)
+            }
+            if indexPath.row == 3 {
+                let mailComposeViewController = configuredMailComposeViewController()
+                if MFMailComposeViewController.canSendMail() {
+                    self.present(mailComposeViewController, animated: true, completion: nil)
+                }
             }
         }
         
@@ -75,5 +82,24 @@ extension SettingsViewController {
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self 
+        
+        mailComposerVC.setToRecipients(["contact@wztnews.com"])
+        mailComposerVC.setSubject("Feedback")
+        
+        return mailComposerVC
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }

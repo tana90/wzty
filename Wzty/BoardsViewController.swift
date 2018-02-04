@@ -96,7 +96,6 @@ extension BoardsViewController {
 
         if text.count > 0 {
             let predicate = NSPredicate(format: "name CONTAINS[cd] %@", text)
-            console(predicate)
             boardsFetchedResultsController.fetchRequest.predicate = predicate
             do {
                 try boardsFetchedResultsController.performFetch()
