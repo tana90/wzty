@@ -42,6 +42,9 @@
 		C88100B5200CC23000A76BEE /* AddNewBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88100B4200CC23000A76BEE /* AddNewBoardViewController.swift */; };
 		C88100B7200CC25200A76BEE /* BoardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88100B6200CC25200A76BEE /* BoardsViewController.swift */; };
 		C883233F20272A0C00C82874 /* FaqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C883233E20272A0C00C82874 /* FaqViewController.swift */; };
+		C883234420272FD600C82874 /* FormatIndicatedCacheSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C883234020272FD600C82874 /* FormatIndicatedCacheSerializer.swift */; };
+		C883234520272FD600C82874 /* ImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C883234120272FD600C82874 /* ImageModifier.swift */; };
+		C883234720272FD600C82874 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C883234320272FD600C82874 /* Placeholder.swift */; };
 		C889F4D71FB1BE0B00132460 /* SwifterTweets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4B11FB1BE0900132460 /* SwifterTweets.swift */; };
 		C889F4D81FB1BE0B00132460 /* SwifterSavedSearches.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4B21FB1BE0900132460 /* SwifterSavedSearches.swift */; };
 		C889F4D91FB1BE0B00132460 /* Swifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4B31FB1BE0900132460 /* Swifter.swift */; };
@@ -173,6 +176,9 @@
 		C88100B4200CC23000A76BEE /* AddNewBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewBoardViewController.swift; sourceTree = "<group>"; };
 		C88100B6200CC25200A76BEE /* BoardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsViewController.swift; sourceTree = "<group>"; };
 		C883233E20272A0C00C82874 /* FaqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqViewController.swift; sourceTree = "<group>"; };
+		C883234020272FD600C82874 /* FormatIndicatedCacheSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormatIndicatedCacheSerializer.swift; path = Kingfisher/FormatIndicatedCacheSerializer.swift; sourceTree = SOURCE_ROOT; };
+		C883234120272FD600C82874 /* ImageModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageModifier.swift; path = Kingfisher/ImageModifier.swift; sourceTree = SOURCE_ROOT; };
+		C883234320272FD600C82874 /* Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Placeholder.swift; path = Kingfisher/Placeholder.swift; sourceTree = SOURCE_ROOT; };
 		C889F4B11FB1BE0900132460 /* SwifterTweets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwifterTweets.swift; path = "Swifter-master/Sources/SwifterTweets.swift"; sourceTree = SOURCE_ROOT; };
 		C889F4B21FB1BE0900132460 /* SwifterSavedSearches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwifterSavedSearches.swift; path = "Swifter-master/Sources/SwifterSavedSearches.swift"; sourceTree = SOURCE_ROOT; };
 		C889F4B31FB1BE0900132460 /* Swifter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Swifter.swift; path = "Swifter-master/Sources/Swifter.swift"; sourceTree = SOURCE_ROOT; };
@@ -563,6 +569,9 @@
 		C889F5121FB1C0E400132460 /* Kingfisher */ = {
 			isa = PBXGroup;
 			children = (
+				C883234020272FD600C82874 /* FormatIndicatedCacheSerializer.swift */,
+				C883234120272FD600C82874 /* ImageModifier.swift */,
+				C883234320272FD600C82874 /* Placeholder.swift */,
 				C889F5151FB1C10800132460 /* AnimatedImageView.swift */,
 				C889F5161FB1C10800132460 /* Box.swift */,
 				C889F51F1FB1C10800132460 /* CacheSerializer.swift */,
@@ -701,6 +710,7 @@
 				C8CD9C961FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift in Sources */,
 				C889F4E81FB1BE0B00132460 /* SwifterHelp.swift in Sources */,
 				C889F53A1FB1C10900132460 /* KingfisherOptionsInfo.swift in Sources */,
+				C883234420272FD600C82874 /* FormatIndicatedCacheSerializer.swift in Sources */,
 				C889F4F51FB1BE0B00132460 /* SwifterFollowers.swift in Sources */,
 				C889F4D91FB1BE0B00132460 /* Swifter.swift in Sources */,
 				C889F5381FB1C10900132460 /* KingfisherManager.swift in Sources */,
@@ -726,6 +736,7 @@
 				C889F52F1FB1C10900132460 /* ImagePrefetcher.swift in Sources */,
 				C889F5331FB1C10900132460 /* CacheSerializer.swift in Sources */,
 				C889F4E61FB1BE0B00132460 /* SwifterPlaces.swift in Sources */,
+				C883234520272FD600C82874 /* ImageModifier.swift in Sources */,
 				C845D5011FAF54EC00A278ED /* CoreDataManager.swift in Sources */,
 				C845D5061FAF5E5A00A278ED /* Post.swift in Sources */,
 				C8B451952024911100D15C51 /* LicenseAgreement.swift in Sources */,
@@ -747,6 +758,7 @@
 				C889F52D1FB1C10900132460 /* ImageCache.swift in Sources */,
 				C859893B1FADB75C00C94877 /* NewsfeedDetailsViewController.swift in Sources */,
 				C889F4F41FB1BE0B00132460 /* SwifterSearch.swift in Sources */,
+				C883234720272FD600C82874 /* Placeholder.swift in Sources */,
 				C889F4E01FB1BE0B00132460 /* URL++.swift in Sources */,
 				C889F5491FB222F600132460 /* UserCell.swift in Sources */,
 				C88100B5200CC23000A76BEE /* AddNewBoardViewController.swift in Sources */,

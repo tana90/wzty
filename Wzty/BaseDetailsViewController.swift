@@ -55,7 +55,10 @@ extension BaseDetailsViewController {
             self.dismiss(animated: true, completion: nil)
         }
         navigationHeaderView.moreActionHander = { [unowned self] in
-            moreAction(post: self.post, presentedIn: self)
+            moreAction(post: self.post, presentedIn: self) { [weak self] in
+                guard let _ = self else { return }
+                self!.dismiss(animated: true, completion: nil)
+            }
         }
         return navigationHeaderView
     }

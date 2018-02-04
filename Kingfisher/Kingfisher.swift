@@ -4,7 +4,7 @@
 //
 //  Created by Wei Wang on 16/9/14.
 //
-//  Copyright (c) 2017 Wei Wang <onevcat@gmail.com>
+//  Copyright (c) 2018 Wei Wang <onevcat@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -27,12 +27,22 @@
 import Foundation
 import ImageIO
 
-import UIKit
-public typealias Image = UIImage
-public typealias Color = UIColor
-#if !os(watchOS)
+#if os(macOS)
+    import AppKit
+    public typealias Image = NSImage
+    public typealias View = NSView
+    public typealias Color = NSColor
+    public typealias ImageView = NSImageView
+    public typealias Button = NSButton
+#else
+    import UIKit
+    public typealias Image = UIImage
+    public typealias Color = UIColor
+    #if !os(watchOS)
     public typealias ImageView = UIImageView
-    typealias Button = UIButton
+    public typealias View = UIView
+    public typealias Button = UIButton
+    #endif
 #endif
 
 public final class Kingfisher<Base> {
@@ -58,6 +68,6 @@ public extension KingfisherCompatible {
 
 extension Image: KingfisherCompatible { }
 #if !os(watchOS)
-    extension ImageView: KingfisherCompatible { }
-    extension Button: KingfisherCompatible { }
+extension ImageView: KingfisherCompatible { }
+extension Button: KingfisherCompatible { }
 #endif

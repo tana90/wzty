@@ -90,6 +90,61 @@ final class BoardsViewController: BaseListViewController {
 }
 
 
+extension BoardsViewController {
+    
+    func search(_ text: String) {
+
+        if text.count > 0 {
+            let predicate = NSPredicate(format: "name CONTAINS[cd] %@", text)
+            console(predicate)
+            boardsFetchedResultsController.fetchRequest.predicate = predicate
+            do {
+                try boardsFetchedResultsController.performFetch()
+                
+            } catch {
+                console("Error perform fetch")
+            }
+            tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        }
+    }
+    
+    func clear() {
+        boardsFetchedResultsController.fetchRequest.predicate = nil
+        do {
+            try boardsFetchedResultsController.performFetch()
+            
+        } catch {
+            console("Error perform fetch")
+        }
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+    }
+}
+
+extension BoardsViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count > 0 {
+            search(searchText)
+        } else { clear() }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        guard let _ = searchBar.text else { return }
+        search(searchBar.text!)
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+}
+
+
 //MARK: - TableView Delegate & DataSource
 extension BoardsViewController {
     

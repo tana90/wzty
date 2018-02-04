@@ -397,11 +397,19 @@
         <scene sceneID="PFi-lQ-gOD">
             <objects>
                 <tableViewController id="UOy-Fe-F38" customClass="BoardsViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="KkI-4A-Ohx">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="KkI-4A-Ohx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="separatorColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" searchBarStyle="minimal" text="" placeholder="Search board" id="Wzi-Fd-bmc">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardAppearance="alert" enablesReturnKeyAutomatically="YES"/>
+                            <connections>
+                                <outlet property="delegate" destination="UOy-Fe-F38" id="VvY-fc-x6h"/>
+                            </connections>
+                        </searchBar>
                         <connections>
                             <outlet property="dataSource" destination="UOy-Fe-F38" id="UBj-M2-LgA"/>
                             <outlet property="delegate" destination="UOy-Fe-F38" id="gWe-fr-IeF"/>
@@ -1389,7 +1397,7 @@ The GNU General Public License does not permit incorporating your program into p
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nxZ-aP-VC3"/>
-        <segue reference="AwR-aq-jge"/>
+        <segue reference="UHy-t4-8ls"/>
         <segue reference="Brm-IC-HZM"/>
         <segue reference="WwC-rb-DNk"/>
         <segue reference="EW1-6y-XlW"/>

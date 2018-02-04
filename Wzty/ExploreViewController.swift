@@ -90,7 +90,8 @@ final class ExploreViewController: BaseListViewController {
                                 console("Error perform fetch")
                             }
                             
-                            self!.tableView.reloadData()
+                            //self!.tableView.reloadData()
+                            self!.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
                             self!.lastSearchTimestamp = timestamp
                         }
                     }
@@ -114,7 +115,8 @@ final class ExploreViewController: BaseListViewController {
         } catch {
             console("Error perform fetch")
         }
-        tableView.reloadData()
+        //tableView.reloadData()
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     }
 }
 

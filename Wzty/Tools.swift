@@ -31,7 +31,7 @@ func measure(title: String, block: @escaping ( @escaping () -> ()) -> ()) {
 }
 
 
-func moreAction(post: Post?, presentedIn: BaseCoreDataViewController) {
+func moreAction(post: Post?, presentedIn: BaseCoreDataViewController, _ hidePostCompletionHandler: (()->())? = nil) {
     guard let _ = post else { return }
     let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
     
@@ -50,6 +50,9 @@ func moreAction(post: Post?, presentedIn: BaseCoreDataViewController) {
     let hidePostAction = UIAlertAction(title: "Hide post", style: .default) { (alert) in
         post!.hidden = true
         CoreDataManager.shared.saveContextBackground()
+        if let _ = hidePostCompletionHandler {
+            hidePostCompletionHandler!()
+        }
     }
     
     let reportIssueAction = UIAlertAction(title: "Report issue", style: .destructive) { (alert) in

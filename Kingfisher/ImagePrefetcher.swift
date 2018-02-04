@@ -4,7 +4,7 @@
 //
 //  Created by Claire Knight <claire.knight@moggytech.co.uk> on 24/02/2016
 //
-//  Copyright (c) 2017 Wei Wang <onevcat@gmail.com>
+//  Copyright (c) 2018 Wei Wang <onevcat@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-import UIKit
+
+#if os(macOS)
+    import AppKit
+#else
+    import UIKit
+#endif
 
 
 /// Progress update block of prefetcher. 
@@ -32,14 +37,14 @@ import UIKit
 /// - `skippedResources`: An array of resources that are already cached before the prefetching starting.
 /// - `failedResources`: An array of resources that fail to be downloaded. It could because of being cancelled while downloading, encountered an error when downloading or the download not being started at all.
 /// - `completedResources`: An array of resources that are downloaded and cached successfully.
-public typealias PrefetcherProgressBlock = ((_ skippedResources: [Resource], _ failedResources: [Resource], _ completedResources: [Resource]) -> ())
+public typealias PrefetcherProgressBlock = ((_ skippedResources: [Resource], _ failedResources: [Resource], _ completedResources: [Resource]) -> Void)
 
 /// Completion block of prefetcher.
 ///
 /// - `skippedResources`: An array of resources that are already cached before the prefetching starting.
 /// - `failedResources`: An array of resources that fail to be downloaded. It could because of being cancelled while downloading, encountered an error when downloading or the download not being started at all.
 /// - `completedResources`: An array of resources that are downloaded and cached successfully.
-public typealias PrefetcherCompletionHandler = ((_ skippedResources: [Resource], _ failedResources: [Resource], _ completedResources: [Resource]) -> ())
+public typealias PrefetcherCompletionHandler = ((_ skippedResources: [Resource], _ failedResources: [Resource], _ completedResources: [Resource]) -> Void)
 
 /// `ImagePrefetcher` represents a downloading manager for requesting many images via URLs, then caching them.
 /// This is useful when you know a list of image resources and want to download them before showing.
@@ -88,9 +93,9 @@ public class ImagePrefetcher {
      Both the progress and completion block will be invoked in main thread. The `CallbackDispatchQueue` in `optionsInfo` will be ignored in this method.
      */
     public convenience init(urls: [URL],
-                            options: KingfisherOptionsInfo? = nil,
-                            progressBlock: PrefetcherProgressBlock? = nil,
-                            completionHandler: PrefetcherCompletionHandler? = nil)
+                         options: KingfisherOptionsInfo? = nil,
+                   progressBlock: PrefetcherProgressBlock? = nil,
+               completionHandler: PrefetcherCompletionHandler? = nil)
     {
         let resources: [Resource] = urls.map { $0 }
         self.init(resources: resources, options: options, progressBlock: progressBlock, completionHandler: completionHandler)
@@ -115,9 +120,9 @@ public class ImagePrefetcher {
      Both the progress and completion block will be invoked in main thread. The `CallbackDispatchQueue` in `optionsInfo` will be ignored in this method.
      */
     public init(resources: [Resource],
-                options: KingfisherOptionsInfo? = nil,
-                progressBlock: PrefetcherProgressBlock? = nil,
-                completionHandler: PrefetcherCompletionHandler? = nil)
+                  options: KingfisherOptionsInfo? = nil,
+            progressBlock: PrefetcherProgressBlock? = nil,
+        completionHandler: PrefetcherCompletionHandler? = nil)
     {
         prefetchResources = resources
         pendingResources = ArraySlice(resources)
@@ -169,26 +174,22 @@ public class ImagePrefetcher {
             }
         }
     }
-    
-    
+
+   
     /**
      Stop current downloading progress, and cancel any future prefetching activity that might be occuring.
      */
     public func stop() {
         DispatchQueue.main.safeAsync {
-            
             if self.finished { return }
-            
             self.stopped = true
-            self.tasks.forEach { (_, task) -> () in
-                task.cancel()
-            }
+            self.tasks.values.forEach { $0.cancel() }
         }
     }
     
     func downloadAndCache(_ resource: Resource) {
-        
-        let downloadTaskCompletionHandler: CompletionHandler = { (image, error, _, _) -> () in
+
+        let downloadTaskCompletionHandler: CompletionHandler = { (image, error, _, _) -> Void in
             self.tasks.removeValue(forKey: resource.downloadURL)
             if let _ = error {
                 self.failedResources.append(resource)
@@ -203,7 +204,9 @@ public class ImagePrefetcher {
                     self.handleComplete()
                 }
             } else {
-                self.reportCompletionOrStartNext()
+                DispatchQueue.main.async {
+                    self.reportCompletionOrStartNext()
+                }
             }
         }
         
@@ -222,7 +225,7 @@ public class ImagePrefetcher {
     
     func append(cached resource: Resource) {
         skippedResources.append(resource)
-        
+ 
         reportProgress()
         reportCompletionOrStartNext()
     }
@@ -232,9 +235,8 @@ public class ImagePrefetcher {
         if optionsInfo.forceRefresh {
             downloadAndCache(resource)
         } else {
-            let alreadyInCache = manager.cache.isImageCached(forKey: resource.cacheKey,
+            let alreadyInCache = manager.cache.imageCachedType(forKey: resource.cacheKey,
                                                              processorIdentifier: optionsInfo.processor.identifier).cached
-            
             if alreadyInCache {
                 append(cached: resource)
             } else {
