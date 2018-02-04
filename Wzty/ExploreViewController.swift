@@ -74,22 +74,24 @@ final class ExploreViewController: BaseListViewController {
         if text.count > 0 {
             User.searchUsers(text) { [unowned self] (status, timestamp) -> (Void) in
                 
-                DispatchQueue.main.safeAsync { [unowned self] in
+                DispatchQueue.main.safeAsync { [weak self] in
                     
-                    if (self.searchBar.text?.count)! > Int(0) {
+                    guard let _ = self else { return }
+                    
+                    if (self!.searchBar.text?.count)! > Int(0) {
                         
-                        if self.lastSearchTimestamp < timestamp {
+                        if self!.lastSearchTimestamp < timestamp {
                             NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: "searchCache")
                             let predicate = NSPredicate(format: "username CONTAINS[cd] %@ OR name CONTAINS[cd] %@", text, text)
-                            self.usersFetchedResultsController.fetchRequest.predicate = predicate
+                            self!.usersFetchedResultsController.fetchRequest.predicate = predicate
                             do {
-                                try self.usersFetchedResultsController.performFetch()
+                                try self!.usersFetchedResultsController.performFetch()
                             } catch {
                                 console("Error perform fetch")
                             }
                             
-                            self.tableView.reloadData()
-                            self.lastSearchTimestamp = timestamp
+                            self!.tableView.reloadData()
+                            self!.lastSearchTimestamp = timestamp
                         }
                     }
                 }
@@ -131,8 +133,8 @@ extension ExploreViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        guard let searchedText = searchBar.text else { return }
-        search(searchedText)
+        guard let _ = searchBar.text else { return }
+        search(searchBar.text!)
         searchBar.showsCancelButton = false
     }
     

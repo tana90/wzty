@@ -24,50 +24,27 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(macOS)
-// Not implemented for macOS and watchOS yet.
-    
-import AppKit
-
-/// Image transition is not supported on macOS.
-public enum ImageTransition {
-    case none
-    var duration: TimeInterval {
-        return 0
-    }
-}
-
-#elseif os(watchOS)
-import UIKit
-/// Image transition is not supported on watchOS.
-public enum ImageTransition {
-    case none
-    var duration: TimeInterval {
-        return 0
-    }
-}
-#else
 import UIKit
 
 /**
-Transition effect which will be used when an image downloaded and set by `UIImageView` extension API in Kingfisher.
-You can assign an enum value with transition duration as an item in `KingfisherOptionsInfo` 
-to enable the animation transition.
-
-Apple's UIViewAnimationOptions is used under the hood.
-For custom transition, you should specified your own transition options, animations and 
-comletion handler as well.
-*/
+ Transition effect which will be used when an image downloaded and set by `UIImageView` extension API in Kingfisher.
+ You can assign an enum value with transition duration as an item in `KingfisherOptionsInfo` 
+ to enable the animation transition.
+ 
+ Apple's UIViewAnimationOptions is used under the hood.
+ For custom transition, you should specified your own transition options, animations and 
+ comletion handler as well.
+ */
 public enum ImageTransition {
     ///  No animation transistion.
     case none
     
     /// Fade in the loaded image.
     case fade(TimeInterval)
-
+    
     /// Flip from left transition.
     case flipFromLeft(TimeInterval)
-
+    
     /// Flip from right transition.
     case flipFromRight(TimeInterval)
     
@@ -79,9 +56,9 @@ public enum ImageTransition {
     
     /// Custom transition.
     case custom(duration: TimeInterval,
-                 options: UIViewAnimationOptions,
-              animations: ((UIImageView, UIImage) -> Void)?,
-              completion: ((Bool) -> Void)?)
+        options: UIViewAnimationOptions,
+        animations: ((UIImageView, UIImage) -> Void)?,
+        completion: ((Bool) -> Void)?)
     
     var duration: TimeInterval {
         switch self {
@@ -125,4 +102,3 @@ public enum ImageTransition {
         }
     }
 }
-#endif

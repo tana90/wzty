@@ -75,17 +75,17 @@ extension NewsfeedDetailsViewController {
             webViewCell.show(post)
             
             webViewCell.beginScrollHandler = { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.tableView.scrollToRow(at: IndexPath(row: 1, section: 0), at: .top, animated: true)
+                guard let _ = self else { return }
+                self!.tableView.scrollToRow(at: IndexPath(row: 1, section: 0), at: .top, animated: true)
             }
             webViewCell.changeTitleHandler = { [weak self] title in
-                guard let strongSelf = self else { return }
-                strongSelf.navigationHeaderView.titleLabel.text = title
+                guard let _ = self else { return }
+                self!.navigationHeaderView.titleLabel.text = title
             }
             webViewCell.closeHandler = { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.tableView.isScrollEnabled = true
-                strongSelf.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                guard let _ = self else { return }
+                self!.tableView.isScrollEnabled = true
+                self!.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
 
             return webViewCell

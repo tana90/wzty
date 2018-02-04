@@ -24,12 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
-#if os(macOS)
-import AppKit
-#else
 import UIKit
-#endif
 
 // MARK: - Extension methods.
 /**
@@ -57,7 +52,7 @@ extension Kingfisher where Base: ImageView {
                          progressBlock: DownloadProgressBlock? = nil,
                          completionHandler: CompletionHandler? = nil) -> RetrieveImageTask
     {
-        guard let resource = resource else {
+        guard let _ = resource else {
             base.image = placeholder
             setWebURL(nil)
             completionHandler?(nil, nil, .none, nil)
@@ -69,27 +64,27 @@ extension Kingfisher where Base: ImageView {
         if !options.keepCurrentImageWhileLoading {
             base.image = placeholder
         }
-
+        
         let maybeIndicator = indicator
         maybeIndicator?.startAnimatingView()
         
-        setWebURL(resource.downloadURL)
-
+        setWebURL(resource!.downloadURL)
+        
         if base.shouldPreloadAllGIF() {
             options.append(.preloadAllGIFData)
         }
         
         let task = KingfisherManager.shared.retrieveImage(
-            with: resource,
+            with: resource!,
             options: options,
             progressBlock: { receivedSize, totalSize in
-                guard resource.downloadURL == self.webURL else {
+                guard resource!.downloadURL == self.webURL else {
                     return
                 }
                 if let progressBlock = progressBlock {
                     progressBlock(receivedSize, totalSize)
                 }
-            },
+        },
             completionHandler: {[weak base] image, error, cacheType, imageURL in
                 DispatchQueue.main.safeAsync {
                     guard let strongBase = base, imageURL == self.webURL else {
@@ -111,24 +106,22 @@ extension Kingfisher where Base: ImageView {
                         return
                     }
                     
-                    #if !os(macOS)
-                        UIView.transition(with: strongBase, duration: 0.0, options: [],
-                                          animations: { maybeIndicator?.stopAnimatingView() },
-                                          completion: { _ in
-                                            UIView.transition(with: strongBase, duration: transition.duration,
-                                                              options: [transition.animationOptions, .allowUserInteraction],
-                                                              animations: {
-                                                                // Set image property in the animation.
-                                                                transition.animations?(strongBase, image)
-                                                              },
-                                                              completion: { finished in
-                                                                transition.completion?(finished)
-                                                                completionHandler?(image, error, cacheType, imageURL)
-                                                              })
-                                          })
-                    #endif
+                    UIView.transition(with: strongBase, duration: 0.0, options: [],
+                                      animations: { maybeIndicator?.stopAnimatingView() },
+                                      completion: { _ in
+                                        UIView.transition(with: strongBase, duration: transition.duration,
+                                                          options: [transition.animationOptions, .allowUserInteraction],
+                                                          animations: {
+                                                            // Set image property in the animation.
+                                                            transition.animations?(strongBase, image)
+                                        },
+                                                          completion: { finished in
+                                                            transition.completion?(finished)
+                                                            completionHandler?(image, error, cacheType, imageURL)
+                                        })
+                    })
                 }
-            })
+        })
         
         setImageTask(task)
         
@@ -223,30 +216,30 @@ extension Kingfisher where Base: ImageView {
 
 // MARK: - Deprecated. Only for back compatibility.
 /**
-*	Set image to use from web. Deprecated. Use `kf` namespacing instead.
-*/
+ *	Set image to use from web. Deprecated. Use `kf` namespacing instead.
+ */
 extension ImageView {
     /**
-    Set an image with a resource, a placeholder image, options, progress handler and completion handler.
-    
-    - parameter resource:          Resource object contains information such as `cacheKey` and `downloadURL`.
-    - parameter placeholder:       A placeholder image when retrieving the image at URL.
-    - parameter options:           A dictionary could control some behaviors. See `KingfisherOptionsInfo` for more.
-    - parameter progressBlock:     Called when the image downloading progress gets updated.
-    - parameter completionHandler: Called when the image retrieved and set.
-    
-    - returns: A task represents the retrieving process.
+     Set an image with a resource, a placeholder image, options, progress handler and completion handler.
      
-    - note: Both the `progressBlock` and `completionHandler` will be invoked in main thread. 
+     - parameter resource:          Resource object contains information such as `cacheKey` and `downloadURL`.
+     - parameter placeholder:       A placeholder image when retrieving the image at URL.
+     - parameter options:           A dictionary could control some behaviors. See `KingfisherOptionsInfo` for more.
+     - parameter progressBlock:     Called when the image downloading progress gets updated.
+     - parameter completionHandler: Called when the image retrieved and set.
+     
+     - returns: A task represents the retrieving process.
+     
+     - note: Both the `progressBlock` and `completionHandler` will be invoked in main thread. 
      The `CallbackDispatchQueue` specified in `optionsInfo` will not be used in callbacks of this method.
-    */
+     */
     @available(*, deprecated, message: "Extensions directly on image views are deprecated. Use `imageView.kf.setImage` instead.", renamed: "kf.setImage")
     @discardableResult
     public func kf_setImage(with resource: Resource?,
-                              placeholder: Image? = nil,
-                                  options: KingfisherOptionsInfo? = nil,
+                            placeholder: Image? = nil,
+                            options: KingfisherOptionsInfo? = nil,
                             progressBlock: DownloadProgressBlock? = nil,
-                        completionHandler: CompletionHandler? = nil) -> RetrieveImageTask
+                            completionHandler: CompletionHandler? = nil) -> RetrieveImageTask
     {
         return kf.setImage(with: resource, placeholder: placeholder, options: options, progressBlock: progressBlock, completionHandler: completionHandler)
     }

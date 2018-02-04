@@ -24,12 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-
-#if os(macOS)
-    import AppKit
-#else
-    import UIKit
-#endif
+import UIKit
 
 
 /// Progress update block of prefetcher. 
@@ -93,9 +88,9 @@ public class ImagePrefetcher {
      Both the progress and completion block will be invoked in main thread. The `CallbackDispatchQueue` in `optionsInfo` will be ignored in this method.
      */
     public convenience init(urls: [URL],
-                         options: KingfisherOptionsInfo? = nil,
-                   progressBlock: PrefetcherProgressBlock? = nil,
-               completionHandler: PrefetcherCompletionHandler? = nil)
+                            options: KingfisherOptionsInfo? = nil,
+                            progressBlock: PrefetcherProgressBlock? = nil,
+                            completionHandler: PrefetcherCompletionHandler? = nil)
     {
         let resources: [Resource] = urls.map { $0 }
         self.init(resources: resources, options: options, progressBlock: progressBlock, completionHandler: completionHandler)
@@ -120,9 +115,9 @@ public class ImagePrefetcher {
      Both the progress and completion block will be invoked in main thread. The `CallbackDispatchQueue` in `optionsInfo` will be ignored in this method.
      */
     public init(resources: [Resource],
-                  options: KingfisherOptionsInfo? = nil,
-            progressBlock: PrefetcherProgressBlock? = nil,
-        completionHandler: PrefetcherCompletionHandler? = nil)
+                options: KingfisherOptionsInfo? = nil,
+                progressBlock: PrefetcherProgressBlock? = nil,
+                completionHandler: PrefetcherCompletionHandler? = nil)
     {
         prefetchResources = resources
         pendingResources = ArraySlice(resources)
@@ -174,8 +169,8 @@ public class ImagePrefetcher {
             }
         }
     }
-
-   
+    
+    
     /**
      Stop current downloading progress, and cancel any future prefetching activity that might be occuring.
      */
@@ -192,7 +187,7 @@ public class ImagePrefetcher {
     }
     
     func downloadAndCache(_ resource: Resource) {
-
+        
         let downloadTaskCompletionHandler: CompletionHandler = { (image, error, _, _) -> () in
             self.tasks.removeValue(forKey: resource.downloadURL)
             if let _ = error {
@@ -227,7 +222,7 @@ public class ImagePrefetcher {
     
     func append(cached resource: Resource) {
         skippedResources.append(resource)
- 
+        
         reportProgress()
         reportCompletionOrStartNext()
     }
@@ -239,7 +234,7 @@ public class ImagePrefetcher {
         } else {
             let alreadyInCache = manager.cache.isImageCached(forKey: resource.cacheKey,
                                                              processorIdentifier: optionsInfo.processor.identifier).cached
-
+            
             if alreadyInCache {
                 append(cached: resource)
             } else {

@@ -33,6 +33,7 @@ final class Post: NSManagedObject {
     @NSManaged var insertedTimestamp: NSNumber?
     @NSManaged var homeTimeline: Bool
     @NSManaged var userId: String?
+    @NSManaged var hidden: Bool
     
     func write(json: JSON) {
         
@@ -101,7 +102,7 @@ extension Post {
         guard let objectId = json["id_str"].string else { return }
         let predicate = NSPredicate(format: "objectId == %@", objectId)
         fetchBy(predicate) { (post) in
-            guard let postT = post else {
+            guard let _ = post else {
                 if let newObject = NSEntityDescription.insertNewObject(forEntityName: "Post", into: CoreDataManager.shared.backgroundContext) as? Post {
                     newObject.write(json: json)
                     newObject.homeTimeline = homeTimeline 
@@ -109,7 +110,7 @@ extension Post {
                 return
             }
             
-            postT.write(json: json)
+            post!.write(json: json)
         }
     }
     
@@ -124,11 +125,11 @@ extension Post {
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [Post]
-                guard let last = results?.last else {
+                guard let _ = results?.last else {
                     result(nil)
                     return
                 }
-                result(last)
+                result(results?.last)
             } catch _ {
                 console("Error fetching object by id.")
                 result(nil)

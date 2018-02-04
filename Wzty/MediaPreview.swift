@@ -43,39 +43,38 @@ final class MediaPreview: UIViewController {
     
     func show(_ imageUrl: String?) {
         
-        guard let imageUrlT = imageUrl else {
+        guard let _ = imageUrl else {
             closeAction()
             return
         }
-        imageView.kf.setImage(with: URL(string: imageUrlT))
         
-        
-        imageView.kf.setImage(with: URL(string: imageUrlT), placeholder: nil, options: nil, progressBlock: { (pregress, maxProgress) in
+        imageView.kf.setImage(with: URL(string: imageUrl!), placeholder: nil, options: nil, progressBlock: { (pregress, maxProgress) in
             //
         }) { (image, error, cache, url) in
             
-            DispatchQueue.main.safeAsync { [unowned self] in
-                self.scrollView.delegate = self
-                let raport = max((image?.size.width)! / self.scrollView.frame.size.width, (image?.size.height)! / self.scrollView.frame.size.height)
+            DispatchQueue.main.safeAsync { [weak  self] in
+                guard let _ = self else { return }
+                self!.scrollView.delegate = self
+                let raport = max((image?.size.width)! / self!.scrollView.frame.size.width, (image?.size.height)! / self!.scrollView.frame.size.height)
                 let maxSize = max(2.0, raport)
                 
-                self.scrollView.setZoomScale(1.0, animated: true)
-                self.scrollView.maximumZoomScale = maxSize
-                self.scrollView.minimumZoomScale = 1.0
+                self!.scrollView.setZoomScale(1.0, animated: true)
+                self!.scrollView.maximumZoomScale = maxSize
+                self!.scrollView.minimumZoomScale = 1.0
                 
-                self.isZoomed = false
+                self!.isZoomed = false
                 
-                let doubleTap = UITapGestureRecognizer(target: self, action: #selector(self.doubleTapped))
+                let doubleTap = UITapGestureRecognizer(target: self!, action: #selector(self!.doubleTapped))
                 doubleTap.numberOfTapsRequired = 2
-                self.scrollView.addGestureRecognizer(doubleTap)
+                self!.scrollView.addGestureRecognizer(doubleTap)
                 
-                let singleTap = UITapGestureRecognizer(target: self, action: #selector(self.singleTap))
+                let singleTap = UITapGestureRecognizer(target: self!, action: #selector(self!.singleTap))
                 singleTap.numberOfTapsRequired = 1
-                self.scrollView.addGestureRecognizer(singleTap)
+                self!.scrollView.addGestureRecognizer(singleTap)
                 
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: { [weak self] in
-                    guard let strongSelf = self else { return }
-                    strongSelf.singleTap()
+                    guard let _ = self else { return }
+                    self!.singleTap()
                 })
                 
             }
@@ -90,16 +89,16 @@ final class MediaPreview: UIViewController {
             scrollView.setZoomScale(2.0, animated: true)
             isZoomed = true
             
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: .allowUserInteraction, animations: { [unowned self] in
-                self.navigationView.alpha = 0.0
-            })
+            UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
+                self!.navigationView.alpha = 0.0
+                }.startAnimation()
         } else {
             scrollView.setZoomScale(1, animated: true)
             isZoomed = false
             
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: .allowUserInteraction, animations: { [unowned self] in
-                self.navigationView.alpha = 1.0
-            })
+            UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
+                self!.navigationView.alpha = 1.0
+                }.startAnimation()
         }
     }
     
@@ -108,19 +107,18 @@ final class MediaPreview: UIViewController {
         if scrollView.zoomScale <= 1.0 {
             if navigationView.alpha == 0.0 {
                 
-                UIView.animate(withDuration: 0.3, delay: 0.0, options: .allowUserInteraction, animations: { [unowned self] in
-                    self.navigationView.alpha = 1.0
-                })
-                
+                UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
+                    self!.navigationView.alpha = 1.0
+                    }.startAnimation()
             } else {
-                UIView.animate(withDuration: 0.3, delay: 0.0, options: .allowUserInteraction, animations: { [unowned self] in
-                    self.navigationView.alpha = 0.0
-                })
+                UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
+                    self!.navigationView.alpha = 0.0
+                    }.startAnimation()
             }
         } else {
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: .allowUserInteraction, animations: { [unowned self] in
-                self.navigationView.alpha = 0.0
-            })
+            UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
+                self!.navigationView.alpha = 0.0
+                }.startAnimation()
         }
     }
 }

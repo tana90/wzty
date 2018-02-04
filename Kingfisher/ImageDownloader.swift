@@ -24,11 +24,7 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(macOS)
-import AppKit
-#else
 import UIKit
-#endif
 
 /// Progress update block of downloader.
 public typealias ImageDownloaderProgressBlock = DownloadProgressBlock
@@ -42,7 +38,7 @@ public struct RetrieveImageDownloadTask {
     
     /// Downloader by which this task is intialized.
     public private(set) weak var ownerDownloader: ImageDownloader?
-
+    
     /**
      Cancel this download task. It will trigger the completion handler with an NSURLErrorCancelled error.
      */
@@ -99,30 +95,30 @@ public let KingfisherErrorStatusCodeKey = "statusCode"
 /// Protocol of `ImageDownloader`.
 public protocol ImageDownloaderDelegate: class {
     /**
-    Called when the `ImageDownloader` object successfully downloaded an image from specified URL.
-    
-    - parameter downloader: The `ImageDownloader` object finishes the downloading.
-    - parameter image:      Downloaded image.
-    - parameter url:        URL of the original request URL.
-    - parameter response:   The response object of the downloading process.
-    */
+     Called when the `ImageDownloader` object successfully downloaded an image from specified URL.
+     
+     - parameter downloader: The `ImageDownloader` object finishes the downloading.
+     - parameter image:      Downloaded image.
+     - parameter url:        URL of the original request URL.
+     - parameter response:   The response object of the downloading process.
+     */
     func imageDownloader(_ downloader: ImageDownloader, didDownload image: Image, for url: URL, with response: URLResponse?)
     
     
     /**
-    Check if a received HTTP status code is valid or not. 
-    By default, a status code between 200 to 400 (excluded) is considered as valid.
-    If an invalid code is received, the downloader will raise an .invalidStatusCode error.
-    It has a `userInfo` which includes this statusCode and localizedString error message.
+     Check if a received HTTP status code is valid or not. 
+     By default, a status code between 200 to 400 (excluded) is considered as valid.
+     If an invalid code is received, the downloader will raise an .invalidStatusCode error.
+     It has a `userInfo` which includes this statusCode and localizedString error message.
      
-    - parameter code: The received HTTP status code.
-    - parameter downloader: The `ImageDownloader` object asking for validate status code.
+     - parameter code: The received HTTP status code.
+     - parameter downloader: The `ImageDownloader` object asking for validate status code.
      
-    - returns: Whether this HTTP status code is valid or not.
+     - returns: Whether this HTTP status code is valid or not.
      
-    - Note: If the default 200 to 400 valid code does not suit your need, 
-            you can implement this method to change that behavior.
-    */
+     - Note: If the default 200 to 400 valid code does not suit your need, 
+     you can implement this method to change that behavior.
+     */
     func isValidStatusCode(_ code: Int, for downloader: ImageDownloader) -> Bool
 }
 
@@ -152,7 +148,7 @@ public protocol AuthenticationChallengeResponsable: class {
 extension AuthenticationChallengeResponsable {
     
     func downloader(_ downloader: ImageDownloader, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-    
+        
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
             if let trustedHosts = downloader.trustedHosts, trustedHosts.contains(challenge.protectionSpace.host) {
                 let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
@@ -171,7 +167,7 @@ open class ImageDownloader {
     class ImageFetchLoad {
         var contents = [(callback: CallbackPair, options: KingfisherOptionsInfo)]()
         var responseData = NSMutableData()
-
+        
         var downloadTaskCount = 0
         var downloadTask: RetrieveImageDownloadTask?
     }
@@ -219,12 +215,12 @@ open class ImageDownloader {
     public static let `default` = ImageDownloader(name: "default")
     
     /**
-    Init a downloader with name.
-    
-    - parameter name: The name for the downloader. It should not be empty.
-    
-    - returns: The downloader object.
-    */
+     Init a downloader with name.
+     
+     - parameter name: The name for the downloader. It should not be empty.
+     
+     - returns: The downloader object.
+     */
     public init(name: String) {
         if name.isEmpty {
             fatalError("[Kingfisher] You should specify a name for the downloader. A downloader with empty name is not permitted.")
@@ -234,7 +230,7 @@ open class ImageDownloader {
         processQueue = DispatchQueue(label: "com.onevcat.Kingfisher.ImageDownloader.Process.\(name)", attributes: .concurrent)
         
         sessionHandler = ImageDownloaderSessionHandler()
-
+        
         // Provide a default implement for challenge responder.
         authenticationChallengeResponder = sessionHandler
         session = URLSession(configuration: sessionConfiguration, delegate: sessionHandler, delegateQueue: .main)
@@ -273,10 +269,10 @@ open class ImageDownloader {
 // MARK: - Download method
 extension ImageDownloader {
     func downloadImage(with url: URL,
-              retrieveImageTask: RetrieveImageTask?,
-                        options: KingfisherOptionsInfo?,
-                  progressBlock: ImageDownloaderProgressBlock?,
-              completionHandler: ImageDownloaderCompletionHandler?) -> RetrieveImageDownloadTask?
+                       retrieveImageTask: RetrieveImageTask?,
+                       options: KingfisherOptionsInfo?,
+                       progressBlock: ImageDownloaderProgressBlock?,
+                       completionHandler: ImageDownloaderCompletionHandler?) -> RetrieveImageDownloadTask?
     {
         if let retrieveImageTask = retrieveImageTask, retrieveImageTask.cancelledBeforeDownloadStarting {
             completionHandler?(nil, NSError(domain: KingfisherErrorDomain, code: KingfisherError.downloadCancelledBeforeStarting.rawValue, userInfo: nil), nil, nil)
@@ -288,7 +284,7 @@ extension ImageDownloader {
         // We need to set the URL as the load key. So before setup progress, we need to ask the `requestModifier` for a final URL.
         var request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: timeout)
         request.httpShouldUsePipelining = requestsUsePipeling
-
+        
         if let modifier = options?.modifier {
             guard let r = modifier.modified(for: request) else {
                 completionHandler?(nil, NSError(domain: KingfisherErrorDomain, code: KingfisherError.downloadCancelledBeforeStarting.rawValue, userInfo: nil), nil, nil)
@@ -309,7 +305,7 @@ extension ImageDownloader {
                 let dataTask = session.dataTask(with: request)
                 
                 fetchLoad.downloadTask = RetrieveImageDownloadTask(internalTask: dataTask, ownerDownloader: self)
-
+                
                 dataTask.priority = options?.downloadPriority ?? URLSessionTask.defaultPriority
                 dataTask.resume()
                 
@@ -327,7 +323,7 @@ extension ImageDownloader {
     
     // A single key may have multiple callbacks. Only download once.
     func setup(progressBlock: ImageDownloaderProgressBlock?, with completionHandler: ImageDownloaderCompletionHandler?, for url: URL, options: KingfisherOptionsInfo?, started: ((URLSession, ImageFetchLoad) -> Void)) {
-
+        
         barrierQueue.sync(flags: .barrier) {
             let loadObjectForURL = fetchLoads[url] ?? ImageFetchLoad()
             let callbackPair = (progressBlock: progressBlock, completionHandler: completionHandler)
@@ -376,14 +372,14 @@ class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate, Authentic
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         
-        guard let downloader = downloadHolder else {
+        guard let _ = downloadHolder else {
             completionHandler(.cancel)
             return
         }
         
         if let statusCode = (response as? HTTPURLResponse)?.statusCode,
-           let url = dataTask.originalRequest?.url,
-            !(downloader.delegate ?? downloader).isValidStatusCode(statusCode, for: downloader)
+            let url = dataTask.originalRequest?.url,
+            !(downloadHolder!.delegate ?? downloadHolder!).isValidStatusCode(statusCode, for: downloadHolder!)
         {
             let error = NSError(domain: KingfisherErrorDomain,
                                 code: KingfisherError.invalidStatusCode.rawValue,
@@ -395,12 +391,12 @@ class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate, Authentic
     }
     
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-
-        guard let downloader = downloadHolder else {
+        
+        guard let _ = downloadHolder else {
             return
         }
-
-        if let url = dataTask.originalRequest?.url, let fetchLoad = downloader.fetchLoad(for: url) {
+        
+        if let url = dataTask.originalRequest?.url, let fetchLoad = downloadHolder!.fetchLoad(for: url) {
             fetchLoad.responseData.append(data)
             
             if let expectedLength = dataTask.response?.expectedContentLength {
@@ -428,8 +424,8 @@ class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate, Authentic
     }
     
     /**
-    This method is exposed since the compiler requests. Do not call it.
-    */
+     This method is exposed since the compiler requests. Do not call it.
+     */
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         guard let downloader = downloadHolder else {
             return
@@ -466,7 +462,7 @@ class ImageDownloaderSessionHandler: NSObject, URLSessionDataDelegate, Authentic
     }
     
     private func processImage(for task: URLSessionTask, url: URL) {
-
+        
         guard let downloader = downloadHolder else {
             return
         }

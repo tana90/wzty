@@ -24,17 +24,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(macOS)
-    import AppKit
-#else
-    import UIKit
-#endif
+import UIKit
 
-#if os(macOS)
-    public typealias IndicatorView = NSView
-#else
-    public typealias IndicatorView = UIView
-#endif
+public typealias IndicatorView = UIView
+
 
 public enum IndicatorType {
     /// No indicator.
@@ -51,28 +44,12 @@ public enum IndicatorType {
 public protocol Indicator {
     func startAnimatingView()
     func stopAnimatingView()
-
+    
     var viewCenter: CGPoint { get set }
     var view: IndicatorView { get }
 }
 
 extension Indicator {
-    #if os(macOS)
-    public var viewCenter: CGPoint {
-        get {
-            let frame = view.frame
-            return CGPoint(x: frame.origin.x + frame.size.width / 2.0, y: frame.origin.y + frame.size.height / 2.0 )
-        }
-        set {
-            let frame = view.frame
-            let newFrame = CGRect(x: newValue.x - frame.size.width / 2.0,
-                                  y: newValue.y - frame.size.height / 2.0,
-                                  width: frame.size.width,
-                                  height: frame.size.height)
-            view.frame = newFrame
-        }
-    }
-    #else
     public var viewCenter: CGPoint {
         get {
             return view.center
@@ -81,55 +58,33 @@ extension Indicator {
             view.center = newValue
         }
     }
-    #endif
 }
 
 // MARK: - ActivityIndicator
 // Displays a NSProgressIndicator / UIActivityIndicatorView
 struct ActivityIndicator: Indicator {
-
-    #if os(macOS)
-    private let activityIndicatorView: NSProgressIndicator
-    #else
     private let activityIndicatorView: UIActivityIndicatorView
-    #endif
-
+    
     var view: IndicatorView {
         return activityIndicatorView
     }
-
+    
     func startAnimatingView() {
-        #if os(macOS)
-            activityIndicatorView.startAnimation(nil)
-        #else
-            activityIndicatorView.startAnimating()
-        #endif
+        activityIndicatorView.startAnimating()
         activityIndicatorView.isHidden = false
     }
-
+    
     func stopAnimatingView() {
-        #if os(macOS)
-            activityIndicatorView.stopAnimation(nil)
-        #else
-            activityIndicatorView.stopAnimating()
-        #endif
+        activityIndicatorView.stopAnimating()
         activityIndicatorView.isHidden = true
     }
-
+    
     init() {
-        #if os(macOS)
-            activityIndicatorView = NSProgressIndicator(frame: CGRect(x: 0, y: 0, width: 16, height: 16))
-            activityIndicatorView.controlSize = .small
-            activityIndicatorView.style = .spinningStyle
-        #else
-            #if os(tvOS)
-                let indicatorStyle = UIActivityIndicatorViewStyle.white
-            #else
-                let indicatorStyle = UIActivityIndicatorViewStyle.gray
-            #endif
-            activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle:indicatorStyle)
-            activityIndicatorView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin, .flexibleTopMargin]
-        #endif
+        
+        let indicatorStyle = UIActivityIndicatorViewStyle.gray
+        
+        activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle:indicatorStyle)
+        activityIndicatorView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin, .flexibleTopMargin]
     }
 }
 
@@ -137,13 +92,13 @@ struct ActivityIndicator: Indicator {
 // Displays an ImageView. Supports gif
 struct ImageIndicator: Indicator {
     private let animatedImageIndicatorView: ImageView
-
+    
     var view: IndicatorView {
         return animatedImageIndicatorView
     }
-
+    
     init?(imageData data: Data, processor: ImageProcessor = DefaultImageProcessor.default, options: KingfisherOptionsInfo = KingfisherEmptyOptionsInfo) {
-
+        
         var options = options
         // Use normal image view to show gif, so we need to preload all gif data.
         if !options.preloadAllGIFData {
@@ -153,39 +108,25 @@ struct ImageIndicator: Indicator {
         guard let image = processor.process(item: .data(data), options: options) else {
             return nil
         }
-
+        
         animatedImageIndicatorView = ImageView()
         animatedImageIndicatorView.image = image
         
-        #if os(macOS)
-            // Need for gif to animate on macOS
-            self.animatedImageIndicatorView.imageScaling = .scaleNone
-            self.animatedImageIndicatorView.canDrawSubviewsIntoLayer = true
-        #else
-            animatedImageIndicatorView.contentMode = .center
-            
-            animatedImageIndicatorView.autoresizingMask = [.flexibleLeftMargin,
-                                                           .flexibleRightMargin,
-                                                           .flexibleBottomMargin,
-                                                           .flexibleTopMargin]
-        #endif
+        animatedImageIndicatorView.contentMode = .center
+        
+        animatedImageIndicatorView.autoresizingMask = [.flexibleLeftMargin,
+                                                       .flexibleRightMargin,
+                                                       .flexibleBottomMargin,
+                                                       .flexibleTopMargin]
     }
-
+    
     func startAnimatingView() {
-        #if os(macOS)
-            animatedImageIndicatorView.animates = true
-        #else
-            animatedImageIndicatorView.startAnimating()
-        #endif
+        animatedImageIndicatorView.startAnimating()
         animatedImageIndicatorView.isHidden = false
     }
-
+    
     func stopAnimatingView() {
-        #if os(macOS)
-            animatedImageIndicatorView.animates = false
-        #else
-            animatedImageIndicatorView.stopAnimating()
-        #endif
+        animatedImageIndicatorView.stopAnimating()
         animatedImageIndicatorView.isHidden = true
     }
 }

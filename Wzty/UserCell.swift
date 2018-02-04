@@ -28,19 +28,19 @@ final class UserCell: UITableViewCell {
     
     func show(_ user: User?) {
         
-        guard let userT = user else { return }
+        guard let _ = user else { return }
         
         //User image
-        if let imageUrlT = userT.userImageUrl {
+        if let imageUrlT = user!.userImageUrl {
             userImageView?.kf.setImage(with: URL(string: imageUrlT))
         } else {
             userImageView?.image = nil
         }
         
         //Name
-        nameLabel?.text = userT.name
+        nameLabel?.text = user!.name
         
         //Username
-        usernameLabel?.text = String(format: "@%@", userT.username!)
+        usernameLabel?.text = String(format: "@%@", user!.username!)
     }
 }

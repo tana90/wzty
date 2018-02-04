@@ -49,11 +49,11 @@
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="28" translatesAutoresizingMaskIntoConstraints="NO" id="yVL-LJ-SAI">
-                                <rect key="frame" x="16" y="16" width="260" height="39.5"/>
+                                <rect key="frame" x="16" y="16" width="262" height="37"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="190" id="2bd-jt-pF1"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="0.0" alpha="0.39993578767123289" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,7 +78,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g01-v0-6St">
                                         <rect key="frame" x="-5" y="-4" width="47" height="30"/>
-                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="26"/>
+                                        <fontDescription key="fontDescription" type="system" weight="black" pointSize="27"/>
                                         <inset key="titleEdgeInsets" minX="0.0" minY="-12" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="...">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -124,7 +124,7 @@
                             <constraint firstItem="p4E-dc-zFH" firstAttribute="centerY" secondItem="GiP-ur-h0Y" secondAttribute="centerY" id="T9R-CJ-7z6"/>
                             <constraint firstItem="xfE-Jv-SGA" firstAttribute="leading" secondItem="GiP-ur-h0Y" secondAttribute="leading" id="h9J-SA-L4d"/>
                             <constraint firstAttribute="bottom" secondItem="FWZ-ZO-zPL" secondAttribute="bottom" constant="21" id="hhJ-fg-71i"/>
-                            <constraint firstItem="MBs-kA-Znk" firstAttribute="leading" secondItem="yVL-LJ-SAI" secondAttribute="trailing" constant="14" id="iJ8-Pd-OwW"/>
+                            <constraint firstItem="MBs-kA-Znk" firstAttribute="leading" secondItem="yVL-LJ-SAI" secondAttribute="trailing" constant="12" id="iJ8-Pd-OwW"/>
                             <constraint firstAttribute="bottom" secondItem="xfE-Jv-SGA" secondAttribute="bottom" id="iax-1n-bEe"/>
                             <constraint firstAttribute="trailing" secondItem="lIA-Qb-rt3" secondAttribute="trailing" id="iwd-Kw-Vmh"/>
                             <constraint firstItem="xfE-Jv-SGA" firstAttribute="top" secondItem="GiP-ur-h0Y" secondAttribute="top" id="qmS-W7-8Wm"/>

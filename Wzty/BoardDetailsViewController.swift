@@ -34,9 +34,9 @@ class BoardDetailsViewController: BaseListViewController {
                 if let usersT = users {
                     var predicates: [NSPredicate] = []
                     for user in usersT {
-                        predicates.append(NSPredicate(format: "userId == %@", (user?.objectId)!))
-                        
+                        predicates.append(NSPredicate(format: "userId == %@ AND hidden == false", (user?.objectId)!))
                     }
+                    
                     let compoundPredicate = NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
                     request.predicate = compoundPredicate
                 }
@@ -72,9 +72,9 @@ class BoardDetailsViewController: BaseListViewController {
         super.viewWillAppear(animated)
         
         if let _ = board {
-            Board.fetchBy(id: board!.objectId!, result: { (board) in
-                guard let boardT = board as? Board else { return }
-                title = boardT.name
+            Board.fetchBy(id: board!.objectId!, result: { [weak self] (board) in
+                guard let _ = board as? Board else { return }
+                self?.title = (board as! Board).name
             })
         } 
     }
@@ -140,11 +140,11 @@ class BoardDetailsViewController: BaseListViewController {
 
                                 Post.homeTimelineBy(userId: (user?.objectId)!, sinceId: newer ? user?.sinceId : nil, 
                                                     maxId: newer ? nil : user?.maxId) { [weak self] (status) in
-                                                        guard let strongSelf = self else { return }
+                                                        guard let _ = self else { return }
 
                                                         index += 1
                                                         if index >= (users?.count)! {
-                                                            strongSelf.loading = false
+                                                            self!.loading = false
                                                             CoreDataManager.shared.saveContextBackground()
                                                         }
                                                         

@@ -31,7 +31,7 @@ final class UserDetailsViewController: BaseListViewController {
         request.fetchLimit = FETCH_LIMIT
         
         if let userId = self.userId {
-            let predicate = NSPredicate(format: "userId == %@", userId)
+            let predicate = NSPredicate(format: "userId == %@ AND hidden == false", userId)
             request.predicate = predicate
         }
         
@@ -53,8 +53,8 @@ final class UserDetailsViewController: BaseListViewController {
                 
                 User.follow(!(user?.following)!, (user?.objectId)!) { (status) in
                     
-                    DispatchQueue.main.safeAsync { [unowned self] in
-                        self.followButton.title = (user?.following)! ? "Unfollow" : "Follow"
+                    DispatchQueue.main.safeAsync { [weak self] in
+                        self?.followButton.title = (user?.following)! ? "Unfollow" : "Follow"
                     }
                 }
             }
@@ -105,8 +105,8 @@ final class UserDetailsViewController: BaseListViewController {
                 guard let user = user else { return }
                 Post.homeTimelineBy(userId: (user.objectId)!, sinceId: newer ? user.sinceId : nil, 
                                     maxId: newer ? nil : user.maxId) { [weak self] (status) in
-                                        guard let strongSelf = self else { return }
-                                        strongSelf.loading = false
+                                        guard let _ = self else { return }
+                                        self!.loading = false
                                         CoreDataManager.shared.saveContextBackground()
                                         
                 }

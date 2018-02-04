@@ -47,7 +47,12 @@ func moreAction(post: Post?, presentedIn: BaseCoreDataViewController) {
         UIApplication.shared.open(URL(string: (post!.link)!)!, options: [:], completionHandler: nil)
     }
     
-    let reportIssueAction = UIAlertAction(title: "Report issue", style: .default) { (alert) in
+    let hidePostAction = UIAlertAction(title: "Hide post", style: .default) { (alert) in
+        post!.hidden = true
+        CoreDataManager.shared.saveContextBackground()
+    }
+    
+    let reportIssueAction = UIAlertAction(title: "Report issue", style: .destructive) { (alert) in
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "ReportViewControllerIdentifier") as! ReportViewController
         viewController.postId = post!.objectId
@@ -59,6 +64,7 @@ func moreAction(post: Post?, presentedIn: BaseCoreDataViewController) {
     
     alertViewController.addAction(shareAction)
     alertViewController.addAction(safariAction)
+    alertViewController.addAction(hidePostAction)
     alertViewController.addAction(reportIssueAction)
     alertViewController.addAction(cancelAction)
     

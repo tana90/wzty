@@ -41,15 +41,15 @@ final class NavigationTableHeaderView: UIView {
     
     func showTitle() {
         UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.titleLabel.alpha = 1.0
+            guard let _ = self else { return }
+            self!.titleLabel.alpha = 1.0
         }.startAnimation()
     }
     
     func hideTitle() {
         UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.titleLabel.alpha = 0.0
+            guard let _ = self else { return }
+            self!.titleLabel.alpha = 0.0
             }.startAnimation()
     }
 }

@@ -24,22 +24,18 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#if os(macOS)
-import AppKit
-#else
 import UIKit
-#endif
-    
+
 
 /**
-*	KingfisherOptionsInfo is a typealias for [KingfisherOptionsInfoItem]. You can use the enum of option item with value to control some behaviors of Kingfisher.
-*/
+ *	KingfisherOptionsInfo is a typealias for [KingfisherOptionsInfoItem]. You can use the enum of option item with value to control some behaviors of Kingfisher.
+ */
 public typealias KingfisherOptionsInfo = [KingfisherOptionsInfoItem]
 let KingfisherEmptyOptionsInfo = [KingfisherOptionsInfoItem]()
 
 /**
-Items could be added into KingfisherOptionsInfo.
-*/
+ Items could be added into KingfisherOptionsInfo.
+ */
 public enum KingfisherOptionsInfoItem {
     /// The associated value of this member should be an ImageCache object. Kingfisher will use the specified
     /// cache object when handling related operations, including trying to retrieve the cached images and store

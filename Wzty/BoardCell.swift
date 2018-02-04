@@ -31,10 +31,10 @@ final class BoardCell: UITableViewCell {
     
     func show(_ board: Board?) {
         
-        guard let boardT = board else { return }
-        nameLabel?.text = boardT.name?.uppercased()
+        guard let _ = board else { return }
+        nameLabel?.text = board!.name?.uppercased()
         
-        cellView.backgroundColor = UIColor.hexString(hex: boardT.color!)
+        cellView.backgroundColor = UIColor.hexString(hex: board!.color!)
         
         userImage1.image = nil
         userImage2.image = nil
@@ -46,14 +46,15 @@ final class BoardCell: UITableViewCell {
         userImage3.backgroundColor = .clear
         userImage4.backgroundColor = .clear
         
-        let predicate = NSPredicate(format: "boardId == %@ AND following == true", boardT.objectId!)
-        User.fetchAllBy(predicate: predicate) { [unowned self] (users) in
-            guard let usersT = users else { return }
+        let predicate = NSPredicate(format: "boardId == %@ AND following == true", board!.objectId!)
+        User.fetchAllBy(predicate: predicate) { [weak self] (users) in
+            guard let _ = self,
+                let _ = users else { return }
             
-            self.countLabel.text = String(format: "%ld follows", usersT.count)
+            self!.countLabel.text = String(format: "%ld follows", users!.count)
             
-            for index in 0...usersT.count - 1 {
-                if let imageUrl = usersT[index]?.userImageUrl {
+            for index in 0...users!.count - 1 {
+                if let imageUrl = users![index]?.userImageUrl {
                     if index == 0 {
                         userImage1.kf.setImage(with: URL(string: imageUrl))
                         userImage1.backgroundColor = .white

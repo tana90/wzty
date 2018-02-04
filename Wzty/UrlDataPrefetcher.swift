@@ -25,81 +25,39 @@ final class UrlDataPrefetcher {
     
     
     func fetch(link: String?, completionHandler: (()->())? = nil) {
-        guard let linkT = link,
-            let url = URL(string: linkT) else { return }
+        guard let _ = link,
+            let url = URL(string: link!) else { return }
         
-        if !urlsInProgress.contains(linkT) {
-            urlsInProgress.append(linkT)
+        if !urlsInProgress.contains(link!) {
+            urlsInProgress.append(link!)
             
             url.fetchUrlMedia({ [unowned self] (title, details, image) in
                 
                 //Write infos to CoreData
-                let predicate = NSPredicate(format: "link == %@", linkT)
+                let predicate = NSPredicate(format: "link == %@", link!)
                 Post.fetchBy(predicate) { (result) in
-                    guard let resultT = result else { 
-                        self.urlsInProgress.remove(object: linkT)
+                    guard let _ = result else { 
+                        self.urlsInProgress.remove(object: link!)
                         return
                     }
-                    resultT.title = title
-                    resultT.details = details
-                    resultT.imageUrl = image
+                    result!.title = title
+                    result!.details = details
+                    result!.imageUrl = image
                     
-                    if let imageT = image {
-                        UIImageView().kf.setImage(with: URL(string: imageT))
+                    if let _ = image {
+                        UIImageView().kf.setImage(with: URL(string: image!))
                     }
                     if let _ = completionHandler {
                         completionHandler!()
                     }
-                    self.urlsInProgress.remove(object: linkT)
+                    self.urlsInProgress.remove(object: link!)
                 }
                 
                 
                 
                 }, failure: { [unowned self] (error) in
-                    self.urlsInProgress.remove(object: linkT)
+                    self.urlsInProgress.remove(object: link!)
             })
         }
     }
-    
-    
-//    func startFetch(link: String?, refreshable refresh: Bool) {
-//        
-//        guard let linkT = link,
-//            let url = URL(string: linkT) else { return }
-//        
-//        if !urlsInProgress.contains(linkT) {
-//            urlsInProgress.append(linkT)
-//            
-//            url.fetchUrlMedia({ [unowned self] (title, details, image) in
-//                
-//                //Write infos to CoreData
-//                let predicate = NSPredicate(format: "link == %@", linkT)
-//                Post.fetchBy(predicate) { (result) in
-//                    guard let resultT = result else { 
-//                        self.urlsInProgress.remove(object: linkT)
-//                        return
-//                    }
-//                    resultT.title = title
-//                    resultT.details = details
-//                    resultT.imageUrl = image
-//                    
-//                    if let imageT = image {
-//                        UIImageView().kf.setImage(with: URL(string: imageT))
-//                    }
-//                    if refresh {
-//                        CoreDataManager.shared.saveContextBackground()
-//                    }
-//                    self.urlsInProgress.remove(object: linkT)
-//                }
-//                
-//                
-//
-//                }, failure: { [unowned self] (error) in
-//                    self.urlsInProgress.remove(object: linkT)
-//            })
-//        }
-//    }
-    
-    
-    
 }

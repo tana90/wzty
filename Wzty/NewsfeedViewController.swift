@@ -29,7 +29,7 @@ final class NewsfeedViewController: BaseListViewController {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timeSortDescriptor]
-        let predicate = NSPredicate(format: "homeTimeline == true")
+        let predicate = NSPredicate(format: "homeTimeline == true AND hidden == false")
         request.predicate = predicate
         request.fetchLimit = FETCH_LIMIT
         
@@ -44,6 +44,7 @@ final class NewsfeedViewController: BaseListViewController {
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         //Configure cell
@@ -67,8 +68,8 @@ final class NewsfeedViewController: BaseListViewController {
         User.current { (user) in
             Post.homeTimeline(sinceId: newer ? user?.sinceId : nil,
                               maxId: newer ? nil : user?.maxId) { [weak self] (status) in
-                                guard let strongSelf = self else { return }
-                                strongSelf.loading = false
+                                guard let _ = self else { return }
+                                self!.loading = false
             }
         }
     }

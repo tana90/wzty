@@ -41,8 +41,8 @@ final class NewsfeedWebCell: UITableViewCell {
     func show(_ post: Post) {
         if !isStarted {
             DispatchQueue.main.safeAsync { [weak self] in
-                guard let strongSelf = self else { return }
-                strongSelf.webView.loadRequest(URLRequest(url: URL(string: post.link!)!))
+                guard let _ = self else { return }
+                self!.webView.loadRequest(URLRequest(url: URL(string: post.link!)!))
             }
             self.isStarted = true  
         }
@@ -74,8 +74,8 @@ extension NewsfeedWebCell: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView.contentOffset.y < -44 {
-            guard let closeHandlerT = closeHandler else { return }
-            closeHandlerT()
+            guard let _ = closeHandler else { return }
+            closeHandler!()
         }
     }
 }

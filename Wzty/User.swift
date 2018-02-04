@@ -104,7 +104,7 @@ extension User {
         
         guard let objectId = json["id_str"].string else { return }
         fetchBy(id: objectId) { (user) in
-            guard let userT = user else {
+            guard let _ = user else {
                 //Insert new user
                 if let newObject = NSEntityDescription.insertNewObject(forEntityName: "User", into: CoreDataManager.shared.backgroundContext) as? User {
                     newObject.write(json: json.object!)
@@ -114,8 +114,8 @@ extension User {
             }
             
             //Update existing user
-            (userT as! User).write(json: json.object!)
-            result(userT)
+            (user! as! User).write(json: json.object!)
+            result(user!)
         }
     }
     
@@ -153,11 +153,11 @@ extension User {
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [User]
-                guard let last = results?.last else {
+                guard let _ = results?.last else {
                     result(nil)
                     return
                 }
-                result(last)
+                result(results?.last)
             } catch _ {
                 console("Error fetching object by id.")
                 result(nil)
@@ -212,7 +212,7 @@ extension User {
         //Check if we already have current user in database
         let predicate = NSPredicate(format: "username == %@", username)
         User.fetchBy(predicate: predicate) { (result) -> (Void) in
-            guard let resultT = result else {
+            guard let _ = result else {
                 
                 AppDelegate.shared().twitter?.verifyAccountCredentials(includeEntities: false, skipStatus: true, success: { (json) in
                     User.add(json, result: { (newObject) -> (Void) in
@@ -224,7 +224,7 @@ extension User {
                 return
             }
             
-            user(resultT)
+            user(result!)
         }
     }
     

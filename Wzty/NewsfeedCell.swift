@@ -51,7 +51,7 @@ class NewsfeedCell: UITableViewCell {
         }
         
     }
-
+    
     func show(_ post: Post, refreshable refresh: Bool = true) {
         
         targetUserId = post.userId
@@ -59,21 +59,19 @@ class NewsfeedCell: UITableViewCell {
         
         //User
         let predicate = NSPredicate(format: "objectId == %@", post.userId!)
-        User.fetchBy(predicate: predicate) { (user) in
-            guard let userT = user else { return }
-            DispatchQueue.main.safeAsync { [weak self] in
-                
-                guard let strongSelf = self else { return }
-                //User image
-                if let imageUrlT = userT.userImageUrl {
-                    strongSelf.userImageView?.kf.setImage(with: URL(string: imageUrlT))
-                } else {
-                    strongSelf.userImageView?.image = nil
-                }
-                
-                //Username
-                strongSelf.usenameLabel?.text = userT.name
+        User.fetchBy(predicate: predicate) { [weak self](user) in
+            guard let _ = user,
+                let _ = self else { return }
+            
+            //User image
+            if let imageUrlT = user!.userImageUrl {
+                self!.userImageView?.kf.setImage(with: URL(string: imageUrlT))
+            } else {
+                self!.userImageView?.image = nil
             }
+            
+            //Username
+            self!.usenameLabel?.text = user!.name
         }
         
         populate(withPost: post)
@@ -82,8 +80,8 @@ class NewsfeedCell: UITableViewCell {
         if post.title == nil || post.imageUrl == nil {
             UrlDataPrefetcher.shared.fetch(link: post.link, completionHandler: { [weak self] in
                 
-                guard let strongSelf = self else { return }
-                strongSelf.populate(withPost: post)
+                guard let _ = self else { return }
+                self!.populate(withPost: post)
                 if refresh {
                     CoreDataManager.shared.saveContextBackground()
                 }
@@ -114,17 +112,16 @@ class NewsfeedCell: UITableViewCell {
         if let imageUrlT = withPost.imageUrl {
             mediaView.kf.setImage(with: URL(string: imageUrlT), placeholder: nil, options: nil, progressBlock: { (progress, maxProgress) in
             }, completionHandler: { [weak self] (image, error, cacheType, url) in
-                guard let strongSelf = self else { return }
-                strongSelf.activityIndicatorView?.stopAnimating()
+                guard let _ = self else { return }
+                self!.activityIndicatorView?.stopAnimating()
                 
                 if (error != nil) {
-                    strongSelf.mediaView?.image = UIImage(named: "placeholder")
+                    self!.mediaView?.image = UIImage(named: "placeholder")
                 }
                 
-                UIView.animate(withDuration: 0.30, animations: { [weak self] in
-                    guard let strongSelf = self else { return }
-                    strongSelf.mediaView.alpha = 0.93
-                })
+                UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
+                    self!.mediaView.alpha = 0.90
+                    }.startAnimation()
             })
         } else {
             mediaView?.image = nil

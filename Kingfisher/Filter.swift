@@ -105,12 +105,12 @@ extension Kingfisher where Base: Image {
     /// - Note: Only CG-based images are supported. If any error happens during transforming, `self` will be returned.
     public func apply(_ filter: Filter) -> Image {
         
-        guard let cgImage = cgImage else {
+        guard let _ = cgImage else {
             assertionFailure("[Kingfisher] Tint image only works for CG-based image.")
             return base
         }
         
-        let inputImage = CIImage(cgImage: cgImage)
+        let inputImage = CIImage(cgImage: cgImage!)
         guard let outputImage = filter.transform(inputImage) else {
             return base
         }
@@ -120,11 +120,7 @@ extension Kingfisher where Base: Image {
             return base
         }
         
-        #if os(macOS)
-            return fixedForRetinaPixel(cgImage: result, to: size)
-        #else
-            return Image(cgImage: result, scale: base.scale, orientation: base.imageOrientation)
-        #endif
+        return Image(cgImage: result, scale: base.scale, orientation: base.imageOrientation)
     }
 
 }

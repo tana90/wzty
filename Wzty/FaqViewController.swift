@@ -1,5 +1,5 @@
 //
-//  Config.swift
+//  FaqViewController.swift
 //  Wzty
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -12,14 +12,15 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
-//  You should have received a copy of the GNU General Public License
-//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-//  Created by Tudor Ana on 04/11/2017.
+//  Created by Tudor Ana on 04/02/2018.
+//  Copyright © 2018 Tudor Ana. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-let MAX_CELL_WIDTH = 300
-let FETCH_LIMIT: Int = 50
-let colors: [String] = ["#ff0000", "#00ff00", "#aaff00", "#0000ff", "#123456"]
+final class FaqViewController: UIViewController {
+    
+    @IBAction func closeAction() {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
+}

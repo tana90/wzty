@@ -41,18 +41,18 @@ final class NotificationController {
             
             
             Post.fetchAll() { (posts) in
-                guard let strongSelf = self,
+                guard let _ = self,
                     let posts = posts,
                     posts.count > 0 else {
                         finished()
                         return
                 }
                 
-                guard strongSelf.markedNotifications.count > 0 else {
-                    strongSelf.markedNotifications.append((posts.first??.objectId)!)
+                guard self!.markedNotifications.count > 0 else {
+                    self!.markedNotifications.append((posts.first??.objectId)!)
                     
                     if let firstPost = posts.first {
-                        strongSelf.scheduleNotificationWith(post: firstPost!)
+                        self!.scheduleNotificationWith(post: firstPost!)
                     }
                     finished()
                     return
@@ -62,7 +62,7 @@ final class NotificationController {
                 postsLoop: for post in posts {
                     
                     notificationFound = false
-                    markedLoop: for markedNotification in strongSelf.markedNotifications {
+                    markedLoop: for markedNotification in self!.markedNotifications {
                         
                         
                         if post?.objectId == markedNotification {
@@ -70,8 +70,8 @@ final class NotificationController {
                         }
                     }
                     if notificationFound == false {
-                        strongSelf.markedNotifications.append((post?.objectId)!)
-                        strongSelf.scheduleNotificationWith(post: post!)
+                        self!.markedNotifications.append((post?.objectId)!)
+                        self!.scheduleNotificationWith(post: post!)
                         finished()
                         return
                     }
@@ -86,12 +86,12 @@ final class NotificationController {
         
         let predicate = NSPredicate(format: "objectId == %@", post.userId!)
         User.fetchBy(predicate: predicate) { (user) in
-            guard let userT = user else { return }
+            guard let _ = user else { return }
             
             URL(string: post.link!)!.fetchUrlMedia({ (title, details, image) in
                 
                 let content = UNMutableNotificationContent()
-                content.title = String(format: "%@", userT.username.defaultValue(defaultValue: ""))
+                content.title = String(format: "%@", user!.username.defaultValue(defaultValue: ""))
                 content.subtitle = String(format: "%@", title.defaultValue(defaultValue: "New notification"))
                 content.body = String(format: "%@", details.defaultValue(defaultValue: ""))
                 content.categoryIdentifier = "local"

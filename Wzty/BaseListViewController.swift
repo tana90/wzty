@@ -24,7 +24,6 @@ import CoreData
 class BaseListViewController: BaseCoreDataViewController {
     
     var loading: Bool = false
-    let statusBarGradient = UIImageView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 44))
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -32,19 +31,14 @@ class BaseListViewController: BaseCoreDataViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) { [unowned self] in
-            self.view.alpha = 1.0
+        UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) { [weak self] in
+            self?.view.alpha = 1.0
             }.startAnimation()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //Configure status bar gradient
-        statusBarGradient.image = UIImage(named: "gradient")
-        navigationController?.view.addSubview(statusBarGradient)
-        statusBarGradient.isHidden = true
-        
+
         //Put refresh control
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = .white
@@ -53,8 +47,8 @@ class BaseListViewController: BaseCoreDataViewController {
     }
     
     @objc func refreshData() {
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [unowned self] in
-            self.refreshControl?.endRefreshing()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) { [weak self] in
+            self?.refreshControl?.endRefreshing()
         }
     }
     
@@ -63,17 +57,17 @@ class BaseListViewController: BaseCoreDataViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        UIViewPropertyAnimator(duration: 0.2, curve: .easeOut) { [unowned self] in
-            self.tableView.alpha = 0.1
+        UIViewPropertyAnimator(duration: 0.2, curve: .easeOut) { [weak self] in
+            self?.tableView.alpha = 0.1
             }.startAnimation()
         
         
         if segue.identifier == "showUserDetailsSegue" {
-            guard let userId = targetUserId else {
+            guard let _ = targetUserId else {
                 return
             }
             let destinationViewController = segue.destination as! UserDetailsViewController
-            destinationViewController.userId = userId
+            destinationViewController.userId = targetUserId
             return
         } 
     }
@@ -129,10 +123,11 @@ extension BaseListViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "newsfeedCell") as! NewsfeedCell
         
-        cell.showMoreActionsHandler = { [unowned self] (postId) in
+        cell.showMoreActionsHandler = { [weak self] (postId) in
+            guard let _ = self else { return }
             let predicate = NSPredicate(format: "objectId == %@", postId)
             Post.fetchBy(predicate, result: { (post) -> (Void) in
-                moreAction(post: post, presentedIn: self)
+                moreAction(post: post, presentedIn: self!)
             })
         }
         
@@ -151,12 +146,6 @@ extension BaseListViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         guard let navigationController = navigationController else { return }
-        
-        if navigationController.isNavigationBarHidden {
-            statusBarGradient.isHidden = false
-        } else {
-            statusBarGradient.isHidden = true
-        }
         
         if !(navigationController.hidesBarsOnSwipe) {
             if #available(iOS 11.0, *) {

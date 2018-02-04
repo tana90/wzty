@@ -56,8 +56,8 @@ final class Board: NSManagedObject {
             
             //Put new users to board
             for userId in userIds {
-                User.fetchBy(id: userId, result: { [unowned self] (user) -> (Void) in
-                    (user as? User)?.boardId = self.objectId
+                User.fetchBy(id: userId, result: { [weak self] (user) -> (Void) in
+                    (user as? User)?.boardId = self?.objectId
                 })
             }
             

@@ -21,7 +21,7 @@
 
 import UIKit
 
-final class AboutViewController: UITableViewController {
+final class VersionViewController: UITableViewController {
     
     @IBOutlet weak var versionNumberLabel: UILabel!
     

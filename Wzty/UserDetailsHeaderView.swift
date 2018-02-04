@@ -26,10 +26,10 @@ final class UserDetailsHeaderView: UIView {
     
     func show(_ user: User?) {
         
-        guard let userT = user else { return }
+        guard let _ = user else { return }
         
         //Username
-        usernameLabel?.text = String(format: "@%@", userT.username!)
+        usernameLabel?.text = String(format: "@%@", user!.username!)
 
     }
     

@@ -66,8 +66,8 @@ final class ReportViewController: UITableViewController {
                 User.fetchBy(predicate: predicate) { (user) in
 
                     if user?.following == false {
-                        DispatchQueue.main.safeAsync { [unowned self] in
-                            self.unfollowLabel.alpha = 0.3
+                        DispatchQueue.main.safeAsync { [weak self] in
+                            self?.unfollowLabel.alpha = 0.3
                         }
                     }
                 }
