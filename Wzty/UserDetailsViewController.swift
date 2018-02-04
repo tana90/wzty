@@ -28,7 +28,6 @@ final class UserDetailsViewController: BaseListViewController {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timeSortDescriptor]
-        request.fetchLimit = FETCH_LIMIT
         
         if let userId = self.userId {
             let predicate = NSPredicate(format: "userId == %@ AND hidden == false", userId)

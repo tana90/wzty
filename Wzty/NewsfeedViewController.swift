@@ -31,7 +31,6 @@ final class NewsfeedViewController: BaseListViewController {
         request.sortDescriptors = [timeSortDescriptor]
         let predicate = NSPredicate(format: "homeTimeline == true AND hidden == false")
         request.predicate = predicate
-        request.fetchLimit = FETCH_LIMIT
         
         
         let frc = NSFetchedResultsController(fetchRequest: request,

@@ -25,7 +25,6 @@ class BoardDetailsViewController: BaseListViewController {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timeSortDescriptor]
-        request.fetchLimit = FETCH_LIMIT
         
         if let boardT = board {
             var userPredicate = NSPredicate(format: "boardId == %@ AND following == true", boardT.objectId!)

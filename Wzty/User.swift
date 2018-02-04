@@ -240,6 +240,7 @@ extension User {
             
             user.nextCursor = nextCursor
             
+            CoreDataManager.shared.saveContextBackground()
             finished(true)
             
         }, failure: { (error) in

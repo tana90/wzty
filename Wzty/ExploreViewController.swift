@@ -28,7 +28,6 @@ final class ExploreViewController: BaseListViewController {
         request.sortDescriptors = [followSortDescriptor, timeSortDescriptor]
         let predicate = NSPredicate(format: "username CONTAINS[cd] '' OR name CONTAINS[cd] ''")
         request.predicate = predicate
-        request.fetchLimit = FETCH_LIMIT
         
         let frc = NSFetchedResultsController(fetchRequest: request,
                                              managedObjectContext: CoreDataManager.shared.backgroundContext,
