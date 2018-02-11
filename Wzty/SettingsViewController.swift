@@ -36,12 +36,15 @@ extension SettingsViewController {
                 performSegue(withIdentifier: "showLicenseAgreementSegue", sender: self)
             }
             if indexPath.row == 1 {
-                performSegue(withIdentifier: "showFaqSegue", sender: self)
+                performSegue(withIdentifier: "showPrivacyPolicySegue", sender: self)
             }
             if indexPath.row == 2 {
-                performSegue(withIdentifier: "showAboutSegue", sender: self)
+                performSegue(withIdentifier: "showFaqSegue", sender: self)
             }
             if indexPath.row == 3 {
+                performSegue(withIdentifier: "showAboutSegue", sender: self)
+            }
+            if indexPath.row == 4 {
                 let mailComposeViewController = configuredMailComposeViewController()
                 if MFMailComposeViewController.canSendMail() {
                     self.present(mailComposeViewController, animated: true, completion: nil)

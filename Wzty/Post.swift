@@ -91,9 +91,6 @@ extension Post {
                     }
                 }
         }
-        
-        //Save data
-        //CoreDataManager.shared.saveContextBackground()
     }
     
     
@@ -240,10 +237,7 @@ extension Post {
                 //CoreDataManager.shared.saveContextBackground()
                 finished(true)
             }
-            
-            
-            
-            
+   
         }, failure: { (error) in
             finished(false)
             console("Error: \(error)")

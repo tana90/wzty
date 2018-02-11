@@ -46,7 +46,6 @@ class AddNewBoardViewController: BaseListViewController {
             }
                 request.predicate = predicate
         }
-        //request.fetchLimit = FETCH_LIMIT
         
         let frc = NSFetchedResultsController(fetchRequest: request,
                                              managedObjectContext: CoreDataManager.shared.backgroundContext,

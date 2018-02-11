@@ -74,14 +74,14 @@ class NewsfeedCell: UITableViewCell {
             self!.usenameLabel?.text = user!.name
         }
         
-        populate(withPost: post)
+        populateCell(withPost: post)
         
         //Fetch data and let NSFetchResultsController to reupdate cell
         if post.title == nil || post.imageUrl == nil {
             UrlDataPrefetcher.shared.fetch(link: post.link, completionHandler: { [weak self] in
                 
                 guard let _ = self else { return }
-                self!.populate(withPost: post)
+                self!.populateCell(withPost: post)
                 if refresh {
                     CoreDataManager.shared.saveContextBackground()
                 }
@@ -93,7 +93,7 @@ class NewsfeedCell: UITableViewCell {
     
     
     
-    func populate(withPost: Post) {
+    func populateCell(withPost: Post) {
         
         //Date
         let date = Date(timeIntervalSince1970: TimeInterval(withPost.timestamp)) as Date
@@ -120,6 +120,7 @@ class NewsfeedCell: UITableViewCell {
                 }
                 
                 UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
+                    guard let _ = self else { return }
                     self!.mediaView.alpha = 0.90
                     }.startAnimation()
             })
