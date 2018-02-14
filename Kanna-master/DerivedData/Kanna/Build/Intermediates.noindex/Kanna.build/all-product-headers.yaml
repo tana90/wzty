@@ -4,12 +4,12 @@
   'roots': [
     {
       'type': 'directory',
-      'name': "/Users/tudorana/Development/Wzty/Kanna-master/DerivedData/Kanna/Build/Products/Release-iphoneos/Kanna.framework/Headers",
+      'name': "/Users/tudorana/Development/Wzty/Kanna-master/DerivedData/Kanna/Build/Products/Release-iphonesimulator/Kanna.framework/Headers",
       'contents': [
         {
           'type': 'file',
           'name': "Kanna-Swift.h",
-          'external-contents': "/Users/tudorana/Development/Wzty/Kanna-master/DerivedData/Kanna/Build/Products/Release-iphoneos/Kanna.framework/Headers/Kanna-Swift.h"
+          'external-contents': "/Users/tudorana/Development/Wzty/Kanna-master/DerivedData/Kanna/Build/Products/Release-iphonesimulator/Kanna.framework/Headers/Kanna-Swift.h"
         },
         {
           'type': 'file',
@@ -20,12 +20,12 @@
     },
     {
       'type': 'directory',
-      'name': "/Users/tudorana/Development/Wzty/Kanna-master/DerivedData/Kanna/Build/Products/Release-iphoneos/Kanna.framework/Modules",
+      'name': "/Users/tudorana/Development/Wzty/Kanna-master/DerivedData/Kanna/Build/Products/Release-iphonesimulator/Kanna.framework/Modules",
       'contents': [
         {
           'type': 'file',
           'name': "module.modulemap",
-          'external-contents': "/Users/tudorana/Development/Wzty/Kanna-master/DerivedData/Kanna/Build/Intermediates.noindex/Kanna.build/Release-iphoneos/Kanna.build/module.modulemap"
+          'external-contents': "/Users/tudorana/Development/Wzty/Kanna-master/DerivedData/Kanna/Build/Intermediates.noindex/Kanna.build/Release-iphonesimulator/Kanna.build/module.modulemap"
         }
       ]
     }

@@ -1,0 +1,13 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': '/Users/tudorana/Development/Wzty/Kanna-master/DerivedData/Kanna/Build/Products/Release-iphonesimulator/Kanna.framework/Modules'
+    'contents': [{
+      'type': 'file',
+      'name': 'module.modulemap',
+      'external-contents': '/Users/tudorana/Development/Wzty/Kanna-master/DerivedData/Kanna/Build/Intermediates.noindex/Kanna.build/Release-iphonesimulator/Kanna.build/unextended-module.modulemap',
+    }]
+  }]
+}

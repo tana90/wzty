@@ -24,11 +24,11 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FAx-6n-mdf">
                                 <rect key="frame" x="16" y="610" width="343" height="37"/>
-                                <color key="backgroundColor" red="1" green="0.1158826245" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="TUc-wO-NDJ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Login with Twitter">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -42,29 +42,33 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wR-rs-lax">
-                                <rect key="frame" x="27" y="73" width="207.5" height="45.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
+                                <rect key="frame" x="27" y="73" width="215.5" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="38"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wzty News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38I-oq-J3N">
-                                <rect key="frame" x="27" y="115.5" width="183" height="42"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                <color key="textColor" red="1" green="0.14515793320000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="27" y="115.5" width="205" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="38"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L2t-Sv-pP0">
                                 <rect key="frame" x="16" y="560" width="343" height="33"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="License agreement"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="License agreement">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="Xgy-xL-6j5" kind="presentation" id="1Kc-Si-wJg"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xt-6W-1qY">
-                                <rect key="frame" x="16" y="493" width="343" height="33"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="F.A.Q."/>
+                                <rect key="frame" x="16" y="498" width="343" height="33"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="F.A.Q.">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="dE2-Ym-PO7" kind="presentation" id="XZb-ov-VwP"/>
                                 </connections>
@@ -73,29 +77,33 @@
                                 <rect key="frame" x="177" y="323" width="20" height="20"/>
                             </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8uk-l7-sJE">
-                                <rect key="frame" x="16" y="528" width="343" height="33"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Privacy policy"/>
+                                <rect key="frame" x="16" y="530" width="343" height="33"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Privacy policy">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="mP2-hy-90h" kind="presentation" id="Dmr-3Y-P47"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0wR-rs-lax" firstAttribute="top" secondItem="cai-ew-EpO" secondAttribute="bottom" constant="53" id="6Ui-Ho-3Ey"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0wR-rs-lax" secondAttribute="trailingMargin" id="6ls-ZD-4SK"/>
                             <constraint firstItem="0wR-rs-lax" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="11" id="8Q6-pr-Yoo"/>
                             <constraint firstItem="gB6-XY-X9S" firstAttribute="top" secondItem="FAx-6n-mdf" secondAttribute="bottom" constant="20" id="9Mz-dN-R2U"/>
                             <constraint firstItem="FAx-6n-mdf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="BvG-du-Tvg"/>
                             <constraint firstItem="L2t-Sv-pP0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="CXE-gD-SbS"/>
-                            <constraint firstItem="8uk-l7-sJE" firstAttribute="top" secondItem="2xt-6W-1qY" secondAttribute="bottom" constant="2" id="D8E-lO-rXv"/>
+                            <constraint firstItem="8uk-l7-sJE" firstAttribute="top" secondItem="2xt-6W-1qY" secondAttribute="bottom" constant="-1" id="D8E-lO-rXv"/>
                             <constraint firstItem="2xt-6W-1qY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Gpk-Id-9Iv"/>
                             <constraint firstItem="L2t-Sv-pP0" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Hpw-N7-DOx"/>
                             <constraint firstItem="8uk-l7-sJE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="IWo-7w-xlv"/>
                             <constraint firstItem="2xt-6W-1qY" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Rlw-3Z-bgm"/>
                             <constraint firstItem="FAx-6n-mdf" firstAttribute="top" secondItem="L2t-Sv-pP0" secondAttribute="bottom" constant="17" id="UK0-eh-cv0"/>
-                            <constraint firstItem="FAx-6n-mdf" firstAttribute="top" secondItem="8uk-l7-sJE" secondAttribute="bottom" constant="49" id="Wek-L3-rkd"/>
+                            <constraint firstItem="FAx-6n-mdf" firstAttribute="top" secondItem="8uk-l7-sJE" secondAttribute="bottom" constant="47" id="Wek-L3-rkd"/>
                             <constraint firstItem="odJ-ff-NVl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xsa-hz-TME"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="38I-oq-J3N" secondAttribute="trailingMargin" id="ep9-Wt-vIe"/>
                             <constraint firstItem="8uk-l7-sJE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="fA1-3P-AdE"/>
                             <constraint firstItem="38I-oq-J3N" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="11" id="mHf-su-JqA"/>
                             <constraint firstItem="odJ-ff-NVl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="nWg-7b-yeq"/>
@@ -122,7 +130,7 @@
                         <color key="backgroundColor" red="0.20784313725490194" green="0.20784313725490194" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="1" green="0.14515793320000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="selectedImageTintColor" red="1" green="0.14515793320000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="rox-xZ-547" kind="relationship" relationship="viewControllers" id="tyD-Mb-abO"/>
@@ -153,7 +161,9 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="JW9-oR-DFJ"/>
                                     </constraints>
-                                    <state key="normal" image="close-nav"/>
+                                    <state key="normal" image="close-nav">
+                                        <color key="titleColor" red="0.8980392157" green="0.22352941179999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
                                     <connections>
                                         <action selector="closeAction" destination="8T0-bk-lSp" eventType="touchUpInside" id="ba7-EI-jEc"/>
                                     </connections>
@@ -190,7 +200,7 @@
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="go7-kM-hbL">
                                                     <rect key="frame" x="97" y="11" width="262" height="0.0"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -226,8 +236,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unfollow user" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAV-RF-TmL">
-                                                    <rect key="frame" x="135" y="11" width="105" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="131" y="11" width="113" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -252,8 +262,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report spam" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x0M-yQ-kYd">
-                                                    <rect key="frame" x="138.5" y="11" width="98.5" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="135.5" y="11" width="105" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -278,8 +288,8 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send feedback" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tLM-Jl-Fqd">
-                                                    <rect key="frame" x="130.5" y="11" width="115" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="127" y="11" width="122.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -357,7 +367,7 @@
         <scene sceneID="XMZ-NK-RGI">
             <objects>
                 <tableViewController id="iFF-dX-JbS" customClass="ExploreViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="default" separatorInsetReference="fromAutomaticInsets" rowHeight="44" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="fI4-Rc-vKj">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" indicatorStyle="black" keyboardDismissMode="onDrag" dataMode="prototypes" style="grouped" separatorStyle="none" separatorInsetReference="fromAutomaticInsets" rowHeight="44" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="fI4-Rc-vKj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
@@ -451,7 +461,7 @@
         <scene sceneID="bbf-dd-qy9">
             <objects>
                 <tableViewController id="Jw0-6n-MDO" customClass="ProfileViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="200" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" id="Exh-6x-oip">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="200" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" id="Exh-6x-oip">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
@@ -498,7 +508,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="License agreement" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AbK-2h-aY0">
                                                     <rect key="frame" x="16" y="11" width="343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -521,7 +531,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy policy" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cb0-yf-cU3">
                                                     <rect key="frame" x="16" y="11" width="343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -544,7 +554,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F.A.Q." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lq-4B-gSm">
                                                     <rect key="frame" x="16" y="11" width="343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -567,7 +577,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="App version" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="piK-aN-Eex">
                                                     <rect key="frame" x="16" y="11" width="343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -590,7 +600,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send feedback" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9NH-94-s2T">
                                                     <rect key="frame" x="16" y="11" width="343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -617,7 +627,7 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Clear cache" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgg-p6-h8H">
                                                     <rect key="frame" x="16" y="11" width="343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -640,8 +650,8 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kF8-na-taG">
                                                     <rect key="frame" x="16" y="11" width="343" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                    <color key="textColor" red="1" green="0.1158826245" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -782,7 +792,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Y2z-cK-Z8I">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">Wzty News 1.0.x
+                                <string key="text">Wzty News 1.0.x
 Copyright (c) 2018 Tudor Octavian ANA (TANA)
 
 -- END USER LICENSE AGREEMENT --
@@ -849,9 +859,9 @@ THIS SOFTWARE AND THE ACCOMPANYING FILES ARE SOLD "AS IS" AND WITHOUT WARRANTIES
 
 5. CONSENT OF USE OF DATA
 
-You agree that Tudor Octavian ANA may collect and use information gathered in any manner as part of the product support services provided to you, if any, related to 'Wzty News'. Tudor Octavian ANA may also use this information to provide notices to you which may be of use or interest to you.  5.1 PRIVACY  For information about how 'Wzty News' collects, uses, and shares your information, please review our Privacy Policy founded in Settings section. You agree that by using 'Wzty News' application.  6. MODIFICATIONS TO THIS AGREEMENT   Tudor Octavian ANA reserves the right to modify this Agreement by posting a revised Agreement on and/or through 'Wzty News' application and providing notice to you that this Agreement has changed, generally via email where possible, and otherwise through 'Wzty News' application. Modifications will not apply retroactively. You are responsible for reviewing and becoming familiar with and modifications to this Agreement. We may sometimes ask you to review and to explicitly agree to a revised version of this Agreement. In such cases, modifications will be effective at the time of your agreement to the modified version of this Agreement. If you do not agree at that time, you are not permitted to use 'Wzty News' application.</mutableString>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+You agree that Tudor Octavian ANA may collect and use information gathered in any manner as part of the product support services provided to you, if any, related to 'Wzty News'. Tudor Octavian ANA may also use this information to provide notices to you which may be of use or interest to you.  5.1 PRIVACY  For information about how 'Wzty News' collects, uses, and shares your information, please review our Privacy Policy founded in Settings section. You agree that by using 'Wzty News' application.  6. MODIFICATIONS TO THIS AGREEMENT   Tudor Octavian ANA reserves the right to modify this Agreement by posting a revised Agreement on and/or through 'Wzty News' application and providing notice to you that this Agreement has changed, generally via email where possible, and otherwise through 'Wzty News' application. Modifications will not apply retroactively. You are responsible for reviewing and becoming familiar with and modifications to this Agreement. We may sometimes ask you to review and to explicitly agree to a revised version of this Agreement. In such cases, modifications will be effective at the time of your agreement to the modified version of this Agreement. If you do not agree at that time, you are not permitted to use 'Wzty News' application.</string>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -893,25 +903,27 @@ You agree that Tudor Octavian ANA may collect and use information gathered in an
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Version" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLs-Ef-8bE">
-                                                    <rect key="frame" x="16" y="11" width="58" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fLs-Ef-8bE">
+                                                    <rect key="frame" x="16" y="11" width="62" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1.0.1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2T-od-HtQ">
-                                                    <rect key="frame" x="325" y="11" width="34" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <rect key="frame" x="323" y="11" width="36" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottomMargin" secondItem="fLs-Ef-8bE" secondAttribute="bottom" constant="1" id="7aN-7J-rff"/>
+                                                <constraint firstItem="o2T-od-HtQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="TL2-x3-ic1" secondAttribute="leadingMargin" id="Qub-KG-QC9"/>
                                                 <constraint firstItem="fLs-Ef-8bE" firstAttribute="top" secondItem="TL2-x3-ic1" secondAttribute="topMargin" id="Usd-pn-RM0"/>
                                                 <constraint firstItem="o2T-od-HtQ" firstAttribute="trailing" secondItem="TL2-x3-ic1" secondAttribute="trailingMargin" id="k2Y-AK-dMf"/>
                                                 <constraint firstItem="o2T-od-HtQ" firstAttribute="top" secondItem="TL2-x3-ic1" secondAttribute="topMargin" id="l7s-uD-Au4"/>
                                                 <constraint firstItem="fLs-Ef-8bE" firstAttribute="leading" secondItem="TL2-x3-ic1" secondAttribute="leadingMargin" id="mvH-Wa-Qm5"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fLs-Ef-8bE" secondAttribute="trailingMargin" id="ogo-uh-y1A"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="o2T-od-HtQ" secondAttribute="bottom" constant="1" id="vYr-8y-1Nd"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -1052,7 +1064,7 @@ You agree that Tudor Octavian ANA may collect and use information gathered in an
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="YJj-tE-OpK">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">Frequently Asked Questions:  Q: What is Wzty?
+                                <string key="text">Frequently Asked Questions:  Q: What is Wzty?
 Wzty is a news app based on Twitter content with focus on speed and simplicity. It’s super-fast, simple and free. You can use Wzty on all your devices simultaneously.
 With Wzty you can read your Twitter content, search for users and arrange content into Boards. For example if you like cars, you can create a Board named ‘Cars’ and there you can see posts from users that shares content about cars.
 
@@ -1117,9 +1129,9 @@ Q: Can I help?
 Yes, we are always looking for volunteers to help us with the user support. You can contact us via Email (contact@wztnews.com).
 
 Q: How can I contact Wzty team?
-You can contact Wzty team via Email at contact@wztynews.com or by phone +40724460563.</mutableString>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+You can contact Wzty team via Email at contact@wztynews.com or by phone +40724460563.</string>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -1158,10 +1170,10 @@ You can contact Wzty team via Email at contact@wztynews.com or by phone +4072446
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Vga-fm-fS9">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">Wzty News 1.0.x
-Copyright (c) 2018 Tudor Octavian ANA (TANA)  -- Privacy policy --  Account information: We may use Account Information, alone or together with other information, to enhance and improve the Services, such as by personalization. We use your email address to verify your Account and to communicate with you, as described in more detail below. We also allow users to look for their friends by email address.  User Content: By default, all sharing through the Services is public, and when you provide us with content it is published so that anyone can view it.  Native Actions: The Services allow you to perform native actions that are integral to our products, such as liking a post, add a post, and following another user.  Information About User Content: In some cases, we may collect information about content you provide to the Services. For example, when it's included as part of your images, we may collect information describing your app content. This information allows us to improve the Services and provide additional features and functionality.  Information Related to Use of the Services: We collect information about how people use the Services, including those with an Account. We may use this information about how you and others interact with the Services for a number of things generally related to enhancing, improving, protecting, and developing new Services, including but not limited to: providing users with personalized content; providing users with targeted advertising; improving our search results; identifying trending or popular content; fighting spam, malware, identity theft and generally keeping our users and community safe; and for legal and safety reasons as set forth in “Information Disclosed for Our Protection and t.he Protection of Others.”  Derived Information: As described above in “Native Actions” and “Information Related to Use of the Services,” we analyze your actions on the Services in order to derive or infer characteristics that may be descriptive of your Account (for example, what kinds of blogs you follow or what kinds of posts you view, like, or reblog). We use this information for all of the purposes set forth in “Information Related to Use of the Services,” above.  We never share information we receive from you unless: (a) we have your permission to share that information; (b) we have given you prior notice that the information will be shared, and with whom (such as in this Privacy Policy); or (c) that information is aggregate information or other information that does not identify you.  Information Shared with the Public Through the Services: As noted in “User Content” and “Native Actions,” above, by default, content published through the Services and many actions you take on the Services are shared with the public. Because this kind of information can be seen by anyone and may be indexed by search engines (like Google Search), you should be careful about what you choose to disclose publicly and make sure it’s information you want to share with everyone.  Information Shared Between the Services: We may, if possible, aggregate information about your use of multiple Services and use that consolidated information to enhance and improve the Services, and to develop new Services.</mutableString>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <string key="text">Wzty News 1.0.x
+Copyright (c) 2018 Tudor Octavian ANA (TANA)  -- Privacy policy --  Account information: We may use Account Information, alone or together with other information, to enhance and improve the Services, such as by personalization. We use your email address to verify your Account and to communicate with you, as described in more detail below. We also allow users to look for their friends by email address.  User Content: By default, all sharing through the Services is public, and when you provide us with content it is published so that anyone can view it.  Native Actions: The Services allow you to perform native actions that are integral to our products, such as liking a post, add a post, and following another user.  Information About User Content: In some cases, we may collect information about content you provide to the Services. For example, when it's included as part of your images, we may collect information describing your app content. This information allows us to improve the Services and provide additional features and functionality.  Information Related to Use of the Services: We collect information about how people use the Services, including those with an Account. We may use this information about how you and others interact with the Services for a number of things generally related to enhancing, improving, protecting, and developing new Services, including but not limited to: providing users with personalized content; providing users with targeted advertising; improving our search results; identifying trending or popular content; fighting spam, malware, identity theft and generally keeping our users and community safe; and for legal and safety reasons as set forth in “Information Disclosed for Our Protection and t.he Protection of Others.”  Derived Information: As described above in “Native Actions” and “Information Related to Use of the Services,” we analyze your actions on the Services in order to derive or infer characteristics that may be descriptive of your Account (for example, what kinds of blogs you follow or what kinds of posts you view, like, or reblog). We use this information for all of the purposes set forth in “Information Related to Use of the Services,” above.  We never share information we receive from you unless: (a) we have your permission to share that information; (b) we have given you prior notice that the information will be shared, and with whom (such as in this Privacy Policy); or (c) that information is aggregate information or other information that does not identify you.  Information Shared with the Public Through the Services: As noted in “User Content” and “Native Actions,” above, by default, content published through the Services and many actions you take on the Services are shared with the public. Because this kind of information can be seen by anyone and may be indexed by search engines (like Google Search), you should be careful about what you choose to disclose publicly and make sure it’s information you want to share with everyone.  Information Shared Between the Services: We may, if possible, aggregate information about your use of multiple Services and use that consolidated information to enhance and improve the Services, and to develop new Services.</string>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -1195,12 +1207,12 @@ Copyright (c) 2018 Tudor Octavian ANA (TANA)  -- Privacy policy --  Acco
         <image name="settings-nav" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nxZ-aP-VC3"/>
+        <segue reference="1Kc-Si-wJg"/>
         <segue reference="UHy-t4-8ls"/>
-        <segue reference="Brm-IC-HZM"/>
-        <segue reference="bqg-2a-5rt"/>
+        <segue reference="XZb-ov-VwP"/>
+        <segue reference="Dmr-3Y-P47"/>
         <segue reference="WwC-rb-DNk"/>
         <segue reference="EW1-6y-XlW"/>
     </inferredMetricsTieBreakers>
-    <color key="tintColor" red="1" green="0.14515793320000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+    <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

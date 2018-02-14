@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C814CCBE2034430800F0F4A8 /* CSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814CCB82034430700F0F4A8 /* CSS.swift */; };
+		C814CCBF2034430800F0F4A8 /* libxmlParserOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814CCB92034430700F0F4A8 /* libxmlParserOption.swift */; };
+		C814CCC02034430800F0F4A8 /* libxmlHTMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814CCBA2034430800F0F4A8 /* libxmlHTMLDocument.swift */; };
+		C814CCC12034430800F0F4A8 /* libxmlHTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814CCBB2034430800F0F4A8 /* libxmlHTMLNode.swift */; };
+		C814CCC22034430800F0F4A8 /* Kanna.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814CCBC2034430800F0F4A8 /* Kanna.swift */; };
 		C81EFD051FBC56D700A54FFE /* License in Resources */ = {isa = PBXBuildFile; fileRef = C81EFD041FBC56D700A54FFE /* License */; };
 		C81EFD071FBC584B00A54FFE /* BaseCoreDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */; };
 		C836D6A3200F846C00AB497A /* BoardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C836D6A2200F846C00AB497A /* BoardDetailsViewController.swift */; };
@@ -107,8 +112,6 @@
 		C88A5F22200F6558004E4C47 /* BoardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C88A5F21200F6558004E4C47 /* BoardCell.xib */; };
 		C88A5F24200F65DB004E4C47 /* BoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88A5F23200F65DB004E4C47 /* BoardCell.swift */; };
 		C8A2903A200E3ADA0069BF07 /* AddBoardHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8A29039200E3ADA0069BF07 /* AddBoardHeaderView.swift */; };
-		C8AC8BC01FB784DB00F81019 /* Kanna.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C889F5431FB1E46A00132460 /* Kanna.framework */; };
-		C8AC8BC11FB784DB00F81019 /* Kanna.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C889F5431FB1E46A00132460 /* Kanna.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C8AC8BC51FB86BAA00F81019 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8BC41FB86BAA00F81019 /* NotificationController.swift */; };
 		C8AC8BC71FB88DB200F81019 /* NavigationTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AC8BC61FB88DB200F81019 /* NavigationTableHeaderView.xib */; };
 		C8AC8BC91FB895A000F81019 /* NavigationTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8BC81FB895A000F81019 /* NavigationTableHeaderView.swift */; };
@@ -131,7 +134,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C8AC8BC11FB784DB00F81019 /* Kanna.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +141,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C814CCB82034430700F0F4A8 /* CSS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CSS.swift; path = "Kanna-master/Sources/Kanna/CSS.swift"; sourceTree = SOURCE_ROOT; };
+		C814CCB92034430700F0F4A8 /* libxmlParserOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = libxmlParserOption.swift; path = "Kanna-master/Sources/Kanna/libxmlParserOption.swift"; sourceTree = SOURCE_ROOT; };
+		C814CCBA2034430800F0F4A8 /* libxmlHTMLDocument.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = libxmlHTMLDocument.swift; path = "Kanna-master/Sources/Kanna/libxmlHTMLDocument.swift"; sourceTree = SOURCE_ROOT; };
+		C814CCBB2034430800F0F4A8 /* libxmlHTMLNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = libxmlHTMLNode.swift; path = "Kanna-master/Sources/Kanna/libxmlHTMLNode.swift"; sourceTree = SOURCE_ROOT; };
+		C814CCBC2034430800F0F4A8 /* Kanna.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Kanna.swift; path = "Kanna-master/Sources/Kanna/Kanna.swift"; sourceTree = SOURCE_ROOT; };
+		C814CCBD2034430800F0F4A8 /* Kanna.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kanna.h; path = "Kanna-master/Sources/Kanna/Kanna.h"; sourceTree = SOURCE_ROOT; };
+		C814CCC8203444B500F0F4A8 /* libxml2-kanna.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "libxml2-kanna.h"; path = "Kanna-master/Modules/libxml2-kanna.h"; sourceTree = SOURCE_ROOT; };
 		C81EFD041FBC56D700A54FFE /* License */ = {isa = PBXFileReference; lastKnownFileType = text; path = License; sourceTree = "<group>"; };
 		C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoreDataViewController.swift; sourceTree = "<group>"; };
 		C836D6A2200F846C00AB497A /* BoardDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailsViewController.swift; sourceTree = "<group>"; };
@@ -237,7 +246,6 @@
 		C889F5251FB1C10900132460 /* Filter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Filter.swift; path = Kingfisher/Filter.swift; sourceTree = SOURCE_ROOT; };
 		C889F5261FB1C10900132460 /* KingfisherOptionsInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = KingfisherOptionsInfo.swift; path = Kingfisher/KingfisherOptionsInfo.swift; sourceTree = SOURCE_ROOT; };
 		C889F5271FB1C10900132460 /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "String+MD5.swift"; path = "Kingfisher/String+MD5.swift"; sourceTree = SOURCE_ROOT; };
-		C889F5431FB1E46A00132460 /* Kanna.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kanna.framework; path = "Kanna-master/DerivedData/Kanna/Build/Products/Release-iphoneos/Kanna.framework"; sourceTree = "<group>"; };
 		C889F5461FB222E600132460 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		C889F5481FB222F600132460 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		C88A5F1F200F5D97004E4C47 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
@@ -266,13 +274,34 @@
 			files = (
 				C8FDC6051FB077380005721F /* libresolv.tbd in Frameworks */,
 				C8FDC6071FB077F80005721F /* libxml2.2.tbd in Frameworks */,
-				C8AC8BC01FB784DB00F81019 /* Kanna.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C814CCB7203442F100F0F4A8 /* Kanna */ = {
+			isa = PBXGroup;
+			children = (
+				C814CCC72034449A00F0F4A8 /* Modules */,
+				C814CCB82034430700F0F4A8 /* CSS.swift */,
+				C814CCBD2034430800F0F4A8 /* Kanna.h */,
+				C814CCBC2034430800F0F4A8 /* Kanna.swift */,
+				C814CCBA2034430800F0F4A8 /* libxmlHTMLDocument.swift */,
+				C814CCBB2034430800F0F4A8 /* libxmlHTMLNode.swift */,
+				C814CCB92034430700F0F4A8 /* libxmlParserOption.swift */,
+			);
+			name = Kanna;
+			sourceTree = "<group>";
+		};
+		C814CCC72034449A00F0F4A8 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				C814CCC8203444B500F0F4A8 /* libxml2-kanna.h */,
+			);
+			name = Modules;
+			sourceTree = "<group>";
+		};
 		C81EFD081FBC5EF900A54FFE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,7 +334,6 @@
 		C845D4ED1FAF347500A278ED /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C889F5431FB1E46A00132460 /* Kanna.framework */,
 				C8FDC6061FB077F80005721F /* libxml2.2.tbd */,
 				C8FDC6041FB077380005721F /* libresolv.tbd */,
 			);
@@ -560,6 +588,7 @@
 		C889F4FE1FB1BE7D00132460 /* Extern */ = {
 			isa = PBXGroup;
 			children = (
+				C814CCB7203442F100F0F4A8 /* Kanna */,
 				C889F5121FB1C0E400132460 /* Kingfisher */,
 				C889F4AE1FB1BDED00132460 /* Swifter */,
 			);
@@ -733,6 +762,7 @@
 				C889F5291FB1C10900132460 /* UIButton+Kingfisher.swift in Sources */,
 				C889F4E71FB1BE0B00132460 /* SwifterSuggested.swift in Sources */,
 				C85989301FADA81F00C94877 /* LoginViewController.swift in Sources */,
+				C814CCC22034430800F0F4A8 /* Kanna.swift in Sources */,
 				C889F52F1FB1C10900132460 /* ImagePrefetcher.swift in Sources */,
 				C889F5331FB1C10900132460 /* CacheSerializer.swift in Sources */,
 				C889F4E61FB1BE0B00132460 /* SwifterPlaces.swift in Sources */,
@@ -747,6 +777,7 @@
 				C889F4D71FB1BE0B00132460 /* SwifterTweets.swift in Sources */,
 				C889F4F71FB1BE0B00132460 /* SHA1.swift in Sources */,
 				C85989451FADBA2900C94877 /* UserDetailsHeaderView.swift in Sources */,
+				C814CCC02034430800F0F4A8 /* libxmlHTMLDocument.swift in Sources */,
 				C883233F20272A0C00C82874 /* FaqViewController.swift in Sources */,
 				C85989411FADB9A400C94877 /* ProfileViewController.swift in Sources */,
 				C889F5351FB1C10900132460 /* ImageTransition.swift in Sources */,
@@ -757,7 +788,9 @@
 				C845D5041FAF57C500A278ED /* SettingsViewController.swift in Sources */,
 				C889F52D1FB1C10900132460 /* ImageCache.swift in Sources */,
 				C859893B1FADB75C00C94877 /* NewsfeedDetailsViewController.swift in Sources */,
+				C814CCBE2034430800F0F4A8 /* CSS.swift in Sources */,
 				C889F4F41FB1BE0B00132460 /* SwifterSearch.swift in Sources */,
+				C814CCC12034430800F0F4A8 /* libxmlHTMLNode.swift in Sources */,
 				C883234720272FD600C82874 /* Placeholder.swift in Sources */,
 				C889F4E01FB1BE0B00132460 /* URL++.swift in Sources */,
 				C889F5491FB222F600132460 /* UserCell.swift in Sources */,
@@ -767,6 +800,7 @@
 				C859893D1FADB78300C94877 /* BaseDetailsViewController.swift in Sources */,
 				C889F4EA1FB1BE0B00132460 /* SwifterFavorites.swift in Sources */,
 				C8A2903A200E3ADA0069BF07 /* AddBoardHeaderView.swift in Sources */,
+				C814CCBF2034430800F0F4A8 /* libxmlParserOption.swift in Sources */,
 				C81EFD071FBC584B00A54FFE /* BaseCoreDataViewController.swift in Sources */,
 				C889F5301FB1C10900132460 /* ImageView+Kingfisher.swift in Sources */,
 				C889F4ED1FB1BE0B00132460 /* SwifterTag.swift in Sources */,
@@ -936,25 +970,19 @@
 		C85989241FADA69F00C94877 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 5B3Q9N6AS8;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Swifter-master/DerivedData/Swifter/Build/Products/Release-iphonesimulator",
-					"$(PROJECT_DIR)/Kanna-master/DerivedData/Kanna/Build/Products/Release-iphonesimulator",
-					"$(PROJECT_DIR)/Swifter-master/DerivedData/Swifter/Build/Products/Release-iphoneos",
-					"$(PROJECT_DIR)/Kanna-master/DerivedData/Kanna/Build/Products/Release-iphoneos",
-				);
-				HEADER_SEARCH_PATHS = (
-					"/usr/include/**",
-					/usr/include/libxml2,
-					"$(SDKROOT)/usr/include/libxml2/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Wzty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wztnews.wzty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -965,25 +993,19 @@
 		C85989251FADA69F00C94877 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 5B3Q9N6AS8;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Swifter-master/DerivedData/Swifter/Build/Products/Release-iphonesimulator",
-					"$(PROJECT_DIR)/Kanna-master/DerivedData/Kanna/Build/Products/Release-iphonesimulator",
-					"$(PROJECT_DIR)/Swifter-master/DerivedData/Swifter/Build/Products/Release-iphoneos",
-					"$(PROJECT_DIR)/Kanna-master/DerivedData/Kanna/Build/Products/Release-iphoneos",
-				);
-				HEADER_SEARCH_PATHS = (
-					"/usr/include/**",
-					/usr/include/libxml2,
-					"$(SDKROOT)/usr/include/libxml2/**",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Wzty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wztnews.wzty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;

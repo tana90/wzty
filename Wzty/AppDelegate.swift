@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         //Change navigation title font
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 24, weight: .heavy), NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 24, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.white]
         
         return true
     }

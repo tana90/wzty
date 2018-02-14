@@ -20,7 +20,7 @@
 
 import Foundation
 import UIKit
-import Kanna
+
 
 extension UIImage {
     
@@ -290,7 +290,7 @@ public extension URL {
                     return
             }
             
-            if let doc = Kanna.HTML(html: data, encoding: String.Encoding.utf8) {
+            if let doc = HTML(html: data, encoding: String.Encoding.utf8) {
                 let title = doc.title
                 var description: String? = nil
                 var previewImage: String? = nil
@@ -356,6 +356,75 @@ extension String {
             rmvText = rmvText.replacingOccurrences(of: "\"", with: "")
             rmvText = rmvText.replacingOccurrences(of: "“", with: "")
             rmvText = rmvText.replacingOccurrences(of: "”", with: "")
+            
+            rmvText = rmvText.replacingOccurrences(of: "&mdash;", with: "—")
+            rmvText = rmvText.replacingOccurrences(of: "&ndash;", with: "—")
+            rmvText = rmvText.replacingOccurrences(of: "&middot;", with: "·")
+            rmvText = rmvText.replacingOccurrences(of: "&micro;", with: "µ")
+            rmvText = rmvText.replacingOccurrences(of: "&permil;", with: "‰")
+            rmvText = rmvText.replacingOccurrences(of: "&deg;", with: "°")
+            rmvText = rmvText.replacingOccurrences(of: "&trade;", with: "™")
+            rmvText = rmvText.replacingOccurrences(of: "&reg;", with: "®")
+            rmvText = rmvText.replacingOccurrences(of: "&copy;", with: "©")
+            rmvText = rmvText.replacingOccurrences(of: "&dagger;", with: "†")
+            rmvText = rmvText.replacingOccurrences(of: "&bull;", with: "•")
+            rmvText = rmvText.replacingOccurrences(of: "&raquo;", with: "»")
+            rmvText = rmvText.replacingOccurrences(of: "&laquo;", with: "«")
+            rmvText = rmvText.replacingOccurrences(of: "&pound;", with: "£")
+            rmvText = rmvText.replacingOccurrences(of: "&euro;", with: "€")
+            
+            //Romanian
+            rmvText = rmvText.replacingOccurrences(of: "&#258;", with: "Ă")
+            rmvText = rmvText.replacingOccurrences(of: "&Acirc;", with: "Â")
+            rmvText = rmvText.replacingOccurrences(of: "&Icirc;", with: "Î")
+            rmvText = rmvText.replacingOccurrences(of: "&#350;", with: "Ş")
+            rmvText = rmvText.replacingOccurrences(of: "&#354;", with: "Ţ")
+            rmvText = rmvText.replacingOccurrences(of: "&#259;", with: "ă")
+            rmvText = rmvText.replacingOccurrences(of: "&acirc;", with: "â")
+            rmvText = rmvText.replacingOccurrences(of: "&icirc;", with: "î")
+            rmvText = rmvText.replacingOccurrences(of: "&#351;", with: "ş")
+            rmvText = rmvText.replacingOccurrences(of: "&#355;", with: "ţ")
+            
+            //German
+            rmvText = rmvText.replacingOccurrences(of: "&Auml;", with: "Ä")
+            rmvText = rmvText.replacingOccurrences(of: "&Ouml;", with: "Ö")
+            rmvText = rmvText.replacingOccurrences(of: "&Uuml;", with: "Ü")
+            rmvText = rmvText.replacingOccurrences(of: "&auml;", with: "ä")
+            rmvText = rmvText.replacingOccurrences(of: "&ouml;", with: "ö")
+            rmvText = rmvText.replacingOccurrences(of: "&uuml;", with: "ü")
+            rmvText = rmvText.replacingOccurrences(of: "&szlig;", with: "ß")
+            
+            //French
+            rmvText = rmvText.replacingOccurrences(of: "&Agrave;", with: "À")
+            rmvText = rmvText.replacingOccurrences(of: "&Ccedil;", with: "Ç")
+            rmvText = rmvText.replacingOccurrences(of: "&Egrave;", with: "È")
+            rmvText = rmvText.replacingOccurrences(of: "&Eacute;", with: "É")
+            rmvText = rmvText.replacingOccurrences(of: "&Ecirc;", with: "Ê")
+            rmvText = rmvText.replacingOccurrences(of: "&Euml;", with: "Ë")
+            rmvText = rmvText.replacingOccurrences(of: "&Iuml;", with: "Ï")
+            rmvText = rmvText.replacingOccurrences(of: "&Ocirc;", with: "Ô")
+            rmvText = rmvText.replacingOccurrences(of: "&OElig;", with: "Œ")
+            rmvText = rmvText.replacingOccurrences(of: "&Ugrave;", with: "Ù")
+            rmvText = rmvText.replacingOccurrences(of: "&Ucirc;", with: "Û")
+            rmvText = rmvText.replacingOccurrences(of: "&Uuml;", with: "Ü")
+            rmvText = rmvText.replacingOccurrences(of: "&#376;", with: "Ÿ")
+            
+            rmvText = rmvText.replacingOccurrences(of: "&agrave;", with: "à")
+            rmvText = rmvText.replacingOccurrences(of: "&ccedil;", with: "ç")
+            rmvText = rmvText.replacingOccurrences(of: "&egrave;", with: "è")
+            rmvText = rmvText.replacingOccurrences(of: "&eacute;", with: "é")
+            rmvText = rmvText.replacingOccurrences(of: "&ecirc;", with: "ê")
+            rmvText = rmvText.replacingOccurrences(of: "&euml;", with: "ë")
+            rmvText = rmvText.replacingOccurrences(of: "&iuml;", with: "ï")
+            rmvText = rmvText.replacingOccurrences(of: "&ocirc;", with: "ô")
+            rmvText = rmvText.replacingOccurrences(of: "&oElig;", with: "œ")
+            rmvText = rmvText.replacingOccurrences(of: "&ugrave;", with: "ù")
+            rmvText = rmvText.replacingOccurrences(of: "&ucirc;", with: "û")
+            rmvText = rmvText.replacingOccurrences(of: "&uuml;", with: "ü")
+            rmvText = rmvText.replacingOccurrences(of: "&yuml;", with: "ÿ")
+
+            
+            
             
             let components = rmvText.components(separatedBy: "Twitter:")
             if components.count > 1 {

@@ -23,9 +23,7 @@ import MessageUI
 
 final class SettingsViewController: UITableViewController {
     
-    
 }
-
 
 extension SettingsViewController {
     

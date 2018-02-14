@@ -124,7 +124,6 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
     }
 }

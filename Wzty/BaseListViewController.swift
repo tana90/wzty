@@ -80,7 +80,7 @@ extension BaseListViewController {
     
     override func tableView(_ tableView: UITableView, 
                             heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UIScreen.main.bounds.size.height - 120
+        return tableView.bounds.size.height - 120//UIScreen.main.bounds.size.height - 120
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

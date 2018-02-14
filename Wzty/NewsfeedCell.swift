@@ -121,7 +121,7 @@ class NewsfeedCell: UITableViewCell {
                 
                 UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
                     guard let _ = self else { return }
-                    self!.mediaView.alpha = 0.90
+                    self!.mediaView.alpha = 0.85
                     }.startAnimation()
             })
         } else {

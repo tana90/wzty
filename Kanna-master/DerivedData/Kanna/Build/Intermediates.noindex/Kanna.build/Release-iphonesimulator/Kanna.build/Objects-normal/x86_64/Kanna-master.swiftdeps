@@ -1,0 +1,9 @@
+version: "Apple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)"
+options: "ba5eab76dc4028c13ab6c578bc463ff9"
+build_time: [1518603082, 29964000]
+inputs:
+  "/Users/tudorana/Development/Wzty/Kanna-master/Sources/Kanna/libxmlParserOption.swift": [9223372036, 854775807]
+  "/Users/tudorana/Development/Wzty/Kanna-master/Sources/Kanna/libxmlHTMLDocument.swift": [9223372036, 854775807]
+  "/Users/tudorana/Development/Wzty/Kanna-master/Sources/Kanna/CSS.swift": [9223372036, 854775807]
+  "/Users/tudorana/Development/Wzty/Kanna-master/Sources/Kanna/libxmlHTMLNode.swift": [9223372036, 854775807]
+  "/Users/tudorana/Development/Wzty/Kanna-master/Sources/Kanna/Kanna.swift": [9223372036, 854775807]

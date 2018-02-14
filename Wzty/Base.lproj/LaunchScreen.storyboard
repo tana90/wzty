@@ -23,22 +23,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wQ1-yS-4R4">
-                                <rect key="frame" x="27" y="73" width="207.5" height="45.5"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="38"/>
+                                <rect key="frame" x="27" y="73" width="215.5" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="38"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wzty News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kC-Yu-kFq">
-                                <rect key="frame" x="27" y="116" width="183" height="42"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="35"/>
-                                <color key="textColor" red="1" green="0.14515793320000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="27" y="116" width="205" height="45.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="38"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="wQ1-yS-4R4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="11" id="3eD-0l-SkE"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="6kC-Yu-kFq" secondAttribute="trailingMargin" id="TW8-0s-5bu"/>
                             <constraint firstItem="wQ1-yS-4R4" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="53" id="afx-Zf-RvW"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wQ1-yS-4R4" secondAttribute="trailingMargin" id="byb-ya-Gu2"/>
                             <constraint firstItem="6kC-Yu-kFq" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="11" id="jQD-Pm-Imb"/>
                             <constraint firstItem="6kC-Yu-kFq" firstAttribute="top" secondItem="wQ1-yS-4R4" secondAttribute="bottom" constant="-3" id="pRn-7L-Flp"/>
                         </constraints>
