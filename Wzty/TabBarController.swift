@@ -20,7 +20,7 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
-    var previousViewController: UIViewController?
+    var previousViewController: BaseTableViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -33,9 +33,9 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient" translatesAutoresizingMaskIntoConstraints="NO" id="CDk-T6-HIm">
-                                <rect key="frame" x="0.0" y="0.0" width="343" height="231"/>
+                                <rect key="frame" x="0.0" y="0.0" width="343" height="260"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="231" id="9U3-is-YWX"/>
+                                    <constraint firstAttribute="height" constant="260" id="9U3-is-YWX"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FWZ-ZO-zPL">
