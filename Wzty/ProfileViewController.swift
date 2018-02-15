@@ -23,6 +23,8 @@ import CoreData
 
 final class ProfileViewController: BaseListViewController {
     
+    @IBOutlet weak var photoBarButtonItem: UIBarButtonItem!
+    
     lazy var usersFetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         let timeSortDescriptor = NSSortDescriptor(key: "insertedTimestamp", ascending: true)
@@ -45,28 +47,38 @@ final class ProfileViewController: BaseListViewController {
     
     
     @IBAction func settingsAction(_ sender: Any) {
-        performSegue(withIdentifier: "showSettingsSegue", sender: self)
+        self.performSegue(withIdentifier: "showSettingsSegue", sender: self)
     }
-
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    @IBAction func profileDetailsAction(_ sender: Any) {
+        self.performSegue(withIdentifier: "showProfileDetailsSegue", sender: self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         //Configure cell
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "userCell")
         
-        User.current { [unowned self] (user) in
-            self.navigationItem.title = user.name
+        User.current(refreshable: true) { [unowned self] (user) in
+            self.updateInfo(for: user)
         }
         
         //Register for CoreData updates
         perform(usersFetchedResultsController)
         loadData(newer: true)
+    }
+    
+    func updateInfo(for user: User) {
+        self.navigationItem.title = user.name
+        guard let _ = user.userImageUrl else { return }
+        
+        UIImageView().kf.setImage(with: URL(string: user.userImageUrl!), placeholder: nil, options: nil, progressBlock: { (progress, maxProgress) in
+            //
+        }) { [weak self] (image, error, cache, url) in
+            guard let _ = self else { return }
+            self!.photoBarButtonItem.image = image?.roundedImage.kf.resize(to: CGSize(width: 35, height: 35), for: .aspectFit).withRenderingMode(.alwaysOriginal)
+        }
     }
     
     override func refreshData() {
@@ -77,9 +89,9 @@ final class ProfileViewController: BaseListViewController {
     override func loadData(newer: Bool) {
         
         loading = true
-        
         if newer == true {
-            User.current { (user) in
+            User.current(refreshable: true) { [unowned self] (user) in
+                self.updateInfo(for: user)
                 User.followings(of: user, { [unowned self] (status) in
                     self.loading = false
                 })
@@ -107,6 +119,25 @@ final class ProfileViewController: BaseListViewController {
 
 extension ProfileViewController {
     
+    override func tableView(_ tableView: UITableView,
+                            viewForHeaderInSection section: Int) -> UIView? {
+        
+        User.current(refreshable: true) { [unowned self] (user) in
+            if let count = user.followingsCount?.intValue,
+                count > 0 {
+                self.infoHeaderView.show(String(format: "%ld followings", count))
+            } else {
+                self.infoHeaderView.show("No followings")
+            }
+        }
+        return infoHeaderView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 44
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
@@ -124,7 +155,7 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
+        self.performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
     }
 }
 

@@ -22,15 +22,25 @@ import UIKit
 
 final class UserDetailsHeaderView: UIView {
 
-    @IBOutlet weak var usernameLabel: UILabel?
+    @IBOutlet weak var textLabel: UILabel?
     
-    func show(_ user: User?) {
-        
-        guard let _ = user else { return }
-        
-        //Username
-        usernameLabel?.text = String(format: "@%@", user!.username!)
-
+    func show(_ text: String) {
+        textLabel?.text = text
     }
+    
+//    func show(user: User?) {
+//
+//        guard let _ = user else { return }
+//
+//        //Username
+//        usernameLabel?.text = String(format: "@%@", user!.username!)
+//
+//    }
+//
+//    func show(followingsCount: Int) {
+//        if followingsCount > 0 {
+//            usernameLabel?.text = String(format: "%ld followings", followingsCount)
+//        }
+//    }
     
 }

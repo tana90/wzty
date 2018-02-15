@@ -19,7 +19,7 @@
 import UIKit
 import CoreData
 
-class BaseCoreDataViewController: UITableViewController {
+class BaseCoreDataViewController: BaseTableViewController {
     
     var fetchResultsController: NSFetchedResultsController<NSFetchRequestResult>?
     var targetUserId: String?

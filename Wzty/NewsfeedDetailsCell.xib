@@ -43,11 +43,11 @@
                         </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aJx-d4-6Z9">
-                        <rect key="frame" x="19" y="328" width="56" height="56"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <rect key="frame" x="19" y="318" width="66" height="66"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="56" id="aNq-YY-cmh"/>
-                            <constraint firstAttribute="width" constant="56" id="rUn-4d-Hfd"/>
+                            <constraint firstAttribute="height" constant="66" id="aNq-YY-cmh"/>
+                            <constraint firstAttribute="width" constant="66" id="rUn-4d-Hfd"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
@@ -63,7 +63,7 @@
                                 <size key="value" width="0.0" height="0.0"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="28"/>
+                                <real key="value" value="33"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </imageView>
@@ -95,8 +95,9 @@
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="l3n-b6-3yE">
-                        <rect key="frame" x="169" y="125" width="37" height="37"/>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="l3n-b6-3yE">
+                        <rect key="frame" x="178" y="134" width="20" height="20"/>
+                        <color key="color" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </activityIndicatorView>
                 </subviews>
                 <constraints>
@@ -112,7 +113,7 @@
                     <constraint firstItem="xMc-QY-s2g" firstAttribute="top" secondItem="aJx-d4-6Z9" secondAttribute="bottom" constant="16" id="LxZ-wb-fh8"/>
                     <constraint firstItem="I60-4Z-fAq" firstAttribute="height" secondItem="xfE-Jv-SGA" secondAttribute="height" id="MqF-we-cGR"/>
                     <constraint firstAttribute="trailingMargin" secondItem="FWZ-ZO-zPL" secondAttribute="trailing" constant="4" id="NLO-xr-fbG"/>
-                    <constraint firstItem="aJx-d4-6Z9" firstAttribute="top" secondItem="xfE-Jv-SGA" secondAttribute="bottom" constant="-25" id="Nng-3Z-CEB"/>
+                    <constraint firstItem="aJx-d4-6Z9" firstAttribute="top" secondItem="xfE-Jv-SGA" secondAttribute="bottom" constant="-35" id="Nng-3Z-CEB"/>
                     <constraint firstItem="rY3-oG-KVK" firstAttribute="top" secondItem="FWZ-ZO-zPL" secondAttribute="bottom" constant="66" id="QG2-7C-SxV"/>
                     <constraint firstItem="I60-4Z-fAq" firstAttribute="top" secondItem="xfE-Jv-SGA" secondAttribute="top" id="RQb-Vo-Ioa"/>
                     <constraint firstItem="I60-4Z-fAq" firstAttribute="bottom" secondItem="xfE-Jv-SGA" secondAttribute="bottom" id="Slv-iz-XAW"/>

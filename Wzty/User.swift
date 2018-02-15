@@ -29,9 +29,9 @@ final class User: NSManagedObject {
     @NSManaged var username: String?
     @NSManaged var name: String?
     @NSManaged var following: Bool
+    @NSManaged var followingsCount: NSNumber?
     
     @NSManaged var insertedTimestamp: NSNumber?
-    @NSManaged var listedCount: NSNumber?
     
     @NSManaged var boardId: String?
     
@@ -39,9 +39,6 @@ final class User: NSManagedObject {
     @NSManaged var maxId: String?
     
     @NSManaged var nextCursor: String?
-    
-    
-    
     
     func write(json: [String: JSON]) {
         
@@ -66,23 +63,23 @@ final class User: NSManagedObject {
             self.name = name
         }
         
-        //Listed count
-        if let listedCount = json["listed_count"]?.integer {
-            self.listedCount = NSNumber(value: listedCount)
-        }
-        
-        //Following
+        //Following true/false
         if let following = json["following"]?.bool {
             self.following = following
+        }
+        
+        //Followings count
+        if let followingsCountT = json["friends_count"]?.double {
+            followingsCount = NSNumber(value: Int(followingsCountT))
+        } else {
+            followingsCount = NSNumber(value: 0)
         }
         
         //Inserted timestamp
         if self.insertedTimestamp == nil || self.insertedTimestamp?.intValue == 0 {
             self.insertedTimestamp = NSNumber(value: Date.timestamp())
-        } 
-        
+        }
     }
-    
 }
 
 
@@ -91,8 +88,7 @@ extension User {
     static func add(objects: [JSON]) {
         
         for json in objects {
-            add(json) { (newObject) in
-            }
+            add(json) { (newObject) in }
         }
         //Save data
         CoreDataManager.shared.saveContextBackground()
@@ -112,7 +108,6 @@ extension User {
                 }
                 return
             }
-            
             //Update existing user
             (user! as! User).write(json: json.object!)
             result(user!)
@@ -146,10 +141,8 @@ extension User {
     static func fetchBy(predicate: NSPredicate,
                         result: @escaping (User?) -> (Void)) {
         
-        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.predicate = predicate
-        
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [User]
@@ -161,7 +154,6 @@ extension User {
             } catch _ {
                 console("Error fetching object by id.")
                 result(nil)
-                
             }
         }
     }
@@ -179,7 +171,6 @@ extension User {
             } catch _ {
                 console("Error fetching object by id.")
                 result(nil)
-                
             }
         }
     }
@@ -205,26 +196,41 @@ extension User {
 
 extension User {
     
+    //Reload current user from cloud
+    static func refreshCurrent(_ user: @escaping (User!) -> (Void)) {
+        
+        AppDelegate.shared().twitter?.verifyAccountCredentials(includeEntities: false, skipStatus: true, success: { (json) in
+            User.add(json, result: { (newObject) in
+                user(newObject as? User)
+            })
+        }, failure: { (error) in
+            user(nil)
+        })
+    }
+    
+    
     //Get current user
-    static func current(_ user: @escaping (User!) -> (Void)) {
+    static func current(refreshable: Bool = false ,_ user: @escaping (User!) -> (Void)) {
         
         guard let username = KeyChain.load(string: "username") else { return }
         //Check if we already have current user in database
         let predicate = NSPredicate(format: "username == %@", username)
-        User.fetchBy(predicate: predicate) { (result) -> (Void) in
-            guard let _ = result else {
-                
-                AppDelegate.shared().twitter?.verifyAccountCredentials(includeEntities: false, skipStatus: true, success: { (json) in
-                    User.add(json, result: { (newObject) -> (Void) in
-                        user(newObject as? User)
-                    })
-                }, failure: { (error) in
-                    user(nil)
-                })
-                return
+        User.fetchBy(predicate: predicate) { (result) in
+            if refreshable {
+                //Fetch current user from Twitter
+                refreshCurrent { (newObject) in
+                    user(newObject)
+                }
+            } else {
+                guard let _ = result else {
+                    //Fetch current user from Twitter if there is no user info
+                    refreshCurrent { (newObject) in
+                        user(newObject)
+                    }
+                    return
+                }
+                user(result!)
             }
-            
-            user(result!)
         }
     }
     
@@ -235,21 +241,14 @@ extension User {
                            with cursor: String = "-1") {
         
         AppDelegate.shared().twitter?.getUserFollowing(for: UserTag.id(user.objectId!), cursor: cursor, count: 50, skipStatus: true, includeUserEntities: true, success: { (json, currentCursor, nextCursor) in
-            
             User.add(objects: json.array!)
-            
             user.nextCursor = nextCursor
-            
             CoreDataManager.shared.saveContextBackground()
             finished(true)
-            
         }, failure: { (error) in
             console("Error: \(error)")
         })
     }
-    
-    
-    
     
     
     
@@ -259,10 +258,8 @@ extension User {
         
         let timestamp = Date.timestamp()
         AppDelegate.shared().twitter?.searchUsers(using: query, page: 0, count: 50, includeEntities: false, success: { (json) in
-            
             User.add(objects: json.array!)
             finished(true, timestamp)
-            
         }, failure: { (error) in
             console("Error: \(error)")
         })
@@ -276,7 +273,6 @@ extension User {
                        _ finished: @escaping (Bool) -> (Void)) {
         
         let userTag = UserTag.id(userId)
-
         if status == true {
             AppDelegate.shared().twitter?.followUser(for: userTag, follow: true, success: { (json) in
                 User.add(json, result: { (user) in 
@@ -299,6 +295,7 @@ extension User {
             }) 
         }
     }
+    
     
     //Report user
     static func report(_ userId: String, 

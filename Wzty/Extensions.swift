@@ -47,6 +47,17 @@ extension UIImage {
         
         return self
     }
+    
+    var roundedImage: UIImage {
+        let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.width)
+        UIGraphicsBeginImageContextWithOptions(self.size, false, 1)
+        UIBezierPath(
+            roundedRect: rect,
+            cornerRadius: self.size.height
+            ).addClip()
+        self.draw(in: rect)
+        return UIGraphicsGetImageFromCurrentImageContext()!
+    }
 }
 
 //MARK: - UIView
@@ -453,6 +464,13 @@ extension UISearchController {
     
     public func preferredStatusBarStyle() -> UIStatusBarStyle{
         return UIStatusBarStyle.lightContent
+    }
+}
+
+
+extension UINavigationBar {
+    open override func sizeThatFits(_ size: CGSize) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width, height: 51)
     }
 }
 

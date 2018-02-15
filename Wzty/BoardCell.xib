@@ -22,7 +22,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhf-N9-Joc">
                         <rect key="frame" x="16" y="11" width="343" height="105"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHM-8V-XZI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="News" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pHM-8V-XZI">
                                 <rect key="frame" x="16" y="8" width="310" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="bAf-zO-NbQ"/>
@@ -83,9 +83,9 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhz-3T-E9p">
-                                <rect key="frame" x="16" y="44" width="319" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhz-3T-E9p">
+                                <rect key="frame" x="16" y="41" width="319" height="18"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -94,11 +94,11 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="gse-0X-2Wu" secondAttribute="bottom" constant="13" id="3uA-NT-znv"/>
                             <constraint firstItem="gse-0X-2Wu" firstAttribute="leading" secondItem="mhf-N9-Joc" secondAttribute="leading" constant="13" id="7Dx-J6-hby"/>
-                            <constraint firstItem="Hhz-3T-E9p" firstAttribute="top" secondItem="mhf-N9-Joc" secondAttribute="top" constant="44" id="E7e-qb-ePA"/>
                             <constraint firstAttribute="bottom" secondItem="L6t-8h-Gjg" secondAttribute="bottom" constant="13" id="Eqz-CB-7ab"/>
                             <constraint firstAttribute="bottom" secondItem="XTd-KF-vTe" secondAttribute="bottom" constant="13" id="Foh-iG-J84"/>
                             <constraint firstAttribute="bottom" secondItem="is9-Uw-cJd" secondAttribute="bottom" constant="13" id="FzI-RP-Qio"/>
                             <constraint firstItem="is9-Uw-cJd" firstAttribute="leading" secondItem="mhf-N9-Joc" secondAttribute="leading" constant="45" id="Ipf-Il-D6X"/>
+                            <constraint firstItem="Hhz-3T-E9p" firstAttribute="top" secondItem="pHM-8V-XZI" secondAttribute="bottom" constant="-3" id="KR1-9P-utP"/>
                             <constraint firstAttribute="trailing" secondItem="Hhz-3T-E9p" secondAttribute="trailing" constant="8" id="NjA-Xb-AlW"/>
                             <constraint firstAttribute="trailing" secondItem="pHM-8V-XZI" secondAttribute="trailing" constant="17" id="QES-e5-lfJ"/>
                             <constraint firstItem="pHM-8V-XZI" firstAttribute="leading" secondItem="mhf-N9-Joc" secondAttribute="leading" constant="16" id="akw-ye-S09"/>

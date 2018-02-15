@@ -42,25 +42,25 @@ public extension Swifter {
      */
     #if os(OSX)
     public func authorize(with callbackURL: URL, success: TokenSuccessHandler?, failure: FailureHandler? = nil) {
-        self.postOAuthRequestToken(with: callbackURL, success: { token, response in
-            var requestToken = token!
-            
-            NotificationCenter.default.addObserver(forName: .SwifterCallbackNotification, object: nil, queue: .main) { notification in
-                NotificationCenter.default.removeObserver(self)
-                let url = notification.userInfo![CallbackNotification.optionsURLKey] as! URL
-                let parameters = url.query!.queryStringParameters
-                requestToken.verifier = parameters["oauth_verifier"]
-                
-                    self.postOAuthAccessToken(with: requestToken, success: { accessToken, response in
-                    self.client.credential = Credential(accessToken: accessToken!)
-                    success?(accessToken!, response)
-                    }, failure: failure)
-            }
-            
-            let authorizeURL = URL(string: "oauth/authorize", relativeTo: TwitterURL.oauth.url)
-            let queryURL = URL(string: authorizeURL!.absoluteString + "?oauth_token=\(token!.key)")!
-            NSWorkspace.shared().open(queryURL)
-        }, failure: failure)
+    self.postOAuthRequestToken(with: callbackURL, success: { token, response in
+    var requestToken = token!
+    
+    NotificationCenter.default.addObserver(forName: .SwifterCallbackNotification, object: nil, queue: .main) { notification in
+    NotificationCenter.default.removeObserver(self)
+    let url = notification.userInfo![CallbackNotification.optionsURLKey] as! URL
+    let parameters = url.query!.queryStringParameters
+    requestToken.verifier = parameters["oauth_verifier"]
+    
+    self.postOAuthAccessToken(with: requestToken, success: { accessToken, response in
+    self.client.credential = Credential(accessToken: accessToken!)
+    success?(accessToken!, response)
+    }, failure: failure)
+    }
+    
+    let authorizeURL = URL(string: "oauth/authorize", relativeTo: TwitterURL.oauth.url)
+    let queryURL = URL(string: authorizeURL!.absoluteString + "?oauth_token=\(token!.key)")!
+    NSWorkspace.shared().open(queryURL)
+    }, failure: failure)
     }
     #endif
     
@@ -87,21 +87,16 @@ public extension Swifter {
                 self.postOAuthAccessToken(with: requestToken, success: { accessToken, response in
                     self.client.credential = Credential(accessToken: accessToken!)
                     success?(accessToken!, response)
-                    }, failure: failure)
+                }, failure: failure)
             }
             
             let authorizeURL = URL(string: "oauth/authorize", relativeTo: TwitterURL.oauth.url)
             let queryURL = URL(string: authorizeURL!.absoluteString + "?oauth_token=\(token!.key)")!
             
+            let safariView = SFSafariViewController(url: queryURL)
+            safariView.delegate = presentingViewController as? SFSafariViewControllerDelegate
+            presentingViewController?.present(safariView, animated: true, completion: nil)
             
-            
-//            if #available(iOS 9.0, *) , let delegate = presentingViewController as? SFSafariViewControllerDelegate {
-                let safariView = SFSafariViewController(url: queryURL)
-                safariView.delegate = presentingViewController as? SFSafariViewControllerDelegate
-                presentingViewController?.present(safariView, animated: true, completion: nil)
-//            } else {
-//                UIApplication.shared.open(queryURL, options: [:], completionHandler: nil)
-//            }
         }, failure: failure)
     }
     #endif
@@ -134,7 +129,7 @@ public extension Swifter {
                 failure?(error)
             }
             
-            }, failure: failure)
+        }, failure: failure)
     }
     
     public func postOAuth2BearerToken(success: JSONSuccessHandler?, failure: FailureHandler?) {
@@ -182,7 +177,7 @@ public extension Swifter {
                 let accessToken = Credential.OAuthAccessToken(queryString: responseString)
                 success(accessToken, response)
                 
-                }, failure: failure)
+            }, failure: failure)
         } else {
             let error = SwifterError(message: "Bad OAuth response received from server", kind: .badOAuthResponse)
             failure?(error)

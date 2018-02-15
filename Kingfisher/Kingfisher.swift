@@ -38,11 +38,11 @@ import ImageIO
     import UIKit
     public typealias Image = UIImage
     public typealias Color = UIColor
-    #if !os(watchOS)
+#if !os(watchOS)
     public typealias ImageView = UIImageView
     public typealias View = UIView
     public typealias Button = UIButton
-    #endif
+#endif
 #endif
 
 public final class Kingfisher<Base> {
@@ -68,6 +68,6 @@ public extension KingfisherCompatible {
 
 extension Image: KingfisherCompatible { }
 #if !os(watchOS)
-extension ImageView: KingfisherCompatible { }
-extension Button: KingfisherCompatible { }
+    extension ImageView: KingfisherCompatible { }
+    extension Button: KingfisherCompatible { }
 #endif

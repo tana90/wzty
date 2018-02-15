@@ -18,7 +18,7 @@
 
 import UIKit
 
-final class FaqViewController: UIViewController {
+final class FaqViewController: BaseViewController {
     
     @IBAction func closeAction() {
         navigationController?.dismiss(animated: true, completion: nil)

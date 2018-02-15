@@ -166,9 +166,9 @@ extension BoardsViewController {
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
         if !isEditing {
-            performSegue(withIdentifier: "showBoardDetails", sender: self)
+            self.performSegue(withIdentifier: "showBoardDetails", sender: self)
         } else {
-            performSegue(withIdentifier: "showEditBoardSegue", sender: self)
+            self.performSegue(withIdentifier: "showEditBoardSegue", sender: self)
         }
         
         isEditing = false

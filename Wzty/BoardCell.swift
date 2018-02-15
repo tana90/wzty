@@ -51,7 +51,7 @@ final class BoardCell: UITableViewCell {
             guard let _ = self,
                 let _ = users else { return }
             
-            self!.countLabel.text = String(format: "%ld follows", users!.count)
+            self!.countLabel.text = String(format: "%ld users", users!.count)
             
             for index in 0...users!.count - 1 {
                 if let imageUrl = users![index]?.userImageUrl {

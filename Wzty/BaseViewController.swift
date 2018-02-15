@@ -1,5 +1,5 @@
 //
-//  LicenseAgreement.swift
+//  BaseViewController.swift
 //  Wzty
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -12,15 +12,15 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
-//  Created by Tudor Ana on 02/02/2018.
+//  Created by Tudor Ana on 2/15/18.
 //  Copyright © 2018 Tudor Ana. All rights reserved.
 //
 
 import UIKit
 
-final class LicenseAgreementViewController: BaseViewController {
+class BaseViewController: UIViewController {
     
-    @IBAction func closeAction() {
-        navigationController?.dismiss(animated: true, completion: nil)
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }

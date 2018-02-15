@@ -24,18 +24,10 @@ import CoreData
 class BaseListViewController: BaseCoreDataViewController {
     
     var loading: Bool = false
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) { [weak self] in
-            self?.view.alpha = 1.0
-            }.startAnimation()
-    }
-    
+    var infoHeaderView: UserDetailsHeaderView = {
+        return UINib(nibName: "UserDetailsHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UserDetailsHeaderView
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,11 +49,7 @@ class BaseListViewController: BaseCoreDataViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        UIViewPropertyAnimator(duration: 0.2, curve: .easeOut) { [weak self] in
-            self?.tableView.alpha = 0.1
-            }.startAnimation()
-        
-        
+
         if segue.identifier == "showUserDetailsSegue" {
             guard let _ = targetUserId else {
                 return
@@ -80,7 +68,7 @@ extension BaseListViewController {
     
     override func tableView(_ tableView: UITableView, 
                             heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return tableView.bounds.size.height - 120//UIScreen.main.bounds.size.height - 120
+        return max(tableView.bounds.size.height - 120, 400)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

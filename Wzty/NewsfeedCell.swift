@@ -27,7 +27,7 @@ class NewsfeedCell: UITableViewCell {
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var mediaViewContainer: UIView?
-    @IBOutlet private weak var mediaView: UIImageView!
+    @IBOutlet weak var mediaView: UIImageView!
     @IBOutlet private weak var detailsLabel: UILabel!
     @IBOutlet private weak var activityIndicatorView: UIActivityIndicatorView?
     
@@ -49,7 +49,6 @@ class NewsfeedCell: UITableViewCell {
             let targetPostIdT = targetPostId {
             handler(targetPostIdT)
         }
-        
     }
     
     func show(_ post: Post, refreshable refresh: Bool = true) {
@@ -89,10 +88,6 @@ class NewsfeedCell: UITableViewCell {
         }
     }
     
-    
-    
-    
-    
     func populateCell(withPost: Post) {
         
         //Date
@@ -110,23 +105,11 @@ class NewsfeedCell: UITableViewCell {
         
         //Image
         if let imageUrlT = withPost.imageUrl {
-            mediaView.kf.setImage(with: URL(string: imageUrlT), placeholder: nil, options: nil, progressBlock: { (progress, maxProgress) in
-            }, completionHandler: { [weak self] (image, error, cacheType, url) in
-                guard let _ = self else { return }
-                self!.activityIndicatorView?.stopAnimating()
-                
-                if (error != nil) {
-                    self!.mediaView?.image = UIImage(named: "placeholder")
-                }
-                
-                UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
-                    guard let _ = self else { return }
-                    self!.mediaView.alpha = 0.85
-                    }.startAnimation()
-            })
+            mediaView.kf.setImage(with: URL(string: imageUrlT))
+            mediaView.alpha = 0.85
+            activityIndicatorView?.stopAnimating()
         } else {
             mediaView?.image = nil
         }
     }
-    
 }

@@ -75,11 +75,6 @@ class AddNewBoardViewController: BaseListViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -186,7 +186,7 @@ extension BoardDetailsViewController {
     
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showNewsDetailsSegue", sender: self)
+        self.performSegue(withIdentifier: "showNewsDetailsSegue", sender: self)
     }
 }
 

@@ -38,6 +38,9 @@
 		C859893D1FADB78300C94877 /* BaseDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C859893C1FADB78300C94877 /* BaseDetailsViewController.swift */; };
 		C85989411FADB9A400C94877 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85989401FADB9A400C94877 /* ProfileViewController.swift */; };
 		C85989451FADBA2900C94877 /* UserDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85989441FADBA2900C94877 /* UserDetailsHeaderView.swift */; };
+		C85E1DCA2035B68D00264482 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E1DC92035B68D00264482 /* BaseTableViewController.swift */; };
+		C85E1DCC2035B76B00264482 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E1DCB2035B76B00264482 /* BaseViewController.swift */; };
+		C85E1DCF2035B8B400264482 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E1DCE2035B8B400264482 /* UserInfoViewController.swift */; };
 		C862FAA3200E2BA800D54E1B /* AddBoardHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C862FAA2200E2BA800D54E1B /* AddBoardHeaderView.xib */; };
 		C86C5B661FD1D7C700602BD0 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C5B651FD1D7C700602BD0 /* UserDetailsViewController.swift */; };
 		C871A0701FE1728900162274 /* UserDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */; };
@@ -176,6 +179,9 @@
 		C859893C1FADB78300C94877 /* BaseDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDetailsViewController.swift; sourceTree = "<group>"; };
 		C85989401FADB9A400C94877 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C85989441FADBA2900C94877 /* UserDetailsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailsHeaderView.swift; sourceTree = "<group>"; };
+		C85E1DC92035B68D00264482 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		C85E1DCB2035B76B00264482 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C85E1DCE2035B8B400264482 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
 		C862FAA2200E2BA800D54E1B /* AddBoardHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddBoardHeaderView.xib; sourceTree = "<group>"; };
 		C86C5B651FD1D7C700602BD0 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsHeaderView.xib; sourceTree = "<group>"; };
@@ -305,6 +311,7 @@
 		C81EFD081FBC5EF900A54FFE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C85E1DCD2035B8A500264482 /* UserInfo */,
 				C883233D202729F900C82874 /* FAQ */,
 				C8B451932024910100D15C51 /* LicenseAgreement */,
 				C88100B3200CC17700A76BEE /* Boards */,
@@ -327,6 +334,8 @@
 				C85989291FADA73A00C94877 /* BaseListViewController.swift */,
 				C859893C1FADB78300C94877 /* BaseDetailsViewController.swift */,
 				C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */,
+				C85E1DC92035B68D00264482 /* BaseTableViewController.swift */,
+				C85E1DCB2035B76B00264482 /* BaseViewController.swift */,
 			);
 			name = BaseViewControllers;
 			sourceTree = "<group>";
@@ -489,6 +498,14 @@
 				C845D4F61FAF3CCD00A278ED /* CoreData */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		C85E1DCD2035B8A500264482 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				C85E1DCE2035B8B400264482 /* UserInfoViewController.swift */,
+			);
+			name = UserInfo;
 			sourceTree = "<group>";
 		};
 		C86C5B641FD1D7B200602BD0 /* UserDetails */ = {
@@ -746,6 +763,7 @@
 				C86C5B661FD1D7C700602BD0 /* UserDetailsViewController.swift in Sources */,
 				C889F5321FB1C10900132460 /* RequestModifier.swift in Sources */,
 				C889F4E21FB1BE0B00132460 /* Data++.swift in Sources */,
+				C85E1DCC2035B76B00264482 /* BaseViewController.swift in Sources */,
 				C889F4FB1FB1BE0B00132460 /* SwifterMessages.swift in Sources */,
 				C845D4F91FAF3CE800A278ED /* KeyChain.swift in Sources */,
 				C889F4D81FB1BE0B00132460 /* SwifterSavedSearches.swift in Sources */,
@@ -754,6 +772,7 @@
 				C889F4DF1FB1BE0B00132460 /* SwifterLists.swift in Sources */,
 				C889F4E11FB1BE0B00132460 /* Utils.swift in Sources */,
 				C889F5311FB1C10900132460 /* Indicator.swift in Sources */,
+				C85E1DCF2035B8B400264482 /* UserInfoViewController.swift in Sources */,
 				C8AC8BC51FB86BAA00F81019 /* NotificationController.swift in Sources */,
 				C889F4EF1FB1BE0B00132460 /* SwifterSpam.swift in Sources */,
 				C889F4EC1FB1BE0B00132460 /* JSON.swift in Sources */,
@@ -821,6 +840,7 @@
 				C889F4F01FB1BE0B00132460 /* SwifterAccountsClient.swift in Sources */,
 				C859892A1FADA73A00C94877 /* BaseListViewController.swift in Sources */,
 				C8AC8BC91FB895A000F81019 /* NavigationTableHeaderView.swift in Sources */,
+				C85E1DCA2035B68D00264482 /* BaseTableViewController.swift in Sources */,
 				C845D5081FAF648700A278ED /* User.swift in Sources */,
 				C889F4F91FB1BE0B00132460 /* SwifterTrends.swift in Sources */,
 				C85989371FADAE0F00C94877 /* NewsfeedCell.swift in Sources */,

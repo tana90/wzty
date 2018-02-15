@@ -59,10 +59,9 @@ final class Post: NSManagedObject {
         //Url
         if let urls = json["entities"].object?["urls"]?.array,
             let firstUrl = urls.first {
-            
-                if let urlLink = firstUrl.object?["expanded_url"]?.string {
-                    self.link = urlLink
-                }
+            if let urlLink = firstUrl.object?["expanded_url"]?.string {
+                self.link = urlLink
+            }
         }
         
         //Inserted timestamp
@@ -80,20 +79,20 @@ final class Post: NSManagedObject {
 
 extension Post {
     
+    //Add multiple posts to database
     static func add(objects: [JSON], _ homeTimeline: Bool = false) {
         
         for json in objects {
             if let urls = json["entities"].object?["urls"]?.array,
                 let firstUrl = urls.first {
-                
-                    if let _ = firstUrl.object?["expanded_url"]?.string {
-                        add(json, homeTimeline)
-                    }
+                if let _ = firstUrl.object?["expanded_url"]?.string {
+                    add(json, homeTimeline)
                 }
+            }
         }
     }
     
-    
+    //Add post to database
     static func add(_ json: JSON, _ homeTimeline: Bool = false) {
         
         guard let objectId = json["id_str"].string else { return }
@@ -106,12 +105,11 @@ extension Post {
                 }
                 return
             }
-            
             post!.write(json: json)
         }
     }
     
-    
+    //Fetch a post by predicate
     static func fetchBy(_ predicate: NSPredicate,
                         result: (Post?) -> (Void)) {
         
@@ -135,8 +133,9 @@ extension Post {
         }
     }
     
-    
+    //Fetch all posts
     static func fetchAll(_ result: ([Post?]?) -> (Void)) {
+        
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
@@ -148,7 +147,6 @@ extension Post {
             }
         }
     }
-    
 }
 
 
@@ -158,17 +156,15 @@ extension Post {
     static func homeTimeline(sinceId: String? = nil,
                              maxId: String? = nil,
                              _ finished: @escaping (Bool) -> (Void)) {
-
-        AppDelegate.shared().twitter?.getHomeTimeline(count: 50, sinceID: sinceId, maxID: maxId, trimUser: false, contributorDetails: false, includeEntities: true, success: { (json) in
         
+        AppDelegate.shared().twitter?.getHomeTimeline(count: 50, sinceID: sinceId, maxID: maxId, trimUser: false, contributorDetails: false, includeEntities: true, success: { (json) in
+            
             guard let jsonArray = json.array,
                 jsonArray.count > 0 else {
                     finished(false)
                     return
             }
-            
             Post.add(objects: jsonArray, true)
-            
             //Save first and last ids to user
             User.current() { (user) in
                 
@@ -185,36 +181,30 @@ extension Post {
                     user?.sinceId = firstId
                     user?.maxId = lastId
                 }
-
                 //Commit data
                 CoreDataManager.shared.saveContextBackground()
                 finished(true)
             }
-            
-            
-            
         }, failure: { (error) in
             finished(false)
             console("Error: \(error)")
         })
     }
     
-    
+    //Get other user timeline
     static func homeTimelineBy(userId: String,
                                sinceId: String? = nil,
                                maxId: String? = nil,
                                _ finished: @escaping (Bool) -> (Void)) {
         
         AppDelegate.shared().twitter?.getTimeline(for: userId, count: 50, sinceID: sinceId, maxID: maxId, trimUser: false, contributorDetails: true, includeEntities: true, success: { (json) in
-
+            
             guard let jsonArray = json.array,
                 jsonArray.count > 0 else {
                     finished(false)
                     return
             }
-            
             Post.add(objects: jsonArray)
-            
             //Save first and last ids to user
             let predicate = NSPredicate(format: "objectId == %@", userId)
             User.fetchBy(predicate: predicate) { (user) in
@@ -232,12 +222,8 @@ extension Post {
                     user?.sinceId = firstId
                     user?.maxId = lastId
                 }
-                
-                //Commit data
-                //CoreDataManager.shared.saveContextBackground()
                 finished(true)
             }
-   
         }, failure: { (error) in
             finished(false)
             console("Error: \(error)")

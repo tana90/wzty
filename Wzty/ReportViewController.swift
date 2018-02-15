@@ -22,7 +22,7 @@
 import UIKit
 import MessageUI
 
-final class ReportViewController: UITableViewController {
+final class ReportViewController: BaseTableViewController {
     
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var postTitleLabel: UILabel!
@@ -32,10 +32,6 @@ final class ReportViewController: UITableViewController {
     
     @IBAction func closeAction() {
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     override func viewDidLoad() {

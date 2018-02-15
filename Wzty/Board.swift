@@ -29,6 +29,7 @@ final class Board: NSManagedObject {
     @NSManaged var color: String?
     @NSManaged var priority: NSNumber?
     
+    //Delete board
     func delete() {
         
         let predicate = NSPredicate(format: "boardId == %@ AND following == true", objectId!)
@@ -43,7 +44,9 @@ final class Board: NSManagedObject {
         }
     }
     
+    //Edit users of a board
     func edit(_ userIds: [String]) {
+        
         let predicate = NSPredicate(format: "boardId == %@ AND following == true", objectId!)
         User.fetchAllBy(predicate: predicate) { (users) in
             
@@ -53,14 +56,12 @@ final class Board: NSManagedObject {
                     user?.boardId = nil
                 }
             }
-            
             //Put new users to board
             for userId in userIds {
                 User.fetchBy(id: userId, result: { [weak self] (user) -> (Void) in
                     (user as? User)?.boardId = self?.objectId
                 })
             }
-            
             //Save
             CoreDataManager.shared.saveContextBackground()
         }
@@ -69,6 +70,7 @@ final class Board: NSManagedObject {
 
 extension Board {
     
+    //Fetch board by id
     static func fetchBy(id: String,
                         result: (NSManagedObject?) -> (Void)) {
         
@@ -91,6 +93,7 @@ extension Board {
         }
     }
     
+    //Add a board for users
     static func add(_ name: String, _ userIds: [String]) {
         
         if let newObject = NSEntityDescription.insertNewObject(forEntityName: "Board", into: CoreDataManager.shared.backgroundContext) as? Board {

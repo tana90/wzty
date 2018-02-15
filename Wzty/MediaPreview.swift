@@ -21,7 +21,7 @@
 
 import UIKit
 
-final class MediaPreview: UIViewController {
+final class MediaPreview: BaseViewController {
     
     @IBOutlet weak var navigationView: UIView!
     @IBOutlet weak var backView: UIView!
@@ -33,14 +33,6 @@ final class MediaPreview: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     func show(_ imageUrl: String?) {
         
         guard let _ = imageUrl else {
@@ -49,7 +41,7 @@ final class MediaPreview: UIViewController {
         }
         
         imageView.kf.setImage(with: URL(string: imageUrl!), placeholder: nil, options: nil, progressBlock: { (pregress, maxProgress) in
-            //
+            
         }) { (image, error, cache, url) in
             
             DispatchQueue.main.safeAsync { [weak  self] in
@@ -76,20 +68,17 @@ final class MediaPreview: UIViewController {
                     guard let _ = self else { return }
                     self!.singleTap()
                 })
-                
             }
         }
     }
     
-    
-    
-    
+
     @objc func doubleTapped() {
         if isZoomed == false {
             scrollView.setZoomScale(2.0, animated: true)
             isZoomed = true
             
-            UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
+            UIViewPropertyAnimator(duration: 0.3, curve: .easeOut) { [weak self] in
                 self!.navigationView.alpha = 0.0
                 }.startAnimation()
         } else {
@@ -111,12 +100,12 @@ final class MediaPreview: UIViewController {
                     self!.navigationView.alpha = 1.0
                     }.startAnimation()
             } else {
-                UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
+                UIViewPropertyAnimator(duration: 0.3, curve: .easeOut) { [weak self] in
                     self!.navigationView.alpha = 0.0
                     }.startAnimation()
             }
         } else {
-            UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) { [weak self] in
+            UIViewPropertyAnimator(duration: 0.3, curve: .easeOut) { [weak self] in
                 self!.navigationView.alpha = 0.0
                 }.startAnimation()
         }

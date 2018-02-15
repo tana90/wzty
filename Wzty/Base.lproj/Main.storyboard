@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Baseline standard spacing" minToolsVersion="9.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -472,20 +474,105 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Profile" leftItemsSupplementBackButton="YES" id="Ffy-uh-zXy">
-                        <barButtonItem key="rightBarButtonItem" image="settings-nav" id="kaX-gl-O0Z">
+                        <barButtonItem key="leftBarButtonItem" image="settings-nav" id="kaX-gl-O0Z">
                             <connections>
                                 <action selector="settingsAction:" destination="Jw0-6n-MDO" id="GZ6-08-PR6"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" id="TCA-u5-geg">
+                            <connections>
+                                <action selector="profileDetailsAction:" destination="Jw0-6n-MDO" id="imA-Ao-OFX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="photoBarButtonItem" destination="TCA-u5-geg" id="SsP-ce-i5r"/>
                         <segue destination="yDK-3Z-lQ6" kind="show" identifier="showSettingsSegue" id="c67-KV-lLG"/>
                         <segue destination="1tR-Ij-i0N" kind="show" identifier="showUserDetailsSegue" id="AwR-aq-jge"/>
+                        <segue destination="y6r-kh-DEy" kind="show" identifier="showProfileDetailsSegue" id="Cej-EH-78j"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHd-J2-F0y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2913" y="1924"/>
+        </scene>
+        <!--Info-->
+        <scene sceneID="bVv-nF-QSk">
+            <objects>
+                <tableViewController title="Info" id="y6r-kh-DEy" customClass="UserInfoViewController" customModule="Wzty" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="NlT-eu-hwL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="separatorColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+                        <sections>
+                            <tableViewSection id="kM2-nv-pJq">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="88" id="DT8-kY-67h">
+                                        <rect key="frame" x="0.0" y="35" width="375" height="88"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DT8-kY-67h" id="bh8-xb-Hgm">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="87.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3FS-U9-0F2">
+                                                    <rect key="frame" x="16" y="11" width="66" height="66"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="66" id="7B3-6b-C4d"/>
+                                                        <constraint firstAttribute="height" constant="66" id="Ng3-ln-52y"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="33"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p2O-TS-sDb">
+                                                    <rect key="frame" x="90" y="12" width="269" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="YCi-DG-M0z"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ifo-nm-Puu">
+                                                    <rect key="frame" x="90" y="46.5" width="269" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="p2O-TS-sDb" firstAttribute="trailing" secondItem="bh8-xb-Hgm" secondAttribute="trailingMargin" id="Emv-c5-htE"/>
+                                                <constraint firstItem="3FS-U9-0F2" firstAttribute="top" secondItem="bh8-xb-Hgm" secondAttribute="topMargin" id="ISd-kO-ZKw"/>
+                                                <constraint firstItem="ifo-nm-Puu" firstAttribute="firstBaseline" secondItem="p2O-TS-sDb" secondAttribute="baseline" constant="24" symbolType="layoutAnchor" id="Ned-Rr-n62"/>
+                                                <constraint firstItem="ifo-nm-Puu" firstAttribute="trailing" secondItem="bh8-xb-Hgm" secondAttribute="trailingMargin" id="RSc-Et-A7v"/>
+                                                <constraint firstItem="3FS-U9-0F2" firstAttribute="leading" secondItem="bh8-xb-Hgm" secondAttribute="leadingMargin" id="fmY-JP-ddE"/>
+                                                <constraint firstItem="p2O-TS-sDb" firstAttribute="top" secondItem="bh8-xb-Hgm" secondAttribute="topMargin" constant="1" id="pa4-C5-obn"/>
+                                                <constraint firstItem="p2O-TS-sDb" firstAttribute="leading" secondItem="3FS-U9-0F2" secondAttribute="trailing" constant="8" id="rP0-ia-dHf"/>
+                                                <constraint firstItem="ifo-nm-Puu" firstAttribute="leading" secondItem="3FS-U9-0F2" secondAttribute="trailing" constant="8" id="y9F-yb-faB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.20784313730000001" green="0.20784313730000001" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="y6r-kh-DEy" id="9th-X5-Q7A"/>
+                            <outlet property="delegate" destination="y6r-kh-DEy" id="iSF-IF-CZz"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="userFullNameLabel" destination="p2O-TS-sDb" id="ZMq-ml-MaS"/>
+                        <outlet property="userImageView" destination="3FS-U9-0F2" id="lZc-Up-dGQ"/>
+                        <outlet property="userNameLabel" destination="ifo-nm-Puu" id="cfR-8C-7rJ"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BwS-gv-eY5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2912.8000000000002" y="2666.7166416791606"/>
         </scene>
         <!--Settings-->
         <scene sceneID="5e0-VV-eBN">
@@ -1207,12 +1294,12 @@ Copyright (c) 2018 Tudor Octavian ANA (TANA)  -- Privacy policy --  Acco
         <image name="settings-nav" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1Kc-Si-wJg"/>
-        <segue reference="UHy-t4-8ls"/>
-        <segue reference="XZb-ov-VwP"/>
-        <segue reference="Dmr-3Y-P47"/>
+        <segue reference="nxZ-aP-VC3"/>
+        <segue reference="vQo-Pm-nR5"/>
+        <segue reference="Brm-IC-HZM"/>
+        <segue reference="bqg-2a-5rt"/>
         <segue reference="WwC-rb-DNk"/>
-        <segue reference="EW1-6y-XlW"/>
+        <segue reference="7u8-TI-qeV"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

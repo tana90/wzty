@@ -20,7 +20,7 @@
 
 import UIKit
 
-final class LoginViewController: UIViewController {
+final class LoginViewController: BaseViewController {
     
     @IBOutlet weak var activityIndicatorView: UIActivityIndicatorView!
     
@@ -48,23 +48,11 @@ final class LoginViewController: UIViewController {
                 console("Error: \(error)")
         })
     }
-    
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        
+
         //Check if we are alrString(describing: eady) logged in
         guard let username = KeyChain.load(string: "username"),
             username.count > 0,

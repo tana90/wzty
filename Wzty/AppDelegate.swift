@@ -48,12 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //Init twitter
         AppDelegate.shared().twitter = Swifter(consumerKey: "lLH1TSVtmbpzEcNUaJteq70wp", consumerSecret: "5Y3YDM9PzJr99YIbr4BfPQvM2Y1f92DiWz1NBEqxiUitfET234")
         
-        
+        //Set time interval between App Background Refreshes
         application.setMinimumBackgroundFetchInterval(UIApplicationBackgroundFetchIntervalMinimum)
         
         //Request notifications permissions
-        NotificationController.shared.requestPermissionsWith { (status) in
-        }
+        NotificationController.shared.requestPermissionsWith { (_) in }
         
         //Change navigation title font
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 24, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.white]
@@ -116,7 +115,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         searchBar.becomeFirstResponder()
                     }
                 }
-                
                 break
             default:
                 break

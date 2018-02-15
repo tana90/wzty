@@ -28,14 +28,10 @@ class BaseDetailsViewController: BaseCoreDataViewController {
         return UINib(nibName: "NavigationTableHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! NavigationTableHeaderView
     }()
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     override func viewDidLoad() {
-        
         tableView.register(UINib(nibName: "NewsfeedDetailsCell", bundle: nil), forCellReuseIdentifier: "newsfeedDetailsCell")
         tableView.register(UINib(nibName: "NewsfeedWebCell", bundle: nil), forCellReuseIdentifier: "newsfeedWebCell")
+        super.viewDidLoad()
     }
 }
 
@@ -101,7 +97,7 @@ extension BaseDetailsViewController {
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if scrollView.contentOffset.y < -88 {
-            dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
         
         //Stop scrolling when reach webivew
@@ -132,6 +128,5 @@ extension BaseDetailsViewController {
                 navigationHeaderView.hideTitle()
             }
         }
-
     }
 }

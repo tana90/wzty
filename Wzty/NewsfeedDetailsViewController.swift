@@ -40,11 +40,6 @@ final class NewsfeedDetailsViewController: BaseDetailsViewController {
         return frc
     }()
     
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         perform(postFetchResultsController)
@@ -62,6 +57,7 @@ extension NewsfeedDetailsViewController {
 
         switch indexPath.row {
         case 0:
+            //Top details section
             let detailsCell = tableView.dequeueReusableCell(withIdentifier: "newsfeedDetailsCell") as! NewsfeedDetailsCell
             detailsCell.showImageActionHandler = { [unowned self] in
                 let mediaPreview = MediaPreview(nibName: "MediaPreview", bundle: nil)
@@ -71,6 +67,7 @@ extension NewsfeedDetailsViewController {
             detailsCell.show(post)
             return detailsCell
         case 1:
+            //Webview section
             let webViewCell = tableView.dequeueReusableCell(withIdentifier: "newsfeedWebCell") as! NewsfeedWebCell
             webViewCell.show(post)
             
@@ -87,11 +84,9 @@ extension NewsfeedDetailsViewController {
                 self!.tableView.isScrollEnabled = true
                 self!.tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             }
-
             return webViewCell
         default:
             return super.tableView(tableView, cellForRowAt: indexPath)
         }
     }
 }
-

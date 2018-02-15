@@ -31,16 +31,16 @@ extension SettingsViewController {
         
         if indexPath.section == 0 {
             if indexPath.row == 0 {
-                performSegue(withIdentifier: "showLicenseAgreementSegue", sender: self)
+                self.performSegue(withIdentifier: "showLicenseAgreementSegue", sender: self)
             }
             if indexPath.row == 1 {
-                performSegue(withIdentifier: "showPrivacyPolicySegue", sender: self)
+                self.performSegue(withIdentifier: "showPrivacyPolicySegue", sender: self)
             }
             if indexPath.row == 2 {
-                performSegue(withIdentifier: "showFaqSegue", sender: self)
+                self.performSegue(withIdentifier: "showFaqSegue", sender: self)
             }
             if indexPath.row == 3 {
-                performSegue(withIdentifier: "showAboutSegue", sender: self)
+                self.performSegue(withIdentifier: "showAboutSegue", sender: self)
             }
             if indexPath.row == 4 {
                 let mailComposeViewController = configuredMailComposeViewController()

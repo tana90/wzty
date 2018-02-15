@@ -30,4 +30,9 @@ final class NewsfeedDetailsCell: NewsfeedCell {
             handler()
         }
     }
+    
+    override func populateCell(withPost: Post) {
+        super.populateCell(withPost: withPost)
+        mediaView.alpha = 1.0
+    }
 }

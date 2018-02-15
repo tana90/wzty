@@ -164,6 +164,6 @@ extension ExploreViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
+        self.performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
     }
 }

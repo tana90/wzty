@@ -82,7 +82,6 @@ final class UserDetailsViewController: BaseListViewController {
                     self.followButton.title = (user?.following)! ? "Unfollow" : "Follow"
                 }
             }
-            
             //Load first posts
             loadData(newer: true)
         }
@@ -97,7 +96,7 @@ final class UserDetailsViewController: BaseListViewController {
     
     override func loadData(newer: Bool) {
         loading = true
-
+        
         if let userId = userId {
             let predicate = NSPredicate(format: "objectId == %@", userId)
             User.fetchBy(predicate: predicate) { (user) in
@@ -133,23 +132,18 @@ extension UserDetailsViewController {
     override func tableView(_ tableView: UITableView, 
                             viewForHeaderInSection section: Int) -> UIView? {
         
-        if let headerView = UINib(nibName: "UserDetailsHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? UserDetailsHeaderView {
-            
-            if let userId = userId {
-                let predicate = NSPredicate(format: "objectId == %@", userId)
-                User.fetchBy(predicate: predicate) { (user) in
-                    headerView.show(user)
+        if let userId = userId {
+            let predicate = NSPredicate(format: "objectId == %@", userId)
+            User.fetchBy(predicate: predicate) { [unowned self] (user) in
+                if let username = user?.username {
+                    self.infoHeaderView.show(String(format: "@%@", username))
                 }
-
-            } else { return nil }
-            
-            return headerView
+            }
         }
-        return nil
+        return infoHeaderView
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
         return 44
     }
     
@@ -168,7 +162,7 @@ extension UserDetailsViewController {
     
     override func tableView(_ tableView: UITableView,
                             didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "showNewsDetailsSegue", sender: self)
+        self.performSegue(withIdentifier: "showNewsDetailsSegue", sender: self)
     }
 }
 
