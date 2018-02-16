@@ -21,4 +21,5 @@
 import Foundation
 
 let MAX_CELL_WIDTH = 300
+let FETCH_REQUEST_BATCH_SIZE = 16
 let colors: [String] = ["#ff0000", "#00ff00", "#aaff00", "#0000ff", "#123456"]

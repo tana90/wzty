@@ -32,6 +32,7 @@ final class NewsfeedDetailsViewController: BaseDetailsViewController {
         }
         request.sortDescriptors = []
         request.fetchLimit = 1
+        request.fetchBatchSize = 1
         let frc = NSFetchedResultsController(fetchRequest: request,
                                              managedObjectContext: CoreDataManager.shared.backgroundContext,
                                              sectionNameKeyPath: nil,

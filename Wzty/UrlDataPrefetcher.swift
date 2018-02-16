@@ -23,7 +23,6 @@ final class UrlDataPrefetcher {
     static let shared = UrlDataPrefetcher()
     private var urlsInProgress: [String] = []
     
-    
     func fetch(link: String?, completionHandler: (()->())? = nil) {
         guard let _ = link,
             let url = URL(string: link!) else { return }
@@ -36,7 +35,7 @@ final class UrlDataPrefetcher {
                 //Write infos to CoreData
                 let predicate = NSPredicate(format: "link == %@", link!)
                 Post.fetchBy(predicate) { (result) in
-                    guard let _ = result else { 
+                    guard let _ = result else {
                         self.urlsInProgress.remove(object: link!)
                         return
                     }
@@ -52,9 +51,6 @@ final class UrlDataPrefetcher {
                     }
                     self.urlsInProgress.remove(object: link!)
                 }
-                
-                
-                
                 }, failure: { [unowned self] (error) in
                     self.urlsInProgress.remove(object: link!)
             })

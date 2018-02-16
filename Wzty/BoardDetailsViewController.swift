@@ -25,6 +25,7 @@ class BoardDetailsViewController: BaseListViewController {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timeSortDescriptor]
+        request.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
         
         if let boardT = board {
             var userPredicate = NSPredicate(format: "boardId == %@ AND following == true", boardT.objectId!)
@@ -64,7 +65,7 @@ class BoardDetailsViewController: BaseListViewController {
         
         //Listen to posts change
         perform(postFetchResultsController)
-    
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -127,37 +128,26 @@ class BoardDetailsViewController: BaseListViewController {
         if let boardT = board {
             let userPredicate = NSPredicate(format: "boardId == %@", boardT.objectId!)
             User.fetchAllBy(predicate: userPredicate, result: { (users) in
-
+                
                 
                 if let usersT = users {
                     
                     var index = 0
                     for user in usersT {
                         
-                        blockOperations.append(
-                            BlockOperation(block: { [weak self] in
-
-                                Post.homeTimelineBy(userId: (user?.objectId)!, sinceId: newer ? user?.sinceId : nil, 
-                                                    maxId: newer ? nil : user?.maxId) { [weak self] (status) in
-                                                        guard let _ = self else { return }
-
-                                                        index += 1
-                                                        if index >= (users?.count)! {
-                                                            self!.loading = false
-                                                            CoreDataManager.shared.saveContextBackground()
-                                                        }
-                                                        
-                                }
-                            }))
+                        Post.homeTimelineBy(userId: (user?.objectId)!, sinceId: newer ? user?.sinceId : nil,
+                                            maxId: newer ? nil : user?.maxId) { [weak self] (status) in
+                                                guard let _ = self else { return }
+                                                
+                                                index += 1
+                                                if index >= (users?.count)! {
+                                                    self!.loading = false
+                                                    CoreDataManager.shared.saveContextBackground()
+                                                }
+                        }
                         
                     }
-                    
-                    for operation: BlockOperation in blockOperations {
-                        operation.start()
-                    }
-                    
                 }
-                
             })
         }
     }

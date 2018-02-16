@@ -12,7 +12,6 @@
 		C814CCC02034430800F0F4A8 /* libxmlHTMLDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814CCBA2034430800F0F4A8 /* libxmlHTMLDocument.swift */; };
 		C814CCC12034430800F0F4A8 /* libxmlHTMLNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814CCBB2034430800F0F4A8 /* libxmlHTMLNode.swift */; };
 		C814CCC22034430800F0F4A8 /* Kanna.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814CCBC2034430800F0F4A8 /* Kanna.swift */; };
-		C81EFD051FBC56D700A54FFE /* License in Resources */ = {isa = PBXBuildFile; fileRef = C81EFD041FBC56D700A54FFE /* License */; };
 		C81EFD071FBC584B00A54FFE /* BaseCoreDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */; };
 		C836D6A3200F846C00AB497A /* BoardDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C836D6A2200F846C00AB497A /* BoardDetailsViewController.swift */; };
 		C83DB3031FB6E1FF0051147B /* NewsfeedWebCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C83DB3021FB6E1FF0051147B /* NewsfeedWebCell.xib */; };
@@ -41,6 +40,7 @@
 		C85E1DCA2035B68D00264482 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E1DC92035B68D00264482 /* BaseTableViewController.swift */; };
 		C85E1DCC2035B76B00264482 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E1DCB2035B76B00264482 /* BaseViewController.swift */; };
 		C85E1DCF2035B8B400264482 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E1DCE2035B8B400264482 /* UserInfoViewController.swift */; };
+		C85E1DD12036E0FF00264482 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = C85E1DD02036E0FF00264482 /* View.xib */; };
 		C862FAA3200E2BA800D54E1B /* AddBoardHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C862FAA2200E2BA800D54E1B /* AddBoardHeaderView.xib */; };
 		C86C5B661FD1D7C700602BD0 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C5B651FD1D7C700602BD0 /* UserDetailsViewController.swift */; };
 		C871A0701FE1728900162274 /* UserDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */; };
@@ -151,7 +151,6 @@
 		C814CCBC2034430800F0F4A8 /* Kanna.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Kanna.swift; path = "Kanna-master/Sources/Kanna/Kanna.swift"; sourceTree = SOURCE_ROOT; };
 		C814CCBD2034430800F0F4A8 /* Kanna.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Kanna.h; path = "Kanna-master/Sources/Kanna/Kanna.h"; sourceTree = SOURCE_ROOT; };
 		C814CCC8203444B500F0F4A8 /* libxml2-kanna.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "libxml2-kanna.h"; path = "Kanna-master/Modules/libxml2-kanna.h"; sourceTree = SOURCE_ROOT; };
-		C81EFD041FBC56D700A54FFE /* License */ = {isa = PBXFileReference; lastKnownFileType = text; path = License; sourceTree = "<group>"; };
 		C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoreDataViewController.swift; sourceTree = "<group>"; };
 		C836D6A2200F846C00AB497A /* BoardDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardDetailsViewController.swift; sourceTree = "<group>"; };
 		C83DB3021FB6E1FF0051147B /* NewsfeedWebCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsfeedWebCell.xib; sourceTree = "<group>"; };
@@ -182,6 +181,7 @@
 		C85E1DC92035B68D00264482 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		C85E1DCB2035B76B00264482 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C85E1DCE2035B8B400264482 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
+		C85E1DD02036E0FF00264482 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
 		C862FAA2200E2BA800D54E1B /* AddBoardHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddBoardHeaderView.xib; sourceTree = "<group>"; };
 		C86C5B651FD1D7C700602BD0 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsHeaderView.xib; sourceTree = "<group>"; };
@@ -421,7 +421,6 @@
 		C85989271FADA70D00C94877 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C81EFD041FBC56D700A54FFE /* License */,
 				C859891B1FADA69F00C94877 /* Assets.xcassets */,
 				C85989181FADA69F00C94877 /* Main.storyboard */,
 				C859891D1FADA69F00C94877 /* LaunchScreen.storyboard */,
@@ -434,6 +433,7 @@
 				C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */,
 				C862FAA2200E2BA800D54E1B /* AddBoardHeaderView.xib */,
 				C88A5F21200F6558004E4C47 /* BoardCell.xib */,
+				C85E1DD02036E0FF00264482 /* View.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -726,6 +726,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C85E1DD12036E0FF00264482 /* View.xib in Resources */,
 				C859891F1FADA69F00C94877 /* LaunchScreen.storyboard in Resources */,
 				C859891C1FADA69F00C94877 /* Assets.xcassets in Resources */,
 				C8AC8BC71FB88DB200F81019 /* NavigationTableHeaderView.xib in Resources */,
@@ -737,7 +738,6 @@
 				C88A5F22200F6558004E4C47 /* BoardCell.xib in Resources */,
 				C889F5471FB222E600132460 /* UserCell.xib in Resources */,
 				C859891A1FADA69F00C94877 /* Main.storyboard in Resources */,
-				C81EFD051FBC56D700A54FFE /* License in Resources */,
 				C83DB3031FB6E1FF0051147B /* NewsfeedWebCell.xib in Resources */,
 				C871A0701FE1728900162274 /* UserDetailsHeaderView.xib in Resources */,
 			);
@@ -995,6 +995,7 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 5B3Q9N6AS8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Wzty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1003,6 +1004,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wztnews.wzty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1018,6 +1020,7 @@
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 5B3Q9N6AS8;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_OPTIMIZATION_LEVEL = s;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Wzty/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

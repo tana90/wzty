@@ -33,15 +33,6 @@ class BaseCoreDataViewController: BaseTableViewController {
             console("Error performing fetch products")
         }
     }
-    
-    func scrollToTop() {
-        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        //Remove memory cache
-        KingfisherManager.shared.cache.clearMemoryCache()
-    }
 }
 
 //MARK: - Fetch Results Controller Delegate

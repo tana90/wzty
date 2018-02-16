@@ -28,6 +28,7 @@ final class UserDetailsViewController: BaseListViewController {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
         request.sortDescriptors = [timeSortDescriptor]
+        request.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
         
         if let userId = self.userId {
             let predicate = NSPredicate(format: "userId == %@ AND hidden == false", userId)
@@ -173,15 +174,8 @@ extension UserDetailsViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView,
                    prefetchRowsAt indexPaths: [IndexPath]) {
         
-        
         for indexPath in indexPaths {
-            
-            guard let post = postFetchResultsController.object(at: indexPath) as? Post,
-                post.title == nil else {
-                    return
-            }
-            
-            //Fetch data and let NSFetchResultsController to reupdate cell
+            let post = postFetchResultsController.object(at: indexPath) as! Post
             if post.title == nil || post.imageUrl == nil {
                 UrlDataPrefetcher.shared.fetch(link: post.link)
             }

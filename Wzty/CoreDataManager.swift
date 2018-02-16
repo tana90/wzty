@@ -127,6 +127,7 @@ final class CoreDataManager {
         let managedContext = context
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity)
         fetchRequest.returnsObjectsAsFaults = false
+        fetchRequest.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
         
         managedContext.performAndWait {
             do

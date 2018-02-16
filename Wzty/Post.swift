@@ -57,11 +57,8 @@ final class Post: NSManagedObject {
         }
         
         //Url
-        if let urls = json["entities"].object?["urls"]?.array,
-            let firstUrl = urls.first {
-            if let urlLink = firstUrl.object?["expanded_url"]?.string {
-                self.link = urlLink
-            }
+        if let urlLink = json["entities"].object?["urls"]?.array?.first?.object?["expanded_url"]?.string {
+            self.link = urlLink
         }
         
         //Inserted timestamp
@@ -83,11 +80,8 @@ extension Post {
     static func add(objects: [JSON], _ homeTimeline: Bool = false) {
         
         for json in objects {
-            if let urls = json["entities"].object?["urls"]?.array,
-                let firstUrl = urls.first {
-                if let _ = firstUrl.object?["expanded_url"]?.string {
-                    add(json, homeTimeline)
-                }
+            if let _ = json["entities"].object?["urls"]?.array?.first?.object?["expanded_url"]?.string {
+                add(json, homeTimeline)
             }
         }
     }
@@ -137,6 +131,7 @@ extension Post {
     static func fetchAll(_ result: ([Post?]?) -> (Void)) {
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
+        request.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [Post]

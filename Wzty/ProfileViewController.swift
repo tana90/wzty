@@ -29,6 +29,7 @@ final class ProfileViewController: BaseListViewController {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         let timeSortDescriptor = NSSortDescriptor(key: "insertedTimestamp", ascending: true)
         request.sortDescriptors = [timeSortDescriptor]
+        request.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
         
         var predicate = NSPredicate(format: "following == true")
         if let username = KeyChain.load(string: "username") {

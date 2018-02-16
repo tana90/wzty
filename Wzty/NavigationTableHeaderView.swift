@@ -38,7 +38,6 @@ final class NavigationTableHeaderView: UIView {
         }
     }
     
-    
     func showTitle() {
         UIViewPropertyAnimator(duration: 0.2, curve: .easeIn) { [weak self] in
             guard let _ = self else { return }

@@ -78,6 +78,7 @@ extension Board {
         let predicate = NSPredicate(format: "objectId == %@", id)
         request.predicate = predicate
         request.fetchLimit = 1
+        request.fetchBatchSize = 1
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [NSManagedObject]

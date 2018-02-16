@@ -31,7 +31,7 @@ final class NewsfeedViewController: BaseListViewController {
         request.sortDescriptors = [timeSortDescriptor]
         let predicate = NSPredicate(format: "homeTimeline == true AND hidden == false")
         request.predicate = predicate
-        
+        request.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
         
         let frc = NSFetchedResultsController(fetchRequest: request,
                                              managedObjectContext: CoreDataManager.shared.backgroundContext,
@@ -121,6 +121,13 @@ extension NewsfeedViewController: UITableViewDataSourcePrefetching {
         
 
         for indexPath in indexPaths {
+            let post = postFetchResultsController.object(at: indexPath) as! Post
+            if post.title == nil || post.imageUrl == nil {
+                UrlDataPrefetcher.shared.fetch(link: post.link)
+            }
+        }
+        
+        /*for indexPath in indexPaths {
             
             guard let post = postFetchResultsController.object(at: indexPath) as? Post,
                 post.title == nil else {
@@ -131,6 +138,6 @@ extension NewsfeedViewController: UITableViewDataSourcePrefetching {
             if post.title == nil || post.imageUrl == nil {
                 UrlDataPrefetcher.shared.fetch(link: post.link)
             }
-        }
+        }*/
     }
 }

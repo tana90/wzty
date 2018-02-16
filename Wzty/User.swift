@@ -122,6 +122,7 @@ extension User {
         let predicate = NSPredicate(format: "objectId == %@", id)
         request.predicate = predicate
         request.fetchLimit = 1
+        request.fetchBatchSize = 1
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [NSManagedObject]
@@ -143,6 +144,8 @@ extension User {
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.predicate = predicate
+        request.fetchLimit = 1
+        request.fetchBatchSize = 1
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [User]
@@ -164,6 +167,7 @@ extension User {
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         request.predicate = predicate
+        request.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [User]
@@ -179,6 +183,7 @@ extension User {
     static func fetch(_ result: ([NSManagedObject?]?) -> (Void)) {
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+        request.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {
                 let results = try CoreDataManager.shared.backgroundContext.fetch(request) as? [NSManagedObject]

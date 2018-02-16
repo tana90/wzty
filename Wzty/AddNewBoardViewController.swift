@@ -25,6 +25,7 @@ class AddNewBoardViewController: BaseListViewController {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
         let timeSortDescriptor = NSSortDescriptor(key: "insertedTimestamp", ascending: true)
         request.sortDescriptors = [timeSortDescriptor]
+        request.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
         
         if let _ = boardId {
             //Edit board
