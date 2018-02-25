@@ -28,6 +28,24 @@ class BaseDetailsViewController: BaseCoreDataViewController {
         return UINib(nibName: "NavigationTableHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! NavigationTableHeaderView
     }()
     
+    override var previewActionItems: [UIPreviewActionItem] {
+        
+        let safariAction = UIPreviewAction(title: "Open in Safari",
+                                      style: .default,
+                                      handler: { previewAction, viewController in
+                                        UIApplication.shared.open(URL(string: ((viewController as! NewsfeedDetailsViewController).post!.link)!)!, options: [:], completionHandler: nil)
+        })
+        
+        let hideAction = UIPreviewAction(title: "Hide post",
+                                           style: .default,
+                                           handler: { previewAction, viewController in
+                                            (viewController as! NewsfeedDetailsViewController).post!.hidden = true
+                                            CoreDataManager.shared.saveContextBackground()
+        })
+        
+        return [safariAction as UIPreviewActionItem, hideAction as UIPreviewActionItem]
+    }
+    
     override func viewDidLoad() {
         tableView.register(UINib(nibName: "NewsfeedDetailsCell", bundle: nil), forCellReuseIdentifier: "newsfeedDetailsCell")
         tableView.register(UINib(nibName: "NewsfeedWebCell", bundle: nil), forCellReuseIdentifier: "newsfeedWebCell")
@@ -112,7 +130,6 @@ extension BaseDetailsViewController {
                 navigationHeaderView.hideTitle()
             }
         }
-        
     }
     
     override func scrollViewWillEndDragging(_ scrollView: UIScrollView,

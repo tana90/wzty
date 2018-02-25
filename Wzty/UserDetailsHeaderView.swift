@@ -24,7 +24,11 @@ final class UserDetailsHeaderView: UIView {
 
     @IBOutlet weak var textLabel: UILabel?
     
-    func show(_ text: String) {
-        textLabel?.text = text
+    func show(_ text: String?) {
+        guard let _ = text else {
+            textLabel?.text = ""
+            return
+        }
+        textLabel?.text = text!
     }
 }

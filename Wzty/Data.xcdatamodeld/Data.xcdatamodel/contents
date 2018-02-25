@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D47" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17D102" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Board" representedClassName=".Board" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String" defaultValueString="#353535" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,6 +23,7 @@
         <attribute name="following" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="followingsCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="insertedTimestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="maxId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nextCursor" optional="YES" attributeType="String" defaultValueString="-1" syncable="YES"/>
@@ -32,8 +33,8 @@
         <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Board" positionX="-2979" positionY="-666" width="128" height="105"/>
-        <element name="Post" positionX="-3069" positionY="-742" width="128" height="195"/>
-        <element name="User" positionX="-2889" positionY="-738" width="128" height="210"/>
+        <element name="Board" positionX="-3024" positionY="-595" width="128" height="103"/>
+        <element name="Post" positionX="-3098" positionY="-918" width="128" height="193"/>
+        <element name="User" positionX="-2864" positionY="-945" width="128" height="225"/>
     </elements>
 </model>

@@ -1,5 +1,5 @@
 //
-//  AddNewBoardViewController.swift
+//  SelectUsersViewController.swift
 //  Wzty
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -12,6 +12,9 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Created by Tudor Ana on 15/01/2018.
 //  Copyright © 2018 Tudor Ana. All rights reserved.
 //
@@ -19,7 +22,7 @@
 import UIKit
 import CoreData
 
-class AddNewBoardViewController: BaseListViewController {
+class SelectUsersViewController: BaseListViewController {
     
     lazy var usersFetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
@@ -30,7 +33,7 @@ class AddNewBoardViewController: BaseListViewController {
         if let _ = boardId {
             //Edit board
             var predicates = [NSPredicate(format: "following == true"), 
-                                             NSPredicate(format: "boardId == %@ || boardId == null", boardId!)]
+                              NSPredicate(format: "boardId == %@ || boardId == null", boardId!)]
             
             if let username = KeyChain.load(string: "username") {
                 predicates = [NSPredicate(format: "username != %@ && following == true", username), 
@@ -45,7 +48,7 @@ class AddNewBoardViewController: BaseListViewController {
             if let username = KeyChain.load(string: "username") {
                 predicate = NSPredicate(format: "username != %@ AND following == true AND boardId == null", username)
             }
-                request.predicate = predicate
+            request.predicate = predicate
         }
         
         let frc = NSFetchedResultsController(fetchRequest: request,
@@ -60,21 +63,15 @@ class AddNewBoardViewController: BaseListViewController {
     var boardName: String?
     var selectedUsers: [String] = []
     
-    @IBOutlet weak var saveButton: UIBarButtonItem!
+    var designedPredicate: NSPredicate?
     
-    @IBAction func saveAction(_ sender: Any) {
-        if let _ = boardId {
-            Board.fetchBy(id: boardId!, result: { (object) -> (Void) in
-                if let board = object as? Board {
-                    board.name = boardName
-                    board.edit(selectedUsers)
-                }
-            })
-        } else {
-            Board.add(boardName!, selectedUsers)
-        }
-        navigationController?.popViewController(animated: true)
+    @IBOutlet weak var nextButton: UIBarButtonItem!
+    
+    @IBAction func nextAction(_ sender: Any) {
+        performSegue(withIdentifier: "showAddBoardSegue", sender: self)
     }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,16 +79,19 @@ class AddNewBoardViewController: BaseListViewController {
         //Configure cell
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "userCell")
         
-        //Set save button disabled until user completes name and users
-        saveButton.isEnabled = false
-        
         //Register for CoreData updates
         perform(usersFetchedResultsController)
+        designedPredicate = usersFetchedResultsController.fetchRequest.predicate
         loadData(newer: true)
         
-        if let _ = boardId {
-            title = "Edit board"
-        }
+        //Show search bar
+        searchController.searchBar.delegate = self
+        self.navigationItem.searchController = searchController
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        
+        //Set next button disabled until user completes name and users
+        nextButton.isEnabled = self.canEnableNextButton()
+    
     }
     
     override func refreshData() {
@@ -105,43 +105,52 @@ class AddNewBoardViewController: BaseListViewController {
         
         if newer == true {
             User.current { (user) in
-                User.followings(of: user, { [unowned self] (status) in
-                    self.loading = false
+                User.followings(of: user, { [weak self] (status) in
+                    guard let _ = self else { return }
+                    self!.loading = false
                 })
             }
         } else {
             User.current { (user) in
-                User.followings(of: user, { [unowned self] (status) in
-                    self.loading = false
+                User.followings(of: user, { [weak self] (status) in
+                    guard let _ = self else { return }
+                    self!.loading = false
                     }, with: user.nextCursor!)
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showAddBoardSegue" {
+            let destinationViewController = segue.destination as! AddBoardViewController
+            destinationViewController.boardId = boardId
+            destinationViewController.boardName = boardName
+            destinationViewController.selectedUsers = selectedUsers
         }
     }
 }
 
 
-extension AddNewBoardViewController {
-
+extension SelectUsersViewController {
+    
+    override func tableView(_ tableView: UITableView,
+                            viewForHeaderInSection section: Int) -> UIView? {
+        guard let count = usersFetchedResultsController.fetchedObjects?.count,
+            count > 0 else {
+                infoHeaderView.show(nil)
+                return self.infoHeaderView
+        }
+        infoHeaderView.show(String(format: "%ld available users", count))
+        return infoHeaderView
+    }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
         return 44
     }
     
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UINib(nibName: "AddBoardHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? AddBoardHeaderView
-        header?.changeNameHandler = { [unowned self] (name) in
-            self.boardName = name
-            self.saveButton.isEnabled = self.canEnableSaveButton()
-        }
-        if let _ = boardName {
-            header?.textField?.text = boardName!
-        } else {
-            header?.textField?.becomeFirstResponder()
-        }
-        return header
-    }
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 74
     }
     
     
@@ -177,17 +186,56 @@ extension AddNewBoardViewController {
         tableView.reloadRows(at: [indexPath], with: .automatic)
         tableView.endUpdates()
         
-        saveButton.isEnabled = canEnableSaveButton()
+        nextButton.isEnabled = canEnableNextButton()
     }
 }
 
 
-extension AddNewBoardViewController {
+extension SelectUsersViewController {
     
-    func canEnableSaveButton() -> Bool {
+    func search(_ text: String) {
         
-        if let name = boardName,
-            name.count > Int(0) && selectedUsers.count > 0 {
+        let searchPredicate = NSPredicate(format: "name CONTAINS[cd] %@", text)
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [designedPredicate!, searchPredicate])
+        
+        usersFetchedResultsController.fetchRequest.predicate = compoundPredicate
+        do {
+            try usersFetchedResultsController.performFetch()
+            
+        } catch {
+            console("Error perform fetch")
+        }
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+    }
+    
+    func clear() {
+        usersFetchedResultsController.fetchRequest.predicate = designedPredicate
+        do {
+            try usersFetchedResultsController.performFetch()
+            
+        } catch {
+            console("Error perform fetch")
+        }
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+    }
+}
+
+
+extension SelectUsersViewController {
+    
+    override func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count > 0 {
+            search(searchText)
+        } else { clear() }
+    }
+}
+
+
+extension SelectUsersViewController {
+    
+    func canEnableNextButton() -> Bool {
+        
+        if selectedUsers.count > 0 {
             return true
         }
         return false

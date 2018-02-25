@@ -24,18 +24,25 @@ import CoreData
 class BaseListViewController: BaseCoreDataViewController {
     
     var loading: Bool = false
+    
+    //Set header view for list *simple text*
     var infoHeaderView: UserDetailsHeaderView = {
         return UINib(nibName: "UserDetailsHeaderView", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as! UserDetailsHeaderView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //Put refresh control
         refreshControl = UIRefreshControl()
         refreshControl?.tintColor = .white
         tableView.addSubview(refreshControl!)
         refreshControl?.addTarget(self, action: #selector(refreshData), for: .valueChanged)
+        
+        //Register for force touch
+        if (traitCollection.forceTouchCapability == .available) {
+            registerForPreviewing(with: self, sourceView: view)
+        }
     }
     
     @objc func refreshData() {
@@ -44,12 +51,10 @@ class BaseListViewController: BaseCoreDataViewController {
         }
     }
     
-    func loadData(newer: Bool) {
-        
-    }
+    func loadData(newer: Bool) { }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        
         if segue.identifier == "showUserDetailsSegue" {
             guard let _ = targetUserId else {
                 return
@@ -62,13 +67,13 @@ class BaseListViewController: BaseCoreDataViewController {
 }
 
 
-
 //MARK: - TableView Delegate & DataSource
 extension BaseListViewController {
     
     override func tableView(_ tableView: UITableView, 
                             heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return max(tableView.bounds.size.height - 120, 400)
+        //Setup news cell height
+        return max(min(tableView.bounds.size.height - 140, 560), 320)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -99,10 +104,12 @@ extension BaseListViewController {
                 return
         }
         
-        let last = fetchedObjects.count - 1
-        if !loading && indexPath.row == last {
-            //Load more
-            loadData(newer: false)
+        if fetchedObjects.count > 5 {
+            let last = fetchedObjects.count - 1
+            if !loading && indexPath.row == last {
+                //Load more
+                loadData(newer: false)
+            }
         }
     }
     
@@ -144,5 +151,49 @@ extension BaseListViewController {
                 }
             }
         }
+    }
+}
+
+
+//MARK: - SearchBarDelegate
+extension BaseListViewController: UISearchBarDelegate {
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) { }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+}
+
+
+//MARK: - Force touch preview
+extension BaseListViewController: UIViewControllerPreviewingDelegate {
+    
+    public func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        if let indexPath = tableView.indexPathForRow(at: location) {
+            previewingContext.sourceRect = tableView.rectForRow(at: indexPath)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let destinationViewController = storyboard.instantiateViewController(withIdentifier: "newsfeedDetailsViewController") as? NewsfeedDetailsViewController,
+                let post = fetchResultsController?.object(at: indexPath) as? Post
+                else { return nil }
+            destinationViewController.post = post
+            
+            return destinationViewController
+        }
+        return nil
+    }
+    
+    public func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        showDetailViewController(viewControllerToCommit, sender: self)
     }
 }

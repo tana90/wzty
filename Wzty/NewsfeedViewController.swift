@@ -126,18 +126,5 @@ extension NewsfeedViewController: UITableViewDataSourcePrefetching {
                 UrlDataPrefetcher.shared.fetch(link: post.link)
             }
         }
-        
-        /*for indexPath in indexPaths {
-            
-            guard let post = postFetchResultsController.object(at: indexPath) as? Post,
-                post.title == nil else {
-                    return
-            }
-            
-            //Fetch data and let NSFetchResultsController to reupdate cell
-            if post.title == nil || post.imageUrl == nil {
-                UrlDataPrefetcher.shared.fetch(link: post.link)
-            }
-        }*/
     }
 }

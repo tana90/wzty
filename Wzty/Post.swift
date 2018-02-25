@@ -38,8 +38,8 @@ final class Post: NSManagedObject {
     func write(json: JSON) {
         
         //Object ID
-        if let objectId = json["id_str"].string {
-            self.objectId = objectId
+        if let _ = json["id_str"].string {
+            self.objectId = json["id_str"].string
         }
         
         //Timestamp

@@ -109,4 +109,17 @@ extension Board {
             CoreDataManager.shared.saveContextBackground()
         }
     }
+    
+    static func count(result: (Int) -> (Void)) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Board")
+        CoreDataManager.shared.backgroundContext.performAndWait {
+            do {
+                let results = try CoreDataManager.shared.backgroundContext.count(for: request)
+                result(results)
+            } catch _ {
+                console("Error fetching object by id.")
+                result(0)
+            }
+        }
+    }
 }

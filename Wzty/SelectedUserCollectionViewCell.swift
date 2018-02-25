@@ -1,5 +1,5 @@
 //
-//  LicenseAgreement.swift
+//  SelectedUserCollectionViewCell.swift
 //  Wzty
 //
 //  This program is free software: you can redistribute it and/or modify
@@ -15,15 +15,29 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //
-//  Created by Tudor Ana on 02/02/2018.
+//  Created by Tudor Ana on 2/22/18.
 //  Copyright © 2018 Tudor Ana. All rights reserved.
 //
 
 import UIKit
 
-final class LicenseAgreementViewController: BaseViewController {
+final class SelectedUserCollectionViewCell: UICollectionViewCell {
     
-    @IBAction func closeAction() {
-        navigationController?.dismiss(animated: true, completion: nil)
+    @IBOutlet weak var userImageView: UIImageView?
+    @IBOutlet weak var nameLabel: UILabel?
+    
+    func show(_ user: User?) {
+        
+        guard let _ = user else { return }
+        
+        //User image
+        if let imageUrlT = user!.userImageUrl {
+            userImageView?.kf.setImage(with: URL(string: imageUrlT))
+        } else {
+            userImageView?.image = nil
+        }
+        
+        //Name
+        nameLabel?.text = user!.name
     }
 }

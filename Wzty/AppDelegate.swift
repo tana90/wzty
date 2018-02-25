@@ -55,14 +55,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationController.shared.requestPermissionsWith { (_) in }
         
         //Change navigation title font
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 24, weight: .bold), NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 22, weight: .heavy), NSAttributedStringKey.foregroundColor: UIColor.white]
         
         return true
     }
     
+    func applicationWillResignActive(_ application: UIApplication) {
+        CoreDataManager.shared.saveContext()
+    }
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        CoreDataManager.shared.saveContextBackground()
         CoreDataManager.shared.saveContext()
     }
     
@@ -73,7 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        CoreDataManager.shared.saveContextBackground()
         CoreDataManager.shared.saveContext()
     }
     
@@ -108,13 +109,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 break
             case "Explore":
                 tabbarViewController.selectedIndex = 2
-                if let navigationController = tabbarViewController.viewControllers![2] as? UINavigationController,
-                    let exploreViewController = navigationController.viewControllers[0] as? ExploreViewController {
-                    exploreViewController.focusSearchBar = true
-                    if let searchBar = exploreViewController.searchBar {
-                        searchBar.becomeFirstResponder()
-                    }
-                }
+            case "Profile":
+                tabbarViewController.selectedIndex = 3
                 break
             default:
                 break

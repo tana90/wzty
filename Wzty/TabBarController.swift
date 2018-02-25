@@ -12,6 +12,9 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Created by Tudor Ana on 13/11/2017.
 //  Copyright © 2017 Tudor Ana. All rights reserved.
 //
@@ -28,7 +31,7 @@ final class TabBarController: UITabBarController {
         
         if let _ = viewControllers,
             let navigationController = viewControllers![0] as? UINavigationController,
-            let rootViewController = navigationController.viewControllers[0] as? BaseCoreDataViewController {
+            let rootViewController = navigationController.viewControllers[0] as? BaseTableViewController {
             previousViewController = rootViewController
         }
     }
@@ -39,13 +42,12 @@ extension TabBarController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         
         if let navigationController = viewController as? UINavigationController,
-            let rootViewController = navigationController.viewControllers[0] as? BaseCoreDataViewController {
+            let rootViewController = navigationController.viewControllers[0] as? BaseTableViewController {
             
             if let _ = previousViewController, 
                 previousViewController == rootViewController {
                 rootViewController.scrollToTop()
-            } 
-            
+            }
             previousViewController = rootViewController
         }
     }

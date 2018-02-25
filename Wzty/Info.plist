@@ -30,7 +30,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>22</string>
+	<string>24</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -40,6 +40,21 @@
 	</dict>
 	<key>UIApplicationShortcutItems</key>
 	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeSearch</string>
+			<key>UIApplicationShortcutItemSubtitle</key>
+			<string>Explore new users</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Explore</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).first</string>
+			<key>UIApplicationShortcutItemUserInfo</key>
+			<dict>
+				<key>key</key>
+				<string>searchShortcutKey</string>
+			</dict>
+		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
 			<string>boards</string>
@@ -56,18 +71,18 @@
 			</dict>
 		</dict>
 		<dict>
-			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeSearch</string>
+			<key>UIApplicationShortcutItemIconFile</key>
+			<string>profile-selected</string>
 			<key>UIApplicationShortcutItemSubtitle</key>
-			<string>Explore new users</string>
+			<string>Show your profile</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Explore</string>
+			<string>Profile</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).second</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).third</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
 			<dict>
 				<key>key</key>
-				<string>searchShortcutKey</string>
+				<string>profileShortcutKey</string>
 			</dict>
 		</dict>
 	</array>

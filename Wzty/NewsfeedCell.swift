@@ -70,7 +70,7 @@ class NewsfeedCell: UITableViewCell {
             }
             
             //Username
-            self!.usenameLabel?.text = user!.name
+            self!.usenameLabel?.text = user!.name?.uppercased()
         }
         
         populateCell(withPost: post)
@@ -106,7 +106,7 @@ class NewsfeedCell: UITableViewCell {
         //Image
         if let imageUrlT = withPost.imageUrl {
             mediaView.kf.setImage(with: URL(string: imageUrlT))
-            mediaView.alpha = 0.84
+            mediaView.alpha = 0.95
             activityIndicatorView?.stopAnimating()
         } else {
             mediaView?.image = nil

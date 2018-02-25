@@ -30,6 +30,7 @@ final class User: NSManagedObject {
     @NSManaged var name: String?
     @NSManaged var following: Bool
     @NSManaged var followingsCount: NSNumber?
+    @NSManaged var location: String?
     
     @NSManaged var insertedTimestamp: NSNumber?
     
@@ -43,36 +44,41 @@ final class User: NSManagedObject {
     func write(json: [String: JSON]) {
         
         //Object ID
-        if let objectId = json["id_str"]?.string {
-            self.objectId = objectId
+        if let _ = json["id_str"]?.string {
+            self.objectId = json["id_str"]?.string
         }
         
         //User image Url
-        if let userImageUrl = json["profile_image_url"]?.string {
-            self.userImageUrl = userImageUrl
+        if let _ = json["profile_image_url"]?.string {
+            self.userImageUrl = json["profile_image_url"]?.string
             self.userImageUrl = self.userImageUrl?.replacingOccurrences(of: "_normal", with: "")
         }
         
         //Username
-        if let username = json["screen_name"]?.string {
-            self.username = username
+        if let _ = json["screen_name"]?.string {
+            self.username = json["screen_name"]?.string
         }
         
         //Name
-        if let name = json["name"]?.string {
-            self.name = name
+        if let _ = json["name"]?.string {
+            self.name = json["name"]?.string
         }
         
         //Following true/false
-        if let following = json["following"]?.bool {
-            self.following = following
+        if let _ = json["following"]?.bool {
+            self.following = (json["following"]?.bool)!
         }
         
         //Followings count
-        if let followingsCountT = json["friends_count"]?.double {
-            followingsCount = NSNumber(value: Int(followingsCountT))
+        if let _ = json["friends_count"]?.double {
+            followingsCount = NSNumber(value: Int((json["friends_count"]?.double)!))
         } else {
             followingsCount = NSNumber(value: 0)
+        }
+        
+        //Location
+        if let _ = json["location"]?.string {
+            location = json["location"]?.string
         }
         
         //Inserted timestamp

@@ -12,6 +12,9 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Created by Tudor Ana on 12/11/2017.
 //  Copyright © 2017 Tudor Ana. All rights reserved.
 //
@@ -98,7 +101,7 @@ final class NotificationController {
                 if let postId = post.objectId {
                     content.userInfo = ["postId" : postId]
                 }
-                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
+                let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
                 let request = UNNotificationRequest(identifier: "localNotification", content: content, trigger: trigger)
                 UNUserNotificationCenter.current().add(request) { (error) in
                 }

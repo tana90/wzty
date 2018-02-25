@@ -40,7 +40,7 @@ internal class AccountsClient: SwifterClientProtocol {
 
         let stringifiedParameters = parameters.stringifiedDictionary()
         
-        let socialRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .GET, url: url, parameters: stringifiedParameters)!
+        let socialRequest = SLRequest(forServiceType: nil, requestMethod: .GET, url: url, parameters: stringifiedParameters)!
         socialRequest.account = self.credential!.account!
 
         let request = HTTPRequest(request: socialRequest.preparedURLRequest())
@@ -77,7 +77,7 @@ internal class AccountsClient: SwifterClientProtocol {
 
         let stringifiedParameters = params.stringifiedDictionary()
 
-        let socialRequest = SLRequest(forServiceType: SLServiceTypeTwitter, requestMethod: .POST, url: url, parameters: stringifiedParameters)!
+        let socialRequest = SLRequest(forServiceType: nil, requestMethod: .POST, url: url, parameters: stringifiedParameters)!
         socialRequest.account = self.credential!.account!
 
         if let data = postData {

@@ -40,19 +40,20 @@
 		C85E1DCA2035B68D00264482 /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E1DC92035B68D00264482 /* BaseTableViewController.swift */; };
 		C85E1DCC2035B76B00264482 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E1DCB2035B76B00264482 /* BaseViewController.swift */; };
 		C85E1DCF2035B8B400264482 /* UserInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85E1DCE2035B8B400264482 /* UserInfoViewController.swift */; };
-		C85E1DD12036E0FF00264482 /* View.xib in Resources */ = {isa = PBXBuildFile; fileRef = C85E1DD02036E0FF00264482 /* View.xib */; };
-		C862FAA3200E2BA800D54E1B /* AddBoardHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C862FAA2200E2BA800D54E1B /* AddBoardHeaderView.xib */; };
 		C86C5B661FD1D7C700602BD0 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86C5B651FD1D7C700602BD0 /* UserDetailsViewController.swift */; };
 		C871A0701FE1728900162274 /* UserDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */; };
 		C871A0731FE182FD00162274 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C871A0721FE182FD00162274 /* ExploreViewController.swift */; };
 		C871A0761FE4034100162274 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C871A0751FE4034100162274 /* ReportViewController.swift */; };
 		C871A0791FE404DB00162274 /* VersionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C871A0781FE404DB00162274 /* VersionViewController.swift */; };
-		C88100B5200CC23000A76BEE /* AddNewBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88100B4200CC23000A76BEE /* AddNewBoardViewController.swift */; };
+		C88100B5200CC23000A76BEE /* SelectUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88100B4200CC23000A76BEE /* SelectUsersViewController.swift */; };
 		C88100B7200CC25200A76BEE /* BoardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88100B6200CC25200A76BEE /* BoardsViewController.swift */; };
 		C883233F20272A0C00C82874 /* FaqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C883233E20272A0C00C82874 /* FaqViewController.swift */; };
 		C883234420272FD600C82874 /* FormatIndicatedCacheSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C883234020272FD600C82874 /* FormatIndicatedCacheSerializer.swift */; };
 		C883234520272FD600C82874 /* ImageModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = C883234120272FD600C82874 /* ImageModifier.swift */; };
 		C883234720272FD600C82874 /* Placeholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C883234320272FD600C82874 /* Placeholder.swift */; };
+		C8886507203EEEFE00E98C91 /* AddBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8886506203EEEFE00E98C91 /* AddBoardViewController.swift */; };
+		C8886509203EF0E600E98C91 /* SelectedUserCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8886508203EF0E600E98C91 /* SelectedUserCollectionViewCell.xib */; };
+		C888650B203F171A00E98C91 /* SelectedUserCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C888650A203F171A00E98C91 /* SelectedUserCollectionViewCell.swift */; };
 		C889F4D71FB1BE0B00132460 /* SwifterTweets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4B11FB1BE0900132460 /* SwifterTweets.swift */; };
 		C889F4D81FB1BE0B00132460 /* SwifterSavedSearches.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4B21FB1BE0900132460 /* SwifterSavedSearches.swift */; };
 		C889F4D91FB1BE0B00132460 /* Swifter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C889F4B31FB1BE0900132460 /* Swifter.swift */; };
@@ -181,19 +182,20 @@
 		C85E1DC92035B68D00264482 /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		C85E1DCB2035B76B00264482 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C85E1DCE2035B8B400264482 /* UserInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoViewController.swift; sourceTree = "<group>"; };
-		C85E1DD02036E0FF00264482 /* View.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = View.xib; sourceTree = "<group>"; };
-		C862FAA2200E2BA800D54E1B /* AddBoardHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddBoardHeaderView.xib; sourceTree = "<group>"; };
 		C86C5B651FD1D7C700602BD0 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailsHeaderView.xib; sourceTree = "<group>"; };
 		C871A0721FE182FD00162274 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		C871A0751FE4034100162274 /* ReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		C871A0781FE404DB00162274 /* VersionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionViewController.swift; sourceTree = "<group>"; };
-		C88100B4200CC23000A76BEE /* AddNewBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewBoardViewController.swift; sourceTree = "<group>"; };
+		C88100B4200CC23000A76BEE /* SelectUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUsersViewController.swift; sourceTree = "<group>"; };
 		C88100B6200CC25200A76BEE /* BoardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardsViewController.swift; sourceTree = "<group>"; };
 		C883233E20272A0C00C82874 /* FaqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqViewController.swift; sourceTree = "<group>"; };
 		C883234020272FD600C82874 /* FormatIndicatedCacheSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FormatIndicatedCacheSerializer.swift; path = Kingfisher/FormatIndicatedCacheSerializer.swift; sourceTree = SOURCE_ROOT; };
 		C883234120272FD600C82874 /* ImageModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageModifier.swift; path = Kingfisher/ImageModifier.swift; sourceTree = SOURCE_ROOT; };
 		C883234320272FD600C82874 /* Placeholder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Placeholder.swift; path = Kingfisher/Placeholder.swift; sourceTree = SOURCE_ROOT; };
+		C8886506203EEEFE00E98C91 /* AddBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBoardViewController.swift; sourceTree = "<group>"; };
+		C8886508203EF0E600E98C91 /* SelectedUserCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectedUserCollectionViewCell.xib; sourceTree = "<group>"; };
+		C888650A203F171A00E98C91 /* SelectedUserCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedUserCollectionViewCell.swift; sourceTree = "<group>"; };
 		C889F4B11FB1BE0900132460 /* SwifterTweets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwifterTweets.swift; path = "Swifter-master/Sources/SwifterTweets.swift"; sourceTree = SOURCE_ROOT; };
 		C889F4B21FB1BE0900132460 /* SwifterSavedSearches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwifterSavedSearches.swift; path = "Swifter-master/Sources/SwifterSavedSearches.swift"; sourceTree = SOURCE_ROOT; };
 		C889F4B31FB1BE0900132460 /* Swifter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Swifter.swift; path = "Swifter-master/Sources/Swifter.swift"; sourceTree = SOURCE_ROOT; };
@@ -431,9 +433,8 @@
 				C8AC8BC61FB88DB200F81019 /* NavigationTableHeaderView.xib */,
 				C8CD9C931FB9E909009D4AAA /* MediaPreview.xib */,
 				C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */,
-				C862FAA2200E2BA800D54E1B /* AddBoardHeaderView.xib */,
 				C88A5F21200F6558004E4C47 /* BoardCell.xib */,
-				C85E1DD02036E0FF00264482 /* View.xib */,
+				C8886508203EF0E600E98C91 /* SelectedUserCollectionViewCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -483,6 +484,7 @@
 				C83DB3041FB6E4A10051147B /* NewsfeedWebCell.swift */,
 				C889F5481FB222F600132460 /* UserCell.swift */,
 				C88A5F23200F65DB004E4C47 /* BoardCell.swift */,
+				C888650A203F171A00E98C91 /* SelectedUserCollectionViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -543,9 +545,10 @@
 		C88100B3200CC17700A76BEE /* Boards */ = {
 			isa = PBXGroup;
 			children = (
-				C88100B4200CC23000A76BEE /* AddNewBoardViewController.swift */,
-				C88100B6200CC25200A76BEE /* BoardsViewController.swift */,
+				C8886506203EEEFE00E98C91 /* AddBoardViewController.swift */,
+				C88100B4200CC23000A76BEE /* SelectUsersViewController.swift */,
 				C836D6A2200F846C00AB497A /* BoardDetailsViewController.swift */,
+				C88100B6200CC25200A76BEE /* BoardsViewController.swift */,
 			);
 			name = Boards;
 			sourceTree = "<group>";
@@ -726,14 +729,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C85E1DD12036E0FF00264482 /* View.xib in Resources */,
+				C8886509203EF0E600E98C91 /* SelectedUserCollectionViewCell.xib in Resources */,
 				C859891F1FADA69F00C94877 /* LaunchScreen.storyboard in Resources */,
 				C859891C1FADA69F00C94877 /* Assets.xcassets in Resources */,
 				C8AC8BC71FB88DB200F81019 /* NavigationTableHeaderView.xib in Resources */,
 				C8CD9C941FB9E909009D4AAA /* MediaPreview.xib in Resources */,
 				C889F4DB1FB1BE0B00132460 /* Info.plist in Resources */,
 				C85989341FADADEF00C94877 /* NewsfeedCell.xib in Resources */,
-				C862FAA3200E2BA800D54E1B /* AddBoardHeaderView.xib in Resources */,
 				C8FEFB8B1FB4EBBE00B6F0F7 /* NewsfeedDetailsCell.xib in Resources */,
 				C88A5F22200F6558004E4C47 /* BoardCell.xib in Resources */,
 				C889F5471FB222E600132460 /* UserCell.xib in Resources */,
@@ -813,7 +815,8 @@
 				C883234720272FD600C82874 /* Placeholder.swift in Sources */,
 				C889F4E01FB1BE0B00132460 /* URL++.swift in Sources */,
 				C889F5491FB222F600132460 /* UserCell.swift in Sources */,
-				C88100B5200CC23000A76BEE /* AddNewBoardViewController.swift in Sources */,
+				C888650B203F171A00E98C91 /* SelectedUserCollectionViewCell.swift in Sources */,
+				C88100B5200CC23000A76BEE /* SelectUsersViewController.swift in Sources */,
 				C889F4DA1FB1BE0B00132460 /* HMAC.swift in Sources */,
 				C889F52A1FB1C10900132460 /* AnimatedImageView.swift in Sources */,
 				C859893D1FADB78300C94877 /* BaseDetailsViewController.swift in Sources */,
@@ -833,6 +836,7 @@
 				C889F4DC1FB1BE0B00132460 /* SwifterAuth.swift in Sources */,
 				C83DB3051FB6E4A10051147B /* NewsfeedWebCell.swift in Sources */,
 				C889F4F81FB1BE0B00132460 /* String++.swift in Sources */,
+				C8886507203EEEFE00E98C91 /* AddBoardViewController.swift in Sources */,
 				C889F53B1FB1C10900132460 /* String+MD5.swift in Sources */,
 				C889F52C1FB1C10900132460 /* Kingfisher.swift in Sources */,
 				C845D4FC1FAF3F0500A278ED /* Extensions.swift in Sources */,
@@ -998,7 +1002,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Wzty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wztnews.wzty;
@@ -1007,7 +1011,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = arm64;
 			};
 			name = Debug;
@@ -1023,15 +1027,16 @@
 				GCC_OPTIMIZATION_LEVEL = s;
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
 				INFOPLIST_FILE = Wzty/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-lxml2";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wztnews.wzty;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "$(SRCROOT)/Modules";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = arm64;
 			};
 			name = Release;

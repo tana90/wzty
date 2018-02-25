@@ -12,6 +12,9 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Created by Tudor Ana on 2/15/18.
 //  Copyright © 2018 Tudor Ana. All rights reserved.
 //
@@ -20,7 +23,25 @@ import UIKit
 
 class BaseViewController: UIViewController {
     
+    lazy var searchController: UISearchController = {
+        let searchController = UISearchController(searchResultsController: nil)
+        searchController.searchBar.tintColor = .red
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        return searchController
+    }()
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.definesPresentationContext = true
+    }
+    
+    override func didReceiveMemoryWarning() {
+        //Remove memory cache
+        KingfisherManager.shared.cache.clearMemoryCache()
     }
 }

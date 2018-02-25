@@ -12,6 +12,9 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Created by Tudor Ana on 15/01/2018.
 //  Copyright © 2018 Tudor Ana. All rights reserved.
 //
@@ -40,7 +43,7 @@ final class BoardsViewController: BaseListViewController {
     @IBAction func editAction() {
         isEditing = !isEditing
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,6 +53,10 @@ final class BoardsViewController: BaseListViewController {
         
         //Register for CoreData updates
         perform(boardsFetchedResultsController)
+        
+        //Show search bar
+        searchController.searchBar.delegate = self
+        self.navigationItem.searchController = searchController
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -68,7 +75,7 @@ final class BoardsViewController: BaseListViewController {
         }
         
         if segue.identifier == "showEditBoardSegue" { 
-            let destination = segue.destination as? AddNewBoardViewController
+            let destination = segue.destination as? SelectUsersViewController
             guard let board = boardsFetchedResultsController.object(at: tableView.indexPathForSelectedRow!) as? Board else {
                 return
             }
@@ -93,18 +100,16 @@ final class BoardsViewController: BaseListViewController {
 extension BoardsViewController {
     
     func search(_ text: String) {
-
-        if text.count > 0 {
-            let predicate = NSPredicate(format: "name CONTAINS[cd] %@", text)
-            boardsFetchedResultsController.fetchRequest.predicate = predicate
-            do {
-                try boardsFetchedResultsController.performFetch()
-                
-            } catch {
-                console("Error perform fetch")
-            }
-            tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+        
+        let predicate = NSPredicate(format: "name CONTAINS[cd] %@", text)
+        boardsFetchedResultsController.fetchRequest.predicate = predicate
+        do {
+            try boardsFetchedResultsController.performFetch()
+            
+        } catch {
+            console("Error perform fetch")
         }
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     }
     
     func clear() {
@@ -119,33 +124,31 @@ extension BoardsViewController {
     }
 }
 
-extension BoardsViewController: UISearchBarDelegate {
+extension BoardsViewController {
     
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 1, height: 1), animated: true)
-        searchBar.showsCancelButton = true
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    override func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.count > 0 {
             search(searchText)
         } else { clear() }
-    }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        guard let _ = searchBar.text else { return }
-        search(searchBar.text!)
-        searchBar.showsCancelButton = false
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
     }
 }
 
 
 //MARK: - TableView Delegate & DataSource
 extension BoardsViewController {
+    
+    override func tableView(_ tableView: UITableView,
+                            viewForHeaderInSection section: Int) -> UIView? {
+        Board.count { (count) in
+            infoHeaderView.show((count > 0) ? String(format: "%ld boards", count) : nil)
+        }
+        return infoHeaderView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 44
+    }
     
     override func tableView(_ tableView: UITableView, 
                             heightForRowAt indexPath: IndexPath) -> CGFloat {

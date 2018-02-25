@@ -12,6 +12,9 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Created by Tudor Ana on 2/15/18.
 //  Copyright © 2018 Tudor Ana. All rights reserved.
 //
@@ -23,6 +26,8 @@ final class UserInfoViewController: BaseTableViewController {
     @IBOutlet private weak var userImageView: UIImageView!
     @IBOutlet private weak var userFullNameLabel: UILabel!
     @IBOutlet private weak var userNameLabel: UILabel!
+    @IBOutlet private weak var followingsCountLabel: UILabel!
+    @IBOutlet private weak var locationLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,5 +61,13 @@ final class UserInfoViewController: BaseTableViewController {
         
         //Username
         userNameLabel?.text = String(format: "@%@", user.username!)
+        
+        //Followings count
+        followingsCountLabel.text = String(format: "%ld", (user.followingsCount?.intValue)!)
+        
+        if let _ = user.location,
+            (user.location)!.count > 0 {
+            locationLabel.text = user.location!
+        }
     }
 }

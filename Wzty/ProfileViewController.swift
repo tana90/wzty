@@ -140,7 +140,7 @@ extension ProfileViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return 74
     }
     
     
@@ -159,5 +159,3 @@ extension ProfileViewController {
         self.performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
     }
 }
-
-

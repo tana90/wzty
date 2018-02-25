@@ -12,6 +12,9 @@
 //  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 //  GNU General Public License for more details.
 //
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+//
 //  Created by Tudor Ana on 17/01/2018.
 //  Copyright © 2018 Tudor Ana. All rights reserved.
 //
@@ -99,7 +102,7 @@ class BoardDetailsViewController: BaseListViewController {
         
         //Edit board
         if segue.identifier == "showEditBoardSegue" { 
-            let destination = segue.destination as? AddNewBoardViewController
+            let destination = segue.destination as? SelectUsersViewController
             guard let _ = board else {
                 return
             }
@@ -135,17 +138,26 @@ class BoardDetailsViewController: BaseListViewController {
                     var index = 0
                     for user in usersT {
                         
-                        Post.homeTimelineBy(userId: (user?.objectId)!, sinceId: newer ? user?.sinceId : nil,
-                                            maxId: newer ? nil : user?.maxId) { [weak self] (status) in
-                                                guard let _ = self else { return }
-                                                
-                                                index += 1
-                                                if index >= (users?.count)! {
-                                                    self!.loading = false
-                                                    CoreDataManager.shared.saveContextBackground()
-                                                }
-                        }
+                        blockOperations.append(
+                            BlockOperation(block: { [weak self] in
+                                
+                                Post.homeTimelineBy(userId: (user?.objectId)!, sinceId: newer ? user?.sinceId : nil,
+                                                    maxId: newer ? nil : user?.maxId) { [weak self] (status) in
+                                                        guard let _ = self else { return }
+                                                        
+                                                        index += 1
+                                                        if index >= (users?.count)! {
+                                                            self!.loading = false
+                                                            CoreDataManager.shared.saveContextBackground()
+                                                        }
+                                                        
+                                }
+                            }))
                         
+                    }
+                    
+                    for operation: BlockOperation in blockOperations {
+                        operation.start()
                     }
                 }
             })
