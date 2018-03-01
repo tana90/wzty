@@ -23,6 +23,9 @@
 		C845D5041FAF57C500A278ED /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845D5031FAF57C500A278ED /* SettingsViewController.swift */; };
 		C845D5061FAF5E5A00A278ED /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845D5051FAF5E5A00A278ED /* Post.swift */; };
 		C845D5081FAF648700A278ED /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C845D5071FAF648700A278ED /* User.swift */; };
+		C8529A682044042C0016FA1D /* Trend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8529A672044042C0016FA1D /* Trend.swift */; };
+		C8529A6A20440CF00016FA1D /* TrendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8529A6920440CF00016FA1D /* TrendCell.xib */; };
+		C8529A6C20440D520016FA1D /* TrendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8529A6B20440D520016FA1D /* TrendCell.swift */; };
 		C85989151FADA69F00C94877 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C85989141FADA69F00C94877 /* AppDelegate.swift */; };
 		C859891A1FADA69F00C94877 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C85989181FADA69F00C94877 /* Main.storyboard */; };
 		C859891C1FADA69F00C94877 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C859891B1FADA69F00C94877 /* Assets.xcassets */; };
@@ -163,6 +166,9 @@
 		C845D5031FAF57C500A278ED /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C845D5051FAF5E5A00A278ED /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		C845D5071FAF648700A278ED /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C8529A672044042C0016FA1D /* Trend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trend.swift; sourceTree = "<group>"; };
+		C8529A6920440CF00016FA1D /* TrendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendCell.xib; sourceTree = "<group>"; };
+		C8529A6B20440D520016FA1D /* TrendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendCell.swift; sourceTree = "<group>"; };
 		C85989111FADA69F00C94877 /* Wzty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wzty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C85989141FADA69F00C94877 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C85989191FADA69F00C94877 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -358,6 +364,7 @@
 				C845D5051FAF5E5A00A278ED /* Post.swift */,
 				C845D5071FAF648700A278ED /* User.swift */,
 				C88A5F1F200F5D97004E4C47 /* Board.swift */,
+				C8529A672044042C0016FA1D /* Trend.swift */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -435,6 +442,7 @@
 				C871A06F1FE1728900162274 /* UserDetailsHeaderView.xib */,
 				C88A5F21200F6558004E4C47 /* BoardCell.xib */,
 				C8886508203EF0E600E98C91 /* SelectedUserCollectionViewCell.xib */,
+				C8529A6920440CF00016FA1D /* TrendCell.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -485,6 +493,7 @@
 				C889F5481FB222F600132460 /* UserCell.swift */,
 				C88A5F23200F65DB004E4C47 /* BoardCell.swift */,
 				C888650A203F171A00E98C91 /* SelectedUserCollectionViewCell.swift */,
+				C8529A6B20440D520016FA1D /* TrendCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -730,6 +739,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8886509203EF0E600E98C91 /* SelectedUserCollectionViewCell.xib in Resources */,
+				C8529A6A20440CF00016FA1D /* TrendCell.xib in Resources */,
 				C859891F1FADA69F00C94877 /* LaunchScreen.storyboard in Resources */,
 				C859891C1FADA69F00C94877 /* Assets.xcassets in Resources */,
 				C8AC8BC71FB88DB200F81019 /* NavigationTableHeaderView.xib in Resources */,
@@ -844,6 +854,7 @@
 				C889F4F01FB1BE0B00132460 /* SwifterAccountsClient.swift in Sources */,
 				C859892A1FADA73A00C94877 /* BaseListViewController.swift in Sources */,
 				C8AC8BC91FB895A000F81019 /* NavigationTableHeaderView.swift in Sources */,
+				C8529A6C20440D520016FA1D /* TrendCell.swift in Sources */,
 				C85E1DCA2035B68D00264482 /* BaseTableViewController.swift in Sources */,
 				C845D5081FAF648700A278ED /* User.swift in Sources */,
 				C889F4F91FB1BE0B00132460 /* SwifterTrends.swift in Sources */,
@@ -851,6 +862,7 @@
 				C85989321FADAA1700C94877 /* NewsfeedViewController.swift in Sources */,
 				C889F4EB1FB1BE0B00132460 /* SwifterUsers.swift in Sources */,
 				C889F5391FB1C10900132460 /* Filter.swift in Sources */,
+				C8529A682044042C0016FA1D /* Trend.swift in Sources */,
 				C8FDC5FE1FB037340005721F /* Tools.swift in Sources */,
 				C871A0791FE404DB00162274 /* VersionViewController.swift in Sources */,
 				C85989391FADB2F300C94877 /* Config.swift in Sources */,

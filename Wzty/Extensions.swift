@@ -21,6 +21,7 @@
 import Foundation
 import UIKit
 
+typealias DefaultDictionary = [String : Any]
 
 extension UIImage {
     
@@ -191,6 +192,24 @@ extension Optional {
         case .some(let value):
             return value
         }
+    }
+}
+
+//MARK: - Data extension
+extension Data {
+    
+    func toDictionary(_ body: (DefaultDictionary?) -> Void) {
+        
+        do {
+            body(try JSONSerialization.jsonObject(with: self, options: []) as? Dictionary)
+        } catch _ {
+            body(nil)
+        }
+    }
+    
+    func base64Encoded() -> String {
+        let base64String = self.base64EncodedString()
+        return base64String
     }
 }
 

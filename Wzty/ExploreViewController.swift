@@ -29,7 +29,7 @@ final class ExploreViewController: BaseListViewController {
         let timeSortDescriptor = NSSortDescriptor(key: "insertedTimestamp", ascending: false)
         let followSortDescriptor = NSSortDescriptor(key: "following", ascending: false)
         request.sortDescriptors = [followSortDescriptor, timeSortDescriptor]
-        let predicate = NSPredicate(format: "username CONTAINS[cd] '' OR name CONTAINS[cd] ''")
+        let predicate = NSPredicate(format: "username LIKE[c] '' OR username CONTAINS[cd] '' OR name CONTAINS[cd] ''")
         request.predicate = predicate
         request.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
         
@@ -40,14 +40,30 @@ final class ExploreViewController: BaseListViewController {
         frc.delegate = self
         return frc
     }()
-
+    
+    lazy var trendsFetchResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Trend")
+        let sortDescritor = NSSortDescriptor(key: "objectId", ascending: true)
+        request.sortDescriptors = [sortDescritor]
+        request.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
+        
+        let frc = NSFetchedResultsController(fetchRequest: request,
+                                             managedObjectContext: CoreDataManager.shared.backgroundContext,
+                                             sectionNameKeyPath: nil,
+                                             cacheName: nil)
+        return frc
+    }()
+    
+    
     var lastSearchTimestamp: Int = 0
+    var selectedSearchIndexPath: IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //Configure cell
         tableView.register(UINib(nibName: "UserCell", bundle: nil), forCellReuseIdentifier: "userCell")
+        tableView.register(UINib(nibName: "TrendCell", bundle: nil), forCellReuseIdentifier: "trendCell")
         
         //Register for CoreData updates
         perform(usersFetchedResultsController)
@@ -56,6 +72,25 @@ final class ExploreViewController: BaseListViewController {
         searchController.searchBar.delegate = self
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.showsCancelButton = false
+        
+        
+        refreshData()
+    }
+    
+    override func refreshData() {
+        super.refreshData()
+        Trend.sync { [weak self] (status) in
+            guard let _ = self else { return }
+            DispatchQueue.main.safeAsync {
+                do {
+                    try self!.trendsFetchResultsController.performFetch()
+                } catch _ {
+                    console("Error performing fetch products")
+                }
+                self!.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -70,28 +105,31 @@ final class ExploreViewController: BaseListViewController {
     }
     
     
-    func search(_ text: String) {
+    func search(_ text: String, suggested: Bool = false) {
         
         User.searchUsers(text) { [unowned self] (status, timestamp) -> (Void) in
-            
-            DispatchQueue.main.safeAsync { [weak self] in
-                
-                guard let _ = self else { return }
-                
+            DispatchQueue.main.safeAsync {
                 if text.count > Int(0) {
-                    if self!.lastSearchTimestamp < timestamp {
-                        NSFetchedResultsController<NSFetchRequestResult>.deleteCache(withName: "searchCache")
-                        let predicate = NSPredicate(format: "username CONTAINS[cd] %@ OR name CONTAINS[cd] %@", text, text)
-                        self!.usersFetchedResultsController.fetchRequest.predicate = predicate
+                    if self.lastSearchTimestamp < timestamp {
+                        
+                        var predicate = NSPredicate(format: "username == '%@' OR (username CONTAINS[cd] %@ OR name CONTAINS[cd] %@)", text, text)
+                        
+                        if suggested {
+                            predicate = NSPredicate(format: "username LIKE[c] %@", text)
+                        }
+                        
+                        self.usersFetchedResultsController.fetchRequest.predicate = predicate
                         do {
-                            try self!.usersFetchedResultsController.performFetch()
+                            try self.usersFetchedResultsController.performFetch()
                         } catch {
                             console("Error perform fetch")
                         }
                         
-                        self!.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-                        self!.lastSearchTimestamp = timestamp
+                        self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+                        self.lastSearchTimestamp = timestamp
                     }
+                } else {
+                    self.clear()
                 }
             }
         }
@@ -116,9 +154,29 @@ final class ExploreViewController: BaseListViewController {
 extension ExploreViewController {
     
     override func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBarDidSearch(searchText)
+    }
+    
+    override func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        super.searchBarTextDidEndEditing(searchBar)
+        guard let _ = searchBar.text else {
+            clear()
+            return
+        }
+        searchBarDidSearch(searchBar.text!)
+    }
+    
+    override func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        super.searchBarCancelButtonClicked(searchBar)
+        clear()
+    }
+    
+    func searchBarDidSearch(_ searchText: String) {
         if searchText.count > 0 {
             search(searchText)
-        } else { clear() }
+        } else {
+            clear()
+        }
     }
 }
 
@@ -128,6 +186,7 @@ extension ExploreViewController {
     
     override func tableView(_ tableView: UITableView,
                             viewForHeaderInSection section: Int) -> UIView? {
+        
         guard let count = usersFetchedResultsController.fetchedObjects?.count,
             count > 0 else {
                 infoHeaderView.show(nil)
@@ -143,22 +202,63 @@ extension ExploreViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return showSearch() ? 90 : 55
     }
     
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return showSearch() ? super.numberOfSections(in: tableView) : 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if showSearch() {
+            return super.tableView(tableView, numberOfRowsInSection: section)
+        }
+        
+        guard let _ = self.trendsFetchResultsController.fetchedObjects else { return 1 }
+        return (self.trendsFetchResultsController.fetchedObjects?.count)!
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as! UserCell
         
-        guard let user = usersFetchedResultsController.object(at: indexPath) as? User else {
+        if showSearch() {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "userCell") as! UserCell
+            guard let user = usersFetchedResultsController.object(at: indexPath) as? User else {
+                return cell
+            }
+            cell.selectionStyle = .default
+            cell.show(user)
             return cell
         }
         
-        cell.show(user)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "trendCell") as! TrendCell
+        guard let trend = trendsFetchResultsController.object(at: indexPath) as? Trend else {
+            return cell
+        }
+        cell.selectionStyle = .none
+        cell.show(trend)
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
+        if showSearch() {
+            self.performSegue(withIdentifier: "showUserDetailsSegue", sender: self)
+        } else {
+            guard let trend = trendsFetchResultsController.object(at: indexPath) as? Trend else {
+                return
+            }
+            searchController.searchBar.text = trend.username!
+            search(trend.username!, suggested: true)
+        }
     }
 }
+
+extension ExploreViewController {
+    
+    func showSearch() -> Bool {
+        guard let _ = usersFetchedResultsController.fetchedObjects else { return false }
+        return (usersFetchedResultsController.fetchedObjects?.count)! > Int(0) ? true : false
+    }
+}
+
