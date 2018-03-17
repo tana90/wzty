@@ -106,7 +106,7 @@ class NewsfeedCell: UITableViewCell {
         //Image
         if let imageUrlT = withPost.imageUrl {
             mediaView.kf.setImage(with: URL(string: imageUrlT))
-            mediaView.alpha = 0.95
+            mediaView.alpha = 0.86
             activityIndicatorView?.stopAnimating()
         } else {
             mediaView?.image = nil

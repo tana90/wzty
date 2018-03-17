@@ -131,6 +131,11 @@ extension BoardsViewController {
             search(searchText)
         } else { clear() }
     }
+    
+    override func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        super.searchBarCancelButtonClicked(searchBar)
+        clear()
+    }
 }
 
 

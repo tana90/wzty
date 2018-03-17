@@ -46,9 +46,9 @@ final class UrlDataPrefetcher {
                     result!.details = details
                     result!.imageUrl = image
                     
-                    if let _ = image {
-                        UIImageView().kf.setImage(with: URL(string: image!))
-                    }
+//                    if let _ = image {
+//                        UIImageView().kf.setImage(with: URL(string: image!))
+//                    }
                     if let _ = completionHandler {
                         completionHandler!()
                     }

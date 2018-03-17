@@ -56,7 +56,6 @@ extension Trend {
 
         let urlString = String(format: "http://tweeplers.com/countdata/?cc=%@&_=%ld", Locale.current.regionCode!, Date.timestamp())
         let request = URLRequest(url: URL(string: urlString)!)
-        console(urlString)
         URLSession.shared.dataTask(with: request) { (data, response, error) in
 
             guard error == nil,
@@ -66,7 +65,6 @@ extension Trend {
 
             dataT.toDictionary({ (dictionary) in
 
-                console(dictionary)
                 guard let _ = dictionary,
                     let trends = dictionary!["list"] as? [DefaultDictionary] else { return }
                 DispatchQueue.main.safeAsync {

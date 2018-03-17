@@ -23,8 +23,6 @@ import CoreData
 
 final class NewsfeedViewController: BaseListViewController {
     
-    
-    
     lazy var postFetchResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
         let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)

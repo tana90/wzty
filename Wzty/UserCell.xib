@@ -32,14 +32,14 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7oH-js-HL7">
-                        <rect key="frame" x="72" y="17.5" width="287" height="19.5"/>
-                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="16"/>
+                        <rect key="frame" x="72" y="17.5" width="287" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDx-3B-MjE">
-                        <rect key="frame" x="72" y="37" width="287" height="16"/>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                        <rect key="frame" x="72" y="38" width="287" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -55,7 +55,7 @@
                     <constraint firstItem="kDx-3B-MjE" firstAttribute="leading" secondItem="vZM-aj-lxM" secondAttribute="trailing" constant="10" id="kwf-IN-i5t"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.11679441359999999" green="0.1179507939" blue="0.1179507939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="nameLabel" destination="7oH-js-HL7" id="WTH-6I-Rrd"/>
                 <outlet property="userImageView" destination="vZM-aj-lxM" id="Zi4-jE-CFV"/>

@@ -55,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationController.shared.requestPermissionsWith { (_) in }
         
         //Change navigation title font
-        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 22, weight: .heavy), NSAttributedStringKey.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 20, weight: .semibold), NSAttributedStringKey.foregroundColor: UIColor.white]
         
         return true
     }

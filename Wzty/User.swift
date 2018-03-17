@@ -31,6 +31,7 @@ final class User: NSManagedObject {
     @NSManaged var following: Bool
     @NSManaged var followingsCount: NSNumber?
     @NSManaged var location: String?
+    @NSManaged var details: String?
     
     @NSManaged var insertedTimestamp: NSNumber?
     
@@ -74,6 +75,11 @@ final class User: NSManagedObject {
             followingsCount = NSNumber(value: Int((json["friends_count"]?.double)!))
         } else {
             followingsCount = NSNumber(value: 0)
+        }
+        
+        //Description details
+        if let _ = json["description"]?.string {
+            details = json["description"]?.string
         }
         
         //Location

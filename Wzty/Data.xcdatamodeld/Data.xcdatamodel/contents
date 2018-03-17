@@ -25,6 +25,7 @@
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
         <attribute name="boardId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="details" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="following" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="followingsCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="insertedTimestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -40,7 +41,7 @@
     <elements>
         <element name="Board" positionX="-3024" positionY="-595" width="128" height="103"/>
         <element name="Post" positionX="-3098" positionY="-918" width="128" height="193"/>
-        <element name="User" positionX="-2864" positionY="-945" width="128" height="225"/>
         <element name="Trend" positionX="-2979" positionY="-792" width="128" height="90"/>
+        <element name="User" positionX="-2864" positionY="-945" width="128" height="240"/>
     </elements>
 </model>

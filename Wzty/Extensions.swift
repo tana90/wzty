@@ -376,6 +376,11 @@ extension String {
         if let textT = text {
             var rmvText = textT.replacingOccurrences(of: "@(https?://([-\\w\\.]+[-\\w])+(:\\d+)?(/([\\w/_\\.#-]*(\\?\\S+)?[^\\.\\s])?)?)@", with: "", options: .regularExpression, range: textT.startIndex ..< textT.endIndex)
             rmvText = rmvText.replacingOccurrences(of: "(?i)https?://(?:www\\.)?\\S+(?:/|\\b)", with: "", options: .regularExpression, range: textT.startIndex ..< textT.endIndex)
+        
+            
+            rmvText = rmvText.replacingOccurrences(of: "\\s?#(?:\\S+)\\s?", with: "", options: .regularExpression, range: Range(rmvText.startIndex..<rmvText.endIndex)).trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
+            
+            rmvText = rmvText.replacingOccurrences(of: "\\s?@(?:\\S+)\\s?", with: "", options: .regularExpression, range: Range(rmvText.startIndex..<rmvText.endIndex)).trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
             
             rmvText = rmvText.replacingOccurrences(of: "&abreve;", with: "a")
             rmvText = rmvText.replacingOccurrences(of: "&Abreve;", with: "A")

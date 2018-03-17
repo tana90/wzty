@@ -20,12 +20,12 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="OPA-jk-COf"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.1215686275" green="0.1215686275" blue="0.1215686275" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="OlT-24-bLN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="12" id="Up0-pz-Cia"/>
                 <constraint firstItem="OlT-24-bLN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="18" id="boF-Do-q1o"/>

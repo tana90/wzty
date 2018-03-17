@@ -73,7 +73,7 @@ extension BaseListViewController {
     override func tableView(_ tableView: UITableView, 
                             heightForRowAt indexPath: IndexPath) -> CGFloat {
         //Setup news cell height
-        return max(min(tableView.bounds.size.height - 140, 560), 320)
+        return max(min(tableView.bounds.size.height - 200, 520), 300)
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {

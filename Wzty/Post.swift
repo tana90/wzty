@@ -131,6 +131,8 @@ extension Post {
     static func fetchAll(_ result: ([Post?]?) -> (Void)) {
         
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
+        let timeSortDescriptor = NSSortDescriptor(key: "timestamp", ascending: false)
+        request.sortDescriptors = [timeSortDescriptor]
         request.fetchBatchSize = FETCH_REQUEST_BATCH_SIZE
         CoreDataManager.shared.backgroundContext.performAndWait {
             do {

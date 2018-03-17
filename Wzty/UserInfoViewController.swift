@@ -27,6 +27,7 @@ final class UserInfoViewController: BaseTableViewController {
     @IBOutlet private weak var userFullNameLabel: UILabel!
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var followingsCountLabel: UILabel!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var locationLabel: UILabel!
     
     override func viewDidLoad() {
@@ -68,6 +69,11 @@ final class UserInfoViewController: BaseTableViewController {
         if let _ = user.location,
             (user.location)!.count > 0 {
             locationLabel.text = user.location!
+        }
+        
+        if let _ = user.details,
+            (user.details)!.count > 0 {
+            descriptionLabel.text = user.details!
         }
     }
 }
