@@ -67,7 +67,7 @@ final class AddBoardViewController: UICollectionViewController {
         searchController.searchBar.setImage(UIImage(named: "boards"), for: .search, state: .normal)
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
-        
+
         //Set save button disabled until user completes name and users
         saveButton.isEnabled = self.canEnableSaveButton()
         

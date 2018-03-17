@@ -26,6 +26,7 @@ class BaseTableViewController: UITableViewController {
     lazy var searchController: UISearchController = {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchBar.tintColor = .red
+        searchController.searchBar.barTintColor = .backgroundColor
         searchController.dimsBackgroundDuringPresentation = false
         searchController.hidesNavigationBarDuringPresentation = false
         return searchController

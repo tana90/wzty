@@ -143,13 +143,13 @@ extension BaseListViewController {
         guard let navigationController = navigationController else { return }
         
         if !(navigationController.hidesBarsOnSwipe) {
-            if #available(iOS 11.0, *) {
-                if scrollView.contentOffset.y > 0 {
-                    navigationController.navigationBar.prefersLargeTitles = false
-                } else {
-                    navigationController.navigationBar.prefersLargeTitles = true
-                }
+            
+            if scrollView.contentOffset.y > 0 {
+                navigationController.navigationBar.prefersLargeTitles = false
+            } else {
+                navigationController.navigationBar.prefersLargeTitles = true
             }
+            
         }
     }
 }
