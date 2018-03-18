@@ -22,6 +22,27 @@
 import Foundation
 import CoreData
 
+enum KeyPost: Key {
+    case objectId, timestamp, entities, urls, expandedUrl, user
+    
+    var key: String {
+        switch self {
+        case .objectId:
+            return "id_str"
+        case .timestamp:
+            return "created_at"
+        case .entities:
+            return "entities"
+        case .urls:
+            return "urls"
+        case .expandedUrl:
+            return "expanded_url"
+        case .user:
+            return "user"
+        }
+    }
+}
+
 final class Post: NSManagedObject {
     
     @NSManaged var imageUrl: String?
@@ -38,12 +59,12 @@ final class Post: NSManagedObject {
     func write(json: JSON) {
         
         //Object ID
-        if let _ = json["id_str"].string {
-            self.objectId = json["id_str"].string
+        if let _ = json[KeyPost.objectId.key].string {
+            self.objectId = json[KeyPost.objectId.key].string
         }
         
         //Timestamp
-        if let inputeddate = json["created_at"].string {
+        if let inputeddate = json[KeyPost.timestamp.key].string {
             let formatter = DateFormatter()
             formatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
             formatter.locale = Locale(identifier: "en_US")
@@ -57,7 +78,7 @@ final class Post: NSManagedObject {
         }
         
         //Url
-        if let urlLink = json["entities"].object?["urls"]?.array?.first?.object?["expanded_url"]?.string {
+        if let urlLink = json[KeyPost.entities.key].object?[KeyPost.urls.key]?.array?.first?.object?[KeyPost.expandedUrl.key]?.string {
             self.link = urlLink
         }
         
@@ -67,7 +88,7 @@ final class Post: NSManagedObject {
         }
         
         //User
-        User.add(json["user"], result: { (newObject) in
+        User.add(json[KeyPost.user.key], result: { (newObject) in
             self.userId = (newObject as? User)?.objectId
         })
     }
@@ -80,7 +101,7 @@ extension Post {
     static func add(objects: [JSON], _ homeTimeline: Bool = false) {
         
         for json in objects {
-            if let _ = json["entities"].object?["urls"]?.array?.first?.object?["expanded_url"]?.string {
+            if let _ = json[KeyPost.entities.key].object?[KeyPost.urls.key]?.array?.first?.object?[KeyPost.expandedUrl.key]?.string {
                 add(json, homeTimeline)
             }
         }
@@ -89,7 +110,7 @@ extension Post {
     //Add post to database
     static func add(_ json: JSON, _ homeTimeline: Bool = false) {
         
-        guard let objectId = json["id_str"].string else { return }
+        guard let objectId = json[KeyPost.objectId.key].string else { return }
         let predicate = NSPredicate(format: "objectId == %@", objectId)
         fetchBy(predicate) { (post) in
             guard let _ = post else {
@@ -165,8 +186,8 @@ extension Post {
             //Save first and last ids to user
             User.current() { (user) in
                 
-                let firstId = (json.array![0].object?["id_str"]?.string)!
-                let lastId = (json.array![json.array!.count - 1].object?["id_str"]?.string)!
+                let firstId = (json.array![0].object?[KeyPost.objectId.key]?.string)!
+                let lastId = (json.array![json.array!.count - 1].object?[KeyPost.objectId.key]?.string)!
                 if sinceId != nil && maxId != nil {
                     if sinceId != nil {
                         user?.sinceId = firstId
@@ -206,8 +227,8 @@ extension Post {
             let predicate = NSPredicate(format: "objectId == %@", userId)
             User.fetchBy(predicate: predicate) { (user) in
                 
-                let firstId = (json.array![0].object?["id_str"]?.string)!
-                let lastId = (json.array![json.array!.count - 1].object?["id_str"]?.string)!
+                let firstId = (json.array![0].object?[KeyPost.objectId.key]?.string)!
+                let lastId = (json.array![json.array!.count - 1].object?[KeyPost.objectId.key]?.string)!
                 if sinceId != nil && maxId != nil {
                     if sinceId != nil {
                         user?.sinceId = firstId

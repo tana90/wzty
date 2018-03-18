@@ -20,6 +20,10 @@
 
 import UIKit
 
+protocol Key {
+    var key: String { get }
+}
+
 func measure(title: String, block: @escaping ( @escaping () -> ()) -> ()) {
     
     let startTime = CFAbsoluteTimeGetCurrent()

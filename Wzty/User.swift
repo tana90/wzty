@@ -22,6 +22,33 @@
 import Foundation
 import CoreData
 
+enum KeyUser: Key {
+    
+    case objectId, userImageUrl, username, name, following,
+        followingsCount, location, details
+    
+    var key: String {
+        switch self {
+        case .objectId:
+            return "id_str"
+        case .userImageUrl:
+            return "profile_image_url"
+        case .username:
+            return "screen_name"
+        case .name:
+            return "name"
+        case .following:
+            return "following"
+        case .followingsCount:
+            return "friends_count"
+        case .location:
+            return "location"
+        case .details:
+            return "description"
+        }
+    }
+}
+
 final class User: NSManagedObject {
     
     @NSManaged var objectId: String?
@@ -45,46 +72,46 @@ final class User: NSManagedObject {
     func write(json: [String: JSON]) {
         
         //Object ID
-        if let _ = json["id_str"]?.string {
-            self.objectId = json["id_str"]?.string
+        if let _ = json[KeyUser.objectId.key]?.string {
+            self.objectId = json[KeyUser.objectId.key]?.string
         }
         
         //User image Url
-        if let _ = json["profile_image_url"]?.string {
-            self.userImageUrl = json["profile_image_url"]?.string
+        if let _ = json[KeyUser.userImageUrl.key]?.string {
+            self.userImageUrl = json[KeyUser.userImageUrl.key]?.string
             self.userImageUrl = self.userImageUrl?.replacingOccurrences(of: "_normal", with: "")
         }
         
         //Username
-        if let _ = json["screen_name"]?.string {
-            self.username = json["screen_name"]?.string
+        if let _ = json[KeyUser.username.key]?.string {
+            self.username = json[KeyUser.username.key]?.string
         }
         
         //Name
-        if let _ = json["name"]?.string {
-            self.name = json["name"]?.string
+        if let _ = json[KeyUser.name.key]?.string {
+            self.name = json[KeyUser.name.key]?.string
         }
         
         //Following true/false
-        if let _ = json["following"]?.bool {
-            self.following = (json["following"]?.bool)!
+        if let _ = json[KeyUser.following.key]?.bool {
+            self.following = (json[KeyUser.following.key]?.bool)!
         }
         
         //Followings count
-        if let _ = json["friends_count"]?.double {
-            followingsCount = NSNumber(value: Int((json["friends_count"]?.double)!))
+        if let _ = json[KeyUser.followingsCount.key]?.double {
+            followingsCount = NSNumber(value: Int((json[KeyUser.followingsCount.key]?.double)!))
         } else {
             followingsCount = NSNumber(value: 0)
         }
         
         //Description details
-        if let _ = json["description"]?.string {
-            details = json["description"]?.string
+        if let _ = json[KeyUser.details.key]?.string {
+            details = json[KeyUser.details.key]?.string
         }
         
         //Location
-        if let _ = json["location"]?.string {
-            location = json["location"]?.string
+        if let _ = json[KeyUser.location.key]?.string {
+            location = json[KeyUser.location.key]?.string
         }
         
         //Inserted timestamp
@@ -110,7 +137,7 @@ extension User {
     static func add(_ json: JSON,
                     result: (NSManagedObject!) -> (Void)) {
         
-        guard let objectId = json["id_str"].string else { return }
+        guard let objectId = json[KeyUser.objectId.key].string else { return }
         fetchBy(id: objectId) { (user) in
             guard let _ = user else {
                 //Insert new user
