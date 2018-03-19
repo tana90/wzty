@@ -53,6 +53,8 @@ class NewsfeedCell: UITableViewCell {
     
     func show(_ post: Post, refreshable refresh: Bool = true) {
         
+        clear()
+        
         targetUserId = post.userId
         targetPostId = post.objectId
         
@@ -73,18 +75,20 @@ class NewsfeedCell: UITableViewCell {
             self!.usenameLabel?.text = user!.name?.uppercased()
         }
         
-        populateCell(withPost: post)
+        
         
         //Fetch data and let NSFetchResultsController to reupdate cell
         if post.title == nil || post.imageUrl == nil {
-            UrlDataPrefetcher.shared.fetch(link: post.link, completionHandler: { [weak self] in
-                
-                guard let _ = self else { return }
-                self!.populateCell(withPost: post)
-                if refresh {
-                    CoreDataManager.shared.saveContextBackground()
+            DataPrefetcher.shared.fetch(post: post, completion: { [unowned self] (completedPost) in
+                DispatchQueue.main.safeAsync {
+                    self.populateCell(withPost: completedPost)
+                    if refresh {
+                        CoreDataManager.shared.saveContextBackground()
+                    }
                 }
             })
+        } else {
+            populateCell(withPost: post)
         }
     }
     
@@ -111,5 +115,12 @@ class NewsfeedCell: UITableViewCell {
         } else {
             mediaView?.image = nil
         }
+    }
+    
+    func clear() {
+        self.dateLabel.text = ""
+        self.titleLabel.text = ""
+        self.detailsLabel.text = ""
+        mediaView.image = nil
     }
 }

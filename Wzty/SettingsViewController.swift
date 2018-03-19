@@ -50,7 +50,7 @@ extension SettingsViewController {
             }
         }
         
-        if indexPath.section == 1 {
+        if indexPath.section == 2 {
             if indexPath.row == 0 {
                 let alertViewController = UIAlertController(title: "Are you sure you want to clear cache?", message: nil, preferredStyle: .alert)
                 let clearAction = UIAlertAction(title: "Clear cache", style: .destructive) { (alert) in

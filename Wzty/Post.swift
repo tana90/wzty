@@ -112,15 +112,31 @@ extension Post {
         
         guard let objectId = json[KeyPost.objectId.key].string else { return }
         let predicate = NSPredicate(format: "objectId == %@", objectId)
-        fetchBy(predicate) { (post) in
-            guard let _ = post else {
+        exist(predicate) { (status) in
+            
+            guard status == true else {
                 if let newObject = NSEntityDescription.insertNewObject(forEntityName: "Post", into: CoreDataManager.shared.backgroundContext) as? Post {
                     newObject.write(json: json)
                     newObject.homeTimeline = homeTimeline 
                 }
                 return
             }
-            post!.write(json: json)
+            //post!.write(json: json)
+        }
+    }
+    
+    static func exist(_ predicate: NSPredicate, result: (Bool) -> (Void)) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Post")
+        request.predicate = predicate
+        request.fetchLimit = 1
+        CoreDataManager.shared.backgroundContext.performAndWait {
+            do {
+                let count = try CoreDataManager.shared.backgroundContext.count(for: request)
+                result(count > 0 ? true : false)
+            } catch _ {
+                console("Error checking object existance.")
+                result(false)
+            }
         }
     }
     

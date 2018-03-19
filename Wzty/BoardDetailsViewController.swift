@@ -209,7 +209,11 @@ extension BoardDetailsViewController: UITableViewDataSourcePrefetching {
             
             //Fetch data and let NSFetchResultsController to reupdate cell
             if post.title == nil || post.imageUrl == nil {
-                UrlDataPrefetcher.shared.fetch(link: post.link)
+                DataPrefetcher.shared.fetch(post: post, completion: { (completedPost) in
+                    if (tableView.indexPathsForVisibleRows?.contains(indexPath))! {
+                        CoreDataManager.shared.saveContextBackground()
+                    }
+                })
             }
         }
     }

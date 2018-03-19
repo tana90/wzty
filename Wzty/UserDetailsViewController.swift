@@ -177,7 +177,12 @@ extension UserDetailsViewController: UITableViewDataSourcePrefetching {
         for indexPath in indexPaths {
             let post = postFetchResultsController.object(at: indexPath) as! Post
             if post.title == nil || post.imageUrl == nil {
-                UrlDataPrefetcher.shared.fetch(link: post.link)
+
+                DataPrefetcher.shared.fetch(post: post, completion: { (completedPost) in
+                    if (tableView.indexPathsForVisibleRows?.contains(indexPath))! {
+                        CoreDataManager.shared.saveContextBackground()
+                    }
+                })
             }
         }
     }
