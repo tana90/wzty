@@ -125,12 +125,24 @@ final class User: NSManagedObject {
 extension User {
     
     static func add(objects: [JSON]) {
+
+        var count = 0
+        for json in objects {
+            add(json) { (newObject) in
+                count += 1
+                if count >= objects.count {
+                    CoreDataManager.shared.saveContextBackground()
+                }
+            }
+        }
+    }
+    
+    
+    static func addTemporary(objects: [JSON]) {
         
         for json in objects {
             add(json) { (newObject) in }
         }
-        //Save data
-        CoreDataManager.shared.saveContextBackground()
     }
     
     
@@ -302,8 +314,10 @@ extension User {
         
         let timestamp = Date.timestamp()
         AppDelegate.shared().twitter?.searchUsers(using: query, page: 0, count: 50, includeEntities: false, success: { (json) in
-            User.add(objects: json.array!)
+            
+            User.addTemporary(objects: json.array!)
             finished(true, timestamp)
+            
         }, failure: { (error) in
             console("Error: \(error)")
         })

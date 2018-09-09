@@ -123,11 +123,13 @@
 		C8AC8BC71FB88DB200F81019 /* NavigationTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8AC8BC61FB88DB200F81019 /* NavigationTableHeaderView.xib */; };
 		C8AC8BC91FB895A000F81019 /* NavigationTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8AC8BC81FB895A000F81019 /* NavigationTableHeaderView.swift */; };
 		C8B451952024911100D15C51 /* LicenseAgreement.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B451942024911100D15C51 /* LicenseAgreement.swift */; };
+		C8C22068205FEEE800AABAA7 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C22067205FEEE800AABAA7 /* WeatherViewController.swift */; };
 		C8CD9C921FB9E8A7009D4AAA /* MediaPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD9C911FB9E8A7009D4AAA /* MediaPreview.swift */; };
 		C8CD9C941FB9E909009D4AAA /* MediaPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8CD9C931FB9E909009D4AAA /* MediaPreview.xib */; };
 		C8CD9C961FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD9C951FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift */; };
 		C8CD9C9B1FB9F9F0009D4AAA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD9C9A1FB9F9F0009D4AAA /* TabBarController.swift */; };
 		C8F691061FCF2D0100AFF82E /* DataPrefetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F691051FCF2D0100AFF82E /* DataPrefetcher.swift */; };
+		C8FACC272067C0F40034B3E4 /* BaseCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FACC262067C0F40034B3E4 /* BaseCollectionViewController.swift */; };
 		C8FDC5FE1FB037340005721F /* Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8FDC5FD1FB037340005721F /* Tools.swift */; };
 		C8FDC6051FB077380005721F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FDC6041FB077380005721F /* libresolv.tbd */; };
 		C8FDC6071FB077F80005721F /* libxml2.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FDC6061FB077F80005721F /* libxml2.2.tbd */; };
@@ -270,11 +272,13 @@
 		C8AC8BC61FB88DB200F81019 /* NavigationTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationTableHeaderView.xib; sourceTree = "<group>"; };
 		C8AC8BC81FB895A000F81019 /* NavigationTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTableHeaderView.swift; sourceTree = "<group>"; };
 		C8B451942024911100D15C51 /* LicenseAgreement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseAgreement.swift; sourceTree = "<group>"; };
+		C8C22067205FEEE800AABAA7 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
 		C8CD9C911FB9E8A7009D4AAA /* MediaPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPreview.swift; sourceTree = "<group>"; };
 		C8CD9C931FB9E909009D4AAA /* MediaPreview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaPreview.xib; sourceTree = "<group>"; };
 		C8CD9C951FB9EAE6009D4AAA /* NewsfeedDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsfeedDetailsCell.swift; sourceTree = "<group>"; };
 		C8CD9C9A1FB9F9F0009D4AAA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		C8F691051FCF2D0100AFF82E /* DataPrefetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPrefetcher.swift; sourceTree = "<group>"; };
+		C8FACC262067C0F40034B3E4 /* BaseCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewController.swift; sourceTree = "<group>"; };
 		C8FDC5FD1FB037340005721F /* Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tools.swift; sourceTree = "<group>"; };
 		C8FDC6041FB077380005721F /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		C8FDC6061FB077F80005721F /* libxml2.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libxml2.2.tbd; path = usr/lib/libxml2.2.tbd; sourceTree = SDKROOT; };
@@ -319,6 +323,7 @@
 		C81EFD081FBC5EF900A54FFE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				C8C22066205FEED300AABAA7 /* Weather */,
 				C85E1DCD2035B8A500264482 /* UserInfo */,
 				C883233D202729F900C82874 /* FAQ */,
 				C8B451932024910100D15C51 /* LicenseAgreement */,
@@ -344,6 +349,7 @@
 				C81EFD061FBC584B00A54FFE /* BaseCoreDataViewController.swift */,
 				C85E1DC92035B68D00264482 /* BaseTableViewController.swift */,
 				C85E1DCB2035B76B00264482 /* BaseViewController.swift */,
+				C8FACC262067C0F40034B3E4 /* BaseCollectionViewController.swift */,
 			);
 			name = BaseViewControllers;
 			sourceTree = "<group>";
@@ -663,6 +669,14 @@
 			name = LicenseAgreement;
 			sourceTree = "<group>";
 		};
+		C8C22066205FEED300AABAA7 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				C8C22067205FEEE800AABAA7 /* WeatherViewController.swift */,
+			);
+			name = Weather;
+			sourceTree = "<group>";
+		};
 		C8CD9C901FB9E6B9009D4AAA /* MediaPreview */ = {
 			isa = PBXGroup;
 			children = (
@@ -699,7 +713,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Tudor Ana";
 				TargetAttributes = {
 					C85989101FADA69F00C94877 = {
@@ -783,6 +797,7 @@
 				C889F4F31FB1BE0B00132460 /* Int++.swift in Sources */,
 				C889F4DF1FB1BE0B00132460 /* SwifterLists.swift in Sources */,
 				C889F4E11FB1BE0B00132460 /* Utils.swift in Sources */,
+				C8C22068205FEEE800AABAA7 /* WeatherViewController.swift in Sources */,
 				C889F5311FB1C10900132460 /* Indicator.swift in Sources */,
 				C85E1DCF2035B8B400264482 /* UserInfoViewController.swift in Sources */,
 				C8AC8BC51FB86BAA00F81019 /* NotificationController.swift in Sources */,
@@ -842,6 +857,7 @@
 				C88A5F20200F5D97004E4C47 /* Board.swift in Sources */,
 				C889F5361FB1C10900132460 /* Image.swift in Sources */,
 				C889F4EE1FB1BE0B00132460 /* SwifterTimelines.swift in Sources */,
+				C8FACC272067C0F40034B3E4 /* BaseCollectionViewController.swift in Sources */,
 				C889F4F11FB1BE0B00132460 /* SwifterCredential.swift in Sources */,
 				C889F4DC1FB1BE0B00132460 /* SwifterAuth.swift in Sources */,
 				C83DB3051FB6E4A10051147B /* NewsfeedWebCell.swift in Sources */,
@@ -910,6 +926,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -917,6 +934,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -967,6 +985,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -974,6 +993,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

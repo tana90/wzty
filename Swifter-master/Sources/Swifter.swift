@@ -121,11 +121,11 @@ public class Swifter {
             DispatchQueue.global(qos: .utility).async {
                 do {
                     let jsonResult = try JSON.parse(jsonData: data)
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.safeAsync {
                         success?(jsonResult, response)
                     }
                 } catch {
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.safeAsync {
                         failure?(error)
                     }
                 }

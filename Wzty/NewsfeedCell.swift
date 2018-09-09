@@ -79,9 +79,10 @@ class NewsfeedCell: UITableViewCell {
         
         //Fetch data and let NSFetchResultsController to reupdate cell
         if post.title == nil || post.imageUrl == nil {
-            DataPrefetcher.shared.fetch(post: post, completion: { [unowned self] (completedPost) in
-                DispatchQueue.main.safeAsync {
-                    self.populateCell(withPost: completedPost)
+            DataPrefetcher.shared.fetch(post: post, completion: { [weak self] (completedPost) in
+                DispatchQueue.main.safeAsync { [weak self] in
+                    guard let _ = self else { return }
+                    self!.populateCell(withPost: completedPost)
                     if refresh {
                         CoreDataManager.shared.saveContextBackground()
                     }
@@ -110,7 +111,7 @@ class NewsfeedCell: UITableViewCell {
         //Image
         if let imageUrlT = withPost.imageUrl {
             mediaView.kf.setImage(with: URL(string: imageUrlT))
-            mediaView.alpha = 0.86
+            mediaView.alpha = 0.9
             activityIndicatorView?.stopAnimating()
         } else {
             mediaView?.image = nil

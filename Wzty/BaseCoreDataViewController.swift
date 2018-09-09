@@ -59,7 +59,6 @@ extension BaseCoreDataViewController: NSFetchedResultsControllerDelegate {
             break
         case .update:
             self.tableView.reloadSections(IndexSet([sectionIndex]), with: .automatic)
-            break
         }
     }
     

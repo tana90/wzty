@@ -108,7 +108,9 @@ final class ExploreViewController: BaseListViewController {
     func search(_ text: String, suggested: Bool = false) {
         
         User.searchUsers(text) { [unowned self] (status, timestamp) -> (Void) in
-            DispatchQueue.main.safeAsync {
+            
+            guard status else { return }
+            
                 if text.count > Int(0) {
                     if self.lastSearchTimestamp < timestamp {
                         
@@ -125,13 +127,15 @@ final class ExploreViewController: BaseListViewController {
                             console("Error perform fetch")
                         }
                         
-                        self.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+                        DispatchQueue.main.safeAsync { [weak self] in
+                            guard let _ = self else { return }
+                            self!.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)   
+                        }
                         self.lastSearchTimestamp = timestamp
                     }
                 } else {
                     self.clear()
                 }
-            }
         }
     }
     

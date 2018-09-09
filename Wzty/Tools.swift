@@ -35,6 +35,38 @@ func measure(title: String, block: @escaping ( @escaping () -> ()) -> ()) {
 }
 
 
+
+func editBoardAction(_ board: Board?, at indexPath: IndexPath, presentedIn: BaseCollectionViewController) {
+    guard let _ = board else { return }
+    let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+    
+    let editAction = UIAlertAction(title: "Edit board", style: .default) { (alert) in
+        presentedIn.collectionView?.selectItem(at: indexPath, animated: true, scrollPosition: UICollectionViewScrollPosition.init(rawValue: 0))
+        presentedIn.performSegue(withIdentifier: "showEditBoardSegue", sender: presentedIn)
+    }
+    
+    let deleteAction = UIAlertAction(title: "Delete board", style: .destructive) { (alert) in
+        board?.delete()
+    }
+    
+    let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (alert) in
+    }
+    
+    alertViewController.addAction(editAction)
+    alertViewController.addAction(deleteAction)
+    alertViewController.addAction(cancelAction)
+
+    
+    if let popoverController = alertViewController.popoverPresentationController {
+        popoverController.sourceView = presentedIn.view
+        popoverController.sourceRect = CGRect(x: presentedIn.view.bounds.midX, y: presentedIn.view.bounds.midY, width: 0, height: 0)
+        popoverController.permittedArrowDirections = .init(rawValue: 0)
+    }
+    
+    presentedIn.present(alertViewController, animated: true, completion: nil)
+}
+
+
 func moreAction(post: Post?, presentedIn: BaseCoreDataViewController, _ hidePostCompletionHandler: (()->())? = nil) {
     guard let _ = post else { return }
     let alertViewController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -98,19 +130,22 @@ func console<T>(_ object: T, filename: String = #file, line: Int = #line, funcna
     
     let className = filename.split{$0 == "/"}.map(String.init).last
     print("[\(Date()) :: \(className ?? "Unknow class") : \(funcname)(\(line))] - \(object)")
-    
 }
 
 func logout() {
     
-    KeyChain.remove("username")
-    KeyChain.remove("oauthKey")
-    KeyChain.remove("secretKey")
+    removeKeychain()
     
     let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
     let initialViewController = storyboard.instantiateInitialViewController()
     (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = nil
     (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = initialViewController
+}
+
+func removeKeychain() {
+    KeyChain.remove("username")
+    KeyChain.remove("oauthKey")
+    KeyChain.remove("secretKey")
 }
 
 func clearCache() {

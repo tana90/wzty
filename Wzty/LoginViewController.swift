@@ -26,6 +26,7 @@ final class LoginViewController: BaseViewController {
     
     @IBAction func loginAction() {
         activityIndicatorView.startAnimating()
+        
         AppDelegate.shared().twitter?.authorize(with: URL(string: "wzty://authentication")!, presentFrom: self, success: { [unowned self] (accessToken, urlResponse) in
             //Get user info
             guard let username = accessToken?.screenName,
@@ -45,6 +46,7 @@ final class LoginViewController: BaseViewController {
             
             }, failure: { [unowned self] (error) in
                 self.activityIndicatorView.stopAnimating()
+                removeKeychain()
                 console("Error: \(error)")
         })
     }
@@ -53,18 +55,19 @@ final class LoginViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        //Check if we are alrString(describing: eady) logged in
+        //Check if we are logged in
         guard let username = KeyChain.load(string: "username"),
             username.count > 0,
             let oauthKey = KeyChain.load(string: "oauthKey"),
             oauthKey.count > 0,
             let secretKey = KeyChain.load(string: "secretKey"),
             secretKey.count > 0
-            else { 
+            else {
+                console("No auth credentials")
                 activityIndicatorView.stopAnimating()
                 return 
         }
-        
+
         //Authenticate automatically
         AppDelegate.shared().twitter = Swifter.init(consumerKey: "lLH1TSVtmbpzEcNUaJteq70wp", consumerSecret: "5Y3YDM9PzJr99YIbr4BfPQvM2Y1f92DiWz1NBEqxiUitfET234", oauthToken: oauthKey, oauthTokenSecret: secretKey)
         
@@ -72,6 +75,7 @@ final class LoginViewController: BaseViewController {
             self.loginSuccessfull()
         }, failure: { [unowned self] (error) in
             self.activityIndicatorView.stopAnimating()
+            removeKeychain()
             console(error)
         })
     }

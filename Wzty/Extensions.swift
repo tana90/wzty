@@ -632,6 +632,10 @@ extension UIColor {
             alpha: CGFloat(1.0)
         )
     }
+    
+    class var tintColor: UIColor {
+        return UIColor(red: 1, green: 180/255, blue: 15/255, alpha: 1.0)
+    }
 
     class var backgroundColor: UIColor {
         return UIColor(red: 30/255, green: 30/255, blue: 30/255, alpha: 1.0)

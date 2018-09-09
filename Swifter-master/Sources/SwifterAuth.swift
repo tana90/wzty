@@ -26,10 +26,10 @@
 import Foundation
 
 #if os(iOS)
-    import UIKit
-    import SafariServices
+import UIKit
+import SafariServices
 #else
-    import AppKit
+import AppKit
 #endif
 
 public extension Swifter {
@@ -42,25 +42,25 @@ public extension Swifter {
      */
     #if os(OSX)
     public func authorize(with callbackURL: URL, success: TokenSuccessHandler?, failure: FailureHandler? = nil) {
-    self.postOAuthRequestToken(with: callbackURL, success: { token, response in
-    var requestToken = token!
-    
-    NotificationCenter.default.addObserver(forName: .SwifterCallbackNotification, object: nil, queue: .main) { notification in
-    NotificationCenter.default.removeObserver(self)
-    let url = notification.userInfo![CallbackNotification.optionsURLKey] as! URL
-    let parameters = url.query!.queryStringParameters
-    requestToken.verifier = parameters["oauth_verifier"]
-    
-    self.postOAuthAccessToken(with: requestToken, success: { accessToken, response in
-    self.client.credential = Credential(accessToken: accessToken!)
-    success?(accessToken!, response)
-    }, failure: failure)
-    }
-    
-    let authorizeURL = URL(string: "oauth/authorize", relativeTo: TwitterURL.oauth.url)
-    let queryURL = URL(string: authorizeURL!.absoluteString + "?oauth_token=\(token!.key)")!
-    NSWorkspace.shared().open(queryURL)
-    }, failure: failure)
+        self.postOAuthRequestToken(with: callbackURL, success: { token, response in
+            var requestToken = token!
+            
+            NotificationCenter.default.addObserver(forName: .SwifterCallbackNotification, object: nil, queue: .main) { notification in
+                NotificationCenter.default.removeObserver(self)
+                let url = notification.userInfo![CallbackNotification.optionsURLKey] as! URL
+                let parameters = url.query!.queryStringParameters
+                requestToken.verifier = parameters["oauth_verifier"]
+                
+                self.postOAuthAccessToken(with: requestToken, success: { accessToken, response in
+                    self.client.credential = Credential(accessToken: accessToken!)
+                    success?(accessToken!, response)
+                }, failure: failure)
+            }
+            
+            let authorizeURL = URL(string: "oauth/authorize", relativeTo: TwitterURL.oauth.url)
+            let queryURL = URL(string: authorizeURL!.absoluteString + "?oauth_token=\(token!.key)")!
+            NSWorkspace.shared().open(queryURL)
+        }, failure: failure)
     }
     #endif
     

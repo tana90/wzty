@@ -22,7 +22,7 @@
 import UIKit
 import CoreData
 
-final class BoardsViewController: BaseListViewController {
+final class BoardsViewController: BaseCollectionViewController {
     
     lazy var boardsFetchedResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Board")
@@ -38,25 +38,22 @@ final class BoardsViewController: BaseListViewController {
         frc.delegate = self
         return frc
     }()
-    
-    
-    @IBAction func editAction() {
-        isEditing = !isEditing
-    }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        itemsPerRow = 2
         
-        //Configure cell
-        tableView.register(UINib(nibName: "BoardCell", bundle: nil), forCellReuseIdentifier: "boardCell")
-        
+        //Register cell
+        collectionView?.register(UINib(nibName: "BoardCell", bundle: nil), 
+                                 forCellWithReuseIdentifier: "boardCell")
+
         //Register for CoreData updates
         perform(boardsFetchedResultsController)
         
-        //Show search bar
-        searchController.searchBar.delegate = self
-        self.navigationItem.searchController = searchController
+        //Register long press action for edit and delete board
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(BoardsViewController.handleLongPress))
+        collectionView?.addGestureRecognizer(longPressGesture)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -64,7 +61,8 @@ final class BoardsViewController: BaseListViewController {
         
         if segue.identifier == "showBoardDetails" {
             let destination = segue.destination as? BoardDetailsViewController
-            guard let board = boardsFetchedResultsController.object(at: tableView.indexPathForSelectedRow!) as? Board else {
+            guard let board = boardsFetchedResultsController.object(at:
+                (collectionView?.indexPathsForSelectedItems![0])!) as? Board else {
                 return
             }
             board.priority = NSNumber(value: (board.priority?.intValue)! + 1)
@@ -74,9 +72,10 @@ final class BoardsViewController: BaseListViewController {
             return
         }
         
-        if segue.identifier == "showEditBoardSegue" { 
+        if segue.identifier == "showEditBoardSegue" {
             let destination = segue.destination as? SelectUsersViewController
-            guard let board = boardsFetchedResultsController.object(at: tableView.indexPathForSelectedRow!) as? Board else {
+            guard let board = boardsFetchedResultsController.object(at:
+                (collectionView?.indexPathsForSelectedItems![0])!) as? Board else {
                 return
             }
             destination?.boardName = board.name
@@ -94,103 +93,33 @@ final class BoardsViewController: BaseListViewController {
             return
         }
     }
-}
-
-
-extension BoardsViewController {
     
-    func search(_ text: String) {
-        
-        let predicate = NSPredicate(format: "name CONTAINS[cd] %@", text)
-        boardsFetchedResultsController.fetchRequest.predicate = predicate
-        do {
-            try boardsFetchedResultsController.performFetch()
-            
-        } catch {
-            console("Error perform fetch")
-        }
-        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-    }
     
-    func clear() {
-        boardsFetchedResultsController.fetchRequest.predicate = nil
-        do {
-            try boardsFetchedResultsController.performFetch()
-            
-        } catch {
-            console("Error perform fetch")
-        }
-        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-    }
-}
-
-extension BoardsViewController {
-    
-    override func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.count > 0 {
-            search(searchText)
-        } else { clear() }
-    }
-    
-    override func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        super.searchBarCancelButtonClicked(searchBar)
-        clear()
-    }
-}
-
-
-//MARK: - TableView Delegate & DataSource
-extension BoardsViewController {
-    
-    override func tableView(_ tableView: UITableView,
-                            viewForHeaderInSection section: Int) -> UIView? {
-        Board.count { (count) in
-            infoHeaderView.show((count > 0) ? String(format: "%ld boards", count) : nil)
-        }
-        return infoHeaderView
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return 44
-    }
-    
-    override func tableView(_ tableView: UITableView, 
-                            heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 135
-    }
-    
-    override func tableView(_ tableView: UITableView,
-                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "boardCell") as? BoardCell
-        guard let board = boardsFetchedResultsController.object(at: indexPath) as? Board else {
-            return cell!
-        }
-        cell!.show(board)
-        
-        return cell!
-    }
-    
-    override func tableView(_ tableView: UITableView,
-                            didSelectRowAt indexPath: IndexPath) {
-        if !isEditing {
-            self.performSegue(withIdentifier: "showBoardDetails", sender: self)
-        } else {
-            self.performSegue(withIdentifier: "showEditBoardSegue", sender: self)
-        }
-        
-        isEditing = false
-    }
-    
-    override func tableView(_ tableView: UITableView, 
-                            commit editingStyle: UITableViewCellEditingStyle, 
-                            forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+    @objc func handleLongPress(gesture : UILongPressGestureRecognizer!) {
+        let p = gesture.location(in: self.collectionView)
+        if let indexPath = self.collectionView?.indexPathForItem(at: p) {
             guard let board = boardsFetchedResultsController.object(at: indexPath) as? Board else {
                 return
             }
-            board.delete()
+            editBoardAction(board, at: indexPath, presentedIn: self)
         }
+    }
+}
+
+
+extension BoardsViewController {
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "boardCell", for: indexPath) as! BoardCell
+        guard let board = boardsFetchedResultsController.object(at: indexPath) as? Board else {
+            return cell
+        }
+        cell.show(board, at: indexPath.row)
+        return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "showBoardDetails", sender: self)
     }
 }

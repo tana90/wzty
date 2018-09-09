@@ -21,7 +21,7 @@
 import UIKit
 import MessageUI
 
-final class SettingsViewController: UITableViewController {
+final class SettingsViewController: BaseTableViewController {
     
 }
 

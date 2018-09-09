@@ -43,16 +43,21 @@ final class AddBoardViewController: UICollectionViewController {
     
     @IBAction func saveAction(_ sender: Any) {
         if let _ = boardId {
-            Board.fetchBy(id: boardId!, result: { (object) -> (Void) in
+            Board.fetchBy(id: boardId!, result: { (object) in
                 if let board = object as? Board {
                     board.name = boardName
-                    board.edit(selectedUsers)
+                    
+                    board.edit(selectedUsers) {
+                        console("Finished")
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
                 }
             })
         } else {
             Board.add(boardName!, selectedUsers)
+            navigationController?.popToRootViewController(animated: true)
         }
-        navigationController?.popToRootViewController(animated: true)
+        
     }
     
     override func viewDidLoad() {
@@ -67,7 +72,7 @@ final class AddBoardViewController: UICollectionViewController {
         searchController.searchBar.setImage(UIImage(named: "boards"), for: .search, state: .normal)
         self.navigationItem.searchController = searchController
         self.navigationItem.hidesSearchBarWhenScrolling = false
-
+        
         //Set save button disabled until user completes name and users
         saveButton.isEnabled = self.canEnableSaveButton()
         
@@ -94,8 +99,8 @@ extension AddBoardViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView,
-                              layout collectionViewLayout: UICollectionViewLayout,
-                              insetForSectionAt section: Int) -> UIEdgeInsets {
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets
     }
     
@@ -132,11 +137,11 @@ extension AddBoardViewController {
 extension AddBoardViewController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-
+        
         let identifier = "addBoardHeaderView"
-
+        
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: identifier, for: indexPath)
-
+        
         return headerView
     }
 }
